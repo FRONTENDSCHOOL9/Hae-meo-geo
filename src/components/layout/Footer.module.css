@@ -1,0 +1,5 @@
+footer {
+  margin-top: 10rem;
+  background: var(--color-gray-30);
+  padding: var(--layout-padding-pc);
+}

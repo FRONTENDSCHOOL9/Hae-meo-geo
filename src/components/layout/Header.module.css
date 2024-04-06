@@ -1,0 +1,25 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-bottom: 1px solid #ccc;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.logo img {
+  width: 11.2rem;
+}
+
+.gnb ul {
+  display: flex;
+  font-weight: bold;
+  gap: 10px;
+}
+
+.userMenu {
+  
+}

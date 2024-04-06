@@ -11,7 +11,7 @@ function Home() {
   });
   console.log(data);
 
-  return <div>Home</div>;
+  return <>Home</>;
 }
 
 export default Home;

@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 
-const { logo, gnb, userMenu } = styles;
-
 function Header() {
+  const { header, logo, gnb, userMenu } = styles;
   return (
-    <header>
+    <header className={header}>
       <div className={logo}>
         <Link to="/">
           <img src="/logo.svg" alt="해머거" />

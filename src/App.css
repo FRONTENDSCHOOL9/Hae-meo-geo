@@ -21,8 +21,13 @@
 }
 
 body {
-  min-height: 100vh;
   font-size: 1.4rem;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .hidden {

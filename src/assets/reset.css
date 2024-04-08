@@ -17,6 +17,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
   line-height: 1.6;
   box-sizing: border-box;
+  word-break: keep-all;
 }
 
 /* HTML5 display-role reset for older browsers */

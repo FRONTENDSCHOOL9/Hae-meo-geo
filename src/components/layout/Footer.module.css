@@ -1,5 +1,28 @@
-footer {
-  margin-top: 10rem;
+.footer {
   background: var(--color-gray-30);
-  padding: var(--layout-padding-pc);
+  padding: 5rem var(--layout-padding-pc) 8rem;
+  font-size: 2rem;
+  margin-top: auto;
+}
+
+.info {
+  display: flex;
+  gap: 2rem;
+  max-width: fit-content;
+  padding-right: 3rem;
+}
+
+.info+.info {
+  margin-top: 1.6rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--color-gray-50);
+}
+
+.strong {
+  font-weight: bold;
+}
+
+.copyright {
+  color: var(--color-gray-100);
+  margin-top: .4rem;
 }

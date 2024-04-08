@@ -1,5 +1,5 @@
 .container {
   max-width: var(--layout-pc);
-  padding: 0 3rem;
+  padding: 0 3rem 14rem;
   margin: calc(5rem + 9.6rem) auto 0;
 }

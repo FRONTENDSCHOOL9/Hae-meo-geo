@@ -2,13 +2,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8rem;
   background: #fff;
   border-bottom: 1px solid #ccc;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  font-size: 1.8rem;
+  padding: 2rem 0;
 }
 
 .logo img {
@@ -18,7 +20,55 @@
 .gnb ul {
   display: flex;
   font-weight: bold;
-  gap: 10px;
+  gap: 8rem;
 }
 
-.userMenu {}
+.gnb ul a {
+  transition: all .3s
+}
+
+.gnb ul a:hover {
+  color: var(--color-primary);
+}
+
+.userMenu {
+  display: flex;
+  gap: 8rem
+}
+
+.userMenu li * {
+  display: block;
+  width: 2.6rem;
+  height: 2.8rem;
+  background: url(@/assets/ico-user.svg) no-repeat center / cover;
+  transition: all .3s;
+}
+
+.userMenu .search {
+  background-image: url(@/assets/ico-search.svg);
+  height: 2.7rem;
+}
+
+.userMenu .search:hover {
+  background-image: url(@/assets/ico-search-primary.svg);
+}
+
+.userMenu .login:hover {
+  background-image: url(@/assets/ico-user-primary.svg);
+}
+
+.fixedWr {
+  position: fixed;
+  right: 3rem;
+  bottom: 3rem;
+  z-index: 1;
+}
+
+.toTop {
+  border-radius: 1rem;
+  border: 2px solid var(--color-gray-100);
+  background: #fff;
+  width: 7rem;
+  height: 7rem;
+  background: #fff url(/src/assets/ico-totop.svg) no-repeat center / 3rem;
+}

@@ -1,0 +1,24 @@
+.rcpList {
+  margin-top: 10rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 5rem 2rem;
+}
+
+.rcpList img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.rcpList p {
+  margin: 1rem 0;
+  font-size: var(--title-medium);
+  line-height: 1.4;
+}
+
+.rcpList button+button {
+  margin-left: .6rem;
+}

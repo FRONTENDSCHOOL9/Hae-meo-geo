@@ -9,7 +9,7 @@ function useCustomAxios(rcpApi = false) {
     headers: {
       "content-type": "application/json",
       accept: "application/json",
-      // "client-id": "00-sample",
+      // "client-id": "06-haemeogeo",
     },
   });
 

@@ -16,6 +16,7 @@ time, mark, audio, video {
 	border: unset;
 	vertical-align: baseline;
   line-height: 1.6;
+  box-sizing: border-box;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -45,6 +46,7 @@ a {
 
 button {
   all: unset;
+  box-sizing: border-box;
   line-height: 1.4;
   cursor: pointer;
 }

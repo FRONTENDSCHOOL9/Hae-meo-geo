@@ -12,13 +12,14 @@ LinkButton.propTypes = {
 export function Button({
   children,
   type = "button",
-  style = "default",
+  color = "gray",
   size = "small",
+  filled = "false",
 }) {
   return (
     <button
       type={type}
-      className={`${styles.button} ${styles[style]} ${styles[size]}`}
+      className={`${styles.button} ${styles[color]} ${styles[size]} ${styles[filled]}`}
     >
       {children}
     </button>
@@ -28,13 +29,14 @@ export function Button({
 export function LinkButton({
   children,
   to = "/",
-  style = "default",
+  color = "gray",
   size = "small",
+  filled = "false",
 }) {
   return (
     <Link
       to={to}
-      className={`${styles.button} ${styles[style]} ${styles[size]}`}
+      className={`${styles.button} ${styles[color]} ${styles[size]} ${styles[filled]}`}
     >
       {children}
     </Link>

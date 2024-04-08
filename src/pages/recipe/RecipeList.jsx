@@ -13,12 +13,16 @@ function RcpList() {
   // console.log(data);
   return (
     <>
-      <Button style="primary" size="large">
+      <Button>버튼</Button>
+      <Button color="primary">버튼</Button>
+      <Button color="primary" size="medium">
         버튼
       </Button>
-      <LinkButton style="primary" size="large">
+      <Button size="large">버튼</Button>
+      <Button size="large" filled="filled">
         버튼
-      </LinkButton>
+      </Button>
+      <LinkButton size="large" color="primary">버튼</LinkButton>
     </>
   );
 }

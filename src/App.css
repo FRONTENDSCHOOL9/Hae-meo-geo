@@ -14,11 +14,10 @@
 
   --layout-container-pc: 1680px;
   --layout-padding-pc: 3rem;
-  /* --layout-container-mo: 1680px; */
   --layout-padding-mo: 1.5rem;
 }
 
-#root {
+body {
   min-height: 100vh;
   font-size: 1.4rem;
 }

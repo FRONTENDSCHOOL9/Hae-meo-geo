@@ -1,7 +1,7 @@
 .footer {
   background: var(--color-gray-30);
   padding: 5rem var(--layout-padding-pc) 8rem;
-  font-size: 2rem;
+  font-size: 1.6rem;
   margin-top: auto;
 }
 

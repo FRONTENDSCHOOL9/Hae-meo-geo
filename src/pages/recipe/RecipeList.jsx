@@ -1,4 +1,6 @@
 import { Button, LinkButton } from "@components/Button/Button";
+import Search from "@components/Search/Search";
+import Title from "@components/Title/Title";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useQuery } from "@tanstack/react-query";
 
@@ -13,16 +15,8 @@ function RcpList() {
   // console.log(data);
   return (
     <>
-      <Button>버튼</Button>
-      <Button color="primary">버튼</Button>
-      <Button color="primary" size="medium">
-        버튼
-      </Button>
-      <Button size="large">버튼</Button>
-      <Button size="large" filled="filled">
-        버튼
-      </Button>
-      <LinkButton size="large" color="primary">버튼</LinkButton>
+      <Title>해머거 레시피</Title>
+      <Search></Search>
     </>
   );
 }

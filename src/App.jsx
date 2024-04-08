@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactCsspin } from "react-csspin";
 import "react-csspin/dist/style.css";
 import { Suspense } from "react";
+import "@/assets/reset.css";
+import "@/assets/fonts/font.css";
 import "./App.css";
 
 const queryClient = new QueryClient();

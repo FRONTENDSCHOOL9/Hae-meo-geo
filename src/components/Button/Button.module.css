@@ -1,0 +1,20 @@
+.button {
+  padding: 1.5em;
+  border: 1px solid;
+}
+
+.primary {
+  color: var(--color-primary);
+}
+
+.gray {
+  color: var(--color-gray-100);
+}
+
+.small {
+  font-size: 1.4rem;
+}
+
+.large {
+  font-size: 2rem;
+}

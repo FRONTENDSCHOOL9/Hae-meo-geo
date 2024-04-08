@@ -2,7 +2,6 @@ import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useQuery } from "@tanstack/react-query";
 import styles from "./TodayRecipeList.module.css";
 
-console.log(styles);
 
 function TodayRecipeList() {
   // 랜덤으로 노출되어야 하는 데이터 : 상황, 메뉴

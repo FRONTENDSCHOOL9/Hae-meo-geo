@@ -3,6 +3,10 @@ import styles from "./Header.module.css";
 
 function Header() {
   const { header, logo, gnb, userMenu, login, search, fixedWr, toTop } = styles;
+  const handleToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <header className={header}>
       <div className={logo}>
@@ -36,7 +40,7 @@ function Header() {
         </li>
       </ul>
       <div className={fixedWr}>
-        <button className={toTop}>
+        <button className={toTop} onClick={handleToTop}>
           <span className="hidden">위로 이동하기</span>
         </button>
       </div>

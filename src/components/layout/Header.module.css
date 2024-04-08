@@ -70,5 +70,12 @@
   background: #fff;
   width: 7rem;
   height: 7rem;
-  background: #fff url(/src/assets/ico-totop.svg) no-repeat center / 3rem;
+  background: #fff url(@/assets/ico-totop.svg) no-repeat center / 3rem;
+  transition: all .3s;
+}
+
+.toTop:hover {
+  /* background-color: var(--color-primary); */
+  background-image: url(@/assets/ico-totop-primary.svg);
+  border-color: var(--color-primary);
 }

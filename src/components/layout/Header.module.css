@@ -3,6 +3,7 @@ header {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  background: #fff;
   border-bottom: 1px solid #ccc;
   position: fixed;
   top: 0;
@@ -20,6 +21,4 @@ header {
   gap: 10px;
 }
 
-.userMenu {
-  
-}
+.userMenu {}

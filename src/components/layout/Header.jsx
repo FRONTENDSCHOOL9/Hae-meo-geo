@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 
-const {logo, gnb, userMenu} = styles
+const { logo, gnb, userMenu } = styles;
 
 function Header() {
   return (
@@ -14,10 +14,10 @@ function Header() {
       <nav className={gnb}>
         <ul>
           <li>
-            <Link to="">오늘뭐먹지?</Link>
+            <Link to="/today/list">오늘뭐먹지?</Link>
           </li>
           <li>
-            <Link to="">해머거 레시피</Link>
+            <Link to="/recipe/list">해머거 레시피</Link>
           </li>
           <li>
             <Link to="">나만의 레시피</Link>

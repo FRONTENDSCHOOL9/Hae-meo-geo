@@ -1,4 +1,7 @@
 import moment from "moment";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+// import useCustomAxios from "/src/hooks/useCustomAxios.mjs";
 
 function getDay(day = 0) {
   return moment().add(day, "days").format("YYYY.MM.DD");
@@ -9,6 +12,16 @@ function getTime(day = 0, second = 0) {
     .add(second, "seconds")
     .format("YYYY.MM.DD HH:mm:ss");
 }
+function getData() {
+  // const axios = useCustomAxios();
+  const { data } = useQuery({
+    queryKey: ["list"],
+    queryFn: () => axios.get("/1/1000", {}),
+    select: (response) => response.data,
+  });
+  console.log(data);
+}
+getData();
 
 export const initData = async (nextSeq) => {
   return {
@@ -26,25 +39,13 @@ export const initData = async (nextSeq) => {
         name: "캥거루 스턴트 독 로봇완구",
         quantity: 320,
         buyQuantity: 310,
-        mainImages: [
-          {
-            url: `/files/sample-dog.jpg`,
-            fileName: "sample-dog.jpg",
-            orgName: "스턴트 독.jpg",
-          },
-        ],
-        content: `
-          <div class="product-detail">
-            <p>캥거루 스턴트 독 로봇완구 상세 설명</p>
-          </div>`,
-        createdAt: getTime(-41, -60 * 60 * 2),
-        updatedAt: getTime(-40, -60 * 15),
         extra: {
           isNew: true,
           isBest: true,
           category: ["PC03", "PC0301"],
           sort: 5,
         },
+        // RCP_SEQ:
       },
     ],
     // 주문

@@ -26,6 +26,21 @@ export function Button({
   );
 }
 
+export function Tag({
+  children,
+  color = "gray",
+  size = "small",
+  filled = "false",
+}) {
+  return (
+    <span
+      className={`${styles.button} ${styles[color]} ${styles[size]} ${styles[filled]}`}
+    >
+      {children}
+    </span>
+  );
+}
+
 export function LinkButton({
   children,
   to = "/",

@@ -18,7 +18,3 @@
   font-size: var(--title-medium);
   line-height: 1.4;
 }
-
-.rcpList button+button {
-  margin-left: .6rem;
-}

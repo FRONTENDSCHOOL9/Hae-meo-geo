@@ -1,5 +1,5 @@
-import { Button } from "@components/Button/Button";
-import List from "@components/List/List";
+import { Tag } from "@components/Button/Button";
+import RecipeList from "@components/RecipeList/RecipeList";
 import Search from "@components/Search/Search";
 import Title from "@components/Title/Title";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
@@ -7,7 +7,6 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 
 function RcpList() {
-  // crud 테스트
   const axios = useCustomAxios(true);
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["list"],
@@ -17,11 +16,11 @@ function RcpList() {
 
   const recipeItem = data?.map((item) => (
     <li key={item["RCP_SEQ"]}>
-      <Link to="">
+      <Link to={`/recipe/list/${item["RCP_NM"]}`}>
         <img src={item["ATT_FILE_NO_MAIN"]} alt={item["RCP_NM"]} />
         <p>{item["RCP_NM"]}</p>
-        <Button>{item["RCP_PAT2"]}</Button>
-        <Button>{item["RCP_WAY2"]}</Button>
+        <Tag>{item["RCP_PAT2"]}</Tag>
+        <Tag>{item["RCP_WAY2"]}</Tag>
       </Link>
     </li>
   ));
@@ -30,7 +29,7 @@ function RcpList() {
     <>
       <Title>해머거 레시피</Title>
       <Search />
-      <List recipeItem={recipeItem} />
+      <RecipeList recipeItem={recipeItem} />
     </>
   );
 }

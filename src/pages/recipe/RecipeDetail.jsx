@@ -1,7 +1,9 @@
 import { useParams } from "react-router-dom";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useQuery } from "@tanstack/react-query";
-import RecipeDetailTitle from "@components/RecipeDetailTitle/RecipeDetailTitle";
+import Banner from "@components/Recipe/Detail/Banner/Banner";
+import Content from "@components/Recipe/Detail/Content/Content";
+import SubTitle from "@components/Recipe/Detail/SubTitle/SubTitle";
 import styles from "./RecipeDetail.module.css";
 
 function RecipeDetail() {
@@ -14,17 +16,22 @@ function RecipeDetail() {
   });
 
   console.log(data);
-
+  // ingredient;
   return (
     <>
       {data && (
-        <RecipeDetailTitle
+        <Banner
           name={data["RCP_NM"]}
           pat={data["RCP_PAT2"]}
           way={data["RCP_WAY2"]}
           type="haeRcp"
         />
       )}
+      <Content>
+        <SubTitle>재료</SubTitle>
+        <SubTitle>단계별 레시피</SubTitle>
+        <SubTitle>요리 후기</SubTitle>
+      </Content>
     </>
   );
 }

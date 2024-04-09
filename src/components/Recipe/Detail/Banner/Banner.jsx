@@ -1,20 +1,20 @@
 import { Tag } from "@components/Button/Button";
 import PropTypes from "prop-types";
-import styles from "./RecipeDetailTitle.module.css";
+import styles from "./Banner.module.css";
 
-RecipeDetailTitle.propTypes = {
+Banner.propTypes = {
   name: PropTypes.string.isRequired,
   pat: PropTypes.string.isRequired,
   way: PropTypes.string.isRequired,
 };
 
-function RecipeDetailTitle({ name, pat, way, type = "myRcpList" }) {
-  const { titleBannerWr, titleBanner } = styles;
+function Banner({ name, pat, way, type = "myRcpList" }) {
+  const { bannerWr, banner } = styles;
   return (
     <>
       {type === "haeRcp" && (
-        <div className={`${titleBannerWr} ${styles[type]}`}>
-          <div className={titleBanner}>
+        <div className={`${bannerWr} ${styles[type]}`}>
+          <div className={banner}>
             <h2>{name}</h2>
             <ul>
               <li>
@@ -33,4 +33,4 @@ function RecipeDetailTitle({ name, pat, way, type = "myRcpList" }) {
   );
 }
 
-export default RecipeDetailTitle;
+export default Banner;

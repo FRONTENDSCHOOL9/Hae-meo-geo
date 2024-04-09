@@ -1,4 +1,4 @@
-.titleBannerWr {
+.bannerWr {
   background: var(--color-secondary-30) url(@/assets/detail-banner.svg) no-repeat center / cover;
   width: 100vw;
   margin: -5.2rem -3rem 0;
@@ -6,8 +6,8 @@
   position: relative;
 }
 
-.titleBannerWr::before,
-.titleBannerWr::after {
+.bannerWr::before,
+.bannerWr::after {
   content: '';
   display: block;
   position: absolute;
@@ -18,13 +18,13 @@
 
 }
 
-.titleBannerWr::before {
+.bannerWr::before {
   left: 0;
   background-image: url(@/assets/detail-banner-left.svg);
   aspect-ratio: 1.4/1;
 }
 
-.titleBannerWr::after {
+.bannerWr::after {
   right: 0;
   background-image: url(@/assets/detail-banner-right.svg);
   aspect-ratio: 1.2/1;
@@ -34,14 +34,14 @@
   background-color: var(--color-primary-30);
 }
 
-.titleBanner {
+.banner {
   max-width: var(--layout-container-tablet);
   margin: 0 auto;
   position: relative;
   padding: 3.8vw 0;
 }
 
-.titleBanner::after {
+.banner::after {
   content: '';
   display: block;
   position: absolute;
@@ -54,12 +54,12 @@
   z-index: 1;
 }
 
-.titleBanner h2 {
+.banner h2 {
   font-size: var(--title-big);
   padding-right: 20rem;
 }
 
-.titleBanner ul {
+.banner ul {
   display: flex;
   gap: 1rem;
   margin-top: 0.6rem;

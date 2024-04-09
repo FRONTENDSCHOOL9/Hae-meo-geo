@@ -2,7 +2,9 @@ import styles from "./Ingredient.module.css";
 
 function Ingredient({ data }) {
   const { ingredientWr, ingredient, rightWr, info, infoTitle } = styles;
-  const list = data["RCP_PARTS_DTLS"].split(",").map((item) => <li>{item}</li>);
+  const list = data["RCP_PARTS_DTLS"]
+    .split(",")
+    .map((item, i) => <li key={i}>{item}</li>);
 
   return (
     <div className={ingredientWr}>

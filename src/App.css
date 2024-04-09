@@ -41,13 +41,13 @@ body {
 
 @media (min-width: 1025px) and (max-width: 1680px) {
   :root {
-    font-size: 58%;
+    font-size: 57%;
   }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
   :root {
-    font-size: 56%;
+    font-size: 54%;
   }
 }
 
@@ -65,6 +65,6 @@ body {
 
 @media (max-width: 350px) {
   :root {
-    font-size: 58%;
+    font-size: 57%;
   }
 }

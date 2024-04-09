@@ -1,7 +1,9 @@
 import { useParams } from "react-router-dom";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useQuery } from "@tanstack/react-query";
-import RecipeDetailTitle from "@components/RecipeDetailTitle/RecipeDetailTitle";
+import Detail from "@components/Recipe/Detail/Detail";
+import DetailTitle from "@components/Recipe/DetailTitle/DetailTitle";
+import DetailSubTitle from "@components/Recipe/DetailSubTitle/DetailSubTitle";
 import styles from "./RecipeDetail.module.css";
 
 function RecipeDetail() {
@@ -16,16 +18,17 @@ function RecipeDetail() {
   console.log(data);
 
   return (
-    <>
+    <Detail>
       {data && (
-        <RecipeDetailTitle
+        <DetailTitle
           name={data["RCP_NM"]}
           pat={data["RCP_PAT2"]}
           way={data["RCP_WAY2"]}
           type="haeRcp"
         />
       )}
-    </>
+      <DetailSubTitle>재료</DetailSubTitle>
+    </Detail>
   );
 }
 

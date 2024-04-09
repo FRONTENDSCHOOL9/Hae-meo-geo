@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import styles from "./RecipeList.module.css";
+import styles from "./List.module.css";
 
 RecipeList.propTypes = {
   recipeItem: PropTypes.string.isRequired,

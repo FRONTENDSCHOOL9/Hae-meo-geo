@@ -1,5 +1,5 @@
 import { Tag } from "@components/Button/Button";
-import RecipeList from "@components/RecipeList/RecipeList";
+import List from "@components/Recipe/List/List";
 import Search from "@components/Search/Search";
 import Title from "@components/Title/Title";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
@@ -29,7 +29,7 @@ function RcpList() {
     <>
       <Title>해머거 레시피</Title>
       <Search />
-      <RecipeList recipeItem={recipeItem} />
+      <List recipeItem={recipeItem} />
     </>
   );
 }

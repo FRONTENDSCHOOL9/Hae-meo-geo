@@ -1,6 +1,6 @@
 import { Tag } from "@components/Button/Button";
 import PropTypes from "prop-types";
-import styles from "./RecipeDetailTitle.module.css";
+import styles from "./DetailTitle.module.css";
 
 RecipeDetailTitle.propTypes = {
   name: PropTypes.string.isRequired,

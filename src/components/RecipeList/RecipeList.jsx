@@ -1,4 +1,4 @@
-import styles from "./List.module.css";
+import styles from "./RecipeList.module.css";
 
 function List({ recipeItem }) {
   return <ul className={styles.rcpList}>{recipeItem}</ul>;

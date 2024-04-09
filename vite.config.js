@@ -13,4 +13,7 @@ export default defineConfig({
       { find: "@zustand", replacement: "/src/zustand" },
     ],
   },
+  css: {
+    devSourcemap: true,
+  },
 });

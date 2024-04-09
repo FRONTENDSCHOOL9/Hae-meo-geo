@@ -14,7 +14,9 @@
 }
 
 .logo img {
-  width: 11.2rem;
+  width: 4.5rem;
+  position: relative;
+  top: 0.2rem;
 }
 
 .gnb ul {

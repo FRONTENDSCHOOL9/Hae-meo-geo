@@ -6,6 +6,7 @@ import RecipeDetail from "@pages/recipe/RecipeDetail";
 import TodayRecipeList from "@pages/todayRecipe/TodayRecipeList";
 import Login from "@pages/user/Login";
 import { createBrowserRouter } from "react-router-dom";
+import MyRecipeRegister from "@pages/myRecipe/MyRecipeRegister";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: "/recipe/list/:name", element: <RecipeDetail /> },
       { path: "/today/list", element: <TodayRecipeList /> },
       { path: "/user/login", element: <Login /> },
+      { path: "/myRecipe/myRecipeRegister", element: <MyRecipeRegister /> },
     ],
   },
 ]);

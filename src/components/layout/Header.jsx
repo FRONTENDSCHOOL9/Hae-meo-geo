@@ -23,7 +23,7 @@ function Header() {
             <Link to="/recipe/list">해머거 레시피</Link>
           </li>
           <li>
-            <Link to="">나만의 레시피</Link>
+            <Link to="/myRecipe/myRecipeRegister">나만의 레시피</Link>
           </li>
         </ul>
       </nav>

@@ -9,6 +9,8 @@
 .ingredientWr img {
   width: 100%;
   max-width: 40rem;
+  aspect-ratio: 1/1;
+  object-fit: cover;
   border-radius: 1rem;
 }
 

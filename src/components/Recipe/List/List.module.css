@@ -1,5 +1,17 @@
 .rcpList {
   margin-top: 10rem;
+}
+
+.rcpList p {
+  font-size: 2rem;
+}
+
+.rcpList p span {
+  font-weight: bold;
+}
+
+.rcpList ul {
+  margin-top: 1rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   gap: 5rem 2rem;
@@ -13,7 +25,7 @@
   overflow: hidden;
 }
 
-.rcpList p {
+.rcpList ul p {
   margin: 1rem 0;
   font-size: var(--title-medium);
   line-height: 1.4;

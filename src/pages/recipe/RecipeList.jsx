@@ -9,10 +9,13 @@ import { Link } from "react-router-dom";
 function RcpList() {
   const axios = useCustomAxios(true);
   const [data, setData] = useState([]);
+  const [count, setCount] = useState(0);
+  const [keyword, setKeyword] = useState("");
 
   const fetchData = async (url) => {
     const { data } = await axios(url);
     setData(data.COOKRCP01.row);
+    setCount(data.COOKRCP01["total_count"]);
   };
 
   useEffect(() => {
@@ -33,8 +36,8 @@ function RcpList() {
   return (
     <>
       <Title>해머거 레시피</Title>
-      <Search fetchData={fetchData} />
-      <List recipeItem={recipeItem} />
+      <Search fetchData={fetchData} setKeyword={setKeyword} />
+      <List recipeItem={recipeItem} count={count} keyword={keyword} />
     </>
   );
 }

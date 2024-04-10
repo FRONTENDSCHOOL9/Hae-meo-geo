@@ -1,13 +1,27 @@
+import PropTypes from "prop-types";
 import { Button } from "@components/Button/Button";
 import styles from "./Search.module.css";
 
-function Search({ fetchData }) {
+Search.propTypes = {
+  fetchData: PropTypes.func.isRequired,
+  setKeyword: PropTypes.func.isRequired,
+};
+
+function Search({ fetchData, setKeyword }) {
   const { search, typeWr, type, inputWr } = styles;
 
   const handleClick = (e) => {
     if (e.target.tagName !== "BUTTON") return false;
     const searchKeyword = e.target.innerText.split("&")[0];
     fetchData(`/1/1001/RCP_PAT2=${searchKeyword}`);
+    setKeyword(searchKeyword);
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const searchKeyword = e.target.firstChild.value;
+    fetchData(`/1/1001/RCP_PARTS_DTLS=${searchKeyword}`);
+    setKeyword(searchKeyword);
   };
 
   return (
@@ -25,11 +39,8 @@ function Search({ fetchData }) {
           </nav>
         </div>
       </div>
-      <form className={inputWr}>
-        <input
-          type="text"
-          placeholder="키워드를 검색하거나 카테고리를 선택해주세요."
-        />
+      <form className={inputWr} onSubmit={(e) => handleSearch(e)}>
+        <input type="text" placeholder="재료를 검색해보세요." />
         <button type="submit">
           <span className="hidden">검색</span>
         </button>

@@ -3,16 +3,21 @@ import List from "@components/Recipe/List/List";
 import Search from "@components/Search/Search";
 import Title from "@components/Title/Title";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
-import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function RcpList() {
   const axios = useCustomAxios(true);
-  const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ["list"],
-    queryFn: () => axios.get("/1/100", {}),
-    select: (response) => response.data.COOKRCP01.row,
-  });
+  const [data, setData] = useState([]);
+
+  const fetchData = async (url) => {
+    const { data } = await axios(url);
+    setData(data.COOKRCP01.row);
+  };
+
+  useEffect(() => {
+    fetchData("/1/100");
+  }, []);
 
   const recipeItem = data?.map((item) => (
     <li key={item["RCP_SEQ"]}>
@@ -28,7 +33,7 @@ function RcpList() {
   return (
     <>
       <Title>해머거 레시피</Title>
-      <Search />
+      <Search fetchData={fetchData} />
       <List recipeItem={recipeItem} />
     </>
   );

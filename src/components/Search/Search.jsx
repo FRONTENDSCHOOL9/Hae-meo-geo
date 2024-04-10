@@ -1,38 +1,27 @@
 import { Button } from "@components/Button/Button";
-import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import styles from "./Search.module.css";
 
-function Search() {
+function Search({ fetchData }) {
   const { search, typeWr, type, inputWr } = styles;
-  const axios = useCustomAxios(true);
-  const dataFetch = async (searchKeyword, request) =>{
-    const res = await axios.get(`VITE_API_SERVER_RCP/1/1000/${request}=${searchKeyword}`)
-  }
 
-  const handleClick = (e, request) => {
-    if(e.target.tagName !== 'BUTTON') return false;
-    const searchKeyword = e.target.innerText;
-    console.log(searchKeyword, request)
-    dataFetch(searchKeyword, request)
-  }
+  const handleClick = (e) => {
+    if (e.target.tagName !== "BUTTON") return false;
+    const searchKeyword = e.target.innerText.split("&")[0];
+    fetchData(`/1/1001/RCP_PAT2=${searchKeyword}`);
+  };
 
   return (
     <div className={search}>
       <div className={typeWr}>
         <div className={type}>
           <h3>종류별</h3>
-          <nav onClick={(e)=>handleClick(e, 'RCP_PAT2')}>
+          <nav onClick={(e) => handleClick(e)}>
             <Button size="medium">밥</Button>
+            <Button size="medium">국&찌개</Button>
             <Button size="medium">반찬</Button>
+            <Button size="medium">일품</Button>
             <Button size="medium">후식</Button>
-          </nav>
-        </div>
-        <div className={type}>
-          <h3>방법별</h3>
-          <nav onClick={(e)=>handleClick(e, 'RCP_WAY2')}>
-            <Button size="medium">끓이기</Button>
-            <Button size="medium">찌기</Button>
-            <Button size="medium">굽기</Button>
+            <Button size="medium">기타</Button>
           </nav>
         </div>
       </div>

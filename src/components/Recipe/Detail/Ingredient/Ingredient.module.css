@@ -20,7 +20,7 @@
 .info {
   display: flex;
   flex-wrap: wrap;
-  gap: .4rem 2.4rem;
+  gap: .6rem 2.4rem;
 }
 
 .info li {

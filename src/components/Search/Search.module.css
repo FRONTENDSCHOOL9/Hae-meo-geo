@@ -28,27 +28,27 @@
 .inputWr {
   position: relative;
   margin: 2rem auto 0;
-  max-width: 126rem;
+  max-width: 60rem;
 }
 
 .inputWr input {
-  border: 3px solid var(--color-secondary);
+  border: 2px solid var(--color-secondary);
   background-color: var(--color-secondary-30);
   border-radius: 2.4rem;
-  height: 12.4rem;
+  height: 6rem;
   width: 100%;
   font-size: var(--title-medium);
-  text-indent: 4.8rem;
+  text-indent: 2rem;
 }
 
 .inputWr button {
-  background: url(@/assets/ico-search-primary.svg) no-repeat center / 5rem;
-  width: 12rem;
+  background: url(@/assets/ico-search-primary.svg) no-repeat center / 3rem;
+  width: 6rem;
   aspect-ratio: 1/.8;
   position: absolute;
   top: 50%;
   right: 0;
   transform: translateY(-50%);
-  border-left: 3px solid var(--color-secondary);
+  border-left: 2px solid var(--color-secondary);
   transition: all .3s;
 }

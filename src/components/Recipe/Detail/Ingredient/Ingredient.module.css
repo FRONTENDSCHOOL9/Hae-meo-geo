@@ -9,6 +9,8 @@
 .ingredientWr img {
   width: 100%;
   max-width: 40rem;
+  aspect-ratio: 1/1;
+  object-fit: cover;
   border-radius: 1rem;
 }
 
@@ -36,7 +38,7 @@
 .ingredient ul {
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   flex-wrap: wrap;
   gap: 0.6rem 1rem;
 }

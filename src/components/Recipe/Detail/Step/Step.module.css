@@ -11,6 +11,8 @@
 
 .step img {
   width: 20rem;
+  aspect-ratio: 173/114;
+  object-fit: cover;
   border-radius: 1rem;
   flex-shrink: 0;
 }

@@ -1,4 +1,5 @@
 import { Tag } from "@components/Button/Button";
+import Pagination from "@components/Pagination/Pagination";
 import List from "@components/Recipe/List/List";
 import Search from "@components/Search/Search";
 import Title from "@components/Title/Title";
@@ -8,6 +9,8 @@ import { Link } from "react-router-dom";
 
 function RcpList() {
   const axios = useCustomAxios(true);
+  const axiosTest = useCustomAxios();
+
   const [data, setData] = useState([]);
   const [count, setCount] = useState(0);
   const [keyword, setKeyword] = useState("");
@@ -23,7 +26,7 @@ function RcpList() {
   };
 
   useEffect(() => {
-    fetchData("/1/100");
+    fetchData(`/1/${import.meta.env.VITE_PAGINATION_LIMIT}`);
   }, []);
 
   const recipeItem = data?.map((item) => (
@@ -42,6 +45,7 @@ function RcpList() {
       <Title>해머거 레시피</Title>
       <Search fetchData={fetchData} setKeyword={setKeyword} />
       <List recipeItem={recipeItem} count={count} keyword={keyword} />
+      <Pagination totalCount={count} fetchData={fetchData} />
     </>
   );
 }

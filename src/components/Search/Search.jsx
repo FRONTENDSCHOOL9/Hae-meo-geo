@@ -9,18 +9,19 @@ Search.propTypes = {
 
 function Search({ fetchData, setKeyword }) {
   const { search, typeWr, type, inputWr } = styles;
+  const limit = import.meta.env.VITE_PAGINATION_LIMIT;
 
   const handleClick = (e) => {
     if (e.target.tagName !== "BUTTON") return false;
     const searchKeyword = e.target.innerText.split("&")[0];
-    fetchData(`/1/1001/RCP_PAT2=${searchKeyword}`);
+    fetchData(`/1/${limit}/RCP_PAT2=${searchKeyword}`);
     setKeyword(searchKeyword);
   };
 
   const handleSearch = (e) => {
     e.preventDefault();
     const searchKeyword = e.target.firstChild.value;
-    fetchData(`/1/1001/RCP_PARTS_DTLS=${searchKeyword}`);
+    fetchData(`/1/${limit}/RCP_PARTS_DTLS=${searchKeyword}`);
     setKeyword(searchKeyword);
   };
 

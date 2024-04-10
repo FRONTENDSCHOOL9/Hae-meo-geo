@@ -62,7 +62,23 @@ export const initData = async (nextSeq) => {
 
   return {
     // 회원
-    user: [],
+    user: [
+      {
+        _id: await nextSeq("user"),
+        email: "test@haemeogeo.com",
+        password:
+          "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
+        name: "해머거",
+        phone: "01011112222",
+        address: "서울시 강남구 역삼동 123",
+        type: "user",
+        createdAt: getTime(-100, -60 * 60 * 3),
+        updatedAt: getTime(-100, -60 * 60 * 3),
+        extra: {
+          birthday: "01-01",
+        },
+      },
+    ],
     // 상품
     product: result,
     // 주문

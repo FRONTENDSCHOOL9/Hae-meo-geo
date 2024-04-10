@@ -13,9 +13,13 @@ function RcpList() {
   const [keyword, setKeyword] = useState("");
 
   const fetchData = async (url) => {
-    const { data } = await axios(url);
-    setData(data.COOKRCP01.row);
-    setCount(data.COOKRCP01["total_count"]);
+    try {
+      const { data } = await axios.get(url);
+      setData(data.COOKRCP01.row);
+      setCount(Number(data.COOKRCP01["total_count"]));
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   useEffect(() => {

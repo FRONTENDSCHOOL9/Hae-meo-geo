@@ -61,6 +61,6 @@
 
 .banner ul {
   display: flex;
-  gap: 1rem;
+  gap: .6rem;
   margin-top: 0.6rem;
 }

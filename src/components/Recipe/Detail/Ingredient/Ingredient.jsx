@@ -2,9 +2,8 @@ import styles from "./Ingredient.module.css";
 
 function Ingredient({ data }) {
   const { ingredientWr, ingredient, rightWr, info, infoTitle } = styles;
-  const list = data["RCP_PARTS_DTLS"]
-    // .split(/,|:/)
-    .split(/,|●|·|•|:|(?<=g\)\s)/)
+  const ingredientList = data["RCP_PARTS_DTLS"]
+    .split(/,|●|·|•|:|(?<=g\)\s)|(g\s)/)
     .map((item, i) => {
       if (!item) return;
       return <li key={i}>{item}</li>;
@@ -38,7 +37,7 @@ function Ingredient({ data }) {
         </ul>
         <div className={ingredient}>
           <h4 className={infoTitle}>재료</h4>
-          <ul>{list}</ul>
+          <ul>{ingredientList}</ul>
         </div>
       </div>
     </div>

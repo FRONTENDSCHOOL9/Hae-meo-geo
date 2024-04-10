@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       { path: "/recipe/list/:name", element: <RecipeDetail /> },
       { path: "/today/list", element: <TodayRecipeList /> },
       { path: "/user/login", element: <Login /> },
-      { path: "/myRecipe/myRecipeRegister", element: <MyRecipeRegister /> },
+      { path: "/myrecipe/register", element: <MyRecipeRegister /> },
     ],
   },
 ]);

@@ -3,8 +3,12 @@ import styles from "./Ingredient.module.css";
 function Ingredient({ data }) {
   const { ingredientWr, ingredient, rightWr, info, infoTitle } = styles;
   const list = data["RCP_PARTS_DTLS"]
-    .split(",")
-    .map((item, i) => <li key={i}>{item}</li>);
+    // .split(/,|:/)
+    .split(/,|●|·|•|:|(?<=g\)\s)/)
+    .map((item, i) => {
+      if (!item) return;
+      return <li key={i}>{item}</li>;
+    });
 
   return (
     <div className={ingredientWr}>

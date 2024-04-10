@@ -4,8 +4,9 @@ import styles from "./Step.module.css";
 function Step({ data }) {
   const { step } = styles;
   const [manual, setManual] = useState([]);
+
   const setManualFn = () => {
-    const newArr = Array(20).fill();
+    const newArr = Array(20).fill("");
     newArr.map((_, i) => {
       let num = i + 1 < 10 ? `0${i + 1}` : i + 1;
       newArr[i] = {
@@ -17,8 +18,8 @@ function Step({ data }) {
   };
 
   useEffect(() => {
-    setManualFn();
-  }, []);
+    if (Object.keys(data).length) setManualFn();
+  }, [data]);
 
   const list = manual.map((item, i) => {
     const idx = i + 1;

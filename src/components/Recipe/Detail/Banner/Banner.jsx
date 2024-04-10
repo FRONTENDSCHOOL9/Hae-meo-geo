@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 import styles from "./Banner.module.css";
 
 Banner.propTypes = {
+  type: PropTypes.string,
   name: PropTypes.string.isRequired,
-  pat: PropTypes.string.isRequired,
-  way: PropTypes.string.isRequired,
+  pat: PropTypes.string,
+  way: PropTypes.string,
 };
 
-function Banner({ name, pat, way, type = "myRcpList" }) {
+function Banner({ type = "myRcpList", name, pat = "", way = "" }) {
   const { bannerWr, banner } = styles;
   return (
     <>

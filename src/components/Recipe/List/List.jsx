@@ -3,7 +3,7 @@ import styles from "./List.module.css";
 
 List.propTypes = {
   recipeItem: PropTypes.array.isRequired,
-  count: PropTypes.string.isRequired,
+  count: PropTypes.number.isRequired,
   keyword: PropTypes.string.isRequired,
 };
 

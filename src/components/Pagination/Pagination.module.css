@@ -1,0 +1,30 @@
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 10rem;
+  justify-content: center;
+}
+
+.pagination a,
+.pagination button {
+  width: 3.6rem;
+  /* background: var(--color-gray-50); */
+  border-radius: 1rem;
+  display: block;
+  text-align: center;
+  line-height: 3.6rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.pagination a:hover,
+.pagination button:hover {
+  font-weight: bold;
+}
+
+.pagination .act {
+  background: var(--color-gray-50);
+  font-weight: bolder;
+}

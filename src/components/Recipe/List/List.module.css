@@ -23,10 +23,16 @@
   object-fit: cover;
   border-radius: 1rem;
   overflow: hidden;
+  transition: all .3s;
 }
 
 .rcpList ul p {
   margin: 1rem 0;
   font-size: var(--title-medium);
   line-height: 1.4;
+}
+
+.rcpList ul li:hover img {
+  box-shadow: 0 0 1rem rgba(0, 0, 0, .3);
+  transform: scale(1.02);
 }

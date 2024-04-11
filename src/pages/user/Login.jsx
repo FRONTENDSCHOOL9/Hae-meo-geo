@@ -1,8 +1,8 @@
+import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import useUserState from "@pages/user/useUserState.mjs";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -11,6 +11,7 @@ function Login() {
   const setUser = useUserState(state => state.setUser);
   const {user} = useUserState();
   const navigate = useNavigate();
+  const axios = useCustomAxios();
 
   useEffect(() => {
     const savedEmail = localStorage.getItem('savedEmail');
@@ -22,7 +23,7 @@ function Login() {
 
   const onSubmit = async (formData) => {
     try {
-      const res = await axios.post('https://market-lion.koyeb.app/api/users/login', formData);
+      const res = await axios.post('/users/login', formData);
       console.log(res.data.item.name);
       
       setUser({
@@ -32,7 +33,7 @@ function Login() {
         token: res.data.item.token,
       });
       
-      isEmailSaved ? localStorage.setItem('savedEmail', formData.email) : localStorage.removeItem('savedEmail');
+      isEmailSaved ? localStorage.setItem("savedEmail", formData.email) : localStorage.removeItem("savedEmail");
 
       navigate("/"); // 뒤로가기로 변경해야 함
 
@@ -75,7 +76,7 @@ function Login() {
         <br />
         <button type="button">테스트 로그인</button>
         <br />
-        <button type="button">회원가입</button>
+        <Link to={''}>회원가입</Link>
       </form>
     </>
   );

@@ -20,9 +20,9 @@ export const initData = async (nextSeq) => {
       return {
         _id: Number(item["RCP_SEQ"]),
         name: item["RCP_NM"],
-        show: true,
-        active: true,
+        price: 0,
         quantity: 1,
+        content: "",
       };
     })
   );

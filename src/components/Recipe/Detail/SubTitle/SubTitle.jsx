@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import styles from "./SubTitle.module.css";
 
 SubTitle.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.any.isRequired,
 };
 
 function SubTitle({ children }) {

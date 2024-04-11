@@ -13,6 +13,7 @@ function ReplyList({ id, setReplyCountFn }) {
         `/posts?type=qna&custom={"product_id": ${id}}`
       );
       setReplies(data.item);
+      console.log(replies);
       setReplyCountFn(replies.length);
     } catch (err) {
       console.error(err);

@@ -1,0 +1,27 @@
+meta {
+  name: 상품등록
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{url}}/seller/products
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "price": 1000,
+      "quantity": 600,
+      "name": "테스트 상품",
+      "mainImages": [
+        {
+          "originalname": "샤넬.jpg",
+          "name" : "sample-channel-01.jpg",
+          "path" : "/files/00-sample/sample-channel-01.jpg"
+        }
+      ],
+      "content": "테스트입니다."
+  }
+}

@@ -8,8 +8,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function RcpList() {
-  const axios = useCustomAxios(true);
-  const axiosTest = useCustomAxios();
+  const axios = useCustomAxios("rcp");
 
   const [data, setData] = useState([]);
   const [count, setCount] = useState(0);

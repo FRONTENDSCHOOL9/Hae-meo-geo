@@ -68,17 +68,17 @@
 }
 
 .toTop {
-  border-radius: 1rem;
-  border: 2px solid var(--color-gray-100);
+  border-radius: 2rem;
+  border: 2px solid var(--color-gray-50);
   background: #fff;
-  width: 7rem;
-  height: 7rem;
-  background: #fff url(/img/ico-totop.svg) no-repeat center / 3rem;
+  width: 9rem;
+  height: 9rem;
+  background: rgba(255, 255, 255, 0.7) url(/img/ico-totop.svg) no-repeat center / 3rem;
   transition: all .3s;
+  backdrop-filter: blur(1rem);
 }
 
 .toTop:hover {
-  /* background-color: var(--color-primary); */
   background-image: url(/img/ico-totop-primary.svg);
   border-color: var(--color-primary);
 }

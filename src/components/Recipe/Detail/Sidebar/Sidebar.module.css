@@ -1,0 +1,44 @@
+.sidebar {
+  position: fixed;
+  bottom: 14rem;
+  right: 3rem;
+  z-index: 1;
+  text-align: center;
+  border-radius: 2rem;
+  border: 2px solid var(--color-gray-50);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(1rem);
+  padding: 2rem 0;
+  width: 9rem;
+}
+
+.sidebar li+li {
+  margin-top: 2rem;
+}
+
+.sidebar button::before {
+  content: '';
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 4rem;
+  background: no-repeat center / 3.3rem;
+  margin-bottom: 0.6rem;
+  transition: all .3s;
+}
+
+.sidebar li:first-child button::before {
+  background-image: url(/img/ico-bookmark.svg);
+}
+
+.sidebar li:first-child:hover button::before {
+  background-image: url(/img/ico-bookmark-act.svg);
+}
+
+.sidebar li:nth-child(2) button::before {
+  background-image: url(/img/ico-share.svg);
+}
+
+.sidebar li:nth-child(2):hover button::before {
+  background-image: url(/img/ico-share-act.svg);
+}

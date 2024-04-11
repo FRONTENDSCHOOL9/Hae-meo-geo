@@ -7,6 +7,7 @@ import SubTitle from "@components/Recipe/Detail/SubTitle/SubTitle";
 import Ingredient from "@components/Recipe/Detail/Ingredient/Ingredient";
 import Step from "@components/Recipe/Detail/Step/Step";
 import ReplyList from "@components/Recipe/Detail/Reply/List";
+import Sidebar from "@components/Recipe/Detail/Sidebar/Sidebar";
 
 function RecipeDetail() {
   const axios = useCustomAxios("rcp");
@@ -27,8 +28,6 @@ function RecipeDetail() {
     setReplyCount(num);
   };
 
-  console.log(replyCount);
-
   useEffect(() => {
     window.scrollTo({ top: 0 });
     fetchData();
@@ -38,6 +37,7 @@ function RecipeDetail() {
     <>
       {data && (
         <div>
+          <Sidebar id={Number(data["RCP_SEQ"])} />
           <Banner
             name={data["RCP_NM"]}
             pat={data["RCP_PAT2"]}

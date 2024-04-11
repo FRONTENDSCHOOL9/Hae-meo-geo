@@ -29,7 +29,13 @@ function Banner({ type = "myRcpList", name, pat = "", way = "" }) {
         </div>
       )}
       {type === "myRcpList" && <div>나만의 레시피 리스트용</div>}
-      {type === "myRcpRegister" && <div>나만의 레시피 등록용</div>}
+      {type === "myRcpRegister" && (
+        <div className={`${bannerWr} ${styles[type]}`}>
+          <div className={banner}>
+            <h2>나만의 레시피를 올려주세요!</h2>
+          </div>
+        </div>
+      )}
     </>
   );
 }

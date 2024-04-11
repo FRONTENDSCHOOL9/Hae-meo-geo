@@ -10,54 +10,21 @@ function getTime(day = 0, second = 0) {
     .add(second, "seconds")
     .format("YYYY.MM.DD HH:mm:ss");
 }
-async function getData() {
-  const { data } = await axios.get(
-    "https://openapi.foodsafetykorea.go.kr/api/f6e0fedf1c324ab98243/COOKRCP01/json/1/3"
-  );
-  const result = data["COOKRCP01"].row.map((item) => ({
-    // _id: await nextSeq("product"),
-    name: item["RCP_NM"],
-    extra: {
-      ["RCP_SEQ"]: item["RCP_SEQ"],
-    },
-  }));
-  return result;
-}
-// getData();
 
 export const initData = async (nextSeq) => {
   const { data } = await axios.get(
     "https://openapi.foodsafetykorea.go.kr/api/f6e0fedf1c324ab98243/COOKRCP01/json/1/1001"
   );
   const result = await Promise.all(
-    data["COOKRCP01"].row.map(async (item) => ({
-      // _id: await nextSeq("product"),
-      _id: item["RCP_SEQ"],
-      name: item["RCP_NM"],
-      extra: {
-        ["RCP_SEQ"]: item["RCP_SEQ"],
-      },
-      seller_id: 2,
-      price: 22800,
-      shippingFees: 0,
-      show: true,
-      active: true,
-      quantity: 320,
-      buyQuantity: 310,
-      mainImages: [
-        {
-          url: `/files/sample-dog.jpg`,
-          fileName: "sample-dog.jpg",
-          orgName: "스턴트 독.jpg",
-        },
-      ],
-      content: `
-      <div class="product-detail">
-        <p></p>
-      </div>`,
-      createdAt: getTime(-41, -60 * 60 * 2),
-      updatedAt: getTime(-40, -60 * 15),
-    }))
+    data["COOKRCP01"].row.map(async (item) => {
+      return {
+        _id: Number(item["RCP_SEQ"]),
+        name: item["RCP_NM"],
+        show: true,
+        active: true,
+        quantity: 1,
+      };
+    })
   );
 
   return {

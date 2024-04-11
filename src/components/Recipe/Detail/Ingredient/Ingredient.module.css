@@ -53,7 +53,7 @@
 
 .ingredient li::before {
   content: '';
-  background: url(/src/assets/ico-check.svg) no-repeat center / cover;
+  background: url(/img/ico-check.svg) no-repeat center / cover;
   width: 2.4rem;
   height: 2.4rem;
   margin-top: -0.2rem;

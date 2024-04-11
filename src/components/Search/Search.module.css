@@ -42,7 +42,7 @@
 }
 
 .inputWr button {
-  background: url(@/assets/ico-search-primary.svg) no-repeat center / 3rem;
+  background: url(/img/ico-search-primary.svg) no-repeat center / 3rem;
   width: 6rem;
   aspect-ratio: 1/.8;
   position: absolute;

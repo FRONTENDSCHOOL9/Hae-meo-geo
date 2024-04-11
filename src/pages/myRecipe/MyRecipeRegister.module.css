@@ -1,0 +1,9 @@
+.textarea {
+  resize: none;
+  width: 200px;
+}
+
+.fileAdd {
+  display: none;
+
+}

@@ -18,10 +18,9 @@ function Pagination({ totalCount, fetchData }) {
   const pageList = [];
   for (let page = 1; page <= totalPage; page++) {
     pageList.push(
-      <li>
+      <li key={page}>
         <button
           className={`${page === currentPage && styles.act}`}
-          key={page}
           onClick={() => {
             setCurrentPage(page);
             fetchData(`/${limit * page - limit + 1}/${limit * page}`);

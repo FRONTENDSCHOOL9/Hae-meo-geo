@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [isEmailSaved, setIsEmailSaved] = useState(false);
+  const [password, setPassword] = useState('');
   const [email, setEmail] = useState("");
   const setUser = useUserState(state => state.setUser);
   const {user} = useUserState();
@@ -46,6 +47,35 @@ function Login() {
     setIsEmailSaved(!isEmailSaved);
   }
 
+  const handleTestLogin = async () => {
+    const testEmail = "test@haemeogeo.com";
+    const testPassword = "11111111";
+
+    setEmail(testEmail); 
+    setPassword(testPassword);
+  
+    try {
+      const res = await axios.post('/users/login', { email: testEmail, password: testPassword });
+      console.log(res.data.item.name);
+  
+      setUser({
+        _id: res.data.item._id,
+        name: res.data.item.name,
+        profile: res.data.item.profileImage,
+        token: res.data.item.token,
+      });
+  
+      isEmailSaved ? localStorage.setItem("savedEmail", testEmail) : localStorage.removeItem("savedEmail");
+  
+      setEmail(""); 
+      setPassword("");
+
+    } catch (err) {
+      console.log(err.response?.data.message);
+    }
+  };
+
+
   return (
     <>
       <h3>로그인</h3>
@@ -63,7 +93,7 @@ function Login() {
         <input type="checkbox" id="saveEmail" checked={isEmailSaved} onChange={handleCheckboxChange} />
         <label htmlFor="saveEmail">아이디(이메일) 저장하기</label>
         <br />
-        <input type="password" id="password" placeholder="비밀번호" {...register("password", {
+        <input type="password" id="password" value={password} placeholder="비밀번호" {...register("password", {
           required: "비밀번호는 8자리를 입력해주세요",
           minLength: {
             value: 8,
@@ -74,7 +104,7 @@ function Login() {
         {errors && <div>{errors.password?.message}</div>}
         <button type="submit">로그인</button>
         <br />
-        <button type="button">테스트 로그인</button>
+        <button type="submit" onClick={handleTestLogin}>테스트 로그인</button>
         <br />
         <Link to={''}>회원가입</Link>
       </form>

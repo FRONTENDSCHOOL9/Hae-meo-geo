@@ -9,13 +9,17 @@ import Step from "@components/Recipe/Detail/Step/Step";
 
 function RecipeDetail() {
   const { name } = useParams();
-  const axios = useCustomAxios(true);
+  const axiosPrd = useCustomAxios();
+  const axiosRcp = useCustomAxios("rcp");
   const [data, setData] = useState();
+  const [replies, setReplies] = useState();
 
   const fetchData = async () => {
     try {
-      const { data } = await axios(`/1/1000/RCP_NM=${name}`);
-      setData(data.COOKRCP01.row[0]);
+      const resRcp = await axiosRcp(`/1/1000/RCP_NM=${name}`);
+      setData(resRcp.data.COOKRCP01.row[0]);
+      const resPrd = await axiosPrd(`/replies/products/${data["RCP_SEQ"]}`);
+      setReplies(resPrd.data);
     } catch (err) {
       console.error(err);
     }
@@ -23,10 +27,8 @@ function RecipeDetail() {
 
   useEffect(() => {
     fetchData();
-    // window.scrollTo({ top: 0 });
+    window.scrollTo({ top: 0 });
   }, []);
-
-  // console.log(data, data["RCP_NM"]);
 
   return (
     <>

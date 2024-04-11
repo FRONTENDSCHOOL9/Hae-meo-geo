@@ -11,7 +11,7 @@ function Header() {
     <header className={header}>
       <div className={logo}>
         <Link to="/">
-          <img src="/logo.svg" alt="해머거" />
+          <img src="/img/logo.svg" alt="해머거" />
         </Link>
       </div>
       <nav className={gnb}>

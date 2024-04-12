@@ -8,6 +8,7 @@ import Ingredient from "@components/Recipe/Detail/Ingredient/Ingredient";
 import Step from "@components/Recipe/Detail/Step/Step";
 import ReplyList from "@components/Recipe/Detail/Reply/List";
 import Sidebar from "@components/Recipe/Detail/Sidebar/Sidebar";
+import ReplyRegister from "@components/Recipe/Detail/Reply/Register";
 
 function RecipeDetail() {
   const axios = useCustomAxios("rcp");
@@ -59,6 +60,7 @@ function RecipeDetail() {
               replies={replies}
               setRepliesFn={setRepliesFn}
             />
+            <ReplyRegister />
           </Content>
         </div>
       )}

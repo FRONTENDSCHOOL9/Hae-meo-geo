@@ -1,5 +1,5 @@
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styles from "./List.module.css";
 
 function ReplyList({ id, setRepliesFn, replies }) {
@@ -13,7 +13,7 @@ function ReplyList({ id, setRepliesFn, replies }) {
       );
       setRepliesFn(data);
     } catch (err) {
-      console.error(err);
+      console.error(err.response?.data.message);
     }
   };
 
@@ -37,7 +37,11 @@ function ReplyList({ id, setRepliesFn, replies }) {
     </article>
   ));
 
-  return <div className={list}>{replyList}</div>;
+  return (
+    <div className={list}>
+      {replies.item.length ? replyList : <p>후기를 작성해보세요.</p>}
+    </div>
+  );
 }
 
 export default ReplyList;

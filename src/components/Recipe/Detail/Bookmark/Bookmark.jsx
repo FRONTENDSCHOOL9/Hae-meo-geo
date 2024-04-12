@@ -6,8 +6,6 @@ function Bookmark({ id }) {
   const axios = useCustomAxios();
   const [bookmark, setBookmark] = useState();
 
-  console.log(bookmark);
-
   const fetchData = async (type = "get") => {
     try {
       const { data } = await axios.get(`/bookmarks/product/${id}`);

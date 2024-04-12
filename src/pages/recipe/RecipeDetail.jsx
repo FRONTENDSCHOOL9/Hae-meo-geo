@@ -13,7 +13,7 @@ function RecipeDetail() {
   const axios = useCustomAxios("rcp");
   const { name } = useParams();
   const [data, setData] = useState();
-  const [replyCount, setReplyCount] = useState(0);
+  const [replies, setReplies] = useState();
 
   const fetchData = async () => {
     try {
@@ -24,8 +24,8 @@ function RecipeDetail() {
     }
   };
 
-  const setReplyCountFn = (num) => {
-    setReplyCount(num);
+  const setRepliesFn = (data) => {
+    setReplies(data);
   };
 
   useEffect(() => {
@@ -52,11 +52,12 @@ function RecipeDetail() {
             <Step data={data} />
 
             <SubTitle>
-              요리 후기 <span>({replyCount})</span>
+              요리 후기 <span>({replies?.item.length})</span>
             </SubTitle>
             <ReplyList
               id={Number(data["RCP_SEQ"])}
-              setReplyCountFn={setReplyCountFn}
+              replies={replies}
+              setRepliesFn={setRepliesFn}
             />
           </Content>
         </div>

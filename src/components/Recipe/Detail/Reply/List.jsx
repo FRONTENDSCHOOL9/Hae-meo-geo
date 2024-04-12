@@ -2,19 +2,16 @@ import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useEffect, useState } from "react";
 import styles from "./List.module.css";
 
-function ReplyList({ id, setReplyCountFn }) {
+function ReplyList({ id, setRepliesFn, replies }) {
   const { list, rightWr, name, infoWr, time, rating, content } = styles;
   const axios = useCustomAxios();
-  const [replies, setReplies] = useState();
 
   const fetchData = async () => {
     try {
       const { data } = await axios.get(
         `/posts?type=qna&custom={"product_id": ${id}}`
       );
-      setReplies(data.item);
-      console.log(replies);
-      setReplyCountFn(replies.length);
+      setRepliesFn(data);
     } catch (err) {
       console.error(err);
     }
@@ -24,7 +21,7 @@ function ReplyList({ id, setReplyCountFn }) {
     fetchData();
   }, []);
 
-  const replyList = replies?.map((item) => (
+  const replyList = replies?.item.map((item) => (
     <article key={item._id}>
       <img src={item.user.profile} alt={item.user.name} />
       <div className={rightWr}>

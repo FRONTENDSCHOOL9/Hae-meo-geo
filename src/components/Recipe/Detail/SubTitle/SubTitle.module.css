@@ -1,8 +1,14 @@
 .subTitle {
   text-align: center;
   font-size: var(--title-medium);
-  margin-top: 12rem;
+  margin-top: 6em;
   border-bottom: 1px solid var(--color-gray-50);
-  padding: 2rem 0;
-  margin-bottom: 4rem;
+  padding: 1em 0;
+  margin-bottom: 1.4em;
+}
+
+@media (max-width: 767px) {
+  .subTitle {
+    margin-top: 3em;
+  }
 }

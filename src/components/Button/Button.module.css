@@ -49,3 +49,17 @@
   background: var(--color-primary);
   color: var(--color-gray-30);
 }
+
+@media (max-width: 767px) {
+  .small {
+    font-size: 1.2rem;
+  }
+
+  .medium {
+    font-size: 1.6rem;
+  }
+
+  .large {
+    font-size: 1.8rem;
+  }
+}

@@ -19,7 +19,7 @@
 
 .step p {
   position: relative;
-  padding-left: 6rem;
+  padding-left: 3em;
 }
 
 .step p span {
@@ -31,8 +31,15 @@
   background: var(--color-secondary);
   color: #fff;
   font-weight: bold;
-  width: 4rem;
-  height: 4rem;
-  line-height: 4rem;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
   text-align: center;
+}
+
+@media (max-width: 767px) {
+  .step li {
+    font-size: 1.4rem;
+    flex-direction: column;
+  }
 }

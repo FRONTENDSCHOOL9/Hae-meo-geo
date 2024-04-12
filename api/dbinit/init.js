@@ -1,9 +1,9 @@
-import fs from 'node:fs';
-import { readdir } from 'node:fs/promises';
-import { GridFSBucket } from 'mongodb';
-import getDB from './getDB.js';
+import fs from "node:fs";
+import { readdir } from "node:fs/promises";
+import { GridFSBucket } from "mongodb";
+import getDB from "./getDB.js";
 
-const [,,targetFolder, clientId] = process.argv;
+const [, , targetFolder, clientId] = process.argv;
 const { db, client, nextSeq } = await getDB(clientId);
 
 // mongodb에 GridFS를 이용한 이미지 저장
@@ -11,19 +11,19 @@ async function uploadFileToGridFS(filePath, fileName) {
   return new Promise((resolve, reject) => {
     try {
       const bucket = new GridFSBucket(db, {
-        bucketName: 'upload'
+        bucketName: "upload",
       });
-  
+
       const uploadStream = bucket.openUploadStream(fileName);
       const fileStream = fs.createReadStream(filePath);
-  
-      fileStream.on('data', (chunk) => {
+
+      fileStream.on("data", (chunk) => {
         uploadStream.write(chunk);
       });
-      
-      fileStream.on('end', () => {
+
+      fileStream.on("end", () => {
         uploadStream.end(() => {
-          console.log('파일 업로드: ', fileName);
+          console.log("파일 업로드: ", fileName);
           resolve();
         });
       });
@@ -32,14 +32,13 @@ async function uploadFileToGridFS(filePath, fileName) {
       reject();
     }
   });
-  
 }
 
 async function initDB(initData) {
   // 데이터 등록
-  for(const collection in initData){
+  for (const collection in initData) {
     const data = initData[collection];
-    if(data.length > 0){
+    if (data.length > 0) {
       await db[collection].insertMany(data);
     }
     console.debug(`${collection} ${data.length}건 등록.`);
@@ -48,18 +47,16 @@ async function initDB(initData) {
   // 이미지 등록
   const sampleFileFolder = `./${targetFolder}/uploadFiles`;
   const files = await readdir(sampleFileFolder);
-  for(const fileName of files){
+  for (const fileName of files) {
     await uploadFileToGridFS(`${sampleFileFolder}/${fileName}`, fileName);
   }
 }
 
 await db.dropDatabase();
-console.info('DB 삭제.');
+console.info("DB 삭제.");
 
 import(`./${targetFolder}/data.js`).then(async ({ initData }) => {
   await initDB(await initData(nextSeq));
   client.close();
-  console.info('DB 초기화 완료.');
+  console.info("DB 초기화 완료.");
 });
-
-

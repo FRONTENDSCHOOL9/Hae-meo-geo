@@ -1,0 +1,19 @@
+meta {
+  name: 나만의 레시피 등
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{url}}/posts
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "type": "recipe",
+    "title": "감자전 만드는 방법",
+    "content": "감자와 부침가루를 써서 만듭니다."
+  }
+}

@@ -1,6 +1,6 @@
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useEffect, useState } from "react";
-import styles from "./Bookmark.module.css";
+// import styles from "./Bookmark.module.css";
 
 function Bookmark({ id }) {
   const axios = useCustomAxios();

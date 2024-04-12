@@ -60,7 +60,11 @@ function RecipeDetail() {
               replies={replies}
               setRepliesFn={setRepliesFn}
             />
-            <ReplyRegister />
+            <ReplyRegister
+              rcpName={name}
+              rcpNum={Number(data["RCP_SEQ"])}
+              setRepliesFn={setRepliesFn}
+            />
           </Content>
         </div>
       )}

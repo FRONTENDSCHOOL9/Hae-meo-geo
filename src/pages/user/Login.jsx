@@ -1,5 +1,7 @@
+import { Button } from "@components/Button/Button";
+import Title from "@components/Title/Title";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
-import useUserState from "@pages/user/useUserState.mjs";
+import useUserStore from "@zustand/userStore.mjs";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,8 +11,8 @@ function Login() {
   const [isEmailSaved, setIsEmailSaved] = useState(false);
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState("");
-  const setUser = useUserState(state => state.setUser);
-  const {user} = useUserState();
+  const setUser = useUserStore(state => state.setUser);
+  const {user} = useUserStore();
   const navigate = useNavigate();
   const axios = useCustomAxios();
 
@@ -70,15 +72,19 @@ function Login() {
       setEmail(""); 
       setPassword("");
 
+      console.log(user)
+
     } catch (err) {
       console.log(err.response?.data.message);
     }
   };
 
 
+
+
   return (
     <>
-      <h3>로그인</h3>
+      <Title>로그인</Title>
       {user && <p>{user.name}님 밥 해머거!</p>} 
       <form onSubmit={handleSubmit(onSubmit)}>
         <input type="text" id="email" defaultValue={email} placeholder="아이디 또는 이메일 주소" {...register("email", {
@@ -102,11 +108,12 @@ function Login() {
         })} />
         <br />
         {errors && <div>{errors.password?.message}</div>}
-        <button type="submit">로그인</button>
+        <Button type="submit" color="primary" size="large" filled="filled">로그인</Button>
         <br />
-        <button type="submit" onClick={handleTestLogin}>테스트 로그인</button>
+        <Button type="button" onClick={(e)=>handleTestLogin(e)}>테스트 로그인</Button>
+        <button type="button" onClick={(e)=>handleTestLogin(e)}>테스트 로그인</button>
         <br />
-        <Link to={''}>회원가입</Link>
+        <Button><Link to={''} color="gray" size="large" filled="false">회원가입</Link></Button>
       </form>
     </>
   );

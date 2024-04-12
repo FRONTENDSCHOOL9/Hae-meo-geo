@@ -15,11 +15,13 @@ export function Button({
   color = "gray",
   size = "small",
   filled = "false",
+  onClick,
 }) {
   return (
     <button
       type={type}
       className={`${styles.button} ${styles[color]} ${styles[size]} ${styles[filled]}`}
+      onClick={onClick}
     >
       {children}
     </button>
@@ -31,6 +33,7 @@ export function Tag({
   color = "gray",
   size = "small",
   filled = "false",
+  onClick,
 }) {
   return (
     <span
@@ -47,6 +50,7 @@ export function LinkButton({
   color = "gray",
   size = "small",
   filled = "false",
+  onClick,
 }) {
   return (
     <Link

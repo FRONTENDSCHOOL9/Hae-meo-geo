@@ -64,3 +64,15 @@
   gap: .6rem;
   margin-top: 0.6rem;
 }
+
+@media (max-width: 767px) {
+
+  .bannerWr::before,
+  .banner::after {
+    display: none;
+  }
+
+  .banner h2 {
+    padding-right: 0;
+  }
+}

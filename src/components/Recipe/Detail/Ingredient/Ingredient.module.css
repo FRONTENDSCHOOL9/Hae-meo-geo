@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 6rem;
+  gap: 3.2em;
   font-size: 1.8rem;
 }
 
@@ -58,4 +58,24 @@
   height: 2.4rem;
   margin-top: -0.2rem;
   flex-shrink: 0
+}
+
+@media (max-width: 767px) {
+  .ingredientWr {
+    flex-direction: column;
+    gap: 2em;
+    font-size: 1.5rem;
+  }
+
+  .ingredientWr img {
+    max-width: none;
+  }
+
+  .ingredientWr li {
+    font-size: 1.4rem;
+  }
+
+  .rightWr {
+    width: 100%;
+  }
 }

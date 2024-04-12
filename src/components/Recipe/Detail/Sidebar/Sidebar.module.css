@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 14rem;
   right: 3rem;
-  z-index: 1;
+  z-index: 2;
   text-align: center;
   border-radius: 2rem;
   border: 2px solid var(--color-gray-50);
@@ -20,19 +20,13 @@
   content: '';
   display: block;
   position: relative;
-  width: 100%;
+  width: 4rem;
   height: 4rem;
-  background: no-repeat center / 3.3rem;
-  margin-bottom: 0.6rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 3.3rem;
+  margin: 0 auto 0.6rem;
   transition: all .3s;
-}
-
-.sidebar li:first-child button::before {
-  background-image: url(/img/ico-bookmark.svg);
-}
-
-.sidebar li:first-child:hover button::before {
-  background-image: url(/img/ico-bookmark-act.svg);
 }
 
 .sidebar li:nth-child(2) button::before {

@@ -1,0 +1,7 @@
+.bookmark::before {
+  background-image: url(/img/ico-bookmark.svg);
+}
+
+.bookmarkAct::before {
+  background-image: url(/img/ico-bookmark-act.svg);
+}

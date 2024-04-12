@@ -39,7 +39,7 @@ function ReplyList({ id, setRepliesFn, replies }) {
 
   return (
     <div className={list}>
-      {replies.item.length ? replyList : <p>후기를 작성해보세요.</p>}
+      {replies?.item.length ? replyList : <p>후기를 작성해보세요.</p>}
     </div>
   );
 }

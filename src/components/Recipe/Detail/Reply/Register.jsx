@@ -1,6 +1,5 @@
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import useUserStore from "@zustand/userStore.mjs";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import uploadImage from "@utils/uploadImage.mjs";
@@ -29,9 +28,9 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
         },
       };
 
-      if (formData?.image.length) {
+      if (formData.image?.length) {
         formData.extra.image = await uploadImage(formData);
-        delete formData?.image;
+        delete formData.image;
       } else {
         delete formData?.image;
       }

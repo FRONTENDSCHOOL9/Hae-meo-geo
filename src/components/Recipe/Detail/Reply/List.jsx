@@ -26,10 +26,9 @@ function ReplyList({ id, setRepliesFn, replies }) {
   }, []);
 
   const handleRemove = async (postId) => {
-    console.log(postId);
     try {
       const { data } = await axios.delete(`/posts/${postId}`);
-      setRepliesFn(replies);
+      fetchData();
     } catch (err) {
       console.error(err.response?.data.message);
     }
@@ -52,7 +51,7 @@ function ReplyList({ id, setRepliesFn, replies }) {
         </div>
         {isMyPost && (
           <div className={buttonWr}>
-            <Button>수정</Button>
+            <Button color="primary">수정</Button>
             <Button onClick={() => handleRemove(item._id)}>삭제</Button>
           </div>
         )}

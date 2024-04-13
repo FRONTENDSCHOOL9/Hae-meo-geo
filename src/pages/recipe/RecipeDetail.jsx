@@ -25,9 +25,7 @@ function RecipeDetail() {
     }
   };
 
-  const setRepliesFn = (data) => {
-    setReplies(data);
-  };
+  const setRepliesFn = (data) => setReplies(data);
 
   useEffect(() => {
     window.scrollTo({ top: 0 });

@@ -3,10 +3,18 @@
   gap: 1.2rem;
   align-items: flex-start;
   font-size: 1.8rem;
+  position: relative;
+}
+
+.list article:first-child {
+  margin-top: -3.4rem;
+  padding-top: 1.8rem;
 }
 
 .list article+article {
-  margin-top: 3.6rem;
+  margin-top: 1.8rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid var(--color-gray-30);
 }
 
 .list article>img {
@@ -40,4 +48,7 @@
 
 .list .buttonWr {
   display: flex;
+  position: absolute;
+  top: 1.8rem;
+  right: 0;
 }

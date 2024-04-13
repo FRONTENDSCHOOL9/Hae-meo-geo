@@ -1,11 +1,17 @@
 import { Button } from "@components/Button/Button";
+import Title from "@components/Title/Title";
+import LoginLayout from "@components/login/LoginLayout";
 
 function Signup(){
   return (
     <>
-      <h3>회원가입</h3>
-      <p>배달음식은 그만! 함께 밥 <strong>해머거</strong>요 :-)</p>
-      <Button type="button" color="primary" size="large" filled="filled">이메일 주소로 회원가입</Button>
+      <LoginLayout>
+        <Title>회원가입</Title>
+        <p>배달음식은 그만! 함께 밥 <strong>해머거</strong>요 :-)</p>
+        <form>
+          <Button type="button" color="primary" size="large" filled="filled">이메일 주소로 회원가입</Button>
+        </form>
+      </LoginLayout>
     </>
   )
 }

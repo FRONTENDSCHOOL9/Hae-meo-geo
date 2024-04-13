@@ -6,10 +6,14 @@ LoginLayout.propTypes = {
 };
 
 function LoginLayout({ children }) {
-  const {wrapper} = styles;
+  const {wrapper, inner} = styles;
   return (
     <>
-      <div className={wrapper}>{children}</div>
+      <div className={wrapper}>
+        <div className={inner}>
+          {children}
+        </div>
+      </div>
     </>
   );
 }

@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [isEmailSaved, setIsEmailSaved] = useState(false);
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const setUser = useUserStore(state => state.setUser);
   const { user } = useUserStore();
@@ -74,7 +74,7 @@ function Login() {
       setEmail("");
       setPassword("")
 
-      console.log(user)
+      navigate("/");
 
     } catch (err) {
       console.log(err.response?.data.message);
@@ -99,8 +99,10 @@ function Login() {
           })} />
           <br />
           {errors && <div>{errors.email?.message}</div>}
-          <input type="checkbox" id="saveEmail" checked={isEmailSaved} onChange={handleCheckboxChange} />
-          <label htmlFor="saveEmail">아이디(이메일) 저장하기</label>
+          <div>
+            <input type="checkbox" id="saveEmail" checked={isEmailSaved} onChange={handleCheckboxChange} />
+            <label htmlFor="saveEmail">아이디(이메일) 저장하기</label>
+          </div>
           <br />
           <input type="password" id="password" defaultValue={password} placeholder="비밀번호" {...register("password", {
             required: "비밀번호는 8자리를 입력해주세요",
@@ -113,8 +115,8 @@ function Login() {
           {errors && <div>{errors.password?.message}</div>}
           <Button type="submit" color="primary" size="large" filled="filled">로그인</Button>
           <br />
-          <Button type="button" onClick={(e) => handleTestLogin(e)}>테스트 로그인</Button>
-          <button type="button" onClick={(e) => handleTestLogin(e)}>테스트 로그인</button>
+          <Button type="button" onClick={(e) => handleTestLogin(e)} color="gray" size="large" filled="false">테스트 계정으로 로그인</Button>
+          <button type="button" onClick={(e) => handleTestLogin(e)}>테스트 계정으로 로그인</button>
           <br />
           <LinkButton to={'/user/signup'} color="gray" size="large" filled="false">회원가입</LinkButton>
         </form>

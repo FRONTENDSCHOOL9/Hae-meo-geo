@@ -39,9 +39,9 @@ form{
 }
 
 input{
-  border-radius: 10px;
-  padding: 20px;
-  border: 1px solid var(--color-gray-100);
+  border-radius: 1rem;
+  padding: 2rem;
+  border: 0.1rem solid var(--color-gray-100);
 }
 
 .hidden {

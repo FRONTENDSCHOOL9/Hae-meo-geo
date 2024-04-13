@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 6rem;
+  gap: 3.2em;
   font-size: 1.8rem;
 }
 
@@ -22,17 +22,21 @@
 .info {
   display: flex;
   flex-wrap: wrap;
-  gap: .6rem 2.4rem;
+  gap: .6rem 0;
 }
 
 .info li {
   display: flex;
   gap: .6rem;
-  width: 29%;
+  width: 37%;
+}
+
+.info li:nth-child(3) {
+  width: 25%;
 }
 
 .ingredient {
-  margin-top: 2rem;
+  margin-top: 1.2em;
 }
 
 .ingredient ul {
@@ -58,4 +62,24 @@
   height: 2.4rem;
   margin-top: -0.2rem;
   flex-shrink: 0
+}
+
+@media (max-width: 767px) {
+  .ingredientWr {
+    flex-direction: column;
+    gap: 1.4em;
+    font-size: 1.5rem;
+  }
+
+  .ingredientWr img {
+    max-width: none;
+  }
+
+  .ingredientWr li {
+    font-size: 1.4rem;
+  }
+
+  .rightWr {
+    width: 100%;
+  }
 }

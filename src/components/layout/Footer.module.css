@@ -1,20 +1,21 @@
 .footer {
   background: var(--color-gray-30);
-  padding: 5rem var(--layout-padding-pc) 8rem;
+  padding: 3em var(--layout-padding) 4em;
   font-size: 1.6rem;
   margin-top: auto;
 }
 
 .info {
   display: flex;
-  gap: 2rem;
+  flex-wrap: wrap;
+  gap: .4em 2rem;
   max-width: fit-content;
-  padding-right: 3rem;
+  padding-right: 2em;
 }
 
 .info+.info {
-  margin-top: 1.6rem;
-  padding-top: 1.6rem;
+  margin-top: 1em;
+  padding-top: 1em;
   border-top: 1px solid var(--color-gray-50);
 }
 
@@ -25,4 +26,11 @@
 .copyright {
   color: var(--color-gray-100);
   margin-top: .4rem;
+}
+
+@media (max-width: 767px) {
+  .footer {
+    font-size: 1.4rem;
+    padding-top: 2em;
+  }
 }

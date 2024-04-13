@@ -14,8 +14,7 @@
 
   --layout-container-pc: 1680px;
   --layout-container-tablet: 1080px;
-  --layout-padding-pc: 3rem;
-  --layout-padding-mo: 1.5rem;
+  --layout-padding: 3rem;
 
   --title-big: 4.8rem;
   --title-medium: 2.4rem;
@@ -48,6 +47,19 @@ body {
 @media (min-width: 768px) and (max-width: 1024px) {
   :root {
     font-size: 54%;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --layout-padding: 1.2rem;
+
+    --title-big: 2.4rem;
+    --title-medium: 1.8rem;
+  }
+
+  body {
+    font-size: 1.2rem;
   }
 }
 

@@ -42,13 +42,31 @@
 
 }
 
-.list .content {
+.list .rightWr {
+  width: 100%;
+}
+
+.list .contentWr {
   margin-top: 1rem;
+  width: 100%;
 }
 
 .list .buttonWr {
   display: flex;
-  position: absolute;
-  top: 1.8rem;
-  right: 0;
+  margin-top: 1rem;
+}
+
+.list .attachWr {
+  margin-left: auto;
+  width: 13rem;
+  aspect-ratio: 1/1;
+  border-radius: 1rem;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.list .attachWr img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }

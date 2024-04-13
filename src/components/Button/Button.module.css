@@ -2,6 +2,7 @@
   display: inline-block;
   border: 1px solid;
   border-radius: 1rem;
+  text-align: center;
 }
 
 .button+.button {

@@ -5,8 +5,17 @@ import { useEffect } from "react";
 import styles from "./List.module.css";
 
 function ReplyList({ id, setRepliesFn, replies }) {
-  const { list, rightWr, name, infoWr, time, rating, content, buttonWr } =
-    styles;
+  const {
+    list,
+    rightWr,
+    name,
+    infoWr,
+    time,
+    rating,
+    contentWr,
+    buttonWr,
+    attachWr,
+  } = styles;
   const axios = useCustomAxios();
   const { user } = useUserStore();
 
@@ -21,15 +30,16 @@ function ReplyList({ id, setRepliesFn, replies }) {
     }
   };
 
+  console.log(replies);
+
   useEffect(() => {
     fetchData();
   }, []);
 
   const handleRemove = async (postId) => {
-    console.log(postId);
     try {
       const { data } = await axios.delete(`/posts/${postId}`);
-      setRepliesFn(replies);
+      fetchData();
     } catch (err) {
       console.error(err.response?.data.message);
     }
@@ -48,12 +58,26 @@ function ReplyList({ id, setRepliesFn, replies }) {
               <span className="hidden">{item.extra?.rating}점</span>
             </span>
           </div>
-          <p className={content}>{item.content}</p>
+          <div className={contentWr}>
+            <p>{item.content}</p>
+
+            {isMyPost && (
+              <div className={buttonWr}>
+                <Button color="primary">수정</Button>
+                <Button onClick={() => handleRemove(item._id)}>삭제</Button>
+              </div>
+            )}
+          </div>
         </div>
-        {isMyPost && (
-          <div className={buttonWr}>
-            <Button>수정</Button>
-            <Button onClick={() => handleRemove(item._id)}>삭제</Button>
+
+        {item.extra?.image && (
+          <div className={attachWr}>
+            <img
+              src={`${import.meta.env.VITE_API_SERVER}/files/06-haemeogeo/${
+                item.extra?.image
+              }`}
+              alt="후기 이미지"
+            />
           </div>
         )}
       </article>

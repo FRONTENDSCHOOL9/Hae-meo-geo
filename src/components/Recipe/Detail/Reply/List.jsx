@@ -30,8 +30,6 @@ function ReplyList({ id, setRepliesFn, replies }) {
     }
   };
 
-  console.log(replies);
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -40,6 +38,14 @@ function ReplyList({ id, setRepliesFn, replies }) {
     try {
       const { data } = await axios.delete(`/posts/${postId}`);
       fetchData();
+    } catch (err) {
+      console.error(err.response?.data.message);
+    }
+  };
+
+  const handleModify = async (postId) => {
+    try {
+      console.log(postId);
     } catch (err) {
       console.error(err.response?.data.message);
     }
@@ -63,7 +69,9 @@ function ReplyList({ id, setRepliesFn, replies }) {
 
             {isMyPost && (
               <div className={buttonWr}>
-                <Button color="primary">수정</Button>
+                <Button onClick={() => handleModify(item._id)} color="primary">
+                  수정
+                </Button>
                 <Button onClick={() => handleRemove(item._id)}>삭제</Button>
               </div>
             )}

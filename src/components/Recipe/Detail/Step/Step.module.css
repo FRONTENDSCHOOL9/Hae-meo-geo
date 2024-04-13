@@ -1,12 +1,12 @@
 .step li {
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: 1.5em;
   font-size: 2rem;
 }
 
 .step li+li {
-  margin-top: 3rem;
+  margin-top: 1.5em;
 }
 
 .step img {

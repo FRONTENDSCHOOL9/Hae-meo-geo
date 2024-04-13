@@ -1,13 +1,14 @@
 .footer {
   background: var(--color-gray-30);
-  padding: 3em var(--layout-padding-pc) 4em;
+  padding: 3em var(--layout-padding) 4em;
   font-size: 1.6rem;
   margin-top: auto;
 }
 
 .info {
   display: flex;
-  gap: 2rem;
+  flex-wrap: wrap;
+  gap: .4em 2rem;
   max-width: fit-content;
   padding-right: 2em;
 }
@@ -30,5 +31,6 @@
 @media (max-width: 767px) {
   .footer {
     font-size: 1.4rem;
+    padding-top: 2em;
   }
 }

@@ -8,13 +8,17 @@ function Sidebar({ id }) {
     <ul className={sidebar}>
       <li>
         <Bookmark className={bookmark} id={id}>
-          나도
-          <br />
-          해보기
+          <span>
+            나도
+            <br />
+            해보기
+          </span>
         </Bookmark>
       </li>
       <li>
-        <Share className={share}>공유하기</Share>
+        <Share className={share}>
+          <span>공유하기</span>
+        </Share>
       </li>
     </ul>
   );

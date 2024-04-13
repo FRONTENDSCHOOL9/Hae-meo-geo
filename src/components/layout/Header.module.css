@@ -62,8 +62,8 @@
 
 .fixedWr {
   position: fixed;
-  right: 3rem;
-  bottom: 3rem;
+  right: var(--layout-padding);
+  bottom: var(--layout-padding);
   z-index: 1;
 }
 
@@ -86,6 +86,11 @@
 @media (max-width: 767px) {
   .header {
     font-size: 1.4rem;
+  }
+
+  .fixedWr {
+    right: 1rem;
+    bottom: 3rem;
   }
 
   .toTop {

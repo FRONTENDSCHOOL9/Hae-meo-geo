@@ -13,7 +13,7 @@
 .rcpList ul {
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   gap: 5rem 2rem;
 }
 
@@ -27,7 +27,7 @@
 }
 
 .rcpList ul p {
-  margin: 1rem 0;
+  margin: .5em 0 0.2em;
   font-size: var(--title-medium);
   line-height: 1.4;
 }
@@ -35,4 +35,18 @@
 .rcpList ul li:hover img {
   box-shadow: 0 0 1rem rgba(0, 0, 0, .3);
   transform: scale(1.02);
+}
+
+@media (max-width: 767px) {
+  .rcpList {
+    margin-top: 5rem;
+  }
+
+  .rcpList ul {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+
+  .rcpList p {
+    font-size: 1.6rem;
+  }
 }

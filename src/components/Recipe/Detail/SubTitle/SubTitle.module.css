@@ -8,5 +8,9 @@
 }
 
 @media (max-width: 767px) {
-  .subTitle {}
+  .subTitle {
+    padding: 0.6em 0;
+    margin-bottom: 1em;
+    margin-top: 3em;
+  }
 }

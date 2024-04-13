@@ -1,10 +1,10 @@
 .sidebar {
   position: fixed;
-  bottom: 14rem;
-  right: 3rem;
+  bottom: calc(var(--layout-padding) + 10rem);
+  right: var(--layout-padding);
   z-index: 2;
   text-align: center;
-  border-radius: 2rem;
+  border-radius: 1em;
   border: 2px solid var(--color-gray-50);
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(1rem);
@@ -35,4 +35,19 @@
 
 .sidebar li:nth-child(2):hover button::before {
   background-image: url(/img/ico-share-act.svg);
+}
+
+@media (max-width: 767px) {
+  .sidebar {
+    bottom: calc(var(--layout-padding) + 8rem);
+    width: 5rem;
+  }
+
+  .sidebar span {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px);
+  }
 }

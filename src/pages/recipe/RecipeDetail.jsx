@@ -6,34 +6,39 @@ import Content from "@components/Recipe/Detail/Content/Content";
 import SubTitle from "@components/Recipe/Detail/SubTitle/SubTitle";
 import Ingredient from "@components/Recipe/Detail/Ingredient/Ingredient";
 import Step from "@components/Recipe/Detail/Step/Step";
+import ReplyList from "@components/Recipe/Detail/Reply/List";
+import Sidebar from "@components/Recipe/Detail/Sidebar/Sidebar";
+import ReplyRegister from "@components/Recipe/Detail/Reply/Register";
 
 function RecipeDetail() {
+  const axios = useCustomAxios("rcp");
   const { name } = useParams();
-  const axiosPrd = useCustomAxios();
-  const axiosRcp = useCustomAxios("rcp");
   const [data, setData] = useState();
   const [replies, setReplies] = useState();
 
   const fetchData = async () => {
     try {
-      const resRcp = await axiosRcp(`/1/1000/RCP_NM=${name}`);
-      setData(resRcp.data.COOKRCP01.row[0]);
-      const resPrd = await axiosPrd(`/replies/products/${data["RCP_SEQ"]}`);
-      setReplies(resPrd.data);
+      const { data } = await axios(`/1/1001/RCP_NM=${name}`);
+      setData(data.COOKRCP01.row[0]);
     } catch (err) {
       console.error(err);
     }
   };
 
+  const setRepliesFn = (data) => {
+    setReplies(data);
+  };
+
   useEffect(() => {
-    fetchData();
     window.scrollTo({ top: 0 });
+    fetchData();
   }, []);
 
   return (
     <>
       {data && (
         <div>
+          <Sidebar id={Number(data["RCP_SEQ"])} />
           <Banner
             name={data["RCP_NM"]}
             pat={data["RCP_PAT2"]}
@@ -47,7 +52,19 @@ function RecipeDetail() {
             <SubTitle>단계별 레시피</SubTitle>
             <Step data={data} />
 
-            <SubTitle>요리 후기</SubTitle>
+            <SubTitle>
+              요리 후기 <span>({replies?.item.length})</span>
+            </SubTitle>
+            <ReplyList
+              id={Number(data["RCP_SEQ"])}
+              replies={replies}
+              setRepliesFn={setRepliesFn}
+            />
+            <ReplyRegister
+              rcpName={name}
+              rcpNum={Number(data["RCP_SEQ"])}
+              setRepliesFn={setRepliesFn}
+            />
           </Content>
         </div>
       )}

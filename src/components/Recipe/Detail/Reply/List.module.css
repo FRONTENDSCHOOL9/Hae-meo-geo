@@ -1,0 +1,43 @@
+.list article {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+  font-size: 1.8rem;
+}
+
+.list article+article {
+  margin-top: 3.6rem;
+}
+
+.list article>img {
+  width: 6rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background: #ccc;
+  flex-shrink: 0;
+}
+
+.list .name {
+  margin-top: 0.4rem;
+  font-weight: bold;
+}
+
+.list .time {
+  color: var(--color-gray-100);
+}
+
+.list .rating {
+  display: inline-block;
+  width: 100px;
+  height: 24px;
+  background: url(/img/ico-star.svg) no-repeat top center / cover;
+
+}
+
+.list .content {
+  margin-top: 1rem;
+}
+
+.list .buttonWr {
+  display: flex;
+}

@@ -11,8 +11,8 @@ function List({ recipeItem, count, keyword }) {
   return (
     <div className={styles.rcpList}>
       <p>
-        총 <span>{count}</span>개의 <span>{keyword}</span> 레시피를 살펴보세요
-        :-)
+        총 <span>{count}</span>개의 <span>{keyword}</span> 레시피가
+        준비되어있어요 :-)
       </p>
       <ul>{recipeItem}</ul>
     </div>

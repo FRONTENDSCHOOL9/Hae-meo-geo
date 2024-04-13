@@ -43,42 +43,59 @@
   display: block;
   width: 2.6rem;
   height: 2.8rem;
-  background: url(@/assets/ico-user.svg) no-repeat center / cover;
+  background: url(/img/ico-user.svg) no-repeat center / cover;
   transition: all .3s;
 }
 
 .userMenu .search {
-  background-image: url(@/assets/ico-search.svg);
+  background-image: url(/img/ico-search.svg);
   height: 2.7rem;
 }
 
 .userMenu .search:hover {
-  background-image: url(@/assets/ico-search-primary.svg);
+  background-image: url(/img/ico-search-primary.svg);
 }
 
 .userMenu .login:hover {
-  background-image: url(@/assets/ico-user-primary.svg);
+  background-image: url(/img/ico-user-primary.svg);
 }
 
 .fixedWr {
   position: fixed;
-  right: 3rem;
-  bottom: 3rem;
+  right: var(--layout-padding);
+  bottom: var(--layout-padding);
   z-index: 1;
 }
 
 .toTop {
-  border-radius: 1rem;
-  border: 2px solid var(--color-gray-100);
+  border-radius: 1em;
+  border: 2px solid var(--color-gray-50);
   background: #fff;
-  width: 7rem;
-  height: 7rem;
-  background: #fff url(@/assets/ico-totop.svg) no-repeat center / 3rem;
+  width: 9rem;
+  height: 9rem;
+  background: rgba(255, 255, 255, 0.7) url(/img/ico-totop.svg) no-repeat center / 1.8em;
   transition: all .3s;
+  backdrop-filter: blur(1rem);
 }
 
 .toTop:hover {
-  /* background-color: var(--color-primary); */
-  background-image: url(@/assets/ico-totop-primary.svg);
+  background-image: url(/img/ico-totop-primary.svg);
   border-color: var(--color-primary);
+}
+
+@media (max-width: 767px) {
+  .header {
+    font-size: 1.4rem;
+  }
+
+  .fixedWr {
+    right: 1rem;
+    bottom: 3rem;
+  }
+
+  .toTop {
+    width: 5rem;
+    height: 5rem;
+    background-size: 1.8rem;
+  }
 }

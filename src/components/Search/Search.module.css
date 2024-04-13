@@ -13,7 +13,7 @@
 .type {
   display: flex;
   align-items: center;
-  gap: 1.6rem;
+  gap: 1em;
 }
 
 .type h3 {
@@ -22,7 +22,13 @@
 
 .type nav {
   display: flex;
-  gap: .8rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8em;
+}
+
+.type button+button {
+  margin: 0 !important;
 }
 
 .inputWr {
@@ -34,15 +40,15 @@
 .inputWr input {
   border: 2px solid var(--color-secondary);
   background-color: var(--color-secondary-30);
-  border-radius: 2.4rem;
+  border-radius: 1em;
   height: 6rem;
   width: 100%;
   font-size: var(--title-medium);
-  text-indent: 2rem;
+  text-indent: .9em;
 }
 
 .inputWr button {
-  background: url(@/assets/ico-search-primary.svg) no-repeat center / 3rem;
+  background: url(/img/ico-search-primary.svg) no-repeat center / 3rem;
   width: 6rem;
   aspect-ratio: 1/.8;
   position: absolute;
@@ -51,4 +57,14 @@
   transform: translateY(-50%);
   border-left: 2px solid var(--color-secondary);
   transition: all .3s;
+}
+
+@media (max-width: 767px) {
+  .type {
+    flex-direction: column;
+  }
+
+  .type nav {
+    width: 21rem;
+  }
 }

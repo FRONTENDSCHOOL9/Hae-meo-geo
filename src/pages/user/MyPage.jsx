@@ -2,11 +2,15 @@
 import { useForm } from "react-hook-form";
 import styles from "./MyPage.module.css";
 import { Button } from "@components/Button/Button";
-import Submit from "@components/Submit";
+import useUserStore from "@zustand/userStore.mjs";
+
+// import Submit from "@components/Submit";
 // import { Link } from "react-router-dom";
 
 function MyPage() {
   //const { user } = useUserState();
+  const { user } = useUserStore();
+
   const {
     register,
     handleSubmit,
@@ -17,13 +21,25 @@ function MyPage() {
     <>
       <div className={styles.page}>
         <div className={styles.pageside}>
-          <div className={styles.icon}>d</div>
-          <p>한태희님 환영합니다.</p>
-          <Button>로그아웃</Button>
+          <wrap className={styles.wrap}>
+            <div className={styles.icon}>{user.profile}</div>
+            <p className={styles.user}>{user.name}님 환영합니다.</p>
+          </wrap>
+          <Button type="button" color="secondary" size="max" filled="false">
+            로그아웃
+          </Button>
         </div>
-        <div className={styles.user}>
-          <Button>회원정보 수정</Button>
-          <Button>나도 해보기 목록</Button>
+
+        <wrap className={styles.information}>
+          <div>
+            <Button type="button" color="secondary" size="large" filled="false">
+              회원정보 수정
+            </Button>
+            <Button type="button" color="white" size="large" filled="false">
+              나도 해보기 목록
+            </Button>
+          </div>
+          <br />
 
           <form className={styles.form} onSubmit={handleSubmit(onsubmit)}>
             <div>
@@ -33,7 +49,7 @@ function MyPage() {
               <input
                 type="email"
                 id="email"
-                placeholder="hantaehee12@naver.com"
+                placeholder={user.email}
                 className={styles.input}
                 {...register("email", {
                   required: "아이디을 입력하세요.",
@@ -83,7 +99,7 @@ function MyPage() {
               <input
                 type="text"
                 id="name"
-                placeholder="닉네임을 입력하세요."
+                placeholder={user.name}
                 className={styles.input}
                 {...register("name", {
                   required: "닉네임을 입력하세요.",
@@ -123,10 +139,12 @@ function MyPage() {
                 {...register("profileImage")}
               />
             </div>
-            <Submit>수정하기</Submit>
+            <Button type="submit" color="primary" size="large" filled="filled">
+              수정하기
+            </Button>
           </form>
           <Button>회원 탈퇴하기</Button>
-        </div>
+        </wrap>
       </div>
     </>
   );

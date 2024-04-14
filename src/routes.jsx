@@ -8,6 +8,7 @@ import Login from "@pages/user/Login";
 import { createBrowserRouter } from "react-router-dom";
 import MyRecipeRegister from "@pages/myRecipe/MyRecipeRegister";
 import Signup from "@pages/user/Signup";
+import MyPage from "@pages/user/MyPage";
 import SignupStepOne from "@pages/user/SignupStepOne";
 import SignupStepTwo from "@pages/user/SignupStepTwo";
 import SignupStepThree from "@pages/user/SignupStepThree";
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { path: "/today/list", element: <TodayRecipeList /> },
       { path: "/user/login", element: <Login /> },
       { path: "/user/signup", element: <Signup /> },
+      { path: "/user/mypage", element: <MyPage /> },
       { path: "/user/signupStepOne", element: <SignupStepOne /> },
       { path: "/user/signupStepTwo", element: <SignupStepTwo /> },
       { path: "/user/signupStepThree", element: <SignupStepThree /> },

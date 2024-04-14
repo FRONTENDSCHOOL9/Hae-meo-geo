@@ -84,7 +84,7 @@ function Login() {
       setEmail("");
       setPassword("");
 
-      navigate("/");
+      navigate("/user/MyPage");
     } catch (err) {
       console.log(err.response?.data.message);
     }

@@ -73,6 +73,7 @@ function Login() {
       setUser({
         _id: res.data.item._id,
         name: res.data.item.name,
+        email: res.data.item.email,
         profile: res.data.item.profileImage,
         token: res.data.item.token,
       });

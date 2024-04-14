@@ -99,10 +99,10 @@ function Login() {
           })} />
           <br />
           {errors && <div>{errors.email?.message}</div>}
-          <div>
+          <fieldset>
             <input type="checkbox" id="saveEmail" checked={isEmailSaved} onChange={handleCheckboxChange} />
             <label htmlFor="saveEmail">아이디(이메일) 저장하기</label>
-          </div>
+          </fieldset>
           <br />
           <input type="password" id="password" defaultValue={password} placeholder="비밀번호" {...register("password", {
             required: "비밀번호는 8자리를 입력해주세요",
@@ -116,7 +116,6 @@ function Login() {
           <Button type="submit" color="primary" size="large" filled="filled">로그인</Button>
           <br />
           <Button type="button" onClick={(e) => handleTestLogin(e)} color="gray" size="large" filled="false">테스트 계정으로 로그인</Button>
-          <button type="button" onClick={(e) => handleTestLogin(e)}>테스트 계정으로 로그인</button>
           <br />
           <LinkButton to={'/user/signup'} color="gray" size="large" filled="false">회원가입</LinkButton>
         </form>

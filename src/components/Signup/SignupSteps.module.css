@@ -1,0 +1,18 @@
+.steps{
+  display: flex;
+  gap: 2rem;
+}
+
+.black{
+  color: var(--color-black);
+}
+
+.gray{
+  color: var(--color-gray-100);
+}
+
+.step:not(:last-child)::after{
+  content: ">";
+  color: var(--color-gray-100);
+  margin-left: 2rem;
+}

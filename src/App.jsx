@@ -1,10 +1,8 @@
 import router from "@/routes";
-import { RouterProvider } from "react-router-dom";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactCsspin } from "react-csspin";
-import "react-csspin/dist/style.css";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Suspense } from "react";
+import { RouterProvider } from "react-router-dom";
 import "./App.css";
 
 const queryClient = new QueryClient();
@@ -12,7 +10,7 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Suspense fallback={<ReactCsspin />}>
+      <Suspense fallback={<div>로딩중...</div>}>
         <RouterProvider router={router} />
       </Suspense>
       <ReactQueryDevtools initialIsOpen={false} />

@@ -73,7 +73,7 @@ function Login() {
       setUser({
         _id: res.data.item._id,
         name: res.data.item.name,
-        email: res.data.item.email,
+        email: res.data.item.email, // 이메일 데이터 추가
         profile: res.data.item.profileImage,
         token: res.data.item.token,
       });
@@ -85,7 +85,7 @@ function Login() {
       setEmail("");
       setPassword("");
 
-      navigate("/user/MyPage");
+      navigate("/user/MyPage"); // 마이 페이지 임시 연결
     } catch (err) {
       console.log(err.response?.data.message);
     }

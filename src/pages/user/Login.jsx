@@ -73,7 +73,6 @@ function Login() {
       setUser({
         _id: res.data.item._id,
         name: res.data.item.name,
-        email: res.data.item.email,
         profile: res.data.item.profileImage,
         token: res.data.item.token,
       });
@@ -85,7 +84,7 @@ function Login() {
       setEmail("");
       setPassword("");
 
-      navigate("/user/MyPage");
+      navigate("/");
     } catch (err) {
       console.log(err.response?.data.message);
     }
@@ -112,7 +111,7 @@ function Login() {
           />
           <br />
           {errors && <div>{errors.email?.message}</div>}
-          <div>
+          <fieldset>
             <input
               type="checkbox"
               id="saveEmail"
@@ -120,7 +119,7 @@ function Login() {
               onChange={handleCheckboxChange}
             />
             <label htmlFor="saveEmail">아이디(이메일) 저장하기</label>
-          </div>
+          </fieldset>
           <br />
           <input
             type="password"
@@ -150,9 +149,6 @@ function Login() {
           >
             테스트 계정으로 로그인
           </Button>
-          <button type="button" onClick={(e) => handleTestLogin(e)}>
-            테스트 계정으로 로그인
-          </button>
           <br />
           <LinkButton
             to={"/user/signup"}

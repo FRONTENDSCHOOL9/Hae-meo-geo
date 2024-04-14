@@ -59,7 +59,47 @@ export const initData = async (nextSeq) => {
     // QnA, 공지사항, 게시판
     post: [],
     // 코드
-    code: [],
+    code: [
+      {
+        _id: "todayRcp",
+        title: "오늘의 메뉴",
+        codes: [
+          {
+            sort: 1,
+            code: "TR101",
+            value: "weather",
+            condition: "01",
+            print: {
+              value: "비가 오는",
+              menu: "전",
+              code: "RCP_PARTS_DTLS=부침가루",
+            },
+          },
+          {
+            sort: 2,
+            code: "TR102",
+            value: "weather",
+            condition: "01",
+            print: {
+              value: "땀이 뻘뻘",
+              menu: "시원한 요리",
+              code: "RCP_NM=초계",
+            },
+          },
+          {
+            sort: 3,
+            code: "TR103",
+            value: "day",
+            condition: "토",
+            print: {
+              value: "불금 달리셨나요?",
+              menu: "황태로 해장",
+              code: "RCP_PARTS_DTLS=황태",
+            },
+          },
+        ],
+      },
+    ],
     // 설정
     config: [],
   };

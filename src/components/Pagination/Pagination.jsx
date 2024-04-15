@@ -1,3 +1,4 @@
+import { current } from "immer";
 import PropTypes from "prop-types";
 import { Link, useSearchParams } from "react-router-dom";
 import styles from "./Pagination.module.css";
@@ -12,10 +13,13 @@ function Pagination({ totalCount }) {
   const totalPage = parseInt(totalCount / limit);
   const currentPage = searchParams.get("page");
   const pageRange = 5;
+  console.log(currentPage);
 
   const pageList = [];
   for (let page = 1; page <= totalPage; page++) {
     searchParams.set("page", page);
+    // setSearchParams(searchParams);
+
     let search = searchParams.toString();
     pageList.push(
       <li key={page} className={`${page === +currentPage ? styles.act : ""}`}>

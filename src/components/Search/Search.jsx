@@ -1,32 +1,38 @@
 import PropTypes from "prop-types";
 import { Button } from "@components/Button/Button";
 import styles from "./Search.module.css";
+import { useSearchParams } from "react-router-dom";
 
 Search.propTypes = {
-  fetchData: PropTypes.func.isRequired,
   setKeyword: PropTypes.func.isRequired,
 };
 
-function Search({ fetchData, setKeyword }) {
-  const { search, typeWr, type, inputWr } = styles;
-  const limit = import.meta.env.VITE_PAGINATION_LIMIT;
+function Search({ setKeyword }) {
+  const { searchWr, typeWr, type, inputWr } = styles;
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleClick = (e) => {
     if (e.target.tagName !== "BUTTON") return false;
-    const searchKeyword = e.target.innerText.split("&")[0];
-    fetchData(`/1/${limit}/RCP_PAT2=${searchKeyword}`);
-    setKeyword(searchKeyword);
+    const category = e.target.innerText.split("&")[0];
+    searchParams.set("category", category);
+    searchParams.set("page", 1);
+    searchParams.delete("ingredient");
+    setSearchParams(searchParams);
+    setKeyword(category);
   };
 
   const handleSearch = (e) => {
     e.preventDefault();
-    const searchKeyword = e.target.firstChild.value;
-    fetchData(`/1/${limit}/RCP_PARTS_DTLS=${searchKeyword}`);
-    setKeyword(searchKeyword);
+    const ingredient = e.target.firstChild.value;
+    searchParams.set("ingredient", ingredient);
+    searchParams.set("page", 1);
+    searchParams.delete("category");
+    setSearchParams(searchParams);
+    setKeyword(ingredient);
   };
 
   return (
-    <div className={search}>
+    <div className={searchWr}>
       <div className={typeWr}>
         <div className={type}>
           <h3>종류별</h3>

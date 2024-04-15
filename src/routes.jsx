@@ -7,6 +7,7 @@ import TodayRecipeList from "@pages/todayRecipe/TodayRecipeList";
 import Login from "@pages/user/Login";
 import { createBrowserRouter } from "react-router-dom";
 import MyRecipeRegister from "@pages/myRecipe/MyRecipeRegister";
+import MyRecipeList from "@pages/myRecipe/MyRecipeList";
 import Signup from "@pages/user/Signup";
 import MyPage from "@pages/user/MyPage";
 import SignupStepOne from "@pages/user/SignupStepOne";
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
       { path: "/user/signupStepTwo", element: <SignupStepTwo /> },
       { path: "/user/signupStepThree", element: <SignupStepThree /> },
       { path: "/myrecipe/register", element: <MyRecipeRegister /> },
+      { path: "/myrecipe/list", element: <MyRecipeList /> },
     ],
   },
 ]);

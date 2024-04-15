@@ -5,11 +5,10 @@ import Search from "@components/Search/Search";
 import Title from "@components/Title/Title";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
 function RcpList() {
-  // const [data, setData] = useState([]);
   const axios = useCustomAxios("rcp");
   const [keyword, setKeyword] = useState("");
 
@@ -18,42 +17,6 @@ function RcpList() {
   const page = searchParams.get("page");
   const category = searchParams.get("category");
   const ingredient = searchParams.get("ingredient");
-
-  console.log(page, category, ingredient);
-
-  // const fetchData = async (url) => {
-  //   try {
-  //     const { data } = await axios.get(url);
-  //     setData(data.COOKRCP01.row);
-  //     setCount(Number(data.COOKRCP01["total_count"]));
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchData(`/1/${import.meta.env.VITE_PAGINATION_LIMIT}`);
-  // }, []);
-
-  // const { data, isLoading, error } = useQuery({
-  //   queryKey: ["list", page, category, ingredient],
-  //   queryFn: () =>
-  //     axios.get(
-  //       `/${page * limit - (limit - 1)}/${
-  //         page * limit
-  //       }/RCP_PAT2=${category}/RCP_PARTS_DTLS=${ingredient}`,
-  //       {
-  //         params: {
-  //           page,
-  //           limit: import.meta.env.VITE_POST_LIMIT,
-  //           category: searchParams.get("category"),
-  //           ingredient: searchParams.get("ingredient"),
-  //         },
-  //       }
-  //     ),
-  //   select: (response) => response.data.COOKRCP01.row,
-  //   suspense: false,
-  // });
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["list", page, category, ingredient],

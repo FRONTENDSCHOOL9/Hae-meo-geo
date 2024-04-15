@@ -1,15 +1,32 @@
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import styles from "./TodayRecipeList.module.css";
 
 function TodayRecipeList() {
-  const weather = {
-    "01": "해가 쨍쨍한",
-    "02": "구름이 낀",
-    "03": "흐린",
-    "04": "비가 오는",
-    "05": "눈이 오는",
+  const axios = useCustomAxios();
+  const [data, setData] = useState();
+
+  const fetchData = async () => {
+    try {
+      const { data } = await axios("/codes/todayRcp");
+      setData(data?.item.todayRcp.codes);
+    } catch (err) {
+      console.error(err.response?.data.message);
+    }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // const weather = {
+  //   "01": "해가 쨍쨍한",
+  //   "02": "구름이 낀",
+  //   "03": "흐린",
+  //   "04": "비가 오는",
+  //   "05": "눈이 오는",
+  // };
   const season = {};
   const todayMenu = [
     {
@@ -50,15 +67,13 @@ function TodayRecipeList() {
   // 날씨별 https://blog.naver.com/kma_131/222458064479
   // 랜덤 메뉴 추천 사이트 : https://ai-creator.tistory.com/31
 
-  const randomNum = Math.floor(Math.random() * todayMenu.length);
-
-  const axios = useCustomAxios();
-  const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ["today"],
-    queryFn: () => axios.get("/codes"),
-    select: (response) => response.data,
-  });
-  console.log(data);
+  const menus = data?.map((item) => (
+    <li key={item.sort}>
+      <p>
+        {item?.value} 오늘은 {item?.menu} 어때요?
+      </p>
+    </li>
+  ));
 
   // 1. 데이터 호출
   // 2. 데이터 중에 value condition이 맞는 애들만 전역 상태관리 변수에 담기
@@ -112,7 +127,7 @@ function TodayRecipeList() {
 
   return (
     <div>
-      <ul>sdf</ul>
+      <ul>{menus}</ul>
     </div>
   );
 }

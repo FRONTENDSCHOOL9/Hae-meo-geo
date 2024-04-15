@@ -10,7 +10,7 @@ Banner.propTypes = {
 };
 
 function Banner({ type = "myRcpList", name, pat = "", way = "" }) {
-  const { bannerWr, banner } = styles;
+  const { bannerWr, banner, titleDetail } = styles;
   return (
     <>
       {type === "haeRcp" && (
@@ -33,6 +33,7 @@ function Banner({ type = "myRcpList", name, pat = "", way = "" }) {
         <div className={`${bannerWr} ${styles[type]}`}>
           <div className={banner}>
             <h2>나만의 레시피를 올려주세요!</h2>
+            <div className={titleDetail}>내가 알고 있는 맛있는 레시피를 같이 해머거요</div>
           </div>
         </div>
       )}

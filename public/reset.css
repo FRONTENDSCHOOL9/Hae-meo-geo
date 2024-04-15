@@ -11,22 +11,19 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
+	margin: unset;
+	padding: unset;
+	border: unset;
 	vertical-align: baseline;
+  line-height: 1.4;
+  box-sizing: border-box;
+  word-break: keep-all;
 }
 
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
-}
-
-body {
-	line-height: 1;
 }
 
 ol, ul {
@@ -43,14 +40,18 @@ q:before, q:after {
 	content: none;
 }
 
-a, a:visited {
+a {
   color: inherit;
   text-decoration: none;
 }
 
 button {
   all: unset;
+  display: inline-block;
+  box-sizing: border-box;
+  line-height: 1.4;
   cursor: pointer;
+  text-align: center;
 }
 
 table {
@@ -58,3 +59,34 @@ table {
 	border-spacing: 0;
 }
 
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="button"] {
+  font-size: 1.6rem;
+  border-radius: 1.2rem;
+  height: 6rem;
+  text-indent: 1.2rem;
+  border: 1px solid var(--color-gray-100);
+  box-sizing: border-box;
+  padding: 0;
+}
+
+fieldset{
+  display: flex;  
+  align-items: center;
+}
+
+hr{
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-black-100);
+  border: unset;
+  margin: 1.4rem 0;
+}

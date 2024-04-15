@@ -1,0 +1,4 @@
+.content {
+  max-width: var(--layout-container-tablet);
+  margin: 0 auto;
+}

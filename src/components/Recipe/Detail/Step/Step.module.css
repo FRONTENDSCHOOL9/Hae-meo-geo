@@ -1,0 +1,45 @@
+.step li {
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
+  font-size: 2rem;
+}
+
+.step li+li {
+  margin-top: 1.5em;
+}
+
+.step img {
+  width: 20rem;
+  aspect-ratio: 173/114;
+  object-fit: cover;
+  border-radius: 1rem;
+  flex-shrink: 0;
+}
+
+.step p {
+  position: relative;
+  padding-left: 3em;
+}
+
+.step p span {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: var(--color-secondary);
+  color: #fff;
+  font-weight: bold;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .step li {
+    font-size: 1.4rem;
+    flex-direction: column;
+  }
+}

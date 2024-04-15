@@ -1,0 +1,52 @@
+.rcpList {
+  margin-top: 10rem;
+}
+
+.rcpList p {
+  font-size: 2rem;
+}
+
+.rcpList p span {
+  font-weight: bold;
+}
+
+.rcpList ul {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 5rem 2rem;
+}
+
+.rcpList img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all .3s;
+}
+
+.rcpList ul p {
+  margin: .5em 0 0.2em;
+  font-size: var(--title-medium);
+  line-height: 1.4;
+}
+
+.rcpList ul li:hover img {
+  box-shadow: 0 0 1rem rgba(0, 0, 0, .3);
+  transform: scale(1.02);
+}
+
+@media (max-width: 767px) {
+  .rcpList {
+    margin-top: 5rem;
+  }
+
+  .rcpList ul {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+
+  .rcpList p {
+    font-size: 1.6rem;
+  }
+}

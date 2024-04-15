@@ -1,0 +1,20 @@
+headers {
+  Client-ID: {{clientId}}
+}
+
+auth {
+  mode: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+script:post-response {
+  if(res.status === 200){
+    if(req.url === `${bru.getEnvVar('url')}/users/login`){
+      bru.setEnvVar('accessToken', res.body.item.token.accessToken);
+      bru.setEnvVar('refreshToken', res.body.item.token.refreshToken);
+    }
+  }
+}

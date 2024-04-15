@@ -1,25 +1,32 @@
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import styles from "./TodayRecipeList.module.css";
 
-console.log(styles);
-
 function TodayRecipeList() {
-  // 랜덤으로 노출되어야 하는 데이터 : 상황, 메뉴
-  // 요일 : 월 화 수 목 금 토 일
-  // 날씨 : 기상청) 맑음 구름많음 흐림 | 비 눈 없음
-  // 제철 : 1 2 3 4 5 6 7 8 9 10 11 12월
-  // 1월의 월요일인 경우 : 월요일 메뉴 | 날씨에 따른 메뉴 | 제철 메뉴
-  // ㄴ 1월 제철 식재료 10개
-  // ㄴ 월요일 추천 메뉴 3개
-  // ㄴ 해당 날씨 추천 메뉴 1개
-  const weather = {
-    "01": "해가 쨍쨍한",
-    "02": "구름이 낀",
-    "03": "흐린",
-    "04": "비가 오는",
-    "05": "눈이 오는",
+  const axios = useCustomAxios();
+  const [data, setData] = useState();
+
+  const fetchData = async () => {
+    try {
+      const { data } = await axios("/codes/todayRcp");
+      setData(data?.item.todayRcp.codes);
+    } catch (err) {
+      console.error(err.response?.data.message);
+    }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // const weather = {
+  //   "01": "해가 쨍쨍한",
+  //   "02": "구름이 낀",
+  //   "03": "흐린",
+  //   "04": "비가 오는",
+  //   "05": "눈이 오는",
+  // };
   const season = {};
   const todayMenu = [
     {
@@ -60,24 +67,20 @@ function TodayRecipeList() {
   // 날씨별 https://blog.naver.com/kma_131/222458064479
   // 랜덤 메뉴 추천 사이트 : https://ai-creator.tistory.com/31
 
-  const randomNum = Math.floor(Math.random() * todayMenu.length);
-
-  const axios = useCustomAxios(true);
-  const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ["list"],
-    queryFn: () => axios.get(`/1/1000/RCP_PARTS_DTLS=동치미`),
-    select: (response) => response.data.COOKRCP01.row,
-  });
-  console.log(data);
-
-  const list = data?.map((item) => (
-    <li key={item["RCP_SEQ"]}>
-      <img src={item["ATT_FILE_NO_MAIN"]} alt="" />
-      <strong>이름</strong> {item["RCP_NM"]}
-      <p>{item["RCP_PARTS_DTLS"]}</p>
-      {/* <span>hash {item["HASH_TAG"]}</span> */}
+  const menus = data?.map((item) => (
+    <li key={item.sort}>
+      <p>
+        {item?.value} 오늘은 {item?.menu} 어때요?
+      </p>
     </li>
   ));
+
+  // 1. 데이터 호출
+  // 2. 데이터 중에 value condition이 맞는 애들만 전역 상태관리 변수에 담기
+  // 3. 로컬 스토리지에도 반영하기
+  // 4. 업데이트 주기
+  // 1) 로컬스토리지에 담긴 날짜와 다른 경우
+  // 2) 로컬스토리지에 담긴 시간과 1/2시간 이상 차이나는 경우
 
   // $(function () {
   //   const weather_1 = `강한 자외선을 차단하기 위해 선글라스, 모자 착용으로 눈을 보호해주세요. <br>높은 기온과 강한 햇빛으로 지친 눈을 위해 충분한 휴식을 취하세요!`;
@@ -124,7 +127,7 @@ function TodayRecipeList() {
 
   return (
     <div>
-      <ul className={styles.list}>{list}</ul>
+      <ul>{menus}</ul>
     </div>
   );
 }

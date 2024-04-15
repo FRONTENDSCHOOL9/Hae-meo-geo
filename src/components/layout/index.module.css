@@ -1,5 +1,14 @@
 .container {
+  width: 100%;
   max-width: var(--layout-pc);
-  padding: 0 3rem;
-  margin: 5rem auto 0;
+  box-sizing: border-box;
+  padding: 0 var(--layout-padding) 10em;
+  margin: calc(5rem + 9.6rem) auto 0;
+}
+
+@media (max-width: 767px) {
+  .container {
+    max-width: none;
+    padding-bottom: 5rem;
+  }
 }

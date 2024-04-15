@@ -1,0 +1,85 @@
+.ingredientWr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3.2em;
+  font-size: 1.8rem;
+}
+
+.ingredientWr img {
+  width: 100%;
+  max-width: 40rem;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.rightWr {
+  width: 50%;
+  max-width: 45rem;
+}
+
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem 0;
+}
+
+.info li {
+  display: flex;
+  gap: .6rem;
+  width: 37%;
+}
+
+.info li:nth-child(3) {
+  width: 25%;
+}
+
+.ingredient {
+  margin-top: 1.2em;
+}
+
+.ingredient ul {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+}
+
+.ingredient li {
+  font-size: 1.6rem;
+  position: relative;
+  display: flex;
+  gap: .4rem;
+  /* width: 48%; */
+}
+
+.ingredient li::before {
+  content: '';
+  background: url(/img/ico-check.svg) no-repeat center / cover;
+  width: 2.4rem;
+  height: 2.4rem;
+  margin-top: -0.2rem;
+  flex-shrink: 0
+}
+
+@media (max-width: 767px) {
+  .ingredientWr {
+    flex-direction: column;
+    gap: 1.4em;
+    font-size: 1.5rem;
+  }
+
+  .ingredientWr img {
+    max-width: none;
+  }
+
+  .ingredientWr li {
+    font-size: 1.4rem;
+  }
+
+  .rightWr {
+    width: 100%;
+  }
+}

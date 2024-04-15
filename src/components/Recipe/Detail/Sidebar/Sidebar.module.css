@@ -1,0 +1,53 @@
+.sidebar {
+  position: fixed;
+  bottom: calc(var(--layout-padding) + 10rem);
+  right: var(--layout-padding);
+  z-index: 2;
+  text-align: center;
+  border-radius: 1em;
+  border: 2px solid var(--color-gray-50);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(1rem);
+  padding: 2rem 0;
+  width: 9rem;
+}
+
+.sidebar li+li {
+  margin-top: 2rem;
+}
+
+.sidebar button::before {
+  content: '';
+  display: block;
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 3.3rem;
+  margin: 0 auto 0.6rem;
+  transition: all .3s;
+}
+
+.sidebar li:nth-child(2) button::before {
+  background-image: url(/img/ico-share.svg);
+}
+
+.sidebar li:nth-child(2):hover button::before {
+  background-image: url(/img/ico-share-act.svg);
+}
+
+@media (max-width: 767px) {
+  .sidebar {
+    bottom: calc(var(--layout-padding) + 8rem);
+    width: 5rem;
+  }
+
+  .sidebar span {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px);
+  }
+}

@@ -2,39 +2,89 @@
   font-family: 'NanumSquareNeo', sans-serif;
   font-size: 62.5%;
 
-  --color-primary: #DA240F; 
-  --color-primary-80: #E54D22; 
-  --color-primary-30: #FFE7E2; 
-  --color-secondary: #F2C166; 
-  --color-secondary-30: #FFF9E2; 
-  --color-black-100: #000; 
-  --color-gray-100: #999; 
-  --color-gray-50: #E5E5E5; 
-  --color-gray-30: #F2F2F2; 
+  --color-primary: #DA240F;
+  --color-primary-80: #E54D22;
+  --color-primary-30: #FFE7E2;
+  --color-secondary: #F2C166;
+  --color-secondary-30: #FFF9E2;
+  --color-black-100: #000;
+  --color-gray-100: #999;
+  --color-gray-50: #E5E5E5;
+  --color-gray-30: #F2F2F2;
 
   --layout-container-pc: 1680px;
-  --layout-padding-pc: 3rem;
-  /* --layout-container-mo: 1680px; */
-  --layout-padding-mo: 1.5rem;
+  --layout-container-tablet: 1080px;
+  --layout-padding: 3rem;
+
+  --title-big: 4.8rem;
+  --title-medium: 2.4rem;
+}
+
+body {
+  font-size: 1.4rem;
 }
 
 #root {
   min-height: 100vh;
-  font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
 }
 
-@media (min-width: 1025px) and (max-width: 1680px)  {
-  :root {font-size: 58%;}
+.hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
 }
-@media (min-width: 768px) and (max-width: 1024px)  {
-  :root {font-size: 56%;}
+
+.swiper-slide img {
+  max-width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 1.2rem;
+  overflow: hidden;
 }
-@media (min-width: 501px) and (max-width: 767px)  {
-  :root {font-size: 64%;}
+
+@media (min-width: 1025px) and (max-width: 1680px) {
+  :root {
+    font-size: 57%;
+  }
 }
-@media (min-width: 351px) and (max-width: 500px)  {
-  :root {font-size: 62.5%;}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  :root {
+    font-size: 54%;
+  }
 }
-@media (max-width: 350px)  {
-  :root {font-size: 58%;}
+
+@media (max-width: 767px) {
+  :root {
+    --layout-padding: 1.2rem;
+
+    --title-big: 2.4rem;
+    --title-medium: 1.8rem;
+  }
+
+  body {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 767px) {
+  :root {
+    font-size: 64%;
+  }
+}
+
+@media (min-width: 351px) and (max-width: 500px) {
+  :root {
+    font-size: 62.5%;
+  }
+}
+
+@media (max-width: 350px) {
+  :root {
+    font-size: 57%;
+  }
 }

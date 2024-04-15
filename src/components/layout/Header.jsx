@@ -1,14 +1,17 @@
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 
-const { logo, gnb, userMenu } = styles;
-
 function Header() {
+  const { header, logo, gnb, userMenu, login, search, fixedWr, toTop } = styles;
+  const handleToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <header>
+    <header className={header}>
       <div className={logo}>
         <Link to="/">
-          <img src="/logo.svg" alt="해머거" />
+          <img src="/img/logo.svg" alt="해머거" />
         </Link>
       </div>
       <nav className={gnb}>
@@ -20,16 +23,27 @@ function Header() {
             <Link to="/recipe/list">해머거 레시피</Link>
           </li>
           <li>
-            <Link to="">나만의 레시피</Link>
+            <Link to="/myrecipe/register">나만의 레시피</Link>
           </li>
         </ul>
       </nav>
       <ul className={userMenu}>
         <li>
-          <Link to="/user/login">로그인</Link>
-          <button type="button">검색</button>
+          <Link className={login} to="/user/login">
+            <span className="hidden">로그인</span>
+          </Link>
+        </li>
+        <li>
+          <button type="button" className={search}>
+            <span className="hidden">검색</span>
+          </button>
         </li>
       </ul>
+      <div className={fixedWr}>
+        <button className={toTop} onClick={handleToTop}>
+          <span className="hidden">위로 이동하기</span>
+        </button>
+      </div>
     </header>
   );
 }

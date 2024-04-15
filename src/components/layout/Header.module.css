@@ -1,24 +1,101 @@
-header {
+.header {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8rem;
   background: #fff;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--color-primary);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  font-size: 1.8rem;
+  padding: 2rem 0;
+  z-index: 99;
 }
 
 .logo img {
-  width: 11.2rem;
+  width: 4.5rem;
+  position: relative;
+  top: 0.2rem;
 }
 
 .gnb ul {
   display: flex;
   font-weight: bold;
-  gap: 10px;
+  gap: 8rem;
 }
 
-.userMenu {}
+.gnb ul a {
+  transition: all .3s
+}
+
+.gnb ul a:hover {
+  color: var(--color-primary);
+}
+
+.userMenu {
+  display: flex;
+  gap: 8rem
+}
+
+.userMenu li * {
+  display: block;
+  width: 2.6rem;
+  height: 2.8rem;
+  background: url(/img/ico-user.svg) no-repeat center / cover;
+  transition: all .3s;
+}
+
+.userMenu .search {
+  background-image: url(/img/ico-search.svg);
+  height: 2.7rem;
+}
+
+.userMenu .search:hover {
+  background-image: url(/img/ico-search-primary.svg);
+}
+
+.userMenu .login:hover {
+  background-image: url(/img/ico-user-primary.svg);
+}
+
+.fixedWr {
+  position: fixed;
+  right: var(--layout-padding);
+  bottom: var(--layout-padding);
+  z-index: 1;
+}
+
+.toTop {
+  border-radius: 1em;
+  border: 2px solid var(--color-gray-50);
+  background: #fff;
+  width: 9rem;
+  height: 9rem;
+  background: rgba(255, 255, 255, 0.7) url(/img/ico-totop.svg) no-repeat center / 1.8em;
+  transition: all .3s;
+  backdrop-filter: blur(1rem);
+}
+
+.toTop:hover {
+  background-image: url(/img/ico-totop-primary.svg);
+  border-color: var(--color-primary);
+}
+
+@media (max-width: 767px) {
+  .header {
+    font-size: 1.4rem;
+  }
+
+  .fixedWr {
+    right: 1rem;
+    bottom: 3rem;
+  }
+
+  .toTop {
+    width: 5rem;
+    height: 5rem;
+    background-size: 1.8rem;
+  }
+}

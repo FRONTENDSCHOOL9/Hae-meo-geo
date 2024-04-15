@@ -5,7 +5,7 @@ import Search from "@components/Search/Search";
 import Title from "@components/Title/Title";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
 function RcpList() {
@@ -18,7 +18,7 @@ function RcpList() {
   const category = searchParams.get("category");
   const ingredient = searchParams.get("ingredient");
 
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["list", page, category, ingredient],
     queryFn: () => fetchData(page, category, ingredient),
     select: (response) => response.data.COOKRCP01,
@@ -26,9 +26,9 @@ function RcpList() {
   });
 
   const fetchData = async (page, category, ingredient) => {
-    const url = `/${page * limit - (limit - 1)}/${page * limit}`;
-    if (category) return axios.get(`${url}/RCP_PAT2=${category}`);
-    if (ingredient) return axios.get(`${url}/RCP_PARTS_DTLS=${ingredient}`);
+    let url = `/${page * limit - (limit - 1)}/${page * limit}`;
+    if (category) url = `${url}/RCP_PAT2=${category}`;
+    if (ingredient) url = `${url}/RCP_PARTS_DTLS=${ingredient}`;
     return axios.get(url);
   };
 
@@ -42,6 +42,10 @@ function RcpList() {
       </Link>
     </li>
   ));
+
+  useEffect(() => {
+    refetch();
+  }, [searchParams.toString()]);
 
   return (
     <>

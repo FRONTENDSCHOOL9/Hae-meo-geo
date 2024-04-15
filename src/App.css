@@ -38,6 +38,14 @@ body {
   clip: rect(1px 1px 1px 1px);
 }
 
+.swiper-slide img {
+  max-width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 1.2rem;
+  overflow: hidden;
+}
+
 @media (min-width: 1025px) and (max-width: 1680px) {
   :root {
     font-size: 57%;

@@ -1,12 +1,26 @@
 import styles from "./MyRecipeList.module.css"
-import Banner from "@components/Recipe/Detail/Banner/Banner"
+import MyRecipeSearch from "@pages/myRecipe/components/MyRecipeSearch";
+import MyRecipeSortButton from "@pages/myRecipe/components/MyRecipeSortButton";
+
 
 function MyRecipeList() {
-  const {} = styles;
+/*   const recipeItem = 
+    <li>
+      <Link>
+      </Link>
+    </li> */
+  const {banner} = styles;
 
   return(
     <>
-      <Banner/>
+      <div className={banner}>나만의 레시피</div>
+      <MyRecipeSearch/>
+      <MyRecipeSortButton/>
+      <ul>
+        <li>
+          
+        </li>
+      </ul>
     </>
   )
 }

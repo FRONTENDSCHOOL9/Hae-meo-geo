@@ -1,0 +1,31 @@
+.boxButtonsSort{
+  display: flex;
+  justify-content: end;
+  margin: 24px 0;
+  gap: 10px;
+}
+
+.buttonSort:checked+.sortSelect {
+  color: var(--color-primary);
+}
+
+.sortSelect{
+  display: flex;
+  cursor: pointer;
+  line-height: 1;
+  gap: 10px;
+  font-size: 2.4rem;
+}
+
+.sortSelect.slash::after{
+  content: " ";
+  display: block;
+  background-color: var(--color-gray-100);
+  width: 3px;
+  border-radius: 10px;
+  cursor: default;
+}
+
+.buttonSort{
+  display: none;
+}

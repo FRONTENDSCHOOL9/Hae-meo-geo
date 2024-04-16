@@ -1,42 +1,35 @@
+import { current } from "immer";
 import PropTypes from "prop-types";
-import { useRef, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import styles from "./Pagination.module.css";
 
 Pagination.propTypes = {
-  totalCount: PropTypes.number,
-  fetchData: PropTypes.func.isRequired,
-  current: PropTypes.number,
+  totalCount: PropTypes.number.isRequired,
 };
 
-function Pagination({ totalCount, fetchData }) {
-  const pagination = useRef();
+function Pagination({ totalCount }) {
+  const [searchParams, setSearchParams] = useSearchParams();
   const limit = import.meta.env.VITE_PAGINATION_LIMIT;
   const totalPage = parseInt(totalCount / limit);
-  const [currentPage, setCurrentPage] = useState(1);
+  const currentPage = searchParams.get("page");
   const pageRange = 5;
+  console.log(currentPage);
 
   const pageList = [];
   for (let page = 1; page <= totalPage; page++) {
+    searchParams.set("page", page);
+    // setSearchParams(searchParams);
+
+    let search = searchParams.toString();
     pageList.push(
-      <li key={page}>
-        <button
-          className={`${page === currentPage && styles.act}`}
-          onClick={() => {
-            setCurrentPage(page);
-            fetchData(`/${limit * page - limit + 1}/${limit * page}`);
-          }}
-        >
-          {page}
-        </button>
+      <li key={page} className={`${page === +currentPage ? styles.act : ""}`}>
+        <Link to={`/recipe/list?${search}`}>{page}</Link>
       </li>
     );
+    // console.log(+currentPage, page, page === +currentPage);
   }
 
-  return (
-    <ul className={styles.pagination} ref={pagination}>
-      {pageList}
-    </ul>
-  );
+  return <ul className={styles.pagination}>{pageList}</ul>;
 }
 
 export default Pagination;

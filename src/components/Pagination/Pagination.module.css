@@ -10,7 +10,6 @@
 .pagination a,
 .pagination button {
   width: 2.2em;
-  border-radius: 1rem;
   display: block;
   text-align: center;
   line-height: 2.2em;
@@ -21,6 +20,10 @@
 .pagination a:hover,
 .pagination button:hover {
   font-weight: bold;
+}
+
+.pagination li {
+  border-radius: 1rem;
 }
 
 .pagination .act {

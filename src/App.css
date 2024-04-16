@@ -38,6 +38,14 @@ body {
   clip: rect(1px 1px 1px 1px);
 }
 
+.pc {
+  display: inline-block;
+}
+
+.mo {
+  display: none;
+}
+
 .swiper-slide img {
   max-width: 100%;
   aspect-ratio: 1/1;
@@ -67,7 +75,15 @@ body {
   }
 
   body {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+  }
+
+  .pc {
+    display: none;
+  }
+
+  .mo {
+    display: inline-block;
   }
 }
 

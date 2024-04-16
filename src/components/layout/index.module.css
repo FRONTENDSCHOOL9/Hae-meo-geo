@@ -10,5 +10,6 @@
   .container {
     max-width: none;
     padding-bottom: 5rem;
+    margin: calc(3rem + 5.9rem) auto 0;
   }
 }

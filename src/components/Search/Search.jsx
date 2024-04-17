@@ -7,7 +7,7 @@ Search.propTypes = {
   setKeyword: PropTypes.func.isRequired,
 };
 
-function Search({ setKeyword }) {
+function Search({ setKeyword, setCurrentPage }) {
   const { searchWr, typeWr, type, inputWr } = styles;
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -19,6 +19,7 @@ function Search({ setKeyword }) {
     searchParams.delete("ingredient");
     setSearchParams(searchParams);
     setKeyword(category);
+    setCurrentPage(1);
   };
 
   const handleSearch = (e) => {
@@ -29,6 +30,7 @@ function Search({ setKeyword }) {
     searchParams.delete("category");
     setSearchParams(searchParams);
     setKeyword(ingredient);
+    setCurrentPage(1);
   };
 
   return (

@@ -14,9 +14,9 @@ function Search({ setKeyword, setCurrentPage }) {
   const handleClick = (e) => {
     if (e.target.tagName !== "BUTTON") return false;
     const category = e.target.innerText.split("&")[0];
-    searchParams.set("category", category);
+    searchParams.set("RCP_PAT2", category);
     searchParams.set("page", 1);
-    searchParams.delete("ingredient");
+    searchParams.delete("RCP_PARTS_DTLS");
     setSearchParams(searchParams);
     setKeyword(category);
     setCurrentPage(1);
@@ -25,9 +25,9 @@ function Search({ setKeyword, setCurrentPage }) {
   const handleSearch = (e) => {
     e.preventDefault();
     const ingredient = e.target.firstChild.value;
-    searchParams.set("ingredient", ingredient);
+    searchParams.set("RCP_PARTS_DTLS", ingredient);
     searchParams.set("page", 1);
-    searchParams.delete("category");
+    searchParams.delete("RCP_PAT2");
     setSearchParams(searchParams);
     setKeyword(ingredient);
     setCurrentPage(1);

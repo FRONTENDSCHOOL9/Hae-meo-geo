@@ -1,5 +1,45 @@
-.list img {
-  width: 10rem;
-  aspect-ratio: 1/1;
+.recipeList {
+  margin-top: 10rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 5rem 2rem;
+}
+
+.recipeList li {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  color: #fff;
+  font-size: 2rem;
+}
+
+.recipeList li::before {
+  position: absolute;
+  content: '';
+  display: block;
+  background: rgba(0, 0, 0, .4);
+  width: 100%;
+  height: 100%;
+}
+
+.recipeList .textWr {
+  position: absolute;
+  top: 0;
+  left: 0;
+  inset: 0;
+  padding: var(--layout-padding);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+.recipeList .textWr span {
+  margin-top: auto;
+  margin-left: auto;
+}
+
+.recipeList img {
+  width: 100%;
+  aspect-ratio: 1/1.3;
   object-fit: cover;
+  
 }

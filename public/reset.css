@@ -90,3 +90,7 @@ hr{
   border: unset;
   margin: 1.4rem 0;
 }
+
+img {
+  vertical-align: top;
+}

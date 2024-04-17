@@ -16,20 +16,22 @@ function RcpList() {
   const [totalCount, setTotalCount] = useState(1124);
 
   const limit = import.meta.env.VITE_PAGINATION_LIMIT;
-  const category = searchParams.get("category");
-  const ingredient = searchParams.get("ingredient");
+  const RCP_PAT2 = searchParams.get("RCP_PAT2");
+  const RCP_PARTS_DTLS = searchParams.get("RCP_PARTS_DTLS");
+  const RCP_NM = searchParams.get("RCP_NM");
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["list", currentPage, category, ingredient],
-    queryFn: () => fetchData(currentPage, category, ingredient),
+  const { data, isLoading, error, refetch } = useQuery({
+    queryKey: ["list", currentPage, RCP_PAT2, RCP_PARTS_DTLS],
+    queryFn: () => fetchData(currentPage, RCP_PAT2, RCP_PARTS_DTLS, RCP_NM),
     select: (response) => response.data.COOKRCP01,
     suspense: false,
   });
 
-  const fetchData = async (page, category, ingredient) => {
+  const fetchData = async (page, RCP_PAT2, RCP_PARTS_DTLS, RCP_NM) => {
     let url = `/${page * limit - (limit - 1)}/${page * limit}`;
-    if (category) url = `${url}/RCP_PAT2=${category}`;
-    if (ingredient) url = `${url}/RCP_PARTS_DTLS=${ingredient}`;
+    if (RCP_PAT2) url = `${url}/RCP_PAT2=${RCP_PAT2}`;
+    if (RCP_PARTS_DTLS) url = `${url}/RCP_PARTS_DTLS=${RCP_PARTS_DTLS}`;
+    if (RCP_NM) url = `${url}/RCP_NM=${RCP_NM}`;
     return axios.get(url);
   };
 
@@ -47,6 +49,10 @@ function RcpList() {
   useEffect(() => {
     if (keyword && data) setTotalCount(Number(data?.total_count));
   }, [keyword, data]);
+
+  // useEffect(() => {
+  //   refetch();
+  // }, [searchParams.toString()]);
 
   return (
     <>

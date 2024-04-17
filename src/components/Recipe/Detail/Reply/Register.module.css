@@ -3,3 +3,8 @@
   padding-top: 1.8rem;
   border-top: 1px solid #000;
 }
+
+.noLogin a {
+  color: var(--color-primary);
+  border-bottom: 1px solid;
+}

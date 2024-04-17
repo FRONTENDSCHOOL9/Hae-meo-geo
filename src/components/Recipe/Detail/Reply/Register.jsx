@@ -11,6 +11,7 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
   const { replyRegister, attachWr, preview, noLogin } = styles;
   const { user } = useUserStore();
   const [rating, setRating] = useState();
+  const [attachImg, setAttachImg] = useState();
   const axios = useCustomAxios();
 
   const {
@@ -49,10 +50,8 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
   };
 
   const handleRatingClick = (e) => {
-    console.log(e);
     if (!e.target.tagName === "INPUT") return;
-    console.log(e.target, e.target.value);
-    setRating(e.target.value);
+    if (e.target.value) setRating(e.target.value);
   };
 
   return (
@@ -142,9 +141,13 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
               ></textarea>
               {errors && <div>{errors.content?.message}</div>}
             </div>
-            <div className={ReplyStyle.attachWr}>
+            <div
+              className={`${ReplyStyle.attachWr} ${
+                attachImg ? ReplyStyle.act : ""
+              }`}
+            >
               <label htmlFor="image" className={preview}>
-                <img src="" alt="" />
+                <img src={attachImg} alt="" />
                 <span className="hidden">첨부파일 선택</span>
               </label>
               <button>
@@ -154,8 +157,15 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
                 type="file"
                 accept="image/*"
                 id="image"
-                placeholder="이미지를 선택하세요"
-                {...register("image")}
+                {...register("image", {
+                  onChange: (e) => {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(e.target.files[0]);
+                    reader.onloadend = () => {
+                      setAttachImg(reader.result);
+                    };
+                  },
+                })}
               />
             </div>
           </div>

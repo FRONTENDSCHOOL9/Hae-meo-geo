@@ -83,6 +83,7 @@
 
 .replyWr .ratingWr::after {
   background-position: bottom left;
+  width: 0;
 }
 
 .replyWr .ratingWr.n1::after {
@@ -135,6 +136,7 @@
 .attachWr label {
   border: 1px solid var(--color-gray-100);
   border-radius: 1rem;
+  overflow: hidden;
   background: url(/img/ico-attach.svg) no-repeat center / 5rem;
   display: block;
   cursor: pointer;

@@ -43,7 +43,6 @@ function ReplyList({ id, setRepliesFn, replies }) {
   };
 
   const replyList = replies?.item.map((item) => {
-    console.log(`n${item.extra?.rating}`);
     const isMyPost = user && user._id === item.user._id;
     return (
       <article key={item._id} className={ReplyStyle.replyWr}>

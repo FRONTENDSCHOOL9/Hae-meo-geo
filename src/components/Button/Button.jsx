@@ -15,6 +15,7 @@ export function Button({
   color = "gray",
   size = "small",
   filled = "false",
+  disabled = false,
   onClick,
 }) {
   return (
@@ -22,6 +23,7 @@ export function Button({
       type={type}
       className={`${styles.button} ${styles[color]} ${styles[size]} ${styles[filled]}`}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>

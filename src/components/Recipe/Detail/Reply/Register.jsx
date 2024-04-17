@@ -3,11 +3,14 @@ import useUserStore from "@zustand/userStore.mjs";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import uploadImage from "@utils/uploadImage.mjs";
+import ReplyStyle from "./Reply.module.css";
 import styles from "./Register.module.css";
+import { useState } from "react";
 
 function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
-  const { replyRegister, formWr, name, rating, attachWr, preview } = styles;
+  const { replyRegister, attachWr, preview, noLogin } = styles;
   const { user } = useUserStore();
+  const [rating, setRating] = useState();
   const axios = useCustomAxios();
 
   const {
@@ -45,56 +48,84 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
     }
   };
 
+  const handleRatingClick = (e) => {
+    console.log(e);
+    if (!e.target.tagName === "INPUT") return;
+    console.log(e.target, e.target.value);
+    setRating(e.target.value);
+  };
+
   return (
     <div className={replyRegister}>
       {user ? (
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className={formWr}>
-            <img src={user.profile} alt={user.name} />
+          <div className={ReplyStyle.replyWr}>
+            <img
+              className={ReplyStyle.profile}
+              src={user.profile}
+              alt={user.name}
+            />
             <div>
-              <p className={name}>{user.name}</p>
-              <div className={rating}>
-                <input
-                  type="radio"
-                  name="rating"
-                  value="1"
-                  {...register("rating", {
-                    required: "별점을 등록하세요",
-                  })}
-                />
-                <input
-                  type="radio"
-                  name="rating"
-                  value="2"
-                  {...register("rating", {
-                    required: "별점을 등록하세요",
-                  })}
-                />
-                <input
-                  type="radio"
-                  name="rating"
-                  value="3"
-                  {...register("rating", {
-                    required: "별점을 등록하세요",
-                  })}
-                />
-                <input
-                  type="radio"
-                  name="rating"
-                  value="4"
-                  {...register("rating", {
-                    required: "별점을 등록하세요",
-                  })}
-                />
-                <input
-                  type="radio"
-                  name="rating"
-                  value="5"
-                  {...register("rating", {
-                    required: "별점을 등록하세요",
-                  })}
-                />
-                {errors && <div>{errors.rating?.message}</div>}
+              <div className={ReplyStyle.flexWr}>
+                <p className={ReplyStyle.name}>{user.name}</p>
+                <div
+                  className={`${ReplyStyle.ratingWr} ${
+                    ReplyStyle[`n${rating}`]
+                  }`}
+                  onClick={handleRatingClick}
+                >
+                  <label>
+                    <input
+                      type="radio"
+                      name="rating"
+                      value="1"
+                      {...register("rating", {
+                        required: "별점을 등록하세요",
+                      })}
+                    />
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="rating"
+                      value="2"
+                      {...register("rating", {
+                        required: "별점을 등록하세요",
+                      })}
+                    />
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="rating"
+                      value="3"
+                      {...register("rating", {
+                        required: "별점을 등록하세요",
+                      })}
+                    />
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="rating"
+                      value="4"
+                      {...register("rating", {
+                        required: "별점을 등록하세요",
+                      })}
+                    />
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="rating"
+                      value="5"
+                      {...register("rating", {
+                        required: "별점을 등록하세요",
+                      })}
+                    />
+                  </label>
+                  {errors && <div>{errors.rating?.message}</div>}
+                </div>
               </div>
               <textarea
                 name="content"
@@ -111,11 +142,14 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
               ></textarea>
               {errors && <div>{errors.content?.message}</div>}
             </div>
-            <div className={attachWr}>
+            <div className={ReplyStyle.attachWr}>
               <label htmlFor="image" className={preview}>
                 <img src="" alt="" />
-                선택
+                <span className="hidden">첨부파일 선택</span>
               </label>
+              <button>
+                <span className="hidden">첨부파일 삭제</span>
+              </button>
               <input
                 type="file"
                 accept="image/*"
@@ -128,8 +162,8 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
           <button>등록하기</button>
         </form>
       ) : (
-        <p>
-          <Link to="/user/login">로그인</Link> 후 후기를 작성해보세요.
+        <p className={noLogin}>
+          <Link to="/user/login">로그인</Link>하여 후기를 작성해보세요!
         </p>
       )}
     </div>

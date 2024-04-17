@@ -6,9 +6,8 @@ import Content from "@components/Recipe/Detail/Content/Content";
 import SubTitle from "@components/Recipe/Detail/SubTitle/SubTitle";
 import Ingredient from "@components/Recipe/Detail/Ingredient/Ingredient";
 import Step from "@components/Recipe/Detail/Step/Step";
-import ReplyList from "@components/Recipe/Detail/Reply/List";
 import Sidebar from "@components/Recipe/Detail/Sidebar/Sidebar";
-import ReplyRegister from "@components/Recipe/Detail/Reply/Register";
+import Reply from "@components/Recipe/Detail/Reply/Reply";
 
 function RecipeDetail() {
   const axios = useCustomAxios("rcp");
@@ -53,12 +52,10 @@ function RecipeDetail() {
             <SubTitle>
               요리 후기 <span>({replies?.item.length})</span>
             </SubTitle>
-            <ReplyList
+
+            <Reply
               id={Number(data["RCP_SEQ"])}
               replies={replies}
-              setRepliesFn={setRepliesFn}
-            />
-            <ReplyRegister
               rcpName={name}
               rcpNum={Number(data["RCP_SEQ"])}
               setRepliesFn={setRepliesFn}

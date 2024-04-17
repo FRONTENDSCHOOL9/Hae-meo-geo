@@ -33,7 +33,7 @@ const router = createBrowserRouter([
       { path: "/user/signupStepThree", element: <SignupStepThree /> },
       { path: "/myrecipe/register", element: <MyRecipeRegister /> },
       { path: "/myrecipe/list", element: <MyRecipeList /> },
-      { path: "/myrecipe/Detail", element: <MyRecipeDetail /> },
+      { path: "/myrecipe/detail", element: <MyRecipeDetail /> },
     ],
   },
 ]);

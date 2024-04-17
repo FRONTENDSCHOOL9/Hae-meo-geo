@@ -13,6 +13,7 @@ import MyPage from "@pages/user/MyPage";
 import SignupStepOne from "@pages/user/SignupStepOne";
 import SignupStepTwo from "@pages/user/SignupStepTwo";
 import SignupStepThree from "@pages/user/SignupStepThree";
+import MyRecipeDetail from "@pages/myRecipe/MyRecipeDetail";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
       { path: "/user/signupStepThree", element: <SignupStepThree /> },
       { path: "/myrecipe/register", element: <MyRecipeRegister /> },
       { path: "/myrecipe/list", element: <MyRecipeList /> },
+      { path: "/myrecipe/Detail", element: <MyRecipeDetail /> },
     ],
   },
 ]);

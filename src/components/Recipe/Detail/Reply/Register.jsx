@@ -5,14 +5,15 @@ import { Link } from "react-router-dom";
 import uploadImage from "@utils/uploadImage.mjs";
 import ReplyStyle from "./Reply.module.css";
 import styles from "./Register.module.css";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
-  const { replyRegister, attachWr, preview, noLogin } = styles;
+  const { replyRegister, preview, noLogin } = styles;
   const { user } = useUserStore();
+  const axios = useCustomAxios();
   const [rating, setRating] = useState();
   const [attachImg, setAttachImg] = useState();
-  const axios = useCustomAxios();
+  const file = useRef();
 
   const {
     register,
@@ -53,6 +54,13 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
     if (!e.target.tagName === "INPUT") return;
     if (e.target.value) setRating(e.target.value);
   };
+
+  const handleAttachRemove = () => {
+    setAttachImg("");
+    file.current.value = "";
+  };
+
+  console.log(file, file?.current, file.current?.files);
 
   return (
     <div className={replyRegister}>
@@ -150,7 +158,7 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
                 <img src={attachImg} alt="" />
                 <span className="hidden">첨부파일 선택</span>
               </label>
-              <button>
+              <button onClick={handleAttachRemove}>
                 <span className="hidden">첨부파일 삭제</span>
               </button>
               <input
@@ -166,6 +174,7 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
                     };
                   },
                 })}
+                ref={file}
               />
             </div>
           </div>

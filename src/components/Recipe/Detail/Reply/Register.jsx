@@ -1,11 +1,12 @@
+import { Button } from "@components/Button/Button";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import useUserStore from "@zustand/userStore.mjs";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import uploadImage from "@utils/uploadImage.mjs";
 import ReplyStyle from "./Reply.module.css";
 import styles from "./Register.module.css";
-import { useRef, useState } from "react";
 
 function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
   const { replyRegister, preview, noLogin } = styles;
@@ -60,8 +61,6 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
     file.current.value = "";
   };
 
-  console.log(file, file?.current, file.current?.files);
-
   return (
     <div className={replyRegister}>
       {user ? (
@@ -72,7 +71,7 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
               src={user.profile}
               alt={user.name}
             />
-            <div>
+            <div className={ReplyStyle.contentWr}>
               <div className={ReplyStyle.flexWr}>
                 <p className={ReplyStyle.name}>{user.name}</p>
                 <div
@@ -178,7 +177,9 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
               />
             </div>
           </div>
-          <button>등록하기</button>
+          <Button type="submit" size="medium" color="primary">
+            등록하기
+          </Button>
         </form>
       ) : (
         <p className={noLogin}>

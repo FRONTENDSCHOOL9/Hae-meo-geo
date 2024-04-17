@@ -8,9 +8,12 @@ import Ingredient from "@components/Recipe/Detail/Ingredient/Ingredient";
 import Step from "@components/Recipe/Detail/Step/Step";
 import Sidebar from "@components/Recipe/Detail/Sidebar/Sidebar";
 import Reply from "@components/Recipe/Detail/Reply/Reply";
+import { Button } from "@components/Button/Button";
+import styles from "./RecipeDetail.module.css";
 
 function RecipeDetail() {
   const axios = useCustomAxios("rcp");
+  const { recipeDetail, buttonWr } = styles;
   const { name } = useParams();
   const [data, setData] = useState();
   const [replies, setReplies] = useState();
@@ -34,7 +37,7 @@ function RecipeDetail() {
   return (
     <>
       {data && (
-        <div>
+        <div className={recipeDetail}>
           <Sidebar id={Number(data["RCP_SEQ"])} />
           <Banner
             name={data["RCP_NM"]}
@@ -60,6 +63,11 @@ function RecipeDetail() {
               rcpNum={Number(data["RCP_SEQ"])}
               setRepliesFn={setRepliesFn}
             />
+            <div className={buttonWr}>
+              <Button className={styles.buttond} size="large">
+                목록으로
+              </Button>
+            </div>
           </Content>
         </div>
       )}

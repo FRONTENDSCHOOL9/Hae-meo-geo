@@ -73,6 +73,7 @@ function Login() {
       setUser({
         _id: res.data.item._id,
         name: res.data.item.name,
+        email: res.data.item.email, // 이메일 데이터 추가
         profile: res.data.item.profileImage,
         token: res.data.item.token,
       });

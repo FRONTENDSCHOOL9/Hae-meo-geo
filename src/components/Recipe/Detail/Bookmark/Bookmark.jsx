@@ -60,7 +60,7 @@ function Bookmark({ id }) {
   return (
     <button
       onClick={handleBookmark}
-      className={`${bookmark} ${isBookmarked && bookmarkAct}`}
+      className={`${bookmark} ${isBookmarked ? bookmarkAct : ""}`}
     >
       {isBookmarked ? "저장 완료" : "나도해보기"}
     </button>

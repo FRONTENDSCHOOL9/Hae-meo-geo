@@ -10,7 +10,7 @@
 .pagination a,
 .pagination button {
   width: 2.2em;
-  border-radius: 1rem;
+  aspect-ratio: 1/1;
   display: block;
   text-align: center;
   line-height: 2.2em;
@@ -23,9 +23,18 @@
   font-weight: bold;
 }
 
+.pagination li {
+  border-radius: 1rem;
+}
+
 .pagination .act {
   background: var(--color-gray-50);
   font-weight: bolder;
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 @media (max-width: 767px) {

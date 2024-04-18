@@ -1,0 +1,181 @@
+.replyWr {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+  font-size: 1.8rem;
+  position: relative;
+}
+
+.replyWr .profile {
+  width: 3.6em;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background: #ccc;
+  flex-shrink: 0;
+}
+
+.replyWr .name {
+  margin-top: 0.4rem;
+  font-weight: bold;
+}
+
+.replyWr .contentWr {
+  flex-grow: 1;
+  position: relative;
+}
+
+.replyWr .flexWr {
+  display: flex;
+  gap: .4rem;
+  margin-bottom: 0.7em;
+}
+
+.replyWr .rating {
+  display: inline-block;
+  width: 108px;
+  height: 24px;
+  background: url(/img/ico-star.svg) no-repeat top center / cover;
+  margin-top: -0.2rem;
+  position: relative;
+}
+
+.replyWr .rating.n1::after {
+  width: 20%;
+}
+
+.replyWr .rating.n2::after {
+  width: 40%;
+}
+
+.replyWr .rating.n3::after {
+  width: 60%;
+}
+
+.replyWr .rating.n4::after {
+  width: 80%;
+}
+
+.replyWr .rating.n5::after {
+  width: 100%;
+}
+
+.replyWr .rating::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 108px;
+  height: 24px;
+  background: url(/img/ico-star.svg) no-repeat bottom left / 108px;
+}
+
+.replyWr .ratingWr {
+  display: flex;
+  margin-top: 0.3rem;
+  width: 108px;
+  height: 24px;
+  position: relative;
+}
+
+.replyWr .ratingWr::before,
+.replyWr .ratingWr::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url(/img/ico-star.svg) no-repeat top left / 108px;
+  pointer-events: none;
+}
+
+.replyWr .ratingWr::after {
+  background-position: bottom left;
+  width: 0;
+}
+
+.replyWr .ratingWr.act.n1::after {
+  width: 20%;
+}
+
+.replyWr .ratingWr.act.n2::after {
+  width: 40%;
+}
+
+.replyWr .ratingWr.act.n3::after {
+  width: 60%;
+}
+
+.replyWr .ratingWr.act.n4::after {
+  width: 80%;
+}
+
+.replyWr .ratingWr.act.n5::after {
+  width: 100%;
+}
+
+.replyWr .ratingWr label {
+  width: 22px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.attachWr {
+  margin-left: auto;
+  width: 13rem;
+  aspect-ratio: 1/1;
+  border-radius: 1rem;
+  overflow: hidden;
+  flex-shrink: 0;
+  align-self: flex-end;
+  position: relative;
+}
+
+.attachWr img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.attachWr input {
+  display: none;
+}
+
+.attachWr label {
+  border: 1px solid var(--color-gray-100);
+  border-radius: 1rem;
+  overflow: hidden;
+  background: url(/img/ico-attach.svg) no-repeat center / 5rem;
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.attachWr label img {
+  display: none;
+}
+
+.attachWr button {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  width: 2rem;
+  height: 2rem;
+  background: url(/img/ico-close.svg) no-repeat center;
+  display: none;
+}
+
+.attachWr.act label img {
+  display: block;
+}
+
+.attachWr.act button {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .replyWr {
+    font-size: 1.4rem;
+  }
+
+
+}

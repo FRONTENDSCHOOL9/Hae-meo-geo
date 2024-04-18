@@ -48,7 +48,7 @@ function Login() {
 
       navigate("/"); // 뒤로가기로 변경해야 함
     } catch (err) {
-      console.log(err.response?.data.message);
+      alert (err.response?.data.message);
     }
   };
 
@@ -85,9 +85,9 @@ function Login() {
       setEmail("");
       setPassword("");
 
-      navigate("/user/MyPage"); // 마이 페이지 임시 연결
+      navigate("/");
     } catch (err) {
-      console.log(err.response?.data.message);
+      alert(err.response?.data.message);
     }
   };
 

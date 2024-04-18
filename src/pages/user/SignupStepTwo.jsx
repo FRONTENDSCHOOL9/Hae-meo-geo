@@ -5,11 +5,11 @@ import LoginLayout from "@components/login/LoginLayout";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function SignupStepTwo() {
   const axios = useCustomAxios();
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -32,25 +32,25 @@ function SignupStepTwo() {
   };
 
   const onSubmit = async (formData) => {
-    console.log(formData);
     try {
+      console.log(formData);
       // 이미지
-      // if(formData.profileImage.length > 0){
-      //   const imageFormData = new FormData();
-      //   imageFormData.append('attach', formData.profileImage[0]);
+      if (formData.profileImage.length > 0) {
+        const imageFormData = new FormData();
+        imageFormData.append("attach", formData.profileImage[0]);
 
-      //   const fileRes = await axios('/files', {
-      //     method: 'post',
-      //     headers: {
-      //       'Content-Type': 'multipart/form-data'
-      //     },
-      //     data: imageFormData
-      //   });
+        const fileRes = await axios("/files", {
+          method: "post",
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          data: imageFormData,
+        });
 
-      //   formData.profileImage = fileRes.data.file.name;
-      // }else{
-      //   delete formData.profileImage;
-      // }
+        formData.profileImage = fileRes.data.file.name;
+      } else {
+        delete formData.profileImage;
+      }
 
       //회원가입
       const res = await axios.post("/users", formData);
@@ -58,7 +58,7 @@ function SignupStepTwo() {
         res.data.item.name +
           "님 회원가입 완료 되었습니다!\n로그인 후에 이용하세요."
       );
-      //navigate("/users/login");
+      navigate("/user/login");
     } catch (err) {
       if (err.response?.data.errors) {
         err.response?.data.errors.forEach((error) =>
@@ -78,7 +78,6 @@ function SignupStepTwo() {
     <>
       <LoginLayout>
         <Title>회원가입</Title>
-
         <SignupSteps>
           <SignupStepsItem>약관동의</SignupStepsItem>
           <SignupStepsItem color="black">계정생성</SignupStepsItem>

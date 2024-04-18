@@ -57,12 +57,23 @@
   border-color: var(--color-gray-100);
 }
 
+.button :hover {
+  background-color: var(--color-secondary);
+  transition: all 0.3s;
+  color: white;
+}
+
 .register {
   font-size: 1rem;
 }
 
 .form {
   gap: 3rem;
+}
+
+.list {
+  font-size: 2.4rem;
+  left: 0;
 }
 
 .secession {

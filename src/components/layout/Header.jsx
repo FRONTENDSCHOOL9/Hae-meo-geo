@@ -57,6 +57,11 @@ function Header() {
               <span className="hidden">검색</span>
             </button>
           </li>
+          <li>
+            <Link className={login} to="/mypage/information">
+              <span className="hidden">마이페이지</span>
+            </Link>
+          </li>
         </ul>
         <button
           className={`mo ${hamburgerButton} ${

@@ -1,7 +1,6 @@
 import { Button, LinkButton } from "@components/Button/Button";
 import Title from "@components/Title/Title";
 import LoginLayout from "@components/login/LoginLayout";
-
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import useUserStore from "@zustand/userStore.mjs";
 import { useEffect, useState } from "react";
@@ -38,6 +37,7 @@ function Login() {
       setUser({
         _id: res.data.item._id,
         name: res.data.item.name,
+        email: res.data.item.email,
         profile: res.data.item.profileImage,
         token: res.data.item.token,
       });
@@ -48,7 +48,7 @@ function Login() {
 
       navigate("/"); // 뒤로가기로 변경해야 함
     } catch (err) {
-      alert (err.response?.data.message);
+      alert(err.response?.data.message);
     }
   };
 

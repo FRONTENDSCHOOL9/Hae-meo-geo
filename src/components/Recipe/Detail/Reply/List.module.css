@@ -17,7 +17,6 @@
 }
 
 .list .contentWr {
-  margin-top: 1rem;
   width: 100%;
 }
 
@@ -31,4 +30,6 @@
   .list article:first-child {
     margin-top: 0;
   }
+
+  .list .contentWr {}
 }

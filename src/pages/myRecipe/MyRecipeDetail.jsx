@@ -1,4 +1,4 @@
-import styles from "./MyRecipeList.module.css"
+import styles from "@pages/myRecipe/MyRecipeDetail.module.css"
 
 function MyRecipeDetail() {
   const {} = "styles"

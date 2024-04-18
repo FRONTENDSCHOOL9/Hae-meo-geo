@@ -14,7 +14,6 @@
     "@tanstack/react-query-devtools": "^5.28.10",
     "axios": "^1.6.8",
     "immer": "^10.0.3",
-    "prettier": "^3.2.5",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-csspin": "^0.0.1",
@@ -32,6 +31,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "prettier": "^3.2.5",
     "vite": "^5.1.4"
   }
 }

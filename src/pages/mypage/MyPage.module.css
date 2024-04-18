@@ -1,0 +1,70 @@
+.page {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.pageside {
+  background-color: var(--color-secondary);
+  display: flex;
+  height: 100vh;
+  width: 70rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.information {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  left: 30rem;
+  height: 100vh;
+  width: 100rem;
+}
+
+.icon {
+  background-color: white;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  font-size: 2.4rem;
+}
+
+.user {
+  font-size: 2.4rem;
+  margin-bottom: 50rem;
+}
+
+.input {
+  width: 50rem;
+  height: 4rem;
+  border-radius: 1rem;
+  border-color: var(--color-gray-100);
+}
+
+.register {
+  font-size: 1rem;
+}
+
+.form {
+  gap: 3rem;
+}
+
+.secession {
+  position: absolute;
+}

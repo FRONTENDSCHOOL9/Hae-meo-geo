@@ -12,7 +12,7 @@ function RcpList() {
   const axios = useCustomAxios("rcp");
   const [searchParams] = useSearchParams();
   const [keyword, setKeyword] = useState("");
-  const [currentPage, setCurrentPage] = useState(searchParams.get("page"));
+  const [currentPage, setCurrentPage] = useState(searchParams.get("page") || 1);
   const [totalCount, setTotalCount] = useState(1124);
 
   const limit = import.meta.env.VITE_PAGINATION_LIMIT;

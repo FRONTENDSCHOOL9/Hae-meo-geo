@@ -1,6 +1,6 @@
 import styles from "./MyRecipeList.module.css"
-import MyRecipeSearch from "@pages/myRecipe/components/MyRecipeSearch";
-import MyRecipeSortButton from "@pages/myRecipe/components/MyRecipeSortButton";
+import MyRecipeSearch from "@pages/myRecipe/myRecipeList/MyRecipeSearch";
+import MyRecipeSortButton from "@pages/myRecipe/myRecipeList/MyRecipeSortButton";
 import { Link } from "react-router-dom";
 import { Tag } from "@components/Button/Button";
 

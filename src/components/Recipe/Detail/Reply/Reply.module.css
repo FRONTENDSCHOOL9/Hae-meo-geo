@@ -7,7 +7,7 @@
 }
 
 .replyWr .profile {
-  width: 6rem;
+  width: 3.6em;
   aspect-ratio: 1/1;
   border-radius: 50%;
   background: #ccc;
@@ -27,7 +27,7 @@
 .replyWr .flexWr {
   display: flex;
   gap: .4rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.7em;
 }
 
 .replyWr .rating {
@@ -170,4 +170,12 @@
 
 .attachWr.act button {
   display: block;
+}
+
+@media (max-width: 767px) {
+  .replyWr {
+    font-size: 1.4rem;
+  }
+
+
 }

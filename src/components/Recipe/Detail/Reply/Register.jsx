@@ -25,7 +25,6 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
 
   const file = useRef();
   const { ref } = register("image");
-  console.log(file.current);
 
   const onSubmit = async (formData) => {
     try {

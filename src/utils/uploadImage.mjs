@@ -10,9 +10,9 @@ async function uploadImage(formData) {
     {
       headers: {
         "Content-Type": "multipart/form-data",
-        "client-id": "06-haemeogeo",
+        "client-id": import.meta.env.VITE_CLIENT_ID,
       },
-    }
+    },
   );
 
   return fileRes.data?.item[0].name;

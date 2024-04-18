@@ -38,7 +38,7 @@ function Pagination({ totalCount, currentPage, setCurrentPage }) {
         onClick={() => handleClick(page)}
       >
         <Link to={`/recipe/list?${search}`}>{page}</Link>
-      </li>
+      </li>,
     );
   }
 

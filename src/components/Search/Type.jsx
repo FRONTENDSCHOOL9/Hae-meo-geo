@@ -2,15 +2,18 @@ import { Button } from "@components/Button/Button";
 import { useSearchParams } from "react-router-dom";
 import styles from "./Type.module.css";
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 Type.propTypes = {
+  keyword: PropTypes.string,
   setKeyword: PropTypes.func.isRequired,
   setCurrentPage: PropTypes.func.isRequired,
 };
 
-function Type({ setKeyword, setCurrentPage }) {
+function Type({ keyword, setKeyword, setCurrentPage }) {
   const { typeWr, type } = styles;
   const [searchParams, setSearchParams] = useSearchParams();
+  const [clickedButton, setClickedButton] = useState();
 
   const handleClick = (e) => {
     if (e.target.tagName !== "BUTTON") return false;
@@ -18,9 +21,12 @@ function Type({ setKeyword, setCurrentPage }) {
     searchParams.set("RCP_PAT2", category);
     searchParams.set("page", 1);
     searchParams.delete("RCP_PARTS_DTLS");
+    searchParams.delete("RCP_NM");
     setSearchParams(searchParams);
+
     setKeyword(category);
     setCurrentPage(1);
+    setClickedButton(category);
   };
 
   return (
@@ -28,12 +34,42 @@ function Type({ setKeyword, setCurrentPage }) {
       <div className={type}>
         <h3>종류별</h3>
         <nav onClick={(e) => handleClick(e)}>
-          <Button size="medium">밥</Button>
-          <Button size="medium">국&찌개</Button>
-          <Button size="medium">반찬</Button>
-          <Button size="medium">일품</Button>
-          <Button size="medium">후식</Button>
-          <Button size="medium">기타</Button>
+          <Button
+            size="medium"
+            color={clickedButton === "밥" ? "primary" : "gray"}
+          >
+            밥
+          </Button>
+          <Button
+            size="medium"
+            color={clickedButton === "국" ? "primary" : "gray"}
+          >
+            국&찌개
+          </Button>
+          <Button
+            size="medium"
+            color={clickedButton === "반찬" ? "primary" : "gray"}
+          >
+            반찬
+          </Button>
+          <Button
+            size="medium"
+            color={clickedButton === "일품" ? "primary" : "gray"}
+          >
+            일품
+          </Button>
+          <Button
+            size="medium"
+            color={clickedButton === "후식" ? "primary" : "gray"}
+          >
+            후식
+          </Button>
+          <Button
+            size="medium"
+            color={clickedButton === "기타" ? "primary" : "gray"}
+          >
+            기타
+          </Button>
         </nav>
       </div>
     </div>

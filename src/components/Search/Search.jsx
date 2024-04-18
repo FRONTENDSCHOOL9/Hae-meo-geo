@@ -4,11 +4,13 @@ import styles from "./Search.module.css";
 import { useSearchParams } from "react-router-dom";
 
 Search.propTypes = {
+  keyword: PropTypes.string.isRequired,
   setKeyword: PropTypes.func.isRequired,
   setCurrentPage: PropTypes.func.isRequired,
+  type: PropTypes.string,
 };
 
-function Search({ setKeyword, setCurrentPage, type = "haeRcp" }) {
+function Search({ keyword, setKeyword, setCurrentPage, type = "haeRcp" }) {
   const { searchWr, inputWr } = styles;
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -18,6 +20,7 @@ function Search({ setKeyword, setCurrentPage, type = "haeRcp" }) {
     searchParams.set("RCP_PARTS_DTLS", ingredient);
     searchParams.set("page", 1);
     searchParams.delete("RCP_PAT2");
+    searchParams.delete("RCP_NM");
     setSearchParams(searchParams);
     setKeyword(ingredient);
     setCurrentPage(1);
@@ -26,7 +29,11 @@ function Search({ setKeyword, setCurrentPage, type = "haeRcp" }) {
   return (
     <div className={searchWr}>
       {type === "haeRcp" && (
-        <Type setKeyword={setKeyword} setCurrentPage={setCurrentPage} />
+        <Type
+          keyword={keyword}
+          setKeyword={setKeyword}
+          setCurrentPage={setCurrentPage}
+        />
       )}
 
       <form className={inputWr} onSubmit={(e) => handleSearch(e)}>

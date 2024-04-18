@@ -24,16 +24,23 @@
   position: relative;
 }
 
+.replyWr .replyInner {
+  display: flex;
+  align-items: flex-start;
+  gap: .6em
+}
+
 .replyWr .flexWr {
   display: flex;
+  flex-wrap: wrap;
   gap: .4rem;
   margin-bottom: 0.7em;
 }
 
 .replyWr .rating {
   display: inline-block;
-  width: 108px;
-  height: 24px;
+  width: 10.8rem;
+  height: 2.4rem;
   background: url(/img/ico-star.svg) no-repeat top center / cover;
   margin-top: -0.2rem;
   position: relative;
@@ -63,16 +70,16 @@
   content: '';
   display: block;
   position: absolute;
-  width: 108px;
-  height: 24px;
-  background: url(/img/ico-star.svg) no-repeat bottom left / 108px;
+  width: 10.8rem;
+  height: 2.4rem;
+  background: url(/img/ico-star.svg) no-repeat bottom left / 10.8rem;
 }
 
 .replyWr .ratingWr {
   display: flex;
   margin-top: 0.3rem;
-  width: 108px;
-  height: 24px;
+  width: 10.8rem;
+  height: 2.4rem;
   position: relative;
 }
 
@@ -83,7 +90,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background: url(/img/ico-star.svg) no-repeat top left / 108px;
+  background: url(/img/ico-star.svg) no-repeat top left / 10.8rem;
   pointer-events: none;
 }
 
@@ -114,7 +121,7 @@
 
 .replyWr .ratingWr label {
   width: 22px;
-  height: 24px;
+  height: 2.4rem;
   cursor: pointer;
 }
 
@@ -173,9 +180,15 @@
 }
 
 @media (max-width: 767px) {
+
   .replyWr {
     font-size: 1.4rem;
+    flex-wrap: wrap;
   }
 
+  .attachWr {
+    width: 100%;
+    aspect-ratio: auto;
+  }
 
 }

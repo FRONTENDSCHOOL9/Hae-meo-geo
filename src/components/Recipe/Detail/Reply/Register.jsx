@@ -1,17 +1,20 @@
+import { Button } from "@components/Button/Button";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import useUserStore from "@zustand/userStore.mjs";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import uploadImage from "@utils/uploadImage.mjs";
 import ReplyStyle from "./Reply.module.css";
 import styles from "./Register.module.css";
-import { useState } from "react";
 
 function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
-  const { replyRegister, attachWr, preview, noLogin } = styles;
+  const { replyRegister, preview, noLogin } = styles;
   const { user } = useUserStore();
-  const [rating, setRating] = useState();
   const axios = useCustomAxios();
+  const [rating, setRating] = useState();
+  const [attachImg, setAttachImg] = useState();
+  const file = useRef();
 
   const {
     register,
@@ -49,10 +52,13 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
   };
 
   const handleRatingClick = (e) => {
-    console.log(e);
     if (!e.target.tagName === "INPUT") return;
-    console.log(e.target, e.target.value);
-    setRating(e.target.value);
+    if (e.target.value) setRating(e.target.value);
+  };
+
+  const handleAttachRemove = () => {
+    setAttachImg("");
+    file.current.value = "";
   };
 
   return (
@@ -65,7 +71,7 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
               src={user.profile}
               alt={user.name}
             />
-            <div>
+            <div className={ReplyStyle.contentWr}>
               <div className={ReplyStyle.flexWr}>
                 <p className={ReplyStyle.name}>{user.name}</p>
                 <div
@@ -142,24 +148,38 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
               ></textarea>
               {errors && <div>{errors.content?.message}</div>}
             </div>
-            <div className={ReplyStyle.attachWr}>
+            <div
+              className={`${ReplyStyle.attachWr} ${
+                attachImg ? ReplyStyle.act : ""
+              }`}
+            >
               <label htmlFor="image" className={preview}>
-                <img src="" alt="" />
+                <img src={attachImg} alt="" />
                 <span className="hidden">첨부파일 선택</span>
               </label>
-              <button>
+              <button onClick={handleAttachRemove}>
                 <span className="hidden">첨부파일 삭제</span>
               </button>
               <input
                 type="file"
                 accept="image/*"
                 id="image"
-                placeholder="이미지를 선택하세요"
-                {...register("image")}
+                {...register("image", {
+                  onChange: (e) => {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(e.target.files[0]);
+                    reader.onloadend = () => {
+                      setAttachImg(reader.result);
+                    };
+                  },
+                })}
+                ref={file}
               />
             </div>
           </div>
-          <button>등록하기</button>
+          <Button type="submit" size="medium" color="primary">
+            등록하기
+          </Button>
         </form>
       ) : (
         <p className={noLogin}>

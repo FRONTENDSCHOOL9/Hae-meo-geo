@@ -19,9 +19,14 @@
   font-weight: bold;
 }
 
+.replyWr .contentWr {
+  flex-grow: 1;
+}
+
 .replyWr .flexWr {
   display: flex;
-  gap: .4rem
+  gap: .4rem;
+  margin-bottom: 1rem;
 }
 
 .replyWr .rating {
@@ -83,6 +88,7 @@
 
 .replyWr .ratingWr::after {
   background-position: bottom left;
+  width: 0;
 }
 
 .replyWr .ratingWr.n1::after {
@@ -118,7 +124,7 @@
   border-radius: 1rem;
   overflow: hidden;
   flex-shrink: 0;
-  align-self: center;
+  align-self: flex-end;
   position: relative;
 }
 
@@ -135,6 +141,7 @@
 .attachWr label {
   border: 1px solid var(--color-gray-100);
   border-radius: 1rem;
+  overflow: hidden;
   background: url(/img/ico-attach.svg) no-repeat center / 5rem;
   display: block;
   cursor: pointer;

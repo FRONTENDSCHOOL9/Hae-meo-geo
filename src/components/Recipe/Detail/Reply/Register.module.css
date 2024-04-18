@@ -1,7 +1,12 @@
 .replyRegister {
-  margin-top: 1.8rem;
-  padding-top: 1.8rem;
-  border-top: 1px solid #000;
+  margin-top: 2.4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-gray-50);
+}
+
+.replyRegister button[type="submit"] {
+  margin-top: 1.6rem;
+  align-self: center;
 }
 
 .noLogin a {

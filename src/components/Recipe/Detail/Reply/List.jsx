@@ -43,7 +43,6 @@ function ReplyList({ id, setRepliesFn, replies }) {
   };
 
   const replyList = replies?.item.map((item) => {
-    console.log(`n${item.extra?.rating}`);
     const isMyPost = user && user._id === item.user._id;
     return (
       <article key={item._id} className={ReplyStyle.replyWr}>
@@ -94,7 +93,7 @@ function ReplyList({ id, setRepliesFn, replies }) {
 
   return (
     <div className={list}>
-      {replies?.item.length ? replyList : <p>아직 작성된 후기가 없습니다.</p>}
+      {replies?.item.length ? replyList : <p>여러분의 <strong>해머거 후기</strong>를 기다리고 있어요 :-)</p>}
     </div>
   );
 }

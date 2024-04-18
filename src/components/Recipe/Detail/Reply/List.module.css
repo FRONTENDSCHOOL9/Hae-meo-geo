@@ -1,6 +1,5 @@
 .list article:first-child {
-  margin-top: -3.4rem;
-  padding-top: 1.8rem;
+  margin-top: -1.4rem;
 }
 
 .list article+article {
@@ -25,4 +24,11 @@
 .list .buttonWr {
   display: flex;
   margin-top: 1rem;
+}
+
+
+@media (max-width: 767px) {
+  .list article:first-child {
+    margin-top: 0;
+  }
 }

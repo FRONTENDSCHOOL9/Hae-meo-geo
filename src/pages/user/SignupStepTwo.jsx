@@ -4,43 +4,75 @@ import Title from "@components/Title/Title";
 import LoginLayout from "@components/login/LoginLayout";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+//import { useNavigate } from "react-router-dom";
 
 function SignupStepTwo() {
   const axios = useCustomAxios();
-  const [email, setEmail] = useState("");
-  const [result, setResult] = useState(null);
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [passwordMatch, setPasswordMatch] = useState(true);
+  //const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError,
+    watch,
+  } = useForm();
+  const [emailAvailability, setEmailAvailability] = useState(null);
+  const email = watch("email");
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  }
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-    setPasswordMatch(e.target.value === confirmPassword);
-  }
-  
-  const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
-    setPasswordMatch(e.target.value === password);
-  }
- 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    if (!passwordMatch) {
-      setResult("비밀번호가 일치하지 않습니다.");
-      return;
-    }
-
+  const checkEmailAvailability = async () => {
     try {
       const res = await axios.get(`/users/email?email=${email}`);
-      setResult(res.data.ok === 1 ? "사용할 수 있는 이메일입니다." : "이미 등록된 이메일입니다.");
+      setEmailAvailability(res.data.ok && "사용 가능한 이메일입니다.");
     } catch (err) {
-      setResult(err.response?.data.message || "이메일을 정확히 입력해주세요.");
+      setEmailAvailability(
+        err.response.data.ok === 0 ? "이미 사용 중인 이메일입니다." : ""
+      );
     }
-  }
+  };
+
+  const onSubmit = async (formData) => {
+    console.log(formData);
+    try {
+      // 이미지
+      // if(formData.profileImage.length > 0){
+      //   const imageFormData = new FormData();
+      //   imageFormData.append('attach', formData.profileImage[0]);
+
+      //   const fileRes = await axios('/files', {
+      //     method: 'post',
+      //     headers: {
+      //       'Content-Type': 'multipart/form-data'
+      //     },
+      //     data: imageFormData
+      //   });
+
+      //   formData.profileImage = fileRes.data.file.name;
+      // }else{
+      //   delete formData.profileImage;
+      // }
+
+      //회원가입
+      const res = await axios.post("/users", formData);
+      alert(
+        res.data.item.name +
+          "님 회원가입 완료 되었습니다!\n로그인 후에 이용하세요."
+      );
+      //navigate("/users/login");
+    } catch (err) {
+      if (err.response?.data.errors) {
+        err.response?.data.errors.forEach((error) =>
+          setError(error.path, { message: error.msg })
+        );
+      } else if (err.response?.data.message) {
+        alert(err.response?.data.message);
+      }
+    }
+  };
+
+  const handleCheckEmail = async () => {
+    email && (await checkEmailAvailability());
+  };
 
   return (
     <>
@@ -53,40 +85,105 @@ function SignupStepTwo() {
           <SignupStepsItem>가입완료</SignupStepsItem>
         </SignupSteps>
 
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <fieldset>
             <label htmlFor="email">아이디(이메일)*</label>
-            <input type="text" id="email" value={email} onChange={handleEmailChange} />
-            <Button type="submit" color="primary" size="large">확인</Button>
-            {result && <p>{result}</p>}
+            <input
+              type="email"
+              id="email"
+              {...register("email", {
+                required: "이메일을 입력하세요.",
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: "이메일 형식이 올바르지 않습니다.",
+                },
+              })}
+            />
+            <Button
+              type="button"
+              onClick={handleCheckEmail}
+              color="primary"
+              size="large"
+            >
+              확인
+            </Button>
+            {errors.email && <p>{errors.email.message}</p>}
+            {emailAvailability && <p>{emailAvailability}</p>}
           </fieldset>
           <fieldset>
             <label htmlFor="password">비밀번호*</label>
-            <input type="password" id="password" value={password} onChange={handlePasswordChange} />
+            <input
+              type="password"
+              id="password"
+              {...register("password", {
+                required: "비밀번호를 입력하세요.",
+              })}
+            />
+            {errors.password && <p>{errors.password.message}</p>}
           </fieldset>
           <fieldset>
             <label htmlFor="confirmPassword">비밀번호 확인*</label>
-            <input type="password" id="confirmPassword" value={confirmPassword} onChange={handleConfirmPasswordChange} />
-            {!passwordMatch && <p>비밀번호가 일치하지 않습니다.</p>}
+            <input
+              type="password"
+              id="confirmPassword"
+              {...register("confirmPassword", {
+                extra: "confirmPassword",
+                required: "비밀번호를 다시 입력하세요.",
+                validate: (value) =>
+                  value === watch("password") ||
+                  "비밀번호가 일치하지 않습니다.",
+              })}
+            />
+            {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
           </fieldset>
           <fieldset>
-            <label htmlFor="nickname">닉네임*</label>
-            <input type="text" id="nickname" />
+            <label htmlFor="name">닉네임*</label>
+            <input
+              type="text"
+              id="name"
+              {...register("name", {
+                required: "닉네임을 입력하세요.",
+                minLength: {
+                  value: 2,
+                  message: "2글자 이상 입력하세요.",
+                },
+              })}
+            />
+            {errors.name && <p>{errors.name.message}</p>}
           </fieldset>
           <fieldset>
             <label htmlFor="birthdate">생년월일</label>
-            <input type="text" id="birthdate" />
+            <input
+              type="text"
+              id="birthdate"
+              placeholder="YY-MM-DD"
+              {...register("birthdate", {
+                extra: "birthdate",
+                pattern: {
+                  value: /^\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/,
+                  message: "올바른 형식으로 입력하세요. (YY-MM-DD)",
+                },
+              })}
+            />
+            {errors.birthdate && <p>{errors.birthdate.message}</p>}
           </fieldset>
           <fieldset>
             <label htmlFor="profile">프로필</label>
-            <input type="file" id="profile" />
+            <input
+              type="file"
+              accept="image/*"
+              id="profileImage"
+              {...register("profileImage")}
+            />
           </fieldset>
           <hr />
-          <Button color="gray" size="large" filled="filled">확인</Button>
+          <Button type="submit" color="gray" size="large" filled="filled">
+            회원가입
+          </Button>
         </form>
       </LoginLayout>
     </>
-  )
+  );
 }
 
 export default SignupStepTwo;

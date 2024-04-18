@@ -85,6 +85,7 @@ textarea {
   border-radius: 1.2rem;
   padding: 1.2rem;
   height: 13rem;
+  width: 100%;
 }
 
 fieldset{

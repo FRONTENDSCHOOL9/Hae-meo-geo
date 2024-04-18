@@ -31,5 +31,7 @@
     margin-top: 0;
   }
 
-  .list .contentWr {}
+  .list .rightWr {
+    width: calc(100% - 6.3rem);
+  }
 }

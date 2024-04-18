@@ -2,11 +2,6 @@ input[type="radio"] {
   display: none;
 }
 
-.banner{
-  text-align: center;
-  font-size: var(--title-big);
-}
-
 .itemList{
   display: grid;
   column-gap: 2.4rem;

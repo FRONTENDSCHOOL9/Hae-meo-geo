@@ -1,4 +1,4 @@
-import styles from "@pages/myRecipe/components/MyRecipeSearch.module.css";
+import styles from "@pages/myRecipe/myRecipeList/MyRecipeSearch.module.css";
 
 function MyRecipeSearch() {
   const { searchWr, inputWr } = styles;

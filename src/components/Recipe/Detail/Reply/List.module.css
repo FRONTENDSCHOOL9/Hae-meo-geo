@@ -1,43 +1,35 @@
-.list article {
-  display: flex;
-  gap: 1.2rem;
-  align-items: flex-start;
-  font-size: 1.8rem;
+.list article:first-child {
+  margin-top: -1.4rem;
 }
 
 .list article+article {
-  margin-top: 3.6rem;
-}
-
-.list article>img {
-  width: 6rem;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  background: #ccc;
-  flex-shrink: 0;
-}
-
-.list .name {
-  margin-top: 0.4rem;
-  font-weight: bold;
+  margin-top: 1.8rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid var(--color-gray-30);
 }
 
 .list .time {
   color: var(--color-gray-100);
 }
 
-.list .rating {
-  display: inline-block;
-  width: 100px;
-  height: 24px;
-  background: url(/img/ico-star.svg) no-repeat top center / cover;
-
+.list .rightWr {
+  width: 100%;
 }
 
-.list .content {
-  margin-top: 1rem;
+.list .contentWr {
+  width: 100%;
 }
 
 .list .buttonWr {
   display: flex;
+  margin-top: 1rem;
+}
+
+
+@media (max-width: 767px) {
+  .list article:first-child {
+    margin-top: 0;
+  }
+
+  .list .contentWr {}
 }

@@ -34,6 +34,15 @@
   background-color: var(--color-primary-30);
 }
 
+.myRcpRegister{
+  margin-bottom: 0.6rem;
+}
+
+.myRcpRegister .titleDetail{
+  color: var(--color-gray-100);
+  font-size: 2.4rem;
+}
+
 .banner {
   max-width: var(--layout-container-tablet);
   margin: 0 auto;

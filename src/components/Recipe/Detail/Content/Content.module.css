@@ -1,4 +1,13 @@
 .content {
   max-width: var(--layout-container-tablet);
   margin: 0 auto;
+  font-size: 2rem;
+}
+
+@media (max-width: 767px) {
+  .content {
+    font-size: 1.6rem;
+  }
+
+
 }

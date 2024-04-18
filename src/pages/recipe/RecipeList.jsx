@@ -50,9 +50,12 @@ function RcpList() {
     if (keyword && data) setTotalCount(Number(data?.total_count));
   }, [keyword, data]);
 
-  // useEffect(() => {
-  //   refetch();
-  // }, [searchParams.toString()]);
+  useEffect(() => {
+    if (RCP_PAT2) setKeyword(RCP_PAT2);
+    if (RCP_PARTS_DTLS) setKeyword(RCP_PARTS_DTLS);
+    if (RCP_NM) setKeyword(RCP_NM);
+    window.scrollTo({ top: 0 });
+  }, [searchParams.toString()]);
 
   return (
     <>

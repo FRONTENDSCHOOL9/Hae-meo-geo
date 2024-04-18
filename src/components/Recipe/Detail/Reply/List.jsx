@@ -13,7 +13,7 @@ function ReplyList({ id, setRepliesFn, replies }) {
   const fetchData = async () => {
     try {
       const { data } = await axios.get(
-        `/posts?type=qna&custom={"product_id": ${id}}`
+        `/posts?type=qna&custom={"product_id": ${id}}`,
       );
       setRepliesFn(data);
     } catch (err) {
@@ -80,7 +80,7 @@ function ReplyList({ id, setRepliesFn, replies }) {
         {item.extra?.image && (
           <div className={ReplyStyle.attachWr}>
             <img
-              src={`${import.meta.env.VITE_API_SERVER}/files/06-haemeogeo/${
+              src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${
                 item.extra?.image
               }`}
               alt="후기 이미지"

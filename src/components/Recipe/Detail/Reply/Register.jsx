@@ -9,18 +9,23 @@ import ReplyStyle from "./Reply.module.css";
 import styles from "./Register.module.css";
 
 function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
-  const { replyRegister, preview, noLogin } = styles;
+  const { replyRegister, ratingErrorMsg, contentErrorMsg, preview, noLogin } =
+    styles;
   const { user } = useUserStore();
   const axios = useCustomAxios();
   const [rating, setRating] = useState();
   const [attachImg, setAttachImg] = useState();
-  const file = useRef();
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
+
+  const file = useRef();
+  const { ref } = register("image");
+  console.log(file.current);
 
   const onSubmit = async (formData) => {
     try {
@@ -46,6 +51,9 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
         `/posts?type=qna&custom={"product_id": ${rcpNum}}`
       );
       setRepliesFn(resPost.data);
+      reset();
+      setRating();
+      setAttachImg();
     } catch (err) {
       console.error(err);
     }
@@ -57,7 +65,7 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
   };
 
   const handleAttachRemove = () => {
-    setAttachImg("");
+    setAttachImg();
     file.current.value = "";
   };
 
@@ -77,7 +85,7 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
                 <div
                   className={`${ReplyStyle.ratingWr} ${
                     ReplyStyle[`n${rating}`]
-                  }`}
+                  } ${rating ? ReplyStyle.act : ""}`}
                   onClick={handleRatingClick}
                 >
                   <label>
@@ -130,7 +138,11 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
                       })}
                     />
                   </label>
-                  {errors && <div>{errors.rating?.message}</div>}
+                  {errors && (
+                    <div className={`errorMsg ${ratingErrorMsg}`}>
+                      {errors.rating?.message}
+                    </div>
+                  )}
                 </div>
               </div>
               <textarea
@@ -146,7 +158,11 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
                   },
                 })}
               ></textarea>
-              {errors && <div>{errors.content?.message}</div>}
+              {errors && (
+                <div className={`errorMsg ${contentErrorMsg}`}>
+                  {errors.content?.message}
+                </div>
+              )}
             </div>
             <div
               className={`${ReplyStyle.attachWr} ${
@@ -157,7 +173,7 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
                 <img src={attachImg} alt="" />
                 <span className="hidden">첨부파일 선택</span>
               </label>
-              <button onClick={handleAttachRemove}>
+              <button type="button" onClick={handleAttachRemove}>
                 <span className="hidden">첨부파일 삭제</span>
               </button>
               <input
@@ -173,7 +189,10 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
                     };
                   },
                 })}
-                ref={file}
+                ref={(e) => {
+                  ref(e);
+                  file.current = e;
+                }}
               />
             </div>
           </div>

@@ -32,6 +32,10 @@
   font-weight: bolder;
 }
 
+.pagination button {
+  height: 100%;
+}
+
 .pagination button:disabled {
   opacity: 0.4;
   pointer-events: none;

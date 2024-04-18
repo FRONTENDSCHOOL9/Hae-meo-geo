@@ -1,5 +1,6 @@
 import useUserStore from "@zustand/userStore.mjs";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 const { VITE_API_SERVER, VITE_API_SERVER_RCP } = import.meta.env;
 
@@ -38,7 +39,7 @@ function useCustomAxios(type = "likelion") {
             "로그인 후 이용 가능합니다.\n로그인 페이지로 이동하시겠습니까?"
           );
           gotoLogin &&
-            navigate("/user/login", { state: { from: location.pathname } });
+            Navigate("/user/login", { state: { from: location.pathname } });
         } else {
           return Promise.reject(err);
         }

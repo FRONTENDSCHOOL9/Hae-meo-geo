@@ -67,7 +67,7 @@ function TodayRecipeList() {
   const menus = data?.map((item) => (
     <li key={item.sort}>
       <Link to={`/recipe/list?page=1&${item.url}`}>
-        <img src={item.image} alt="" />
+        <img src={`/img/todayRecipe/${item.image}`} alt="" />
         <div className={textWr}>
           <h3>
             #{item?.value} #{item?.menu}{" "}

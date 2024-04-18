@@ -3,7 +3,7 @@ import styles from "./Ingredient.module.css";
 function Ingredient({ data }) {
   const { ingredientWr, ingredient, rightWr, info, infoTitle } = styles;
   const ingredientList = data["RCP_PARTS_DTLS"]
-    .split(/,|●|·|•|:|(?<=g\)\s)|(g\s)/)
+    .split(/,|●|·|•|:|(?<=g\)\s)|(?<=g\s)/)
     .map((item, i) => {
       if (!item) return;
       return <li key={i}>{item}</li>;

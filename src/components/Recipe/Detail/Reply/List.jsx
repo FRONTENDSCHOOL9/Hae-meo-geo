@@ -2,20 +2,11 @@ import { Button } from "@components/Button/Button";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import useUserStore from "@zustand/userStore.mjs";
 import { useEffect } from "react";
+import ReplyStyle from "./Reply.module.css";
 import styles from "./List.module.css";
 
 function ReplyList({ id, setRepliesFn, replies }) {
-  const {
-    list,
-    rightWr,
-    name,
-    infoWr,
-    time,
-    rating,
-    contentWr,
-    buttonWr,
-    attachWr,
-  } = styles;
+  const { list, rightWr, infoWr, time, contentWr, buttonWr, attachWr } = styles;
   const axios = useCustomAxios();
   const { user } = useUserStore();
 
@@ -54,13 +45,21 @@ function ReplyList({ id, setRepliesFn, replies }) {
   const replyList = replies?.item.map((item) => {
     const isMyPost = user && user._id === item.user._id;
     return (
-      <article key={item._id}>
-        <img src={item.user.profile} alt={item.user.name} />
+      <article key={item._id} className={ReplyStyle.replyWr}>
+        <img
+          className={ReplyStyle.profile}
+          src={item.user.profile}
+          alt={item.user.name}
+        />
         <div className={rightWr}>
-          <p className={name}>{item.user.name}</p>
-          <div className={infoWr}>
+          <p className={ReplyStyle.name}>{item.user.name}</p>
+          <div className={ReplyStyle.flexWr}>
             <span className={time}>{item.createdAt}</span>
-            <span className={`${rating} ${styles[`n${item.extra?.rating}`]}`}>
+            <span
+              className={`${ReplyStyle.rating} ${
+                ReplyStyle[`n${item.extra?.rating}`]
+              }`}
+            >
               <span className="hidden">{item.extra?.rating}점</span>
             </span>
           </div>
@@ -79,7 +78,7 @@ function ReplyList({ id, setRepliesFn, replies }) {
         </div>
 
         {item.extra?.image && (
-          <div className={attachWr}>
+          <div className={ReplyStyle.attachWr}>
             <img
               src={`${import.meta.env.VITE_API_SERVER}/files/06-haemeogeo/${
                 item.extra?.image
@@ -94,7 +93,13 @@ function ReplyList({ id, setRepliesFn, replies }) {
 
   return (
     <div className={list}>
-      {replies?.item.length ? replyList : <p>후기를 작성해보세요.</p>}
+      {replies?.item.length ? (
+        replyList
+      ) : (
+        <p>
+          여러분의 <strong>해머거 후기</strong>를 기다리고 있어요 :-)
+        </p>
+      )}
     </div>
   );
 }

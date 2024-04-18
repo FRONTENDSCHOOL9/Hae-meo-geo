@@ -1,32 +1,25 @@
+import Pagination from "@components/Pagination/Pagination";
+import Title from "@components/Title/Title";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import styles from "./TodayRecipeList.module.css";
 
 function TodayRecipeList() {
+  const { recipeList, textWr } = styles;
+  const [searchParams] = useSearchParams();
+  const [currentPage, setCurrentPage] = useState(searchParams.get("page"));
   const axios = useCustomAxios();
-  const [data, setData] = useState();
 
-  const fetchData = async () => {
-    try {
-      const { data } = await axios("/codes/todayRcp");
-      setData(data?.item.todayRcp.codes);
-    } catch (err) {
-      console.error(err.response?.data.message);
-    }
-  };
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["todayRcpList"],
+    queryFn: () => axios.get("/codes/todayRcp"),
+    select: (response) => response.data.item.todayRcp.codes,
+    suspense: false,
+  });
+  console.log(data);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  // const weather = {
-  //   "01": "해가 쨍쨍한",
-  //   "02": "구름이 낀",
-  //   "03": "흐린",
-  //   "04": "비가 오는",
-  //   "05": "눈이 오는",
-  // };
   const season = {};
   const todayMenu = [
     {
@@ -62,16 +55,26 @@ function TodayRecipeList() {
   // 괜시리 바쁜 월요일, 정신없는 화요일, 아직도 수요일?, 지친 목요일 활력이 필요해, 기분 좋은 금요일, 늘어지는 토요일,
   // 월요일 : 한주의 시작 단백질이 풍부한
   // 화요일 : 매운 요리?
-  // 수요일 :
+  // 수요일 : 육칼?(이화수)
+  // 목요일 : 치킨
+  // 비 : 칼국수
+  // 흐린 (추운) : 국밥
+  // 쨍쨍 : 막국수, 맑은탕(닭한마리), 냉면
 
   // 날씨별 https://blog.naver.com/kma_131/222458064479
   // 랜덤 메뉴 추천 사이트 : https://ai-creator.tistory.com/31
 
   const menus = data?.map((item) => (
     <li key={item.sort}>
-      <p>
-        {item?.value} 오늘은 {item?.menu} 어때요?
-      </p>
+      <Link to={`/recipe/list?page=1&${item.url}`}>
+        <img src={item.image} alt="" />
+        <div className={textWr}>
+          <h3>
+            #{item?.value} #{item?.menu}{" "}
+          </h3>
+          <span>{item?.menu} 보러가기</span>
+        </div>
+      </Link>
     </li>
   ));
 
@@ -126,9 +129,20 @@ function TodayRecipeList() {
   // });
 
   return (
-    <div>
-      <ul>{menus}</ul>
-    </div>
+    <>
+      <Title>
+        오늘 뭐먹지?
+        <p>'오늘 뭐먹지?' 고민되는 당신을 위한 추천 레시피!</p>
+      </Title>
+      <ul className={recipeList}>{menus}</ul>
+
+      {/* 강사님 api 코드에는 페이지네이션 기능이 없어서 우선 보류 */}
+      {/* <Pagination 
+        totalCount={data?.length}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      /> */}
+    </>
   );
 }
 

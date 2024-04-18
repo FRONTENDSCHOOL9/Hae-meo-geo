@@ -7,6 +7,10 @@
   margin-bottom: 1.4em;
 }
 
+.subTitle span {
+  color: var(--color-gray-100)
+}
+
 @media (max-width: 767px) {
   .subTitle {
     padding: 0.6em 0;

@@ -78,6 +78,16 @@ input[type="button"] {
   padding: 0;
 }
 
+textarea {
+  vertical-align: top;
+  box-sizing: border-box;
+  border: 1px solid var(--color-gray-100);
+  border-radius: 1.2rem;
+  padding: 1.2rem;
+  height: 13rem;
+  width: 100%;
+}
+
 fieldset{
   display: flex;  
   align-items: center;
@@ -89,4 +99,8 @@ hr{
   background-color: var(--color-black-100);
   border: unset;
   margin: 1.4rem 0;
+}
+
+img {
+  vertical-align: top;
 }

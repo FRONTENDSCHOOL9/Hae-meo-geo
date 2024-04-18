@@ -19,7 +19,7 @@ function MyRecipeList() {
       <MyRecipeSortButton/>
       <ul className={itemList}>
         <li className={item}>
-          <Link className={boxItem} to={`/myRecipe/register`}>
+          <Link className={boxItem} to={`/myRecipe/Detail`}>
             <div className={itemImage}></div>
             <div className={itemTitle}>김치찌개</div>
             <Tag>국/찌개</Tag>

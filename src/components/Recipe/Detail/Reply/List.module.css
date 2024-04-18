@@ -1,14 +1,5 @@
-.list article {
-  display: flex;
-  gap: 1.2rem;
-  align-items: flex-start;
-  font-size: 1.8rem;
-  position: relative;
-}
-
 .list article:first-child {
-  margin-top: -3.4rem;
-  padding-top: 1.8rem;
+  margin-top: -1.4rem;
 }
 
 .list article+article {
@@ -17,29 +8,8 @@
   border-top: 1px solid var(--color-gray-30);
 }
 
-.list article>img {
-  width: 6rem;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  background: #ccc;
-  flex-shrink: 0;
-}
-
-.list .name {
-  margin-top: 0.4rem;
-  font-weight: bold;
-}
-
 .list .time {
   color: var(--color-gray-100);
-}
-
-.list .rating {
-  display: inline-block;
-  width: 100px;
-  height: 24px;
-  background: url(/img/ico-star.svg) no-repeat top center / cover;
-
 }
 
 .list .rightWr {
@@ -56,18 +26,9 @@
   margin-top: 1rem;
 }
 
-.list .attachWr {
-  margin-left: auto;
-  width: 13rem;
-  aspect-ratio: 1/1;
-  border-radius: 1rem;
-  overflow: hidden;
-  flex-shrink: 0;
-  align-self: center;
-}
 
-.list .attachWr img {
-  width: 100%;
-  aspect-ratio: 1/1;
-  object-fit: cover;
+@media (max-width: 767px) {
+  .list article:first-child {
+    margin-top: 0;
+  }
 }

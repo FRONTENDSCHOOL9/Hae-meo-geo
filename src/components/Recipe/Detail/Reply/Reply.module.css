@@ -21,6 +21,7 @@
 
 .replyWr .contentWr {
   flex-grow: 1;
+  position: relative;
 }
 
 .replyWr .flexWr {
@@ -91,23 +92,23 @@
   width: 0;
 }
 
-.replyWr .ratingWr.n1::after {
+.replyWr .ratingWr.act.n1::after {
   width: 20%;
 }
 
-.replyWr .ratingWr.n2::after {
+.replyWr .ratingWr.act.n2::after {
   width: 40%;
 }
 
-.replyWr .ratingWr.n3::after {
+.replyWr .ratingWr.act.n3::after {
   width: 60%;
 }
 
-.replyWr .ratingWr.n4::after {
+.replyWr .ratingWr.act.n4::after {
   width: 80%;
 }
 
-.replyWr .ratingWr.n5::after {
+.replyWr .ratingWr.act.n5::after {
   width: 100%;
 }
 

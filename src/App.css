@@ -46,6 +46,11 @@ body {
   display: none;
 }
 
+.errorMsg {
+  color: var(--color-primary);
+  margin-top: 0.6rem;
+}
+
 .swiper-slide img {
   max-width: 100%;
   aspect-ratio: 1/1;

@@ -18,6 +18,7 @@ function Search({ setKeyword, setCurrentPage, type = "haeRcp" }) {
     searchParams.set("RCP_PARTS_DTLS", ingredient);
     searchParams.set("page", 1);
     searchParams.delete("RCP_PAT2");
+    searchParams.delete("RCP_NM");
     setSearchParams(searchParams);
     setKeyword(ingredient);
     setCurrentPage(1);

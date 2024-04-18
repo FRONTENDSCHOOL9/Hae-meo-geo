@@ -18,6 +18,7 @@ function Type({ setKeyword, setCurrentPage }) {
     searchParams.set("RCP_PAT2", category);
     searchParams.set("page", 1);
     searchParams.delete("RCP_PARTS_DTLS");
+    searchParams.delete("RCP_NM");
     setSearchParams(searchParams);
     setKeyword(category);
     setCurrentPage(1);

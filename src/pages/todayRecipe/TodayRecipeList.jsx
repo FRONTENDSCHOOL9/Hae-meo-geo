@@ -14,8 +14,8 @@ function TodayRecipeList() {
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["todayRcpList"],
-    queryFn: () => axios.get("/codes/todayRcp"),
-    select: (response) => response.data.item.todayRcp.codes,
+    queryFn: () => axios.get("/posts?type=todayRcp"),
+    select: (response) => response.data.item,
     suspense: false,
   });
   console.log(data);
@@ -66,13 +66,13 @@ function TodayRecipeList() {
 
   const menus = data?.map((item) => (
     <li key={item.sort}>
-      <Link to={`/recipe/list?page=1&${item.url}`}>
-        <img src={`/img/todayRecipe/${item.image}`} alt="" />
+      <Link to={`/recipe/list?page=1&${item.extra.url}`}>
+        <img src={`/img/todayRecipe/${item.extra.image}`} alt="" />
         <div className={textWr}>
           <h3>
-            #{item?.value} #{item?.menu}{" "}
+            #{item?.content} #{item?.title}
           </h3>
-          <span>{item?.menu} 보러가기</span>
+          <span>{item?.title} 보러가기</span>
         </div>
       </Link>
     </li>

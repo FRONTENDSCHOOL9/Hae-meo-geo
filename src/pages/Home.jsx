@@ -105,13 +105,19 @@ function Home() {
       <section className={`${section} ${bookmarkSec}`}>
         <h2>
           인기 많은 레시피
-          <Swiper spaceBetween={0} slidesPerView={4} pagination={true}>
+          <Swiper
+            modules={[Navigation]}
+            spaceBetween={10}
+            slidesPerView={4}
+            navigation={{ clickable: true }}
+          >
             {bookmarkMenus}
           </Swiper>
         </h2>
       </section>
 
       <section className={`${section} ${searchSec}`}>
+        <h2>찾는 레시피가 없다면 직접 검색해보세요!</h2>
         <Search keyword={"home"} />
       </section>
     </>

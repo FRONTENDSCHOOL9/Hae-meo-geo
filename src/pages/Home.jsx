@@ -18,6 +18,7 @@ function Home() {
     try {
       const { data } = await axios("/posts?type=todayRcp");
       setDataTodayRcp(data?.item);
+      fetchRandomMenu();
     } catch (err) {
       console.error(err.response?.data.message);
     }
@@ -40,9 +41,9 @@ function Home() {
       const { data } = await axiosRcp(`/1/1001/${todayData?.extra.url}`);
       let randomRcp = data?.COOKRCP01.row;
       if (randomRcp.length > 8) {
-        randomRcp = Array(8)
-          .fill("")
-          .map((item) => (item = randomRcp[randomFn(randomRcp)]));
+        randomRcp.sort(() => Math.random() - 0.5);
+        randomRcp = randomRcp.slice(0, 8);
+        console.log(randomRcp);
       }
       setTodayMenu({ info: todayData, data: randomRcp });
     } catch (err) {
@@ -66,17 +67,15 @@ function Home() {
     fetchBookmarkRcp();
   }, []);
 
-  useEffect(() => {
-    if (!dataTodayRcp) return;
-    fetchRandomMenu();
-  }, [dataTodayRcp]);
-
+  // 오늘의 추천 메뉴
   const todayMenus = todayMenu?.data.map((item, idx) => (
     <SwiperSlide key={`${idx}${item.RCP_NM}`}>
       <img src={item.ATT_FILE_NO_MAIN} alt="" />
       <p>{item.RCP_NM}</p>
     </SwiperSlide>
   ));
+
+  // 인기순(북마크 기준) 메뉴
   const bookmarkMenus = dataBookmark?.map((item, idx) => (
     <SwiperSlide key={idx}>
       <img src={item.image} alt="" />

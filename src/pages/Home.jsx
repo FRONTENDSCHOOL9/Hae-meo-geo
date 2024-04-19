@@ -2,6 +2,7 @@ import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import Search from "@components/Search/Search";
 
 function Home() {
   const axios = useCustomAxios();
@@ -9,7 +10,7 @@ function Home() {
 
   const today = `day${new Date().getDay()}`;
   const weather = "weather01";
-  const [dataTodayRcp, setDataTodayRcp] = useState(); // 잘 뜸
+  const [dataTodayRcp, setDataTodayRcp] = useState();
   const [todayMenu, setTodayMenu] = useState();
 
   const fetchTodayRcp = async () => {
@@ -21,7 +22,7 @@ function Home() {
     }
   };
 
-  const filteredDataFn = (TodayRcp) => {
+  const filteredTodayRcp = (TodayRcp) => {
     return TodayRcp.filter((item) => {
       const condition = item.extra.condition;
       if (condition === today || condition === weather) return item;
@@ -33,9 +34,8 @@ function Home() {
 
   const fetchRandomMenu = async () => {
     try {
-      const filteredData = filteredDataFn(dataTodayRcp);
+      const filteredData = filteredTodayRcp(dataTodayRcp);
       const todayData = filteredData[randomFn(filteredData)];
-      console.log(filteredData[randomFn(filteredData)]);
       const { data } = await axiosRcp(`/1/1001/${todayData?.extra.url}`);
       let randomRcp = data?.COOKRCP01.row;
       if (randomRcp.length > 8) {
@@ -74,6 +74,10 @@ function Home() {
             {todayMenus}
           </Swiper>
         </h2>
+      </section>
+
+      <section>
+        <Search keyword={"home"} />
       </section>
     </>
   );

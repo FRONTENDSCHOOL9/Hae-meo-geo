@@ -6,38 +6,38 @@ import "swiper/css";
 function Home() {
   const axios = useCustomAxios();
   const axiosRcp = useCustomAxios("rcp");
+
   const today = `day${new Date().getDay()}`;
   const weather = "weather01";
-  const [data, setData] = useState();
+  const [dataTodayRcp, setDataTodayRcp] = useState(); // 잘 뜸
   const [todayMenu, setTodayMenu] = useState();
 
-  const fetchData = async () => {
+  const fetchTodayRcp = async () => {
     try {
-      const { data } = await axios("/codes/todayRcp");
-      setData(data?.item.todayRcp.codes);
+      const { data } = await axios("/posts?type=todayRcp");
+      setDataTodayRcp(data?.item);
     } catch (err) {
       console.error(err.response?.data.message);
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const filteredDataFn = (data) =>
-    data.filter((item) => {
-      if (item.condition === today || item.condition === weather) return item;
+  const filteredDataFn = (TodayRcp) => {
+    return TodayRcp.filter((item) => {
+      const condition = item.extra.condition;
+      if (condition === today || condition === weather) return item;
     });
-  const randomFn = (filteredData) => [
-    Math.floor(Math.random() * filteredData?.length),
-  ];
+  };
+
+  const randomFn = (filteredData) =>
+    Math.floor(Math.random() * filteredData?.length);
 
   const fetchRandomMenu = async () => {
     try {
-      const filteredData = filteredDataFn(data);
+      const filteredData = filteredDataFn(dataTodayRcp);
       const todayData = filteredData[randomFn(filteredData)];
-      const res = await axiosRcp(`/1/1001/${todayData?.url}`);
-      let randomRcp = res.data?.COOKRCP01.row;
+      console.log(filteredData[randomFn(filteredData)]);
+      const { data } = await axiosRcp(`/1/1001/${todayData?.extra.url}`);
+      let randomRcp = data?.COOKRCP01.row;
       if (randomRcp.length > 8) {
         randomRcp = Array(8)
           .fill("")
@@ -50,9 +50,13 @@ function Home() {
   };
 
   useEffect(() => {
-    if (!data) return;
+    fetchTodayRcp();
+  }, []);
+
+  useEffect(() => {
+    if (!dataTodayRcp) return;
     fetchRandomMenu();
-  }, [data]);
+  }, [dataTodayRcp]);
 
   const todayMenus = todayMenu?.data.map((item, idx) => (
     <SwiperSlide key={`${idx}${item.RCP_NM}`}>

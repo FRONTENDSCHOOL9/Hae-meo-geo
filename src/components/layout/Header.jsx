@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
+import useUserStore from "@zustand/userStore.mjs";
 
 function Header() {
   const {
@@ -16,6 +17,8 @@ function Header() {
     hamburgerMenu,
   } = styles;
 
+  const user = useUserStore(state => state.user);
+  const setUser = useUserStore(state => state.setUser);
   const [isClicked, setIsClicked] = useState(false);
 
   const handleToTop = () => {
@@ -48,9 +51,15 @@ function Header() {
         </nav>
         <ul className={userMenu}>
           <li>
-            <Link className={login} to="/user/login">
-              <span className="hidden">로그인</span>
-            </Link>
+          {user ? (
+          <Link className={styles.login} to="/user/mypage">
+            <span className="hidden">마이페이지</span>
+          </Link>
+        ) : (
+          <Link className={styles.login} to="/user/login">
+            <span className="hidden">로그인</span>
+          </Link>
+        )}
           </li>
           <li>
             <button type="button" className={search}>

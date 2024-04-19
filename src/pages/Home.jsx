@@ -1,12 +1,16 @@
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useEffect, useState } from "react";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 import Search from "@components/Search/Search";
+import styles from "./Home.module.css";
+import "swiper/css";
+import "swiper/css/navigation";
 
 function Home() {
   const axios = useCustomAxios();
   const axiosRcp = useCustomAxios("rcp");
+  const { section, todayMenuSec, bookmarkSec, searchSec } = styles;
 
   const today = `day${new Date().getDay()}`;
   const weather = "weather01";
@@ -25,7 +29,7 @@ function Home() {
   };
 
   const filteredTodayRcp = (TodayRcp) => {
-    return TodayRcp.filter((item) => {
+    return TodayRcp?.filter((item) => {
       const condition = item.extra.condition;
       if (condition === today || condition === weather) return item;
     });
@@ -43,7 +47,6 @@ function Home() {
       if (randomRcp.length > 8) {
         randomRcp.sort(() => Math.random() - 0.5);
         randomRcp = randomRcp.slice(0, 8);
-        console.log(randomRcp);
       }
       setTodayMenu({ info: todayData, data: randomRcp });
     } catch (err) {
@@ -85,16 +88,21 @@ function Home() {
 
   return (
     <>
-      <section>
+      <section className={`${section} ${todayMenuSec}`}>
         <h2>
           {todayMenu?.info.title} 오늘은 {todayMenu?.info.content} 어때요?
-          <Swiper spaceBetween={0} slidesPerView={4} pagination={true}>
+          <Swiper
+            modules={[Navigation]}
+            spaceBetween={10}
+            slidesPerView={4}
+            navigation={{ clickable: true }}
+          >
             {todayMenus}
           </Swiper>
         </h2>
       </section>
 
-      <section>
+      <section className={`${section} ${bookmarkSec}`}>
         <h2>
           인기 많은 레시피
           <Swiper spaceBetween={0} slidesPerView={4} pagination={true}>
@@ -103,7 +111,7 @@ function Home() {
         </h2>
       </section>
 
-      <section>
+      <section className={`${section} ${searchSec}`}>
         <Search keyword={"home"} />
       </section>
     </>

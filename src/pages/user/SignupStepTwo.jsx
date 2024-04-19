@@ -3,13 +3,17 @@ import { SignupSteps, SignupStepsItem } from "@components/Signup/SignupSteps";
 import Title from "@components/Title/Title";
 import LoginLayout from "@components/login/LoginLayout";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import styles from "../../components/Recipe/Detail/Reply/Reply";
 
 function SignupStepTwo() {
+  const [emailAvailability, setEmailAvailability] = useState(null);
+  const { preview } = styles;
   const axios = useCustomAxios();
   const navigate = useNavigate();
+  const [attachImg, setAttachImg] = useState();
   const {
     register,
     handleSubmit,
@@ -17,7 +21,9 @@ function SignupStepTwo() {
     setError,
     watch,
   } = useForm();
-  const [emailAvailability, setEmailAvailability] = useState(null);
+
+  const file = useRef();
+  const { ref } = register("image");
   const email = watch("email");
 
   const checkEmailAvailability = async () => {
@@ -26,7 +32,7 @@ function SignupStepTwo() {
       setEmailAvailability(res.data.ok && "사용 가능한 이메일입니다.");
     } catch (err) {
       setEmailAvailability(
-        err.response.data.ok === 0 ? "이미 사용 중인 이메일입니다." : ""
+        err.response.data.ok === 0 ? "이미 사용 중인 이메일입니다." : "",
       );
     }
   };
@@ -34,10 +40,11 @@ function SignupStepTwo() {
   const onSubmit = async (formData) => {
     try {
       console.log(formData);
+
       // 이미지
-      if (formData.profileImage.length > 0) {
+      if (formData.image.length > 0) {
         const imageFormData = new FormData();
-        imageFormData.append("attach", formData.profileImage[0]);
+        imageFormData.append("attach", formData.image[0]);
 
         const fileRes = await axios("/files", {
           method: "post",
@@ -47,22 +54,23 @@ function SignupStepTwo() {
           data: imageFormData,
         });
 
-        formData.profileImage = fileRes.data.file.name;
+        formData.image = fileRes.data.file.name;
       } else {
-        delete formData.profileImage;
+        delete formData.image;
       }
-
       //회원가입
+      formData.type = "seller";
       const res = await axios.post("/users", formData);
       alert(
         res.data.item.name +
-          "님 회원가입 완료 되었습니다!\n로그인 후에 이용하세요."
+          "님 회원가입 완료 되었습니다!\n로그인 후에 이용하세요.",
       );
       navigate("/user/login");
     } catch (err) {
+      console.error(err);
       if (err.response?.data.errors) {
         err.response?.data.errors.forEach((error) =>
-          setError(error.path, { message: error.msg })
+          setError(error.path, { message: error.msg }),
         );
       } else if (err.response?.data.message) {
         alert(err.response?.data.message);
@@ -72,6 +80,11 @@ function SignupStepTwo() {
 
   const handleCheckEmail = async () => {
     email && (await checkEmailAvailability());
+  };
+
+  const handleAttachRemove = () => {
+    setAttachImg();
+    file.current.value = "";
   };
 
   return (
@@ -167,12 +180,30 @@ function SignupStepTwo() {
             {errors.birthdate && <p>{errors.birthdate.message}</p>}
           </fieldset>
           <fieldset>
-            <label htmlFor="profile">프로필</label>
+            <label htmlFor="image" className={preview}>
+              <img src={attachImg} alt="" />
+              <span className="hidden">첨부파일 선택</span>
+            </label>
+            <button type="button" onClick={handleAttachRemove}>
+              <span className="hidden">첨부파일 삭제</span>
+            </button>
             <input
               type="file"
               accept="image/*"
-              id="profileImage"
-              {...register("profileImage")}
+              id="image"
+              {...register("image", {
+                onChange: (e) => {
+                  const reader = new FileReader();
+                  reader.readAsDataURL(e.target.files[0]);
+                  reader.onloadend = () => {
+                    setAttachImg(reader.result);
+                  };
+                },
+              })}
+              ref={(e) => {
+                ref(e);
+                file.current = e;
+              }}
             />
           </fieldset>
           <hr />

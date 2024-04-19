@@ -56,8 +56,8 @@ function RcpList() {
 
   return (
     <>
-      <Title>해머거 레시피</Title>
-      <Search setKeyword={setKeyword} setCurrentPage={setCurrentPage} />
+      <Title>나만의 레시피</Title>
+      <Search type="myRCP" setKeyword={setKeyword} setCurrentPage={setCurrentPage} />
       <List
         recipeItem={recipeItem}
         totalCount={totalCount}

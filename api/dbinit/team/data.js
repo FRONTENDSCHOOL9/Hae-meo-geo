@@ -24,6 +24,8 @@ export const initData = async (nextSeq) => {
         quantity: 1,
         content: "",
         image: item["ATT_FILE_NO_MAIN"],
+        show: true,
+        active: true,
       };
     }),
   );
@@ -46,6 +48,66 @@ export const initData = async (nextSeq) => {
           birthday: "01-01",
         },
       },
+      {
+        _id: await nextSeq("user"),
+        email: "test1@haemeogeo.com",
+        password:
+          "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
+        name: "user1",
+        phone: "01011112222",
+        address: "서울시",
+        type: "user",
+        createdAt: getTime(-100, -60 * 60 * 3),
+        updatedAt: getTime(-100, -60 * 60 * 3),
+      },
+      {
+        _id: await nextSeq("user"),
+        email: "test2@haemeogeo.com",
+        password:
+          "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
+        name: "user2",
+        phone: "01011112222",
+        address: "서울시",
+        type: "user",
+        createdAt: getTime(-100, -60 * 60 * 3),
+        updatedAt: getTime(-100, -60 * 60 * 3),
+      },
+      {
+        _id: await nextSeq("user"),
+        email: "test3@haemeogeo.com",
+        password:
+          "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
+        name: "user3",
+        phone: "01011112222",
+        address: "서울시",
+        type: "user",
+        createdAt: getTime(-100, -60 * 60 * 3),
+        updatedAt: getTime(-100, -60 * 60 * 3),
+      },
+      {
+        _id: await nextSeq("user"),
+        email: "test4@haemeogeo.com",
+        password:
+          "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
+        name: "user4",
+        phone: "01011112222",
+        address: "서울시",
+        type: "user",
+        createdAt: getTime(-100, -60 * 60 * 3),
+        updatedAt: getTime(-100, -60 * 60 * 3),
+      },
+      {
+        _id: await nextSeq("user"),
+        email: "test5@haemeogeo.com",
+        password:
+          "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
+        name: "user5",
+        phone: "01011112222",
+        address: "서울시",
+        type: "user",
+        createdAt: getTime(-100, -60 * 60 * 3),
+        updatedAt: getTime(-100, -60 * 60 * 3),
+      },
     ],
     // 상품
     product: result,
@@ -56,7 +118,36 @@ export const initData = async (nextSeq) => {
     // 장바구니
     cart: [],
     // 즐겨찾기/북마크
-    bookmark: [],
+    bookmark: [
+      {
+        _id: await nextSeq("bookmark"),
+        type: "product",
+        user_id: 1,
+        target_id: 271,
+        createdAt: getTime(-3, -60 * 60 * 2),
+      },
+      {
+        _id: await nextSeq("bookmark"),
+        type: "product",
+        user_id: 2,
+        target_id: 271,
+        createdAt: getTime(-3, -60 * 60 * 2),
+      },
+      {
+        _id: await nextSeq("bookmark"),
+        type: "product",
+        user_id: 3,
+        target_id: 271,
+        createdAt: getTime(-3, -60 * 60 * 2),
+      },
+      {
+        _id: await nextSeq("bookmark"),
+        type: "product",
+        user_id: 1,
+        target_id: 38,
+        createdAt: getTime(-3, -60 * 60 * 2),
+      },
+    ],
     // QnA, 공지사항, 게시판
     post: [
       {

@@ -6,8 +6,8 @@ import { useState } from "react";
 
 Type.propTypes = {
   keyword: PropTypes.string,
-  setKeyword: PropTypes.func.isRequired,
-  setCurrentPage: PropTypes.func.isRequired,
+  setKeyword: PropTypes.func,
+  setCurrentPage: PropTypes.func,
 };
 
 function Type({ keyword, setKeyword, setCurrentPage }) {

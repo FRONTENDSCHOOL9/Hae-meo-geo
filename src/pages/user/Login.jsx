@@ -2,7 +2,7 @@ import { Button, LinkButton } from "@components/Button/Button";
 import Title from "@components/Title/Title";
 import LoginLayout from "@components/login/LoginLayout";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
-import userStateStore from "@zustand/userStateStore.mjs";
+import userStore from "@zustand/userStateStore.mjs";
 import useUserStore from "@zustand/userStore.mjs";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -20,7 +20,7 @@ function Login() {
   const setUser = useUserStore((state) => state.setUser);
   const axios = useCustomAxios();
   const navigate = useNavigate();
-  const { userState, setUserState } = userStateStore();
+  const { userState, setUserState } = userStore();
 
   useEffect(() => {
     const savedEmail = localStorage.getItem("savedEmail");
@@ -40,6 +40,7 @@ function Login() {
       setUser({
         _id: res.data.item._id,
         name: res.data.item.name,
+        email: res.data.item.email,
         profile: res.data.item.profileImage,
         token: res.data.item.token,
       });
@@ -72,7 +73,7 @@ function Login() {
 
       navigate(-1);
 
-      setUserState({
+      setUser({
         _id: res.data.item._id,
         name: res.data.item.name,
         email: res.data.item.email,
@@ -80,7 +81,7 @@ function Login() {
         token: res.data.item.token,
       });
 
-      //setUserState(userState);
+      // setUserState(userState);
 
       isEmailSaved
         ? localStorage.setItem("savedEmail", testEmail)

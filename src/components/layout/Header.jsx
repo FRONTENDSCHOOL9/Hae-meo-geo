@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
-import useUserStore from "@zustand/userStore.mjs";
+import userStore from "@zustand/userStateStore.mjs";
 
 function Header() {
   const {
@@ -17,15 +17,16 @@ function Header() {
     hamburgerMenu,
   } = styles;
 
-  const user = useUserStore(state => state.user);
-  const setUser = useUserStore(state => state.setUser);
+  const { user } = userStore();
+  console.log(user);
+  // const setUser = userStore((state) => state.setUser);
   const [isClicked, setIsClicked] = useState(false);
 
   const handleToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  console.log(isClicked);
+  //console.log(isClicked);
 
   return (
     <>
@@ -51,15 +52,15 @@ function Header() {
         </nav>
         <ul className={userMenu}>
           <li>
-          {user ? (
-          <Link className={styles.login} to="/user/mypage">
-            <span className="hidden">마이페이지</span>
-          </Link>
-        ) : (
-          <Link className={styles.login} to="/user/login">
-            <span className="hidden">로그인</span>
-          </Link>
-        )}
+            {user ? (
+              <Link className={styles.login} to="/user/mypage">
+                <span className="hidden">마이페이지</span>
+              </Link>
+            ) : (
+              <Link className={styles.login} to="/user/login">
+                <span className="hidden">로그인</span>
+              </Link>
+            )}
           </li>
           <li>
             <button type="button" className={search}>

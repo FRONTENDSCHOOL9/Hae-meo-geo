@@ -1,23 +1,24 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 
-const userStateStore = create(
+const session = sessionStorage.getItem("saveUser");
+console.log(JSON.parse(session));
+const userStore = create(
   persist(
     (set) => ({
-      userState:
-        sessionStorage.getItem("saveUser") !== null
-          ? JSON.parse(sessionStorage.getItem("saveUser"))
-          : null,
-      setUserState: (newUserState) => {
-        set({ userState: newUserState });
-        sessionStorage.setItem("saveUser", JSON.stringify(newUserState));
-      },
+      // user: session !== null ? JSON.parse(session) : null,
+      user: JSON.parse(session),
+      setUser: (newUser) => set((state) => ({ ...state, user: newUser })),
+      // setUser: (newUser) => {
+      //   set({ user: newUser });
+      //   sessionStorage.setItem("saveUser", JSON.stringify(newUser));
+      // },
     }),
     {
-      name: "userState",
-      getStorage: () => sessionStorage,
+      name: "user",
+      // getStorage: () => sessionStorage,
+      storage: createJSONStorage(() => sessionStorage),
     },
   ),
 );
-
-export default userStateStore;
+export default userStore;

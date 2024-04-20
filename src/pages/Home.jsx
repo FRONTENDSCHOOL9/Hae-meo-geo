@@ -1,5 +1,4 @@
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
-import useLocationStore from "@zustand/useLocation.mjs";
 import { useEffect, useState } from "react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -13,7 +12,6 @@ function Home() {
   const axios = useCustomAxios();
   const axiosRcp = useCustomAxios("rcp");
   const { section, todayMenuSec, bookmarkSec, searchSec } = styles;
-  const { location } = useLocationStore();
 
   const today = `day${new Date().getDay()}`;
   // const weather = "weather01";
@@ -28,9 +26,7 @@ function Home() {
         baseURL:
           "https://api.openweathermap.org/data/2.5/weather?q=Seoul&APPID=8986672dd174c444e5cf84cfed53652f&units=metric",
       });
-      console.log(data);
-      // setWeather()
-      console.log(data?.weather.main);
+      setWeather(data?.weather[0].main);
     } catch (err) {
       console.error(err.response?.data.message);
     }

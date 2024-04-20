@@ -1,4 +1,5 @@
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
+import useLocationStore from "@zustand/useLocation.mjs";
 import { useEffect, useState } from "react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,18 +12,33 @@ function Home() {
   const axios = useCustomAxios();
   const axiosRcp = useCustomAxios("rcp");
   const { section, todayMenuSec, bookmarkSec, searchSec } = styles;
+  const { location } = useLocationStore();
 
   const today = `day${new Date().getDay()}`;
-  const weather = "weather01";
+  // const weather = "weather01";
+  const [weather, setWeather] = useState();
   const [dataTodayRcp, setDataTodayRcp] = useState();
   const [dataBookmark, setDataBookmark] = useState();
   const [todayMenu, setTodayMenu] = useState();
+
+  const fetchWeather = async () => {
+    try {
+      const { data } = await axiosRcp.get("/", {
+        baseURL:
+          "https://api.openweathermap.org/data/2.5/weather?q=Seoul&APPID=8986672dd174c444e5cf84cfed53652f&units=metric",
+      });
+      // console.log(data);
+      // setWeather()
+      // console.log(data?.weather.main);
+    } catch (err) {
+      console.error(err.response?.data.message);
+    }
+  };
 
   const fetchTodayRcp = async () => {
     try {
       const { data } = await axios("/posts?type=todayRcp");
       setDataTodayRcp(data?.item);
-      fetchRandomMenu();
     } catch (err) {
       console.error(err.response?.data.message);
     }
@@ -40,15 +56,14 @@ function Home() {
 
   const fetchRandomMenu = async () => {
     try {
-      const filteredData = filteredTodayRcp(dataTodayRcp);
-      const todayData = filteredData[randomFn(filteredData)];
-      const { data } = await axiosRcp(`/1/1001/${todayData?.extra.url}`);
-      let randomRcp = data?.COOKRCP01.row;
-      if (randomRcp.length > 8) {
-        randomRcp.sort(() => Math.random() - 0.5);
-        randomRcp = randomRcp.slice(0, 8);
+      if (dataTodayRcp) {
+        const filteredData = filteredTodayRcp(dataTodayRcp);
+        const todayData = filteredData[randomFn(filteredData)];
+        const { data } = await axios(
+          `products?keyword=${todayData.title}&page=1&limit=8`,
+        );
+        setTodayMenu({ info: todayData, data: data.item });
       }
-      setTodayMenu({ info: todayData, data: randomRcp });
     } catch (err) {
       console.error(err, err.response?.data.message);
     }
@@ -68,13 +83,18 @@ function Home() {
   useEffect(() => {
     fetchTodayRcp();
     fetchBookmarkRcp();
+    fetchWeather();
   }, []);
+
+  useEffect(() => {
+    fetchRandomMenu();
+  }, [dataTodayRcp]);
 
   // 오늘의 추천 메뉴
   const todayMenus = todayMenu?.data.map((item, idx) => (
     <SwiperSlide key={`${idx}${item.RCP_NM}`}>
-      <img src={item.ATT_FILE_NO_MAIN} alt="" />
-      <p>{item.RCP_NM}</p>
+      <img src={item.image} alt="" />
+      <p>{item.name}</p>
     </SwiperSlide>
   ));
 

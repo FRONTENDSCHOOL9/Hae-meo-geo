@@ -9,6 +9,7 @@ function Header() {
     gnb,
     userMenu,
     login,
+    mypage,
     search,
     fixedWr,
     toTop,

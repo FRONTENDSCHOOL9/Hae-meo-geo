@@ -166,13 +166,22 @@ function InforMation() {
                 {...register("profileImage")}
               />
             </fieldset>
+            <hr />
             <Button type="submit" color="primary" size="large" filled="false">
               수정하기
             </Button>
           </form>
-          <Button type="button" color="white" size="small" filled="false">
-            회원 탈퇴하기
-          </Button>
+          <br />
+          <div className={styles.resign}>
+            <Button
+              type="button"
+              color="Transparency"
+              size="small"
+              filled="false"
+            >
+              회원 탈퇴하기
+            </Button>
+          </div>
         </wrap>
       </div>
     </>

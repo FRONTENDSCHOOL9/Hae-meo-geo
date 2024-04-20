@@ -70,7 +70,7 @@ function MyRecipeRegister() {
 
       alert("레시피 작성이 완료되었습니다.");
 
-      navigate("/myRecipe/list");
+      navigate("/myRecipe");
     } catch (err) {
       alert("레시피 내용이 부족합니다.");
     }
@@ -174,7 +174,7 @@ function MyRecipeRegister() {
             <Button type="submit" color="primary" size="large">
               작성하기
             </Button>
-            <LinkButton to="/myRecipe/list" type="submit" size="large">
+            <LinkButton to="/myRecipe" type="submit" size="large">
               취소
             </LinkButton>
           </div>

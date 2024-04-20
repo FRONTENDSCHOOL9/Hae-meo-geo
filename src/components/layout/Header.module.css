@@ -36,7 +36,7 @@
 
 .userMenu {
   display: flex;
-  gap: 8rem;
+  gap: 6rem;
 }
 
 .userMenu li * {

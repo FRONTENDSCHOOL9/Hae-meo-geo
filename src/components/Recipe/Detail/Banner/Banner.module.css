@@ -1,7 +1,7 @@
 .bannerWr {
   background: var(--color-secondary-30) url(/img/detail-banner.svg) no-repeat center / cover;
   width: 100vw;
-  margin: -5.2rem -3rem 0;
+  margin: -6rem -3rem 0;
   padding: 0 5rem;
   position: relative;
 }
@@ -34,11 +34,11 @@
   background-color: var(--color-primary-30);
 }
 
-.myRcpRegister{
+.myRcpRegister {
   margin-bottom: 0.6rem;
 }
 
-.myRcpRegister .titleDetail{
+.myRcpRegister .titleDetail {
   color: var(--color-gray-100);
   font-size: 2.4rem;
 }
@@ -77,9 +77,10 @@
 @media (max-width: 767px) {
 
   .bannerWr {
-    margin: -5.2rem -1.2rem 0;
+    margin: -3.6rem -1.2rem 0;
     padding: 0 1.2rem;
   }
+
   .bannerWr::before,
   .banner::after {
     display: none;

@@ -1,18 +1,19 @@
 import Type from "@components/Search/Type";
 import PropTypes from "prop-types";
 import styles from "./Search.module.css";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 Search.propTypes = {
   keyword: PropTypes.string.isRequired,
-  setKeyword: PropTypes.func.isRequired,
-  setCurrentPage: PropTypes.func.isRequired,
+  setKeyword: PropTypes.func,
+  setCurrentPage: PropTypes.func,
   type: PropTypes.string,
 };
 
 function Search({ keyword, setKeyword, setCurrentPage, type = "haeRcp" }) {
   const { searchWr, inputWr } = styles;
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -21,9 +22,14 @@ function Search({ keyword, setKeyword, setCurrentPage, type = "haeRcp" }) {
     searchParams.set("page", 1);
     searchParams.delete("RCP_PAT2");
     searchParams.delete("RCP_NM");
-    setSearchParams(searchParams);
-    setKeyword(ingredient);
-    setCurrentPage(1);
+
+    if (!keyword === "home") {
+      setKeyword(ingredient);
+      setSearchParams(searchParams);
+      setCurrentPage(1);
+    }
+    // 홈일 경우 페이지 이동하도록 추가하기
+    navigate(`/recipe/list?page=1&RCP_PARTS_DTLS=${ingredient}`);
   };
 
   return (

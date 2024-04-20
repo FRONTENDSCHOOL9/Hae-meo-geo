@@ -1,19 +1,20 @@
 import { Button } from "@components/Button/Button";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import styles from "./Type.module.css";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
 Type.propTypes = {
   keyword: PropTypes.string,
-  setKeyword: PropTypes.func.isRequired,
-  setCurrentPage: PropTypes.func.isRequired,
+  setKeyword: PropTypes.func,
+  setCurrentPage: PropTypes.func,
 };
 
 function Type({ keyword, setKeyword, setCurrentPage }) {
   const { typeWr, type } = styles;
   const [searchParams, setSearchParams] = useSearchParams();
   const [clickedButton, setClickedButton] = useState();
+  const navigate = useNavigate();
 
   const handleClick = (e) => {
     if (e.target.tagName !== "BUTTON") return false;
@@ -24,9 +25,13 @@ function Type({ keyword, setKeyword, setCurrentPage }) {
     searchParams.delete("RCP_NM");
     setSearchParams(searchParams);
 
-    setKeyword(category);
-    setCurrentPage(1);
+    if (!keyword === "home") {
+      setKeyword(category);
+      setCurrentPage(1);
+    }
+
     setClickedButton(category);
+    navigate(`/recipe/list?page=1&RCP_PAT2=${category}`);
   };
 
   return (

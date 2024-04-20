@@ -38,8 +38,8 @@ const router = createBrowserRouter([
       { path: "/mypage/bookmark", element: <BookMark /> },
       { path: "/mypage/pageside", element: <PageSide /> },
       { path: "/myrecipe/register", element: <MyRecipeRegister /> },
-      { path: "/myrecipe/list", element: <MyRecipeList /> },
-      { path: "/myrecipe/detail", element: <MyRecipeDetail /> },
+      { path: "/myrecipe", element: <MyRecipeList /> },
+      { path: "/myrecipe/:_id", element: <MyRecipeDetail /> },
     ],
   },
 ]);

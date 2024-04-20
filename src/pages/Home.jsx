@@ -7,6 +7,7 @@ import Search from "@components/Search/Search";
 import styles from "./Home.module.css";
 import "swiper/css";
 import "swiper/css/navigation";
+import { Link } from "react-router-dom";
 
 function Home() {
   const axios = useCustomAxios();
@@ -27,9 +28,9 @@ function Home() {
         baseURL:
           "https://api.openweathermap.org/data/2.5/weather?q=Seoul&APPID=8986672dd174c444e5cf84cfed53652f&units=metric",
       });
-      // console.log(data);
+      console.log(data);
       // setWeather()
-      // console.log(data?.weather.main);
+      console.log(data?.weather.main);
     } catch (err) {
       console.error(err.response?.data.message);
     }
@@ -92,17 +93,21 @@ function Home() {
 
   // 오늘의 추천 메뉴
   const todayMenus = todayMenu?.data.map((item, idx) => (
-    <SwiperSlide key={`${idx}${item.RCP_NM}`}>
-      <img src={item.image} alt="" />
-      <p>{item.name}</p>
+    <SwiperSlide key={`${idx}${item.name}`}>
+      <Link to={`/recipe/list/${item.name}`}>
+        <img src={item.image} alt="" />
+        <p>{item.name}</p>
+      </Link>
     </SwiperSlide>
   ));
 
   // 인기순(북마크 기준) 메뉴
   const bookmarkMenus = dataBookmark?.map((item, idx) => (
     <SwiperSlide key={idx}>
-      <img src={item.image} alt="" />
-      <p>{item.name}</p>
+      <Link to={`/recipe/list/${item.name}`}>
+        <img src={item.image} alt="" />
+        <p>{item.name}</p>
+      </Link>
     </SwiperSlide>
   ));
 

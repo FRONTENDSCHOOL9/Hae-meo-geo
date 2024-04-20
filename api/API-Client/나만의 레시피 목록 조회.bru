@@ -5,12 +5,13 @@ meta {
 }
 
 get {
-  url: {{url}}/posts?type=recipe&keyword=감자
+  url: {{url}}/posts?type=recipe
   body: none
   auth: none
 }
 
 query {
   type: recipe
-  keyword: 감자
+  ~keyword: 감자전
+  ~title: 감자전
 }

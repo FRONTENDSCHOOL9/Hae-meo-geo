@@ -32,8 +32,8 @@ const router = createBrowserRouter([
       { path: "/user/signupStepTwo", element: <SignupStepTwo /> },
       { path: "/user/signupStepThree", element: <SignupStepThree /> },
       { path: "/myrecipe/register", element: <MyRecipeRegister /> },
-      { path: "/myrecipe/list", element: <MyRecipeList /> },
-      { path: "/myrecipe/detail", element: <MyRecipeDetail /> },
+      { path: "/myrecipe", element: <MyRecipeList /> },
+      { path: "/myrecipe/:_id", element: <MyRecipeDetail /> },
     ],
   },
 ]);

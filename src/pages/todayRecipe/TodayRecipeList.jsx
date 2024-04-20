@@ -6,12 +6,13 @@ import InfiniteScroll from "react-infinite-scroller";
 import _ from "lodash";
 import { Link } from "react-router-dom";
 import styles from "./TodayRecipeList.module.css";
+import Loading from "@components/Loading/Loading";
 
 function TodayRecipeList() {
   const { recipeList, textWr } = styles;
   const axios = useCustomAxios();
 
-  const { data, fetchNextPage, isFetching } = useInfiniteQuery({
+  const { data, fetchNextPage, isFetching, isLoading } = useInfiniteQuery({
     queryKey: ["todayList"],
     queryFn: ({ pageParam = 1 }) =>
       axios.get(`/posts?type=todayRcp`, {
@@ -54,7 +55,6 @@ function TodayRecipeList() {
       );
     });
     hasNext = data.page < data.totalPages;
-    console.log(list);
   }
 
   return (
@@ -63,14 +63,18 @@ function TodayRecipeList() {
         오늘 뭐먹지?
         <p>뭐 먹을지는 해머거가 알려드릴게요 :-)</p>
       </Title>
-      <InfiniteScroll
-        pageStart={1}
-        loadMore={fetchNextPage}
-        hasMore={!isFetching && hasNext}
-        loader={<p>로딩중</p>}
-      >
-        <ul className={recipeList}>{list}</ul>
-      </InfiniteScroll>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <InfiniteScroll
+          pageStart={1}
+          loadMore={fetchNextPage}
+          hasMore={!isFetching && hasNext}
+          loader={<p>로딩중</p>}
+        >
+          <ul className={recipeList}>{list}</ul>
+        </InfiniteScroll>
+      )}
     </>
   );
 }

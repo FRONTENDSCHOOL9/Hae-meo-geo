@@ -33,6 +33,7 @@
 .replyWr .flexWr {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: .4rem;
   margin-bottom: 0.7em;
 }
@@ -134,6 +135,7 @@
   flex-shrink: 0;
   align-self: flex-end;
   position: relative;
+  background: #fff;
 }
 
 .attachWr img {
@@ -150,7 +152,7 @@
   border: 1px solid var(--color-gray-100);
   border-radius: 1rem;
   overflow: hidden;
-  background: url(/img/ico-attach.svg) no-repeat center / 5rem;
+  background: url(/img/ico-attach.svg) no-repeat center / 6rem;
   display: block;
   cursor: pointer;
   width: 100%;
@@ -163,11 +165,12 @@
 
 .attachWr button {
   position: absolute;
-  top: 1.2rem;
-  right: 1.2rem;
-  width: 2rem;
-  height: 2rem;
-  background: url(/img/ico-close.svg) no-repeat center;
+  top: .8rem;
+  right: .8rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: #f2f2f2 url(/img/ico-close.svg) no-repeat center / 2.8rem;
+  border-radius: 50%;
   display: none;
 }
 
@@ -187,8 +190,10 @@
   }
 
   .attachWr {
-    width: 100%;
-    aspect-ratio: auto;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 5rem;
   }
 
 }

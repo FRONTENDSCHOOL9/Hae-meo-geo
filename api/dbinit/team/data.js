@@ -157,7 +157,6 @@ export const initData = async (nextSeq) => {
         title: "샐러드",
         extra: {
           condition: "day1",
-          url: "RCP_NM=샐러드",
           image: "TR101.webp",
         },
       },
@@ -168,18 +167,16 @@ export const initData = async (nextSeq) => {
         title: "김치찌개,",
         extra: {
           condition: "day1",
-          url: "RCP_NM=김치찌개",
           image: "TR102.webp",
         },
       },
       {
         _id: await nextSeq("post"),
         type: "todayRcp",
-        content: "매운요리",
-        title: "🔥요일은 🔥요리,",
+        content: "불고기",
+        title: "불고기",
         extra: {
           condition: "day2",
-          url: "RCP_NM=매운",
           image: "TR103.webp",
         },
       },
@@ -190,7 +187,6 @@ export const initData = async (nextSeq) => {
         title: "비빔밥",
         extra: {
           condition: "day2",
-          url: "RCP_NM=비빔밥",
           image: "TR104.webp",
         },
       },
@@ -201,7 +197,6 @@ export const initData = async (nextSeq) => {
         title: "국수",
         extra: {
           condition: "day3",
-          url: "RCP_NM=국수",
           image: "TR105.webp",
         },
       },
@@ -212,18 +207,16 @@ export const initData = async (nextSeq) => {
         title: "순두부",
         extra: {
           condition: "day3",
-          url: "RCP_NM=순두부",
           image: "TR106.webp",
         },
       },
       {
         _id: await nextSeq("post"),
         type: "todayRcp",
-        content: "삼겹살",
-        title: "삼겹살",
+        content: "덮밥",
+        title: "덮밥",
         extra: {
           condition: "day4",
-          url: "RCP_NM=삼겹살",
           image: "TR107.webp",
         },
       },
@@ -234,7 +227,6 @@ export const initData = async (nextSeq) => {
         title: "카레",
         extra: {
           condition: "day4",
-          url: "RCP_NM=카레",
           image: "TR108.webp",
         },
       },
@@ -245,7 +237,6 @@ export const initData = async (nextSeq) => {
         title: "들깨",
         extra: {
           condition: "day5",
-          url: "RCP_NM=들깨",
           image: "TR109.webp",
         },
       },
@@ -256,7 +247,6 @@ export const initData = async (nextSeq) => {
         title: "떡볶이",
         extra: {
           condition: "day5",
-          url: "RCP_NM=떡볶이",
           image: "TR110.webp",
         },
       },
@@ -267,7 +257,6 @@ export const initData = async (nextSeq) => {
         title: "황태",
         extra: {
           condition: "day6",
-          url: "RCP_PARTS_DTLS=황태",
           image: "TR111.webp",
         },
       },
@@ -278,7 +267,6 @@ export const initData = async (nextSeq) => {
         title: "파스타",
         extra: {
           condition: "day6",
-          url: "RCP_NM=파스타",
           image: "TR112.webp",
         },
       },
@@ -289,41 +277,127 @@ export const initData = async (nextSeq) => {
         title: "샌드위치",
         extra: {
           condition: "day7",
-          url: "RCP_NM=샌드위치",
           image: "TR113.webp",
         },
       },
       {
         _id: await nextSeq("post"),
         type: "todayRcp",
-        content: "묵은지",
-        title: "묵은지",
+        content: "닭조림",
+        title: "닭조림",
         extra: {
           condition: "day7",
-          url: "RCP_NM=묵은지",
           image: "TR114.webp",
         },
       },
       {
         _id: await nextSeq("post"),
         type: "todayRcp",
-        content: "전",
-        title: "비가 오는",
+        content: "삼겹살",
+        title: "비오는 날엔 지글지글",
         extra: {
-          condition: "weather01",
-          url: "RCP_PARTS_DTLS=부침가루",
+          condition: "Rain",
           image: "TR201.webp",
         },
       },
       {
         _id: await nextSeq("post"),
         type: "todayRcp",
-        content: "시원한 요리",
-        title: "땀이 뻘뻘",
+        content: "탕수",
+        title: "비오는 날엔 기름에 튀긴",
         extra: {
-          condition: "weather01",
-          url: "RCP_NM=초계",
+          condition: "Rain",
           image: "TR202.webp",
+        },
+      },
+      {
+        _id: await nextSeq("post"),
+        type: "todayRcp",
+        content: "튀김",
+        title: "비오는 날엔 바사삭",
+        extra: {
+          condition: "Rain",
+          image: "TR203.webp",
+        },
+      },
+      {
+        _id: await nextSeq("post"),
+        type: "todayRcp",
+        content: "묵은지",
+        title: "비오는 날엔 푹 익은",
+        extra: {
+          condition: "Rain",
+          image: "TR204.webp",
+        },
+      },
+      {
+        _id: await nextSeq("post"),
+        type: "todayRcp",
+        content: "바지락",
+        title: "비오는 날엔 시원하고 맑은",
+        extra: {
+          condition: "Rain",
+          image: "TR205.webp",
+        },
+      },
+      {
+        _id: await nextSeq("post"),
+        type: "todayRcp",
+        content: "라면",
+        title: "흐린 날엔 뜨끈한",
+        extra: {
+          condition: "Clouds",
+          image: "TR301.webp",
+        },
+      },
+      {
+        _id: await nextSeq("post"),
+        type: "todayRcp",
+        content: "수제비",
+        title: "흐린 날에 생각나는",
+        extra: {
+          condition: "Clouds",
+          image: "TR302.webp",
+        },
+      },
+      {
+        _id: await nextSeq("post"),
+        type: "todayRcp",
+        content: "해장국",
+        title: "흐린 날에 뜨끈한 한그릇",
+        extra: {
+          condition: "Clouds",
+          image: "TR303.webp",
+        },
+      },
+      {
+        _id: await nextSeq("post"),
+        type: "todayRcp",
+        content: "부대찌개",
+        title: "흐린 날에 보글보글",
+        extra: {
+          condition: "Clouds",
+          image: "TR304.webp",
+        },
+      },
+      {
+        _id: await nextSeq("post"),
+        type: "todayRcp",
+        content: "콩국수",
+        title: "맑은 날엔 후루룩",
+        extra: {
+          condition: "Clear",
+          image: "TR401.webp",
+        },
+      },
+      {
+        _id: await nextSeq("post"),
+        type: "todayRcp",
+        content: "초계",
+        title: "시원한 여름 보양식!",
+        extra: {
+          condition: "Clear",
+          image: "TR401.webp",
         },
       },
     ],

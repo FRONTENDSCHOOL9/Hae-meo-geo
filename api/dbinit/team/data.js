@@ -293,8 +293,8 @@ export const initData = async (nextSeq) => {
       {
         _id: await nextSeq("post"),
         type: "todayRcp",
-        content: "삼겹살",
-        title: "비오는 날엔 지글지글",
+        title: "삼겹살",
+        content: "비오는 날엔 지글지글",
         extra: {
           condition: "Rain",
           image: "TR201.webp",
@@ -303,8 +303,8 @@ export const initData = async (nextSeq) => {
       {
         _id: await nextSeq("post"),
         type: "todayRcp",
-        content: "탕수",
-        title: "비오는 날엔 기름에 튀긴",
+        title: "탕수",
+        content: "비오는 날엔 기름에 튀긴",
         extra: {
           condition: "Rain",
           image: "TR202.webp",
@@ -313,8 +313,8 @@ export const initData = async (nextSeq) => {
       {
         _id: await nextSeq("post"),
         type: "todayRcp",
-        content: "튀김",
-        title: "비오는 날엔 바사삭",
+        title: "튀김",
+        content: "비오는 날엔 바사삭",
         extra: {
           condition: "Rain",
           image: "TR203.webp",
@@ -323,8 +323,8 @@ export const initData = async (nextSeq) => {
       {
         _id: await nextSeq("post"),
         type: "todayRcp",
-        content: "묵은지",
-        title: "비오는 날엔 푹 익은",
+        title: "묵은지",
+        content: "비오는 날엔 푹 익은",
         extra: {
           condition: "Rain",
           image: "TR204.webp",
@@ -333,8 +333,8 @@ export const initData = async (nextSeq) => {
       {
         _id: await nextSeq("post"),
         type: "todayRcp",
-        content: "바지락",
-        title: "비오는 날엔 시원하고 맑은",
+        title: "바지락",
+        content: "비오는 날엔 시원하고 맑은",
         extra: {
           condition: "Rain",
           image: "TR205.webp",
@@ -343,8 +343,8 @@ export const initData = async (nextSeq) => {
       {
         _id: await nextSeq("post"),
         type: "todayRcp",
-        content: "라면",
-        title: "흐린 날엔 뜨끈한",
+        title: "라면",
+        content: "흐린 날엔 뜨끈한",
         extra: {
           condition: "Clouds",
           image: "TR301.webp",
@@ -353,8 +353,8 @@ export const initData = async (nextSeq) => {
       {
         _id: await nextSeq("post"),
         type: "todayRcp",
-        content: "수제비",
-        title: "흐린 날에 생각나는",
+        title: "수제비",
+        content: "흐린 날에 생각나는",
         extra: {
           condition: "Clouds",
           image: "TR302.webp",
@@ -363,8 +363,8 @@ export const initData = async (nextSeq) => {
       {
         _id: await nextSeq("post"),
         type: "todayRcp",
-        content: "해장국",
-        title: "흐린 날에 뜨끈한 한그릇",
+        title: "해장국",
+        content: "흐린 날에 뜨끈한 한그릇",
         extra: {
           condition: "Clouds",
           image: "TR303.webp",
@@ -373,8 +373,8 @@ export const initData = async (nextSeq) => {
       {
         _id: await nextSeq("post"),
         type: "todayRcp",
-        content: "부대찌개",
-        title: "흐린 날에 보글보글",
+        title: "부대찌개",
+        content: "흐린 날에 보글보글",
         extra: {
           condition: "Clouds",
           image: "TR304.webp",
@@ -383,8 +383,8 @@ export const initData = async (nextSeq) => {
       {
         _id: await nextSeq("post"),
         type: "todayRcp",
-        content: "콩국수",
-        title: "맑은 날엔 후루룩",
+        title: "콩국수",
+        content: "맑은 날엔 후루룩",
         extra: {
           condition: "Clear",
           image: "TR401.webp",
@@ -393,8 +393,8 @@ export const initData = async (nextSeq) => {
       {
         _id: await nextSeq("post"),
         type: "todayRcp",
-        content: "초계",
-        title: "시원한 여름 보양식!",
+        title: "초계",
+        content: "시원한 여름 보양식!",
         extra: {
           condition: "Clear",
           image: "TR401.webp",

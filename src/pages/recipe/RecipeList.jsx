@@ -1,4 +1,5 @@
 import { Tag } from "@components/Button/Button";
+import Loading from "@components/Loading/Loading";
 import Pagination from "@components/Pagination/Pagination";
 import List from "@components/Recipe/List/List";
 import Search from "@components/Search/Search";
@@ -24,7 +25,6 @@ function RcpList() {
     queryKey: ["list", currentPage, RCP_PAT2, RCP_PARTS_DTLS],
     queryFn: () => fetchData(currentPage, RCP_PAT2, RCP_PARTS_DTLS, RCP_NM),
     select: (response) => response.data.COOKRCP01,
-    suspense: false,
   });
 
   const fetchData = async (page, RCP_PAT2, RCP_PARTS_DTLS, RCP_NM) => {
@@ -65,17 +65,22 @@ function RcpList() {
         setKeyword={setKeyword}
         setCurrentPage={setCurrentPage}
       />
-      <List
-        recipeItem={recipeItem}
-        totalCount={totalCount}
-        keyword={keyword}
-        isLoading={isLoading}
-      />
-      <Pagination
-        totalCount={totalCount}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <List
+            recipeItem={recipeItem}
+            totalCount={totalCount}
+            keyword={keyword}
+          />
+          <Pagination
+            totalCount={totalCount}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        </>
+      )}
     </>
   );
 }

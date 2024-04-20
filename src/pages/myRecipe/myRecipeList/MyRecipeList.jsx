@@ -8,40 +8,31 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
-function RcpList() {
-  const axios = useCustomAxios("rcp");
+
+function MyRecipeList() {
+  const axios = useCustomAxios();
   const [searchParams] = useSearchParams();
   const [keyword, setKeyword] = useState("");
-  const [currentPage, setCurrentPage] = useState(searchParams.get("page"));
-  const [totalCount, setTotalCount] = useState(1124);
+  const [currentPage, setCurrentPage] = useState(searchParams.get("page") || 1);
+  const [totalCount, setTotalCount] = useState(1125);
 
   const limit = import.meta.env.VITE_PAGINATION_LIMIT;
-  const RCP_PAT2 = searchParams.get("RCP_PAT2");
   const RCP_PARTS_DTLS = searchParams.get("RCP_PARTS_DTLS");
-  const RCP_NM = searchParams.get("RCP_NM");
 
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ["list", currentPage, RCP_PAT2, RCP_PARTS_DTLS],
-    queryFn: () => fetchData(currentPage, RCP_PAT2, RCP_PARTS_DTLS, RCP_NM),
-    select: (response) => response.data.COOKRCP01,
+    queryKey: ["list", currentPage, RCP_PARTS_DTLS],
+    queryFn: () => axios.get("/posts", {params: {type:"recipe"}}),
+    select: (response) => response.data,
     suspense: false,
   });
 
-  const fetchData = async (page, RCP_PAT2, RCP_PARTS_DTLS, RCP_NM) => {
-    let url = `/${page * limit - (limit - 1)}/${page * limit}`;
-    if (RCP_PAT2) url = `${url}/RCP_PAT2=${RCP_PAT2}`;
-    if (RCP_PARTS_DTLS) url = `${url}/RCP_PARTS_DTLS=${RCP_PARTS_DTLS}`;
-    if (RCP_NM) url = `${url}/RCP_NM=${RCP_NM}`;
-    return axios.get(url);
-  };
 
-  const recipeItem = data?.row?.map((item) => (
-    <li key={item["RCP_SEQ"]}>
-      <Link to={`/recipe/list/${item["RCP_NM"]}`}>
-        <img src={item["ATT_FILE_NO_MAIN"]} alt={item["RCP_NM"]} />
-        <p>{item["RCP_NM"]}</p>
-        <Tag>{item["RCP_PAT2"]}</Tag>
-        <Tag>{item["RCP_WAY2"]}</Tag>
+
+  const recipeItem = data?.item.map((item) => (
+    <li key={item["title"]}>
+      <Link to={`/myrecipe/${item._id}`}>
+        <img src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${item.image}`} alt={item["title"]} />
+        <p>{item["title"]}</p>
       </Link>
     </li>
   ));
@@ -50,30 +41,42 @@ function RcpList() {
     if (keyword && data) setTotalCount(Number(data?.total_count));
   }, [keyword, data]);
 
+  useEffect(() => {
+    if (RCP_PARTS_DTLS) setKeyword(RCP_PARTS_DTLS);
+    window.scrollTo({ top: 0 });
+  }, [searchParams.toString()]);
+
+  console.log(data);
+
   // useEffect(() => {
   //   refetch();
   // }, [searchParams.toString()]);
 
   return (
     <>
-      <Title>해머거 레시피</Title>
-      <Search setKeyword={setKeyword} setCurrentPage={setCurrentPage} />
-      <List
-        recipeItem={recipeItem}
-        totalCount={totalCount}
-        keyword={keyword}
-        isLoading={isLoading}
-      />
-      <Pagination
-        totalCount={totalCount}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      <Title>나만의 레시피</Title>
+      {/* <Search type="myRCP" setKeyword={setKeyword} setCurrentPage={setCurrentPage} /> */}
+      {data && (
+        <>
+          <List
+          recipeItem={recipeItem}
+          totalCount={totalCount}
+          keyword={keyword}
+          isLoading={isLoading}
+          />
+          <Pagination
+            totalCount={totalCount}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        </>
+      )}
+
     </>
   );
 }
 
-export default RcpList;
+export default MyRecipeList;
 
 // 총 카운트 변경 : 카테고리 클릭, 검색 -> 구분하는 변수 만들기
 // 페이지네이션 클릭시 총카운트를 저장된 숫자 사용하기

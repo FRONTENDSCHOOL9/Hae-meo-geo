@@ -1,8 +1,8 @@
 import { Button, LinkButton } from "@components/Button/Button";
 import Title from "@components/Title/Title";
 import LoginLayout from "@components/login/LoginLayout";
-
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
+import userStore from "@zustand/userStateStore.mjs";
 import useUserStore from "@zustand/userStore.mjs";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -18,9 +18,9 @@ function Login() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const setUser = useUserStore((state) => state.setUser);
-  const { user } = useUserStore();
-  const navigate = useNavigate();
   const axios = useCustomAxios();
+  const navigate = useNavigate();
+  const { userState, setUserState } = userStore();
 
   useEffect(() => {
     const savedEmail = localStorage.getItem("savedEmail");
@@ -35,9 +35,12 @@ function Login() {
       const res = await axios.post("/users/login", formData);
       alert(res.data.item.name + "님 밥 해머거!");
 
+      navigate(-1);
+
       setUser({
         _id: res.data.item._id,
         name: res.data.item.name,
+        email: res.data.item.email,
         profile: res.data.item.profileImage,
         token: res.data.item.token,
       });
@@ -45,10 +48,8 @@ function Login() {
       isEmailSaved
         ? localStorage.setItem("savedEmail", formData.email)
         : localStorage.removeItem("savedEmail");
-
-      navigate("/"); // 뒤로가기로 변경해야 함
     } catch (err) {
-      alert (err.response?.data.message);
+      alert(err.response?.data.message);
     }
   };
 
@@ -70,22 +71,21 @@ function Login() {
       });
       alert(res.data.item.name + "님 밥 해머거!");
 
+      navigate(-1);
+
       setUser({
         _id: res.data.item._id,
         name: res.data.item.name,
-        email: res.data.item.email, // 이메일 데이터 추가
+        email: res.data.item.email,
         profile: res.data.item.profileImage,
         token: res.data.item.token,
       });
 
+      // setUserState(userState);
+
       isEmailSaved
         ? localStorage.setItem("savedEmail", testEmail)
         : localStorage.removeItem("savedEmail");
-
-      setEmail("");
-      setPassword("");
-
-      navigate("/");
     } catch (err) {
       alert(err.response?.data.message);
     }
@@ -95,7 +95,8 @@ function Login() {
     <>
       <LoginLayout>
         <Title>로그인</Title>
-        {user && <p>{user.name}님 밥 해머거!</p>}
+        {/* {user && <p>{user.name}님 밥 해머거!</p>} */}
+        {userState && <p>{userState.name}님 밥 해머거!</p>}
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             type="text"

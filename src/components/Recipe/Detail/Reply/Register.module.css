@@ -29,3 +29,9 @@
   left: 0;
   transform: translateY(calc(100% + 0.4rem));
 }
+
+@media (max-width: 767px) {
+  .replyRegister {
+    margin-top: 2rem;
+  }
+}

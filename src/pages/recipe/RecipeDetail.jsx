@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
+import Loading from "@components/Loading/Loading";
 import Banner from "@components/Recipe/Detail/Banner/Banner";
 import Content from "@components/Recipe/Detail/Content/Content";
 import SubTitle from "@components/Recipe/Detail/SubTitle/SubTitle";
@@ -37,7 +38,7 @@ function RecipeDetail() {
 
   return (
     <>
-      {data && (
+      {data ? (
         <div className={recipeDetail}>
           <Sidebar id={Number(data["RCP_SEQ"])} />
           <Banner
@@ -75,6 +76,8 @@ function RecipeDetail() {
             </div>
           </Content>
         </div>
+      ) : (
+        <Loading />
       )}
     </>
   );

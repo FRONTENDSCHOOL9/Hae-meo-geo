@@ -135,7 +135,6 @@
   flex-shrink: 0;
   align-self: flex-end;
   position: relative;
-  background: #fff;
 }
 
 .attachWr img {
@@ -152,7 +151,7 @@
   border: 1px solid var(--color-gray-100);
   border-radius: 1rem;
   overflow: hidden;
-  background: url(/img/ico-attach.svg) no-repeat center / 6rem;
+  background: #fff url(/img/ico-attach.svg) no-repeat center / 6rem;
   display: block;
   cursor: pointer;
   width: 100%;
@@ -180,6 +179,8 @@
 
 .attachWr.act button {
   display: block;
+  top: 0;
+  right: 0;
 }
 
 @media (max-width: 767px) {
@@ -190,10 +191,12 @@
   }
 
   .attachWr {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 5rem;
+    width: 100%;
+  }
+
+  .attachWr label {
+    border-radius: 50%;
+    background-size: 4rem;
   }
 
 }

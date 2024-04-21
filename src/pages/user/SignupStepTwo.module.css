@@ -1,0 +1,31 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 4.5rem;
+}
+
+.steptwo fieldset {
+  display: grid;
+  grid-template-columns: 18rem 30rem;
+  position: relative;
+}
+
+.steptwo input:not([type="email"]) {
+  grid-column: 2 / span 2;
+}
+
+.steptwo Button {
+  grid-column: 3;
+  margin-left: 1rem;
+}
+
+.steptwo fieldset > p {
+  position: absolute;
+  bottom: -3.2rem;
+  left: 19rem;
+}
+
+.steptwo fieldset > p:not(.black) {
+  color: var(--color-primary);
+}

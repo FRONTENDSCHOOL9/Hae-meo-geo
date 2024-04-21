@@ -7,18 +7,10 @@ function Sidebar({ id }) {
   return (
     <ul className={sidebar}>
       <li>
-        <Bookmark className={bookmark} id={id}>
-          <span>
-            나도
-            <br />
-            해보기
-          </span>
-        </Bookmark>
+        <Bookmark className={bookmark} id={id}></Bookmark>
       </li>
       <li>
-        <Share className={share}>
-          <span>공유하기</span>
-        </Share>
+        <Share className={share}></Share>
       </li>
     </ul>
   );

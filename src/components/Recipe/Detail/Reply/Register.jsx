@@ -47,7 +47,7 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
 
       const { data } = await axios.post("/posts", formData);
       const resPost = await axios.get(
-        `/posts?type=qna&custom={"product_id": ${rcpNum}}`
+        `/posts?type=qna&custom={"product_id": ${rcpNum}}`,
       );
       setRepliesFn(resPost.data);
       reset();
@@ -164,7 +164,7 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
               )}
             </div>
             <div
-              className={`${ReplyStyle.attachWr} ${
+              className={`${ReplyStyle.attachWr} ${styles.attachWr} ${
                 attachImg ? ReplyStyle.act : ""
               }`}
             >

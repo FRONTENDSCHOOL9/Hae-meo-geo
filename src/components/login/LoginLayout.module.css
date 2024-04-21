@@ -1,16 +1,21 @@
-.wrapper{
-  width: 100%;
+.wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
 }
 
-.inner{
+.inner {
   width: 48rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.4rem;
+  gap: 6.6rem;
+  box-sizing: border-box;
 }
 
+/* form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem;
+} */

@@ -1,0 +1,60 @@
+/* login */
+.login input[type="checlbox"] {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.login label {
+  font-size: 1.2rem;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+/* signup */
+.signup p,
+label {
+  font-size: 2rem;
+}
+
+.subtitle {
+  font-size: 2.4rem;
+}
+
+.checkbox {
+  width: 2rem;
+  height: 2rem;
+}
+
+.signup fieldset {
+  margin-bottom: 2rem;
+}
+
+.checkbox-large {
+  width: 2.4rem;
+  height: 2.4rem;
+  margin-bottom: 0;
+}
+
+.signup hr {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-black-100);
+  border: unset;
+  margin: 0.4rem 0 2.4rem;
+}
+
+.signup p:last-of-type {
+  margin-left: 3.4rem;
+  margin-bottom: 5.6rem;
+}
+
+.form{
+  width: 100%;
+  display: flex;
+}

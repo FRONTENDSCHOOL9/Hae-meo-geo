@@ -2,8 +2,7 @@ import { Button, LinkButton } from "@components/Button/Button";
 import Title from "@components/Title/Title";
 import LoginLayout from "@components/login/LoginLayout";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
-import userStore from "@zustand/userStateStore.mjs";
-import useUserStore from "@zustand/userStore.mjs";
+import userStore from "@zustand/userStore.mjs";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -17,10 +16,11 @@ function Login() {
   const [isEmailSaved, setIsEmailSaved] = useState(false);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const setUser = useUserStore((state) => state.setUser);
   const axios = useCustomAxios();
   const navigate = useNavigate();
-  const { userState, setUserState } = userStore();
+
+  const { user, setUser } = userStore();
+  console.log("user", user);
 
   useEffect(() => {
     const savedEmail = localStorage.getItem("savedEmail");
@@ -81,8 +81,6 @@ function Login() {
         token: res.data.item.token,
       });
 
-      // setUserState(userState);
-
       isEmailSaved
         ? localStorage.setItem("savedEmail", testEmail)
         : localStorage.removeItem("savedEmail");
@@ -96,7 +94,7 @@ function Login() {
       <LoginLayout>
         <Title>로그인</Title>
         {/* {user && <p>{user.name}님 밥 해머거!</p>} */}
-        {userState && <p>{userState.name}님 밥 해머거!</p>}
+        {user && <p>{user.name}님 밥 해머거!</p>}
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             type="text"

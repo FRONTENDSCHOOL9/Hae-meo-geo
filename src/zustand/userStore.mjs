@@ -1,9 +1,16 @@
 import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
-const useUserStore = create((set) => ({
-  user: null,
-  token: null,
-  setUser: (newUser) => set((state) => ({ ...state, user: newUser })),
-}));
-
-export default useUserStore;
+const userStore = create(
+  persist(
+    (set) => ({
+      user: null,
+      setUser: (newUser) => set(() => ({ user: newUser })),
+    }),
+    {
+      name: "user",
+      storage: createJSONStorage(() => sessionStorage),
+    },
+  ),
+);
+export default userStore;

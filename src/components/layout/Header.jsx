@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
-import userStore from "@zustand/userStateStore.mjs";
+import userStore from "@zustand/userStore.mjs";
 
 function Header() {
   const {
@@ -18,8 +18,6 @@ function Header() {
   } = styles;
 
   const { user } = userStore();
-  console.log(user);
-  // const setUser = userStore((state) => state.setUser);
   const [isClicked, setIsClicked] = useState(false);
 
   const handleToTop = () => {

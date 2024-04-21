@@ -38,4 +38,12 @@
   .replyRegister {
     margin-top: 2rem;
   }
+
+  .replyRegister .attachWr {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 8rem;
+    transform: translateY(50%);
+  }
 }

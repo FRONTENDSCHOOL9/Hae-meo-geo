@@ -41,6 +41,7 @@
   .sidebar {
     bottom: calc(var(--layout-padding) + 8rem);
     width: 5rem;
+    padding: 1rem 0;
   }
 
   .sidebar span {
@@ -49,5 +50,15 @@
     height: 1px;
     overflow: hidden;
     clip: rect(1px 1px 1px 1px);
+  }
+
+  .sidebar button::before {
+    background-size: 2.4rem;
+    margin: 0;
+    height: 4rem;
+  }
+
+  .sidebar li+li {
+    margin-top: 1rem;
   }
 }

@@ -42,7 +42,7 @@
 .ingredient ul {
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   flex-wrap: wrap;
   gap: 0.6rem 1rem;
 }
@@ -52,7 +52,6 @@
   position: relative;
   display: flex;
   gap: .4rem;
-  /* width: 48%; */
 }
 
 .ingredient li::before {

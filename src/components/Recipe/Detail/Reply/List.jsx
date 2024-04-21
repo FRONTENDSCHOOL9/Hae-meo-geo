@@ -68,10 +68,16 @@ function ReplyList({ id, setRepliesFn, replies }) {
 
             {isMyPost && (
               <div className={buttonWr}>
-                <Button onClick={() => handleModify(item._id)} color="primary">
+                {/* <Button onClick={() => handleModify(item._id)} color="primary">
                   수정
-                </Button>
-                <Button onClick={() => handleRemove(item._id)}>삭제</Button>
+                </Button> */}
+                <button
+                  color="primary"
+                  size="medium"
+                  onClick={() => handleRemove(item._id)}
+                >
+                  <span className="hidden">삭제</span>
+                </button>
               </div>
             )}
           </div>

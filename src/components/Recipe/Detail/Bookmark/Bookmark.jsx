@@ -12,15 +12,12 @@ function Bookmark({ id }) {
   const [isBookmarked, setIsBookmarked] = useState();
   const [bookmarkId, setBookmarkId] = useState();
 
-  console.log(user, isBookmarked, bookmarkId);
-
   const fetchData = async () => {
     try {
       if (user) {
         const { data } = await axios.get(`/bookmarks/product`);
         setIsBookmarked(
           data?.item.some((item) => {
-            console.log(item.product._id === id);
             return item.product._id === id;
           }),
         );
@@ -28,7 +25,6 @@ function Bookmark({ id }) {
         if (isBookmarked) {
           data?.item.some((item) => {
             if (item.product._id === id) setBookmarkId(item._id);
-            console.log(item.product._id, id);
           });
         }
       }
@@ -69,7 +65,7 @@ function Bookmark({ id }) {
       onClick={handleBookmark}
       className={`${bookmark} ${isBookmarked ? bookmarkAct : ""}`}
     >
-      {isBookmarked ? "저장 완료" : "나도해보기"}
+      <span className="pc">{isBookmarked ? "저장 완료" : "나도해보기"}</span>
     </button>
   );
 }

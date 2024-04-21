@@ -2,6 +2,7 @@
   margin-top: -1.4rem;
 }
 
+
 .list article+article {
   margin-top: 1.8rem;
   padding-top: 1.8rem;
@@ -21,8 +22,21 @@
 }
 
 .list .buttonWr {
-  display: flex;
-  margin-top: 1rem;
+  /* display: flex;
+  margin-top: 1rem; */
+  position: absolute;
+  top: .6rem;
+  right: 0;
+}
+
+.list article:first-child .buttonWr {
+  top: -1.3rem;
+}
+
+.list .buttonWr button {
+  background: url(/img/ico-close.svg) no-repeat center / cover;
+  width: 2.8rem;
+  aspect-ratio: 1 / 1;
 }
 
 
@@ -34,4 +48,5 @@
   .list .rightWr {
     width: calc(100% - 6.3rem);
   }
+
 }

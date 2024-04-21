@@ -4,6 +4,10 @@
   border-top: 1px solid var(--color-gray-50);
 }
 
+.replyRegister input[type="radio"] {
+  display: none;
+}
+
 .replyRegister button[type="submit"] {
   margin-top: 1.6rem;
   align-self: center;

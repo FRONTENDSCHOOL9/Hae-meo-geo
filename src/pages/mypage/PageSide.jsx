@@ -1,6 +1,5 @@
 import { LinkButton } from "@components/Button/Button";
-import useCustomAxios from "@hooks/useCustomAxios.mjs";
-import styles from "@pages/mypage/MyPage.module.css";
+import styles from "@pages/mypage/PageSide.module.css";
 import useUserStore from "@zustand/userStore.mjs";
 
 function PageSide() {

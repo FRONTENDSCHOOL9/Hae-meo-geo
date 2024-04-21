@@ -48,7 +48,7 @@ function Bookmark({ id }) {
       }
       {
         const toLogin = confirm(
-          "잠깐! '나도해보기' 기능은 로그인을 해야만 이용할 수 있어요. \n로그인 하러갈까요?"
+          "잠깐! '나도해보기' 기능은 로그인을 해야만 이용할 수 있어요. \n로그인 하러갈까요?",
         );
         toLogin && navigate("/user/login");
       }

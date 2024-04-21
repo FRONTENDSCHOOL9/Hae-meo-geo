@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import styles from "@pages/mypage/MyPage.module.css";
+import styles from "@pages/mypage/InforMation.module.css";
 import useUserStore from "@zustand/userStore.mjs";
 
 import { Button, LinkButton } from "@components/Button/Button";
@@ -170,18 +170,17 @@ function InforMation() {
             <Button type="submit" color="primary" size="large" filled="false">
               수정하기
             </Button>
+            <div className={styles.resign}>
+              <Button
+                type="button"
+                color="Transparency"
+                size="small"
+                filled="false"
+              >
+                회원 탈퇴하기
+              </Button>
+            </div>
           </form>
-          <br />
-          <div className={styles.resign}>
-            <Button
-              type="button"
-              color="Transparency"
-              size="small"
-              filled="false"
-            >
-              회원 탈퇴하기
-            </Button>
-          </div>
         </wrap>
       </div>
     </>

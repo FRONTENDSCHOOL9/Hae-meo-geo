@@ -9,7 +9,7 @@
 .pageside {
   background-color: var(--color-secondary);
   position: relative;
-  top: -10rem;
+  top: -8rem;
   left: -3rem;
   display: flex;
   height: 100vh;
@@ -29,8 +29,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-  left: 30rem;
   height: 100vh;
 }
 
@@ -71,6 +69,7 @@
 
 .form {
   gap: 3rem;
+  width: 80rem;
 }
 
 .list {
@@ -79,7 +78,6 @@
 }
 
 .resign {
-  width: 100rem;
   display: flex;
   justify-content: flex-end;
 }

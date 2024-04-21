@@ -1,8 +1,11 @@
 import { LinkButton } from "@components/Button/Button";
 import PageSide from "./PageSide";
-import styles from "@pages/mypage/MyPage.module.css";
+import styles from "@pages/mypage/BookMark.module.css";
+import useUserStore from "@zustand/userStore.mjs";
+import { Link } from "react-router-dom";
 
 function BookMark() {
+  const { bookmarks } = useUserStore();
   return (
     <>
       <div className={styles.page}>
@@ -27,8 +30,19 @@ function BookMark() {
             </LinkButton>
           </div>
           <form>
-            <div className={styles.list}>전체</div>
+            <br />
+            <div className={styles.list}>전체()</div>
             <hr />
+            <ul>
+              {bookmarks &&
+                bookmarks.map((bookmark, index) => (
+                  <li key={index}>
+                    <span>북마크</span>
+                    <Link to={`/bookmark/${bookmark.id}`}>{bookmark.name}</Link>
+                  </li>
+                ))}
+            </ul>
+            <div></div>
           </form>
         </wrap>
       </div>

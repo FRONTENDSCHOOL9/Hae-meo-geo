@@ -34,9 +34,9 @@
 }
 
 .list .buttonWr button {
-  background: url(/img/ico-close.svg) no-repeat center / cover;
+  /* background: url(/img/ico-close.svg) no-repeat center / cover;
   width: 2.8rem;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1 / 1; */
 }
 
 

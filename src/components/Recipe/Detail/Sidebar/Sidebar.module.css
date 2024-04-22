@@ -53,12 +53,12 @@
   }
 
   .sidebar button::before {
-    background-size: 2.4rem;
+    background-size: 2.6rem;
     margin: 0;
     height: 4rem;
   }
 
   .sidebar li+li {
-    margin-top: 1rem;
+    margin-top: 0;
   }
 }

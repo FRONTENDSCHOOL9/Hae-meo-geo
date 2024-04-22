@@ -1,5 +1,5 @@
 //import useUserState from "./useUserState.mjs";
-import InforMation from "@components/mypage/InforMation";
+import InforMation from "./InforMation";
 
 // import Submit from "@components/Submit";
 // import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ function MyPage() {
 
   return (
     <>
-        <InforMation />
+      <InforMation />
     </>
   );
 }

@@ -6,12 +6,14 @@ import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import styles from "./SignupStepTwo.module.css";
 
 function SignupStepTwo() {
   const [emailAvailability, setEmailAvailability] = useState(null);
   const axios = useCustomAxios();
   const navigate = useNavigate();
   const [setAttachImg] = useState();
+  const { form } = styles;
   const {
     register,
     handleSubmit,
@@ -40,29 +42,7 @@ function SignupStepTwo() {
       console.log(formData);
 
       // 이미지
-      // if (formData.profileImage.length > 0) {
-      //   const imageFormData = new FormData();
-      //   imageFormData.append("attach", formData.profileImage[0]);
-
-      //   const fileRes = await axios("/files", {
-      //     method: "post",
-      //     headers: {
-      //       "Content-Type": "multipart/form-data",
-      //     },
-      //     data: imageFormData,
-      //   });
-
-      //   formData.profileImage = fileRes.data.file.name;
-      // } else {
-      //   delete formData.profileImage;
-      // }
-
-      if (!formData.profileImage || !formData.profileImage[0]) {
-        // 프로필 이미지가 선택되지 않았을 때 기본 이미지
-        formData.profileImage = ["api/public/logo.ico"];
-        console.log("qqqq");
-      } else {
-        // 이미지가 선택된 경우
+      if (formData.profileImage.length > 0) {
         const imageFormData = new FormData();
         imageFormData.append("attach", formData.profileImage[0]);
 
@@ -75,7 +55,29 @@ function SignupStepTwo() {
         });
 
         formData.profileImage = fileRes.data.file.name;
+      } else {
+        delete formData.profileImage;
       }
+
+      // if (!formData.profileImage || !formData.profileImage[0]) {
+      //   // 프로필 이미지가 선택되지 않았을 때 기본 이미지
+      //   formData.profileImage = ["api/public/logo.ico"];
+      //   console.log("qqqq");
+      // } else {
+      //   // 이미지가 선택된 경우
+      //   const imageFormData = new FormData();
+      //   imageFormData.append("attach", formData.profileImage[0]);
+
+      //   const fileRes = await axios("/files", {
+      //     method: "post",
+      //     headers: {
+      //       "Content-Type": "multipart/form-data",
+      //     },
+      //     data: imageFormData,
+      //   });
+
+      //   formData.profileImage = fileRes.data.file.name;
+      // }
 
       //회원가입
       formData.type = "seller";
@@ -108,11 +110,16 @@ function SignupStepTwo() {
         <Title>회원가입</Title>
         <SignupSteps>
           <SignupStepsItem>약관동의</SignupStepsItem>
-          <SignupStepsItem color="black">계정생성</SignupStepsItem>
+          <SignupStepsItem color="black" fontWeight="bold">
+            계정생성
+          </SignupStepsItem>
           <SignupStepsItem>가입완료</SignupStepsItem>
         </SignupSteps>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className={`${form} ${styles.steptwo}`}
+        >
           <fieldset>
             <label htmlFor="email">아이디(이메일)*</label>
             <input
@@ -131,6 +138,7 @@ function SignupStepTwo() {
               onClick={handleCheckEmail}
               color="primary"
               size="large"
+              margin="false"
             >
               확인
             </Button>

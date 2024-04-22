@@ -14,6 +14,10 @@
   z-index: 99;
 }
 
+.logo {
+  z-index: 1;
+}
+
 .logo img {
   width: 4.5rem;
   position: relative;
@@ -27,7 +31,7 @@
 }
 
 .gnb ul a {
-  transition: all .3s
+  transition: all 0.3s;
 }
 
 .gnb ul a:hover {
@@ -36,7 +40,7 @@
 
 .userMenu {
   display: flex;
-  gap: 6rem
+  gap: 6rem;
 }
 
 .userMenu li * {
@@ -44,12 +48,13 @@
   width: 2.6rem;
   height: 2.8rem;
   background: url(/img/ico-user.svg) no-repeat center / cover;
-  transition: all .3s;
+  transition: all 0.3s;
+  background: url(/img/ico-user.svg) no-repeat center / 2.6rem;
+  transition: all 0.3s;
 }
 
-.userMenu .search {
+.userMenu li button {
   background-image: url(/img/ico-search.svg);
-  height: 2.7rem;
 }
 
 .userMenu .search:hover {
@@ -64,7 +69,7 @@
   position: absolute;
   right: var(--layout-padding);
   width: 2.4rem;
-  aspect-ratio: 1/.8;
+  aspect-ratio: 1/0.8;
 }
 
 .hamburgerButton i {
@@ -72,13 +77,13 @@
   border-radius: 1rem;
   width: 100%;
   height: 2px;
-  margin: .6rem 0;
+  margin: 0.6rem 0;
   background: var(--color-gray-100);
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .hamburgerButton.isClicked i:nth-child(1) {
-  transform: translateY(.8rem) rotate(45deg);
+  transform: translateY(0.8rem) rotate(45deg);
 }
 
 .hamburgerButton.isClicked i:nth-child(2) {
@@ -86,18 +91,13 @@
 }
 
 .hamburgerButton.isClicked i:nth-child(3) {
-  transform: translateY(-.8rem) rotate(-45deg);
+  transform: translateY(-0.8rem) rotate(-45deg);
 }
 
 .hamburgerMenu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  background: #fff;
-  height: 100vh;
-  padding: var(--layout-padding);
-  display: none !important;
+  display: flex;
+  align-items: center;
+  gap: 8rem;
 }
 
 .fixedWr {
@@ -113,8 +113,9 @@
   background: #fff;
   width: 9rem;
   height: 9rem;
-  background: rgba(255, 255, 255, 0.7) url(/img/ico-totop.svg) no-repeat center / 1.8em;
-  transition: all .3s;
+  background: rgba(255, 255, 255, 0.7) url(/img/ico-totop.svg) no-repeat center /
+    1.8em;
+  transition: all 0.3s;
   backdrop-filter: blur(1rem);
 }
 
@@ -125,13 +126,10 @@
 
 @media (max-width: 767px) {
   .header {
-    font-size: 1.4rem;
-    padding: 0.6rem 0;
-  }
-
-  .gnb,
-  .userMenu {
-    display: none;
+    font-size: 1.6rem;
+    padding: 0.8rem 0;
+    flex-wrap: wrap;
+    gap: 0;
   }
 
   .logo img {
@@ -147,5 +145,63 @@
     width: 5rem;
     height: 5rem;
     background-size: 1.8rem;
+  }
+
+  .hamburgerMenu {
+    position: fixed;
+    top: 5.7rem;
+    width: 100vw;
+    height: 100vh;
+    background: #fff;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+  }
+
+  .hamburgerMenu.act {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .gnb {
+    order: 1;
+    width: 100%;
+  }
+
+  .gnb ul {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .gnb ul li {
+    border-top: 1px solid var(--color-gray-50);
+  }
+
+  .gnb ul a {
+    display: block;
+    padding: 2rem var(--layout-padding);
+  }
+
+  .userMenu {
+    gap: 0;
+    width: 100%;
+  }
+
+  .userMenu li {
+    width: 50%;
+  }
+
+  .userMenu li + li {
+    border-left: 1px solid var(--color-gray-50);
+  }
+
+  .userMenu li * {
+    margin: auto;
+    width: 100%;
+    padding: var(--layout-padding);
+    height: 5rem;
   }
 }

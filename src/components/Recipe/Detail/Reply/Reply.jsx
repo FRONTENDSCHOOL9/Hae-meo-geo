@@ -1,6 +1,5 @@
 import ReplyList from "@components/Recipe/Detail/Reply/List";
 import ReplyRegister from "@components/Recipe/Detail/Reply/Register";
-import styles from "./Reply.module.css";
 
 function Reply({ id, replies, rcpName, rcpNum, setRepliesFn }) {
   return (

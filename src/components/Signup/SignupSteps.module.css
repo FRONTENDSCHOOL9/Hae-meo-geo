@@ -1,17 +1,19 @@
-.steps{
+.steps {
   display: flex;
   gap: 2rem;
+  font-size: 2.4rem;
 }
 
-.black{
+.black {
   color: var(--color-black);
+  font-weight: bold;
 }
 
-.gray{
+.gray {
   color: var(--color-gray-100);
 }
 
-.step:not(:last-child)::after{
+.step:not(:last-child)::after {
   content: ">";
   color: var(--color-gray-100);
   margin-left: 2rem;

@@ -14,7 +14,6 @@ function Home() {
   const { section, todayMenuSec, bookmarkSec, searchSec } = styles;
 
   const today = `day${new Date().getDay()}`;
-  // const weather = "weather01";
   const [weather, setWeather] = useState();
   const [dataTodayRcp, setDataTodayRcp] = useState();
   const [dataBookmark, setDataBookmark] = useState();
@@ -56,9 +55,11 @@ function Home() {
       if (dataTodayRcp) {
         const filteredData = filteredTodayRcp(dataTodayRcp);
         const todayData = filteredData[randomFn(filteredData)];
+        console.log(todayData);
         const { data } = await axios(
           `products?keyword=${todayData.title}&page=1&limit=8`,
         );
+        console.log(data);
         setTodayMenu({ info: todayData, data: data.item });
       }
     } catch (err) {

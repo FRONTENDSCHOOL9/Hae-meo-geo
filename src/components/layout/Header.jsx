@@ -22,23 +22,21 @@ function Header() {
   const handleToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   const handleNav = (e) => {
+    console.log(e.target.tagName);
     if (e.target.tagName !== "A") return;
     setIsClicked(false);
   };
 
   return (
     <>
-      <header className={header}>
+      <header className={header} onClick={(e) => handleNav(e)}>
         <div className={logo}>
           <Link to="/">
             <img className="pc" src="/img/logo.svg" alt="해머거" />
             <img className="mo" src="/img/logo-name.svg" alt="해머거" />
           </Link>
         </div>
-        <div
-          className={`${hamburgerMenu} ${isClicked ? styles.act : ""}`}
-          onClick={(e) => handleNav(e)}
-        >
+        <div className={`${hamburgerMenu} ${isClicked ? styles.act : ""}`}>
           <nav className={gnb}>
             <ul>
               <li>

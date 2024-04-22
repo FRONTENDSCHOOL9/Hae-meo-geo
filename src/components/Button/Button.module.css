@@ -34,6 +34,12 @@
   background-color: var(--color-gray-30);
 }
 
+.Transparency {
+  color: var(--color-black);
+  border: none;
+  text-decoration: underline;
+}
+
 /* size */
 .small {
   font-size: 1.6rem;

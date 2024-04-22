@@ -1,0 +1,67 @@
+.page {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.information {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.button :hover {
+  background-color: var(--color-secondary);
+  transition: all 0.3s;
+  color: white;
+}
+
+.list {
+  font-size: 2.4rem;
+  left: 0;
+}
+
+.form {
+  width: 90rem;
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 100vh; /* 최대 높이 설정 */
+  overflow-y: auto; /* 세로 스크롤바 표시 */
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  width: calc(50% - 15px);
+  margin-bottom: 5rem;
+}
+
+.form span {
+  font-size: 2.4rem;
+}
+
+.form wrap {
+  display: flex;
+}
+
+.img {
+  background-color: var(--color-gray-50);
+  width: 40rem;
+  height: 30rem;
+  border-radius: 2rem;
+}
+
+.tag {
+  background-color: var(--color-gray-50);
+  width: 8rem;
+  height: 3rem;
+  border: gray solid;
+  border-radius: 2rem;
+  text-align: center;
+  line-height: 3rem;
+}

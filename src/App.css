@@ -26,6 +26,8 @@ body {
 
 #root {
   min-height: 100vh;
+  max-width: 1920px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
@@ -38,12 +40,47 @@ body {
   clip: rect(1px 1px 1px 1px);
 }
 
+.pc {
+  display: inline-block;
+}
+
+.mo {
+  display: none;
+}
+
+.errorMsg {
+  color: var(--color-primary);
+  margin-top: 0.6rem;
+}
+
+.swiper-wrapper {
+  position: relative;
+}
+
 .swiper-slide img {
   max-width: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 1.2rem;
   overflow: hidden;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  background: #fff url(/img/ico-arrow.svg) no-repeat center / cover;
+  border: 2px solid #000;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  margin: 0;
+  color: transparent;
+  top: 50%;
+  display: block;
+}
+
+.swiper-button-prev {
+  transform: translate(-50%, -50%) rotate(180deg);
+
 }
 
 @media (min-width: 1025px) and (max-width: 1680px) {
@@ -67,7 +104,15 @@ body {
   }
 
   body {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+  }
+
+  .pc {
+    display: none;
+  }
+
+  .mo {
+    display: inline-block;
   }
 }
 

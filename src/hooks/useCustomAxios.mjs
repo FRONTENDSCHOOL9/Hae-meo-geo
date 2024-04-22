@@ -1,7 +1,8 @@
 import useUserStore from "@zustand/userStore.mjs";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
-const { VITE_API_SERVER, VITE_API_SERVER_RCP } = import.meta.env;
+const { VITE_API_SERVER, VITE_API_SERVER_RCP, VITE_CLIENT_ID } = import.meta.env;
 
 function useCustomAxios(type = "likelion") {
   const { user } = useUserStore();
@@ -17,7 +18,7 @@ function useCustomAxios(type = "likelion") {
         : {
             "content-type": "application/json",
             accept: "application/json",
-            "client-id": "06-haemeogeo",
+            "client-id": VITE_CLIENT_ID,
           },
   });
 
@@ -35,14 +36,14 @@ function useCustomAxios(type = "likelion") {
         if (err.response?.status === 401) {
           // 인증 되지 않음
           const gotoLogin = confirm(
-            "로그인 후 이용 가능합니다.\n로그인 페이지로 이동하시겠습니까?"
+            "로그인 후 이용 가능합니다.\n로그인 페이지로 이동하시겠습니까?",
           );
           gotoLogin &&
-            navigate("/user/login", { state: { from: location.pathname } });
+            Navigate("/user/login", { state: { from: location.pathname } });
         } else {
           return Promise.reject(err);
         }
-      }
+      },
     );
 
     return config;

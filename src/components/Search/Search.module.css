@@ -1,35 +1,9 @@
-.search {
+.searchWr {
   margin-top: 3rem;
   text-align: center;
 }
 
-.typeWr {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem 3rem;
-}
 
-.type {
-  display: flex;
-  align-items: center;
-  gap: 1em;
-}
-
-.type h3 {
-  font-size: var(--title-medium);
-}
-
-.type nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.8em;
-}
-
-.type button+button {
-  margin: 0 !important;
-}
 
 .inputWr {
   position: relative;
@@ -57,14 +31,4 @@
   transform: translateY(-50%);
   border-left: 2px solid var(--color-secondary);
   transition: all .3s;
-}
-
-@media (max-width: 767px) {
-  .type {
-    flex-direction: column;
-  }
-
-  .type nav {
-    width: 21rem;
-  }
 }

@@ -8,6 +8,9 @@
 
 .pageside {
   background-color: var(--color-secondary);
+  position: relative;
+  top: -8rem;
+  left: -3rem;
   display: flex;
   height: 100vh;
   width: 70rem;
@@ -26,34 +29,59 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-  left: 30rem;
   height: 100vh;
 }
 
 .icon {
   background-color: white;
-  width: 100px;
-  height: 100px;
+  width: 10rem;
+  height: 10rem;
   border-radius: 50%;
 }
 
 .label {
-  font-size: 24px;
+  display: flex;
+  align-items: center;
+  font-size: 2.4rem;
 }
 
 .user {
-  font-size: 24px;
-  margin-bottom: 500px;
+  font-size: 2.4rem;
+  margin-bottom: 50rem;
 }
 
 .input {
   width: 50rem;
   height: 4rem;
-  border-radius: 10px;
+  border-radius: 1rem;
   border-color: var(--color-gray-100);
 }
 
+.button :hover {
+  background-color: var(--color-secondary);
+  transition: all 0.3s;
+  color: white;
+}
+
+.register {
+  font-size: 1rem;
+}
+
 .form {
-  gap: 7rem;
+  gap: 3rem;
+  width: 80rem;
+}
+
+.list {
+  font-size: 2.4rem;
+  left: 0;
+}
+
+.resign {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.secession {
+  position: absolute;
 }

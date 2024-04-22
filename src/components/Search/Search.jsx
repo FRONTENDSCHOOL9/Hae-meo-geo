@@ -1,45 +1,48 @@
+import Type from "@components/Search/Type";
 import PropTypes from "prop-types";
-import { Button } from "@components/Button/Button";
 import styles from "./Search.module.css";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 Search.propTypes = {
-  fetchData: PropTypes.func.isRequired,
-  setKeyword: PropTypes.func.isRequired,
+  keyword: PropTypes.string.isRequired,
+  setKeyword: PropTypes.func,
+  setCurrentPage: PropTypes.func,
+  type: PropTypes.string,
 };
 
-function Search({ fetchData, setKeyword }) {
-  const { search, typeWr, type, inputWr } = styles;
-  const limit = import.meta.env.VITE_PAGINATION_LIMIT;
-
-  const handleClick = (e) => {
-    if (e.target.tagName !== "BUTTON") return false;
-    const searchKeyword = e.target.innerText.split("&")[0];
-    fetchData(`/1/${limit}/RCP_PAT2=${searchKeyword}`);
-    setKeyword(searchKeyword);
-  };
+function Search({ keyword, setKeyword, setCurrentPage, type = "haeRcp" }) {
+  const { searchWr, inputWr } = styles;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const handleSearch = (e) => {
     e.preventDefault();
-    const searchKeyword = e.target.firstChild.value;
-    fetchData(`/1/${limit}/RCP_PARTS_DTLS=${searchKeyword}`);
-    setKeyword(searchKeyword);
+    const ingredient = e.target.firstChild.value;
+    searchParams.set("RCP_PARTS_DTLS", ingredient);
+    searchParams.set("page", 1);
+    searchParams.delete("RCP_PAT2");
+    searchParams.delete("RCP_NM");
+
+    if (keyword !== "home") {
+      // console.log("ingredient:",ingredient);
+      setKeyword(ingredient);
+      setSearchParams(searchParams);
+      setCurrentPage(1);
+    }
+    // 홈일 경우 페이지 이동하도록 추가하기
+    if (!type === "myRcpList")navigate(`/recipe/list?page=1&RCP_PARTS_DTLS=${ingredient}`);
   };
 
   return (
-    <div className={search}>
-      <div className={typeWr}>
-        <div className={type}>
-          <h3>종류별</h3>
-          <nav onClick={(e) => handleClick(e)}>
-            <Button size="medium">밥</Button>
-            <Button size="medium">국&찌개</Button>
-            <Button size="medium">반찬</Button>
-            <Button size="medium">일품</Button>
-            <Button size="medium">후식</Button>
-            <Button size="medium">기타</Button>
-          </nav>
-        </div>
-      </div>
+    <div className={searchWr}>
+      {type === "haeRcp" && (
+        <Type
+          keyword={keyword}
+          setKeyword={setKeyword}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
+
       <form className={inputWr} onSubmit={(e) => handleSearch(e)}>
         <input type="text" placeholder="재료를 검색해보세요." />
         <button type="submit">

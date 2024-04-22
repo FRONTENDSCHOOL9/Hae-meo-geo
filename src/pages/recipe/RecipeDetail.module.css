@@ -1,0 +1,10 @@
+.recipeDetail .buttonWr {
+  margin-top: 4em;
+  text-align: right;
+}
+
+@media (max-width: 767px) {
+  .recipeDetail .buttonWr {
+    text-align: center;
+  }
+}

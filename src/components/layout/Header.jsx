@@ -9,7 +9,6 @@ function Header() {
     logo,
     gnb,
     userMenu,
-    search,
     fixedWr,
     toTop,
     hamburgerButton,
@@ -22,7 +21,6 @@ function Header() {
   const handleToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   const handleNav = (e) => {
-    console.log(e.target.tagName);
     if (e.target.tagName !== "A") return;
     setIsClicked(false);
   };

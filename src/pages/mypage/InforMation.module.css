@@ -20,6 +20,8 @@
 }
 
 .form {
+  display: flex;
+  flex-direction: column;
   gap: 3rem;
   width: 80rem;
 }
@@ -38,6 +40,10 @@
 }
 
 .register {
-  display: flex;
   font-size: 1rem;
+}
+
+.resign {
+  display: flex;
+  justify-content: flex-end;
 }

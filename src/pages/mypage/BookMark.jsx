@@ -1,4 +1,4 @@
-import { LinkButton } from "@components/Button/Button";
+import { Button, LinkButton } from "@components/Button/Button";
 import PageSide from "./PageSide";
 import styles from "@pages/mypage/BookMark.module.css";
 import useUserStore from "@zustand/userStore.mjs";
@@ -29,7 +29,7 @@ function BookMark() {
               나도 해보기 목록
             </LinkButton>
           </div>
-          <form>
+          <form className={styles.form}>
             <br />
             <div className={styles.list}>전체()</div>
             <hr />
@@ -42,7 +42,58 @@ function BookMark() {
                   </li>
                 ))}
             </ul>
-            <div></div>
+
+            <fieldset className={styles.item}>
+              <div className={styles.img}></div>
+              <span>김치찌개</span>
+              <wrap>
+                <div className={styles.tag}>끓이기</div>
+                <div className={styles.tag}>찌기</div>
+              </wrap>
+            </fieldset>
+
+            <fieldset className={styles.item}>
+              <div className={styles.img}></div>
+              <span>김치찌개</span>
+              <wrap>
+                <div className={styles.tag}>끓이기</div>
+                <div className={styles.tag}>찌기</div>
+              </wrap>
+            </fieldset>
+
+            <fieldset className={styles.item}>
+              <div className={styles.img}></div>
+              <span>김치찌개</span>
+              <wrap>
+                <div className={styles.tag}>끓이기</div>
+                <div className={styles.tag}>찌기</div>
+              </wrap>
+            </fieldset>
+
+            <fieldset className={styles.item}>
+              <div className={styles.img}></div>
+              <span>김치찌개</span>
+              <wrap>
+                <div className={styles.tag}>끓이기</div>
+                <div className={styles.tag}>찌기</div>
+              </wrap>
+            </fieldset>
+            <fieldset className={styles.item}>
+              <div className={styles.img}></div>
+              <span>김치찌개</span>
+              <wrap>
+                <div className={styles.tag}>끓이기</div>
+                <div className={styles.tag}>찌기</div>
+              </wrap>
+            </fieldset>
+            <fieldset className={styles.item}>
+              <div className={styles.img}></div>
+              <span>김치찌개</span>
+              <wrap>
+                <div className={styles.tag}>끓이기</div>
+                <div className={styles.tag}>찌기</div>
+              </wrap>
+            </fieldset>
           </form>
         </wrap>
       </div>

@@ -10,8 +10,8 @@ function Share({ name, image }) {
         description: `해머거에서 맛있는 '${name}' 레시피를 확인해보세요.`,
         imageUrl: image,
         link: {
-          mobileWebUrl: `http://localhost:5173/recipe/list/${name}`,
-          webUrl: `http://localhost:5173/recipe/list/${name}`,
+          mobileWebUrl: `https://haemeogeo.netlify.app/recipe/list/${name}`,
+          webUrl: `https://haemeogeo.netlify.app/recipe/list/${name}`,
         },
       },
     });

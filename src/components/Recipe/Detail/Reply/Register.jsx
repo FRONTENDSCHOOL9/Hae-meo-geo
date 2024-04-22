@@ -9,8 +9,14 @@ import ReplyStyle from "./Reply.module.css";
 import styles from "./Register.module.css";
 
 function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
-  const { replyRegister, ratingErrorMsg, contentErrorMsg, preview, noLogin } =
-    styles;
+  const {
+    replyRegister,
+    ratingErrorMsg,
+    contentErrorMsg,
+    preview,
+    noLogin,
+    buttonWr,
+  } = styles;
   const { user } = useUserStore();
   const axios = useCustomAxios();
   const [rating, setRating] = useState();
@@ -195,9 +201,11 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
               />
             </div>
           </div>
-          <Button type="submit" size="medium" color="primary">
-            등록하기
-          </Button>
+          <div className={buttonWr}>
+            <Button type="submit" size="medium" color="primary">
+              등록하기
+            </Button>
+          </div>
         </form>
       ) : (
         <p className={noLogin}>

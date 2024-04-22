@@ -10,7 +10,6 @@
 
 .replyRegister button[type="submit"] {
   margin-top: 1.6rem;
-  align-self: center;
 }
 
 .replyRegister .noLogin a {
@@ -32,6 +31,10 @@
   bottom: 0;
   left: 0;
   transform: translateY(calc(100% + 0.4rem));
+}
+
+.buttonWr {
+  text-align: center;
 }
 
 @media (max-width: 767px) {

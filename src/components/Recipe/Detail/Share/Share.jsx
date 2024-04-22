@@ -1,8 +1,8 @@
-function Share({ name, image }) {
-  const handleShare = () => {
-    Kakao.init(import.meta.env.VITE_KAKAO_KEY);
-    Kakao.isInitialized();
+import styles from "./Share.module.css";
 
+function Share({ name, image }) {
+  const { share } = styles;
+  const handleShare = () => {
     Kakao.Share.sendDefault({
       objectType: "feed",
       content: {
@@ -18,7 +18,7 @@ function Share({ name, image }) {
   };
 
   return (
-    <button onClick={handleShare}>
+    <button onClick={handleShare} className={share}>
       <span className="pc">공유하기</span>
     </button>
   );

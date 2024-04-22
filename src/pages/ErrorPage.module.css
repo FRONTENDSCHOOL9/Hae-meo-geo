@@ -1,0 +1,10 @@
+.aniWr {
+  margin-top: calc(var(--title-big) * 2);
+  text-align: center;
+}
+
+.aniWr p {
+  font-size: var(--title-medium);
+  font-weight: bold;
+  margin-bottom: var(--title-big);
+}

@@ -22,11 +22,11 @@
 }
 
 .list .buttonWr {
-  /* display: flex;
-  margin-top: 1rem; */
-  position: absolute;
+  display: flex;
+  margin-top: 1rem;
+  /* position: absolute;
   top: .6rem;
-  right: 0;
+  right: 0; */
 }
 
 .list article:first-child .buttonWr {

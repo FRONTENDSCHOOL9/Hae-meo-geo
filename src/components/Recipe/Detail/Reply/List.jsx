@@ -71,13 +71,16 @@ function ReplyList({ id, setRepliesFn, replies }) {
                 {/* <Button onClick={() => handleModify(item._id)} color="primary">
                   수정
                 </Button> */}
-                <button
+                <Button color="primary" onClick={() => handleRemove(item._id)}>
+                  삭제
+                </Button>
+                {/* <button
                   color="primary"
                   size="medium"
                   onClick={() => handleRemove(item._id)}
                 >
                   <span className="hidden">삭제</span>
-                </button>
+                </button> */}
               </div>
             )}
           </div>

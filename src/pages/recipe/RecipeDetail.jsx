@@ -40,7 +40,11 @@ function RecipeDetail() {
     <>
       {data ? (
         <div className={recipeDetail}>
-          <Sidebar id={Number(data["RCP_SEQ"])} />
+          <Sidebar
+            id={Number(data["RCP_SEQ"])}
+            name={data["RCP_NM"]}
+            image={data["ATT_FILE_NO_MAIN"]}
+          />
           <Banner
             name={data["RCP_NM"]}
             pat={data["RCP_PAT2"]}

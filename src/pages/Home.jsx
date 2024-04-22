@@ -110,7 +110,8 @@ function Home() {
     <>
       <section className={`${section} ${todayMenuSec}`}>
         <h2>
-          {todayMenu?.info.title} 오늘은 {todayMenu?.info.content} 어때요?
+          {todayMenu?.info.content} <br className="mo" />
+          오늘은 <span>{todayMenu?.info.title}</span> 어때요?
         </h2>
         <Swiper
           className={swiperWr}
@@ -147,7 +148,10 @@ function Home() {
       </section>
 
       <section className={`${section} ${searchSec}`}>
-        <h2>찾는 레시피가 없다면 직접 검색해보세요!</h2>
+        <h2>
+          찾는 레시피가 없다면 <br className="mo" />
+          직접 검색해보세요!
+        </h2>
         <Search keyword={"home"} />
       </section>
     </>

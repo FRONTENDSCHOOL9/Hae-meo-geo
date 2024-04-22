@@ -29,14 +29,6 @@
   transition: all .3s;
 }
 
-.sidebar li:nth-child(2) button::before {
-  background-image: url(/img/ico-share.svg);
-}
-
-.sidebar li:nth-child(2):hover button::before {
-  background-image: url(/img/ico-share-act.svg);
-}
-
 @media (max-width: 767px) {
   .sidebar {
     bottom: calc(var(--layout-padding) + 8rem);

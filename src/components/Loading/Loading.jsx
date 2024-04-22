@@ -1,9 +1,8 @@
 import Lottie from "react-lottie";
 import animationData from "@/assets/lottie/loading.json";
-import styles from "./Loading.module.css";
+import styles from "@pages/ErrorPage.module.css";
 
 function Loading() {
-  const { loading } = styles;
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -14,7 +13,7 @@ function Loading() {
   };
 
   return (
-    <div className={loading}>
+    <div className={styles.aniWr}>
       <p>레시피를 준비하고 있어요!</p>
       <Lottie options={defaultOptions} height={300} width={300} />
     </div>

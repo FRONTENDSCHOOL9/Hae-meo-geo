@@ -1,9 +1,8 @@
 import Lottie from "react-lottie";
 import animationData from "@/assets/lottie/noData.json";
-import styles from "./NoData.module.css";
+import styles from "@pages/ErrorPage.module.css";
 
 function NoData({ keyword }) {
-  const { noData } = styles;
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -14,7 +13,7 @@ function NoData({ keyword }) {
   };
 
   return (
-    <div className={noData}>
+    <div className={styles.aniWr}>
       <p>
         <strong>'{keyword}'</strong> 레시피가 없습니다.
       </p>

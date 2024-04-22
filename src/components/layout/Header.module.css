@@ -113,8 +113,7 @@
   background: #fff;
   width: 9rem;
   height: 9rem;
-  background: rgba(255, 255, 255, 0.7) url(/img/ico-totop.svg) no-repeat center /
-    1.8em;
+  background: rgba(255, 255, 255, 0.7) url(/img/ico-totop.svg) no-repeat center / 1.8em;
   transition: all 0.3s;
   backdrop-filter: blur(1rem);
 }
@@ -137,7 +136,6 @@
   }
 
   .fixedWr {
-    right: 1rem;
     bottom: 3rem;
   }
 
@@ -182,7 +180,7 @@
 
   .gnb ul a {
     display: block;
-    padding: 2rem var(--layout-padding);
+    padding: 2rem;
   }
 
   .userMenu {
@@ -191,10 +189,10 @@
   }
 
   .userMenu li {
-    width: 50%;
+    width: 100%;
   }
 
-  .userMenu li + li {
+  .userMenu li+li {
     border-left: 1px solid var(--color-gray-50);
   }
 

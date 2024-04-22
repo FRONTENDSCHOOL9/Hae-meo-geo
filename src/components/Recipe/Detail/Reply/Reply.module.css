@@ -185,7 +185,7 @@
 
   .replyWr {
     font-size: 1.4rem;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
   }
 
   .attachWr {

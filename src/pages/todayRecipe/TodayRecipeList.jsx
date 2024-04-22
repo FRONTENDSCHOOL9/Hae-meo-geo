@@ -70,7 +70,7 @@ function TodayRecipeList() {
           pageStart={1}
           loadMore={fetchNextPage}
           hasMore={!isFetching && hasNext}
-          loader={<p>로딩중</p>}
+          loader={<Loading key={0} />}
         >
           <ul className={recipeList}>{list}</ul>
         </InfiniteScroll>

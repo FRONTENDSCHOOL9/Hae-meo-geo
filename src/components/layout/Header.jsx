@@ -64,11 +64,6 @@ function Header() {
                 </Link>
               )}
             </li>
-            <li>
-              <button type="button" className={search}>
-                <span className="hidden">검색</span>
-              </button>
-            </li>
           </ul>
         </div>
         <button

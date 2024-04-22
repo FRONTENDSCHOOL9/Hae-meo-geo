@@ -7,21 +7,8 @@ import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useNavigate } from "react-router-dom";
 
 function MyRecipeRegister() {
-  const {
-    textarea,
-    layout,
-    title,
-    container,
-    text,
-    writeWay,
-    ir,
-    boxButtonUpload,
-    buttonUpload,
-    writeWaySelect,
-    boxButtonsSubmit,
-    inputReadOnly,
-    containerWriteWay,
-  } = styles;
+
+  const {textarea, layout, title, container, text, writeWay, boxButtonUpload, buttonUpload, writeWaySelect, boxButtonsSubmit, inputReadOnly, containerWriteWay} = styles;
 
   const navigate = useNavigate();
 
@@ -86,13 +73,8 @@ function MyRecipeRegister() {
 
   return (
     <>
-      <Banner type="myRcpRegister" />
-      <form
-        className={layout}
-        method="post"
-        enctype="multipart/form-data"
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <Banner type="myRcpRegister" name="나만의 레시피를 올려주세요!"/>
+      <form className={layout} method="post" enctype="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
         <div className={container}>
           <div className={title}>제목</div>
           <input
@@ -143,22 +125,9 @@ function MyRecipeRegister() {
         <div className={container}>
           <div className={title}>완료 이미지</div>
           <div className={boxButtonUpload}>
-            <input
-              className={`${text} ${inputReadOnly}`}
-              value={imageName}
-              placeholder="10MB 미만의 이미지를 업로드해주세요."
-              readOnly
-            />
-            <label className={buttonUpload} for="file">
-              첨부파일
-            </label>
-            <input
-              className={ir}
-              {...register("image")}
-              onChange={(e) => changeFileName(e)}
-              type="file"
-              id="file"
-            />
+            <input className={`${text} ${inputReadOnly}`} value={imageName} placeholder="10MB 미만의 이미지를 업로드해주세요." readOnly />
+            <label className={buttonUpload}  for="file">첨부파일</label>
+            <input className="hidden" {...register("image")}  onChange={(e) => changeFileName(e) } type="file" id="file" />
           </div>
         </div>
         <div className={container}>

@@ -23,13 +23,14 @@ function Search({ keyword, setKeyword, setCurrentPage, type = "haeRcp" }) {
     searchParams.delete("RCP_PAT2");
     searchParams.delete("RCP_NM");
 
-    if (!keyword === "home") {
+    if (keyword !== "home") {
+      // console.log("ingredient:",ingredient);
       setKeyword(ingredient);
       setSearchParams(searchParams);
       setCurrentPage(1);
     }
     // 홈일 경우 페이지 이동하도록 추가하기
-    navigate(`/recipe/list?page=1&RCP_PARTS_DTLS=${ingredient}`);
+    if (!type === "myRcpList")navigate(`/recipe/list?page=1&RCP_PARTS_DTLS=${ingredient}`);
   };
 
   return (

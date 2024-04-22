@@ -13,7 +13,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1.2rem;
 }
 
 /* signup */
@@ -23,7 +22,7 @@ label {
 }
 
 .subtitle {
-  font-size: 2.4rem;
+  font-size: var(--title-medium);
 }
 
 .checkbox {

@@ -136,7 +136,6 @@
   }
 
   .fixedWr {
-    right: 1rem;
     bottom: 3rem;
   }
 
@@ -181,7 +180,7 @@
 
   .gnb ul a {
     display: block;
-    padding: 2rem var(--layout-padding);
+    padding: 2rem;
   }
 
   .userMenu {

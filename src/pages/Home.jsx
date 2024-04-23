@@ -11,12 +11,14 @@ import "swiper/css/navigation";
 function Home() {
   const axios = useCustomAxios();
   const axiosRcp = useCustomAxios("rcp");
-  const { section, swiperWr, todayMenuSec, bookmarkSec, searchSec } = styles;
+  const { section, swiperWr, todayMenuSec, bookmarkSec, searchSec, myRcpSec } =
+    styles;
 
   const today = `day${new Date().getDay()}`;
   const [weather, setWeather] = useState();
   const [dataTodayRcp, setDataTodayRcp] = useState();
   const [dataBookmark, setDataBookmark] = useState();
+  const [dataMyRcp, setDataMyRcp] = useState();
   const [todayMenu, setTodayMenu] = useState();
 
   const fetchWeather = async () => {
@@ -76,10 +78,22 @@ function Home() {
     }
   };
 
+  const fetchMyRcp = async () => {
+    try {
+      const { data } = await axios(
+        `/posts?type=recipe&limit=6&page=1&sort={"_id": -1}`,
+      );
+      setDataMyRcp(data?.item);
+    } catch (err) {
+      console.error(err.response?.data.message);
+    }
+  };
+
   useEffect(() => {
     fetchTodayRcp();
     fetchBookmarkRcp();
     fetchWeather();
+    fetchMyRcp();
   }, []);
 
   useEffect(() => {
@@ -102,6 +116,19 @@ function Home() {
       <Link to={`/recipe/list/${item.name}`}>
         <img src={item.image} alt="" />
         <p>{item.name}</p>
+      </Link>
+    </SwiperSlide>
+  ));
+
+  // 나만의 레시피 메뉴
+  const myRcpMenus = dataMyRcp?.map((item, idx) => (
+    <SwiperSlide key={idx}>
+      <Link to={`/recipe/list/${item.name}`}>
+        <img
+          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${item.image}`}
+          alt=""
+        />
+        <p>{item.title}</p>
       </Link>
     </SwiperSlide>
   ));
@@ -144,6 +171,24 @@ function Home() {
           }}
         >
           {bookmarkMenus}
+        </Swiper>
+      </section>
+
+      <section className={`${section} ${myRcpSec}`}>
+        <h2>최근 등록된 나만의 레시피</h2>
+        <Swiper
+          className={swiperWr}
+          modules={[Navigation]}
+          spaceBetween={10}
+          slidesPerView={1.4}
+          navigation={{ clickable: true }}
+          breakpoints={{
+            768: {
+              slidesPerView: 4,
+            },
+          }}
+        >
+          {myRcpMenus}
         </Swiper>
       </section>
 

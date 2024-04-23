@@ -2,6 +2,10 @@
   margin-top: -1.4rem;
 }
 
+.list article {
+  position: relative;
+}
+
 
 .list article+article {
   margin-top: 1.8rem;
@@ -21,6 +25,10 @@
   width: 100%;
 }
 
+.list .contentWr p {
+  white-space: pre-line;
+}
+
 .list .buttonWr {
   display: flex;
   margin-top: 1rem;
@@ -30,7 +38,7 @@
 }
 
 .list article:first-child .buttonWr {
-  top: -1.3rem;
+  top: -1.8rem;
 }
 
 .list .buttonWr button {
@@ -45,8 +53,19 @@
     margin-top: 0;
   }
 
+  .list article {
+    flex-wrap: wrap;
+
+  }
+
   .list .rightWr {
     width: calc(100% - 6.3rem);
+  }
+
+  .list .buttonWr {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 
 }

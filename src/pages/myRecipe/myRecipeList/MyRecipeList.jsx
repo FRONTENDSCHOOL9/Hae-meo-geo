@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import {LinkButton} from "@components/Button/Button";
 import styles from "./MyRecipeList.module.css"
+import Loading from "@components/Loading/Loading";
 
 function MyRecipeList() {
   const axios = useCustomAxios();
@@ -56,7 +57,10 @@ function MyRecipeList() {
       <div className={write}>
         <LinkButton to="/myRecipe/register" type="submit" size="large" color="primary" filled="filled">글쓰기</LinkButton>
       </div>
-      {data && (
+      {isLoading ? 
+        <Loading/>
+      : 
+        data &&
         <>
           <List
           recipeItem={recipeItem}
@@ -70,8 +74,7 @@ function MyRecipeList() {
             setCurrentPage={setCurrentPage}
           />
         </>
-      )}
-
+      }
     </>
   );
 }

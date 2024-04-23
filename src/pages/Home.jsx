@@ -1,4 +1,5 @@
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
+import { LinkButton } from "@components/Button/Button";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
@@ -11,8 +12,15 @@ import "swiper/css/navigation";
 function Home() {
   const axios = useCustomAxios();
   const axiosRcp = useCustomAxios("rcp");
-  const { section, swiperWr, todayMenuSec, bookmarkSec, searchSec, myRcpSec } =
-    styles;
+  const {
+    section,
+    swiperWr,
+    titleWr,
+    todayMenuSec,
+    bookmarkSec,
+    searchSec,
+    myRcpSec,
+  } = styles;
 
   const today = `day${new Date().getDay()}`;
   const [weather, setWeather] = useState();
@@ -58,7 +66,7 @@ function Home() {
         const filteredData = filteredTodayRcp(dataTodayRcp);
         const todayData = filteredData[randomFn(filteredData)];
         const { data } = await axios(
-          `products?keyword=${todayData.title}&page=1&limit=8`,
+          `products?keyword=${todayData.title}&page=1&limit=6`,
         );
         setTodayMenu({ info: todayData, data: data.item });
       }
@@ -70,7 +78,7 @@ function Home() {
   const fetchBookmarkRcp = async () => {
     try {
       const { data } = await axios(
-        `/products?page=1&limit=8&sort={"bookmarks": -1}`,
+        `/products?page=1&limit=6&sort={"bookmarks": -1}`,
       );
       setDataBookmark(data?.item);
     } catch (err) {
@@ -136,10 +144,13 @@ function Home() {
   return (
     <>
       <section className={`${section} ${todayMenuSec}`}>
-        <h2>
-          {todayMenu?.info.content} <br className="mo" />
-          오늘은 <span>{todayMenu?.info.title}</span> 어때요?
-        </h2>
+        <div className={titleWr}>
+          <h2>
+            {todayMenu?.info.content} <br className="mo" />
+            오늘은 <span>"{todayMenu?.info.title}"</span> 요리 어때요?
+          </h2>
+          <LinkButton to="/today/list">더보기</LinkButton>
+        </div>
         <Swiper
           className={swiperWr}
           modules={[Navigation]}
@@ -157,7 +168,12 @@ function Home() {
       </section>
 
       <section className={`${section} ${bookmarkSec}`}>
-        <h2>인기 많은 해머거 레시피</h2>
+        <div className={titleWr}>
+          <h2>
+            인기 많은 <span>해머거 레시피</span>
+          </h2>
+          <LinkButton to="/recipe/list">더보기</LinkButton>
+        </div>
         <Swiper
           className={swiperWr}
           modules={[Navigation]}
@@ -175,7 +191,12 @@ function Home() {
       </section>
 
       <section className={`${section} ${myRcpSec}`}>
-        <h2>최근 등록된 나만의 레시피</h2>
+        <div className={titleWr}>
+          <h2>
+            최근 등록된 <span>나만의 레시피</span>
+          </h2>
+          <LinkButton to="/myrecipe/list">더보기</LinkButton>
+        </div>
         <Swiper
           className={swiperWr}
           modules={[Navigation]}

@@ -33,6 +33,7 @@
 
 .swiperWr {
   margin-top: 3rem;
+  overflow: visible;
 }
 
 .swiperWr p {

@@ -82,12 +82,12 @@ body {
 }
 
 .swiper-button-prev {
-  transform: translate(0, -50%) rotate(180deg);
+  transform: translate(-50%, -90%) rotate(180deg);
   left: 0;
 }
 
 .swiper-button-next {
-  transform: translate(0, -50%);
+  transform: translate(50%, -90%);
   right: 0;
 }
 

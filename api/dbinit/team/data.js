@@ -702,6 +702,64 @@ export const initData = async (nextSeq) => {
           image: "TR404.webp",
         },
       },
+      {
+        _id: await nextSeq("post"),
+        type: "recipe",
+        title: "매운어묵김밥~~",
+        content: `퇴근길~ 저녁을 뭐먹을까 고민중~ 
+        냉장고속재료를 생각하니
+        불현듯 백종원 매운어묵김밥이 생각나네요
+        매콤하고 쫄깃하게 볶은 어묵~~
+        아삭식감을 위해 당근을 추가햇어요 
+        딸들도 맛잇다고 난리네요`,
+        image: "myrcp01.webp",
+        extra: {
+          writeWay: "simple",
+        },
+      },
+      {
+        _id: await nextSeq("post"),
+        type: "recipe",
+        title: "오징어볶음 만들기 !!",
+        content: `오늘은 스뚜레스 만땅 !!!
+        정신없이 매운게 땡기는날이네요 
+        단짠,맵달의 정석으로 
+        오징어볶음을 볶볶햇네요 
+        흰쌀밥에 덮밥으로도 최고예요`,
+        image: "myrcp02.webp",
+        extra: {
+          writeWay: "simple",
+        },
+      },
+      {
+        _id: await nextSeq("post"),
+        type: "recipe",
+        title: "육즙 가득한 만두 만들기^^",
+        content: `집에서 직접 만두를 만들어봤어요^^ 
+        만들어서 바로 먹으니까 진짜 꿀맛이에요!!
+        만두소 만들고 남은 재로는 볶아서 볶음밥으로도 먹고,
+        다 빚어서 냉동실에 넣어 두고 먹으면 간편하고 좋아요~
+        나중에 만둣국 해먹으려구요.
+        귀찮아도 한번 만들면 오래 먹을 수 있어서 추천해요`,
+        image: "myrcp03.webp",
+        extra: {
+          writeWay: "simple",
+        },
+      },
+      {
+        _id: await nextSeq("post"),
+        type: "recipe",
+        title: "냉국수 만들기",
+        content: `너무 더워서 시원한 국수 만들었어요~
+        맛이 없어 보이지만 아주 맛있답니다.
+        간단하게 면 삶고 육수 붓고 오이만 넣어봤어요
+        날씨도 더워지는데 간단하고 맛있게 먹었어요
+        시원하고 좋네요~~~`,
+        image: "myrcp04.webp",
+        extra: {
+          writeWay: "simple",
+        },
+      },
     ],
     // 코드
     code: [],

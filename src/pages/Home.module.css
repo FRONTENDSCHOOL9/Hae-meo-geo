@@ -6,8 +6,19 @@
   margin-top: 10rem;
 }
 
+.section .titleWr {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
 .section h2 {
   font-size: var(--title-medium);
+}
+
+.section h2 span {
+  color: var(--color-primary-80);
+  font-weight: 800;
 }
 
 .section p {
@@ -22,6 +33,7 @@
 
 .swiperWr {
   margin-top: 3rem;
+  overflow: visible;
 }
 
 .swiperWr p {

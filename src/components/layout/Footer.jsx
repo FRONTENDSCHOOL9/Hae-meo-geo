@@ -9,7 +9,9 @@ function Footer() {
           <a href="#">이용약관</a>
         </li>
         <li>
-          <a href="#">개인정보처리방침</a>
+          <a href="#">
+            <strong>개인정보처리방침</strong>
+          </a>
         </li>
         <li>
           <a href="#">FAQ</a>

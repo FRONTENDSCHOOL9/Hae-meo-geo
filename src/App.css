@@ -66,6 +66,12 @@ body {
   object-fit: cover;
   border-radius: 1.2rem;
   overflow: hidden;
+  transition: all .3s;
+}
+
+.swiper-slide:hover img {
+  box-shadow: 0 0 1rem rgba(0, 0, 0, .3);
+  transform: scale(1.02);
 }
 
 .swiper-button-prev,

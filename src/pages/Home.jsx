@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
+import "swiper/css/pagination";
+import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./Home.module.css";
 
@@ -159,8 +160,11 @@ function Home() {
             </div>
             <Swiper
               className={swiperWr}
-              modules={[Navigation]}
+              modules={[Navigation, Pagination]}
               lazy="true"
+              pagination={{
+                type: "progressbar",
+              }}
               spaceBetween={15}
               slidesPerView={1.4}
               navigation={true}
@@ -182,8 +186,11 @@ function Home() {
             </div>
             <Swiper
               className={swiperWr}
-              modules={[Navigation]}
+              modules={[Navigation, Pagination]}
               lazy="true"
+              pagination={{
+                type: "progressbar",
+              }}
               spaceBetween={15}
               slidesPerView={1.4}
               navigation={true}
@@ -205,8 +212,11 @@ function Home() {
             </div>
             <Swiper
               className={swiperWr}
-              modules={[Navigation]}
+              modules={[Navigation, Pagination]}
               lazy="true"
+              pagination={{
+                type: "progressbar",
+              }}
               spaceBetween={15}
               slidesPerView={1.4}
               navigation={true}

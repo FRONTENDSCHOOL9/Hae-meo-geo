@@ -33,15 +33,12 @@
 
 .swiperWr {
   margin-top: 3rem;
+  padding-bottom: 4rem;
   overflow: visible;
 }
 
 .swiperWr p {
   margin-top: 1rem;
-  /* position: absolute;
-  bottom: 0;
-  left: 0;
-  transform: translateY(calc(100% + 1rem)); */
 }
 
 .searchSec h2 {

@@ -79,6 +79,7 @@ body {
   color: transparent;
   top: 50%;
   display: block;
+  display: none;
 }
 
 .swiper-button-prev {
@@ -89,6 +90,17 @@ body {
 .swiper-button-next {
   transform: translate(50%, -90%);
   right: 0;
+}
+
+.swiper .swiper-pagination {
+  height: 2px;
+  top: auto;
+  bottom: 0;
+  opacity: 0.8;
+}
+
+.swiper .swiper-pagination span {
+  background: var(--color-primary-80);
 }
 
 @media (min-width: 1025px) and (max-width: 1680px) {
@@ -126,13 +138,19 @@ body {
 
   .swiper {
     width: calc(100% + 3rem);
-    padding: 0 1.5rem;
+    padding: 0 1.5rem 3rem;
     margin-left: -1.5rem;
   }
 
   .swiper-button-prev,
   .swiper-button-next {
     display: none;
+  }
+
+  .swiper .swiper-pagination {
+    width: calc(100% - 3rem);
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 

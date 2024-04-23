@@ -1,14 +1,14 @@
-import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { LinkButton } from "@components/Button/Button";
+import Loading from "@components/Loading/Loading";
+import Search from "@components/Search/Search";
+import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import Search from "@components/Search/Search";
-import styles from "./Home.module.css";
 import "swiper/css";
 import "swiper/css/navigation";
-import Loading from "@components/Loading/Loading";
+import { Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import styles from "./Home.module.css";
 
 function Home() {
   const axios = useCustomAxios();
@@ -33,8 +33,7 @@ function Home() {
   const fetchWeather = async () => {
     try {
       const { data } = await axiosRcp.get("/", {
-        baseURL:
-          "https://api.openweathermap.org/data/2.5/weather?q=Seoul&APPID=8986672dd174c444e5cf84cfed53652f&units=metric",
+        baseURL: import.meta.env.VITE_API_SERVER_WEATHER,
       });
       setWeather(data?.weather[0].main);
     } catch (err) {
@@ -144,7 +143,7 @@ function Home() {
 
   return (
     <>
-      {dataTodayRcp ? (
+      {todayMenu ? (
         <>
           <section className={`${section} ${todayMenuSec}`}>
             <div className={titleWr}>
@@ -152,14 +151,19 @@ function Home() {
                 {todayMenu?.info.content} <br className="mo" />
                 오늘은 <span>"{todayMenu?.info.title}"</span> 요리 어때요?
               </h2>
-              <LinkButton to="/today/list">더보기</LinkButton>
+              <LinkButton
+                to={`/recipe/list?page=1&RCP_NM=${todayMenu?.info.title}`}
+              >
+                더보기
+              </LinkButton>
             </div>
             <Swiper
               className={swiperWr}
               modules={[Navigation]}
-              spaceBetween={10}
+              lazy="true"
+              spaceBetween={15}
               slidesPerView={1.4}
-              navigation={{ clickable: true }}
+              navigation={true}
               breakpoints={{
                 768: {
                   slidesPerView: 4,
@@ -179,9 +183,10 @@ function Home() {
             <Swiper
               className={swiperWr}
               modules={[Navigation]}
-              spaceBetween={10}
+              lazy="true"
+              spaceBetween={15}
               slidesPerView={1.4}
-              navigation={{ clickable: true }}
+              navigation={true}
               breakpoints={{
                 768: {
                   slidesPerView: 4,
@@ -201,9 +206,10 @@ function Home() {
             <Swiper
               className={swiperWr}
               modules={[Navigation]}
-              spaceBetween={10}
+              lazy="true"
+              spaceBetween={15}
               slidesPerView={1.4}
-              navigation={{ clickable: true }}
+              navigation={true}
               breakpoints={{
                 768: {
                   slidesPerView: 4,

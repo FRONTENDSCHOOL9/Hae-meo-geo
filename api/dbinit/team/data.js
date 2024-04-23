@@ -705,13 +705,14 @@ export const initData = async (nextSeq) => {
       {
         _id: await nextSeq("post"),
         type: "recipe",
-        title: "매운어묵김밥~~",
-        content: `퇴근길~ 저녁을 뭐먹을까 고민중~ 
-        냉장고속재료를 생각하니
-        불현듯 백종원 매운어묵김밥이 생각나네요
-        매콤하고 쫄깃하게 볶은 어묵~~
-        아삭식감을 위해 당근을 추가햇어요 
-        딸들도 맛잇다고 난리네요`,
+        title: "감자탕을 만들어 봤어요",
+        content: `오늘 날씨가 꿀꿀하니 얼큰한 국물 요리가 땡기더라구요
+        뭔가 진하면서 얼큰한 국물요리 없을까 한참을 고민하던중
+        냉장고에 감자와 등뼈가 있는걸보고 이건 감자탕을 만들어야겠다 생각했네요
+        만들어서 먹어보니 포슬포슬한 감자에 진하고 얼큰한 국물이 잘어울려서 좋았어요
+        감자를 먹다 목이 막힐때즈음엔 국물 한숟가락 먹으니 어느순간 국물만 남아 있더라구요
+        여러분도 꿀꿀한 날씨엔 얼큰하고 든든한 감자탕 어떠세요?
+        오늘도 맛있는 저녁되세요~✨`,
         image: "myrcp01.webp",
         extra: {
           writeWay: "simple",
@@ -720,12 +721,14 @@ export const initData = async (nextSeq) => {
       {
         _id: await nextSeq("post"),
         type: "recipe",
-        title: "오징어볶음 만들기 !!",
-        content: `오늘은 스뚜레스 만땅 !!!
-        정신없이 매운게 땡기는날이네요 
-        단짠,맵달의 정석으로 
-        오징어볶음을 볶볶햇네요 
-        흰쌀밥에 덮밥으로도 최고예요`,
+        title: "감자전을 만들어 봤어요!",
+        content: `요즘 스트레스가 쌓일일이 많아서 맥주를 마시려는데
+        뭔가 바삭하면서 담백짭조름한? 음식이 땡기더라구요
+        냉장고를 열어보니 이웃이 주었던 감자들이 산더미.....
+        어떻게 해먹어야할지 계속 고민하다 감자전이 떠오르더라구요
+        얼른 냉장고속 감자를 꺼내서 도마로~
+        휘뚜루 마뚜루 완성해서 먹었네요
+        바삭바삭한 식감으로 스트레스를 날려버릴수 있는 감자전 어때요?👍`,
         image: "myrcp02.webp",
         extra: {
           writeWay: "simple",
@@ -756,6 +759,35 @@ export const initData = async (nextSeq) => {
         날씨도 더워지는데 간단하고 맛있게 먹었어요
         시원하고 좋네요~~~`,
         image: "myrcp04.webp",
+        extra: {
+          writeWay: "simple",
+        },
+      },
+      {
+        _id: await nextSeq("post"),
+        type: "recipe",
+        title: "오징어볶음 만들기 !!",
+        content: `오늘은 스뚜레스 만땅 !!!
+        정신없이 매운게 땡기는날이네요 
+        단짠,맵달의 정석으로 
+        오징어볶음을 볶볶햇네요 
+        흰쌀밥에 덮밥으로도 최고예요`,
+        image: "myrcp05.webp",
+        extra: {
+          writeWay: "simple",
+        },
+      },
+      {
+        _id: await nextSeq("post"),
+        type: "recipe",
+        title: "매운어묵김밥~~",
+        content: `퇴근길~ 저녁을 뭐먹을까 고민중~ 
+        냉장고속재료를 생각하니
+        불현듯 백종원 매운어묵김밥이 생각나네요
+        매콤하고 쫄깃하게 볶은 어묵~~
+        아삭식감을 위해 당근을 추가햇어요 
+        딸들도 맛잇다고 난리네요`,
+        image: "myrcp06.webp",
         extra: {
           writeWay: "simple",
         },

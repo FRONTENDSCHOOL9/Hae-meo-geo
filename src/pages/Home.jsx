@@ -8,6 +8,7 @@ import Search from "@components/Search/Search";
 import styles from "./Home.module.css";
 import "swiper/css";
 import "swiper/css/navigation";
+import Loading from "@components/Loading/Loading";
 
 function Home() {
   const axios = useCustomAxios();
@@ -143,83 +144,86 @@ function Home() {
 
   return (
     <>
-      <section className={`${section} ${todayMenuSec}`}>
-        <div className={titleWr}>
-          <h2>
-            {todayMenu?.info.content} <br className="mo" />
-            오늘은 <span>"{todayMenu?.info.title}"</span> 요리 어때요?
-          </h2>
-          <LinkButton to="/today/list">더보기</LinkButton>
-        </div>
-        <Swiper
-          className={swiperWr}
-          modules={[Navigation]}
-          spaceBetween={10}
-          slidesPerView={1.4}
-          navigation={{ clickable: true }}
-          breakpoints={{
-            768: {
-              slidesPerView: 4,
-            },
-          }}
-        >
-          {todayMenus}
-        </Swiper>
-      </section>
-
-      <section className={`${section} ${bookmarkSec}`}>
-        <div className={titleWr}>
-          <h2>
-            인기 많은 <span>해머거 레시피</span>
-          </h2>
-          <LinkButton to="/recipe/list">더보기</LinkButton>
-        </div>
-        <Swiper
-          className={swiperWr}
-          modules={[Navigation]}
-          spaceBetween={10}
-          slidesPerView={1.4}
-          navigation={{ clickable: true }}
-          breakpoints={{
-            768: {
-              slidesPerView: 4,
-            },
-          }}
-        >
-          {bookmarkMenus}
-        </Swiper>
-      </section>
-
-      <section className={`${section} ${myRcpSec}`}>
-        <div className={titleWr}>
-          <h2>
-            최근 등록된 <span>나만의 레시피</span>
-          </h2>
-          <LinkButton to="/myrecipe/list">더보기</LinkButton>
-        </div>
-        <Swiper
-          className={swiperWr}
-          modules={[Navigation]}
-          spaceBetween={10}
-          slidesPerView={1.4}
-          navigation={{ clickable: true }}
-          breakpoints={{
-            768: {
-              slidesPerView: 4,
-            },
-          }}
-        >
-          {myRcpMenus}
-        </Swiper>
-      </section>
-
-      <section className={`${section} ${searchSec}`}>
-        <h2>
-          찾는 레시피가 없다면 <br className="mo" />
-          직접 검색해보세요!
-        </h2>
-        <Search keyword={"home"} />
-      </section>
+      {dataTodayRcp ? (
+        <>
+          <section className={`${section} ${todayMenuSec}`}>
+            <div className={titleWr}>
+              <h2>
+                {todayMenu?.info.content} <br className="mo" />
+                오늘은 <span>"{todayMenu?.info.title}"</span> 요리 어때요?
+              </h2>
+              <LinkButton to="/today/list">더보기</LinkButton>
+            </div>
+            <Swiper
+              className={swiperWr}
+              modules={[Navigation]}
+              spaceBetween={10}
+              slidesPerView={1.4}
+              navigation={{ clickable: true }}
+              breakpoints={{
+                768: {
+                  slidesPerView: 4,
+                },
+              }}
+            >
+              {todayMenus}
+            </Swiper>
+          </section>
+          <section className={`${section} ${bookmarkSec}`}>
+            <div className={titleWr}>
+              <h2>
+                인기 많은 <span>해머거 레시피</span>
+              </h2>
+              <LinkButton to="/recipe/list">더보기</LinkButton>
+            </div>
+            <Swiper
+              className={swiperWr}
+              modules={[Navigation]}
+              spaceBetween={10}
+              slidesPerView={1.4}
+              navigation={{ clickable: true }}
+              breakpoints={{
+                768: {
+                  slidesPerView: 4,
+                },
+              }}
+            >
+              {bookmarkMenus}
+            </Swiper>
+          </section>
+          <section className={`${section} ${myRcpSec}`}>
+            <div className={titleWr}>
+              <h2>
+                최근 등록된 <span>나만의 레시피</span>
+              </h2>
+              <LinkButton to="/myrecipe/list">더보기</LinkButton>
+            </div>
+            <Swiper
+              className={swiperWr}
+              modules={[Navigation]}
+              spaceBetween={10}
+              slidesPerView={1.4}
+              navigation={{ clickable: true }}
+              breakpoints={{
+                768: {
+                  slidesPerView: 4,
+                },
+              }}
+            >
+              {myRcpMenus}
+            </Swiper>
+          </section>
+          <section className={`${section} ${searchSec}`}>
+            <h2>
+              찾는 레시피가 없다면 <br className="mo" />
+              직접 검색해보세요!
+            </h2>
+            <Search keyword={"home"} />
+          </section>
+        </>
+      ) : (
+        <Loading />
+      )}
     </>
   );
 }

@@ -43,6 +43,7 @@ function Pagination({ totalCount, currentPage, setCurrentPage }) {
   }
 
   useEffect(() => {
+    if (searchParams.get("page") != 1) return;
     setPageSet(1);
   }, [totalCount]);
 

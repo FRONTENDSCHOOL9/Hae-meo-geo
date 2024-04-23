@@ -6,6 +6,7 @@ import userStore from "@zustand/userStore.mjs";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import styles from "./Signup.module.css";
 
 function Login() {
   const {
@@ -18,6 +19,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const axios = useCustomAxios();
   const navigate = useNavigate();
+  const { form } = styles;
 
   const { user, setUser } = userStore();
   console.log("user", user);
@@ -41,7 +43,7 @@ function Login() {
         _id: res.data.item._id,
         name: res.data.item.name,
         email: res.data.item.email,
-        profile: res.data.item.profileImage,
+        profile: res.data.item.image,
         token: res.data.item.token,
       });
 
@@ -95,7 +97,7 @@ function Login() {
         <Title>로그인</Title>
         {/* {user && <p>{user.name}님 밥 해머거!</p>} */}
         {user && <p>{user.name}님 밥 해머거!</p>}
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className={`${form} ${styles.login}`}>
           <input
             type="text"
             id="email"

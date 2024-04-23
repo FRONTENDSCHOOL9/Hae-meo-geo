@@ -13,7 +13,9 @@ Type.propTypes = {
 function Type({ keyword, setKeyword, setCurrentPage }) {
   const { typeWr, type } = styles;
   const [searchParams, setSearchParams] = useSearchParams();
-  const [clickedButton, setClickedButton] = useState();
+  const [clickedButton, setClickedButton] = useState(
+    searchParams.get("RCP_PAT2") || "",
+  );
   const navigate = useNavigate();
 
   const handleClick = (e) => {

@@ -8,12 +8,13 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styles from "./SignupStepTwo.module.css";
 
+
 function SignupStepTwo() {
   const [emailAvailability, setEmailAvailability] = useState(null);
   const axios = useCustomAxios();
   const navigate = useNavigate();
-  const [setAttachImg] = useState();
-  const { form } = styles;
+  const [attachImg, setAttachImg] = useState();
+  const { form, profile, profilewrapper} = styles;
   const {
     register,
     handleSubmit,
@@ -29,7 +30,9 @@ function SignupStepTwo() {
   const checkEmailAvailability = async () => {
     try {
       const res = await axios.get(`/users/email?email=${email}`);
+      if (res && res.data) {
       setEmailAvailability(res.data.ok && "사용 가능한 이메일입니다.");
+      }
     } catch (err) {
       setEmailAvailability(
         err.response.data.ok === 0 ? "이미 사용 중인 이메일입니다." : "",
@@ -40,11 +43,10 @@ function SignupStepTwo() {
   const onSubmit = async (formData) => {
     try {
       console.log(formData);
-
       // 이미지
-      if (formData.profileImage.length > 0) {
+      if (formData.image && formData.image.length === 1) {
         const imageFormData = new FormData();
-        imageFormData.append("attach", formData.profileImage[0]);
+        imageFormData.append("attach", formData.image[0]);
 
         const fileRes = await axios("/files", {
           method: "post",
@@ -54,30 +56,11 @@ function SignupStepTwo() {
           data: imageFormData,
         });
 
-        formData.profileImage = fileRes.data.file.name;
+        formData.image = fileRes.data.file.name;
       } else {
-        delete formData.profileImage;
+        //delete formData.image;
+        formData.image = "/img/ico-user.svg";
       }
-
-      // if (!formData.profileImage || !formData.profileImage[0]) {
-      //   // 프로필 이미지가 선택되지 않았을 때 기본 이미지
-      //   formData.profileImage = ["api/public/logo.ico"];
-      //   console.log("qqqq");
-      // } else {
-      //   // 이미지가 선택된 경우
-      //   const imageFormData = new FormData();
-      //   imageFormData.append("attach", formData.profileImage[0]);
-
-      //   const fileRes = await axios("/files", {
-      //     method: "post",
-      //     headers: {
-      //       "Content-Type": "multipart/form-data",
-      //     },
-      //     data: imageFormData,
-      //   });
-
-      //   formData.profileImage = fileRes.data.file.name;
-      // }
 
       //회원가입
       formData.type = "seller";
@@ -202,13 +185,16 @@ function SignupStepTwo() {
             />
             {errors.birthdate && <p>{errors.birthdate.message}</p>}
           </fieldset>
-          <fieldset>
-            <label htmlFor="profileImage">프로필</label>
+          <fieldset className={profilewrapper}>
+            <label htmlFor="image">프로필</label>
+            <img src={attachImg} className={profile}alt=""/>
+                <span id="image" className="hidden">첨부파일 선택</span>
             <input
               type="file"
               accept="image/*"
-              id="profileImage"
-              {...register("profileImage", {
+              id="image"
+              // { ...register('image') }
+              {...register("image", {
                 onChange: (e) => {
                   const reader = new FileReader();
                   reader.readAsDataURL(e.target.files[0]);

@@ -18,6 +18,7 @@
 
   --title-big: 4.8rem;
   --title-medium: 2.4rem;
+  --title-small: 1.8rem;
 }
 
 body {
@@ -26,7 +27,9 @@ body {
 
 #root {
   min-height: 100vh;
+  width: 100%;
   max-width: 1920px;
+  overflow-x: hidden;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -79,8 +82,13 @@ body {
 }
 
 .swiper-button-prev {
-  transform: translate(-50%, -50%) rotate(180deg);
+  transform: translate(0, -50%) rotate(180deg);
+  left: 0;
+}
 
+.swiper-button-next {
+  transform: translate(0, -50%);
+  right: 0;
 }
 
 @media (min-width: 1025px) and (max-width: 1680px) {
@@ -97,10 +105,11 @@ body {
 
 @media (max-width: 767px) {
   :root {
-    --layout-padding: 1.2rem;
+    --layout-padding: 1.5rem;
 
     --title-big: 2.4rem;
     --title-medium: 1.8rem;
+    --title-small: 1.4rem;
   }
 
   body {
@@ -113,6 +122,17 @@ body {
 
   .mo {
     display: inline-block;
+  }
+
+  .swiper {
+    width: calc(100% + 3rem);
+    padding: 0 1.5rem;
+    margin-left: -1.5rem;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
   }
 }
 

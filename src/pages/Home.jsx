@@ -1,17 +1,17 @@
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Search from "@components/Search/Search";
 import styles from "./Home.module.css";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Link } from "react-router-dom";
 
 function Home() {
   const axios = useCustomAxios();
   const axiosRcp = useCustomAxios("rcp");
-  const { section, todayMenuSec, bookmarkSec, searchSec } = styles;
+  const { section, swiperWr, todayMenuSec, bookmarkSec, searchSec } = styles;
 
   const today = `day${new Date().getDay()}`;
   const [weather, setWeather] = useState();
@@ -55,11 +55,9 @@ function Home() {
       if (dataTodayRcp) {
         const filteredData = filteredTodayRcp(dataTodayRcp);
         const todayData = filteredData[randomFn(filteredData)];
-        console.log(todayData);
         const { data } = await axios(
           `products?keyword=${todayData.title}&page=1&limit=8`,
         );
-        console.log(data);
         setTodayMenu({ info: todayData, data: data.item });
       }
     } catch (err) {
@@ -112,34 +110,48 @@ function Home() {
     <>
       <section className={`${section} ${todayMenuSec}`}>
         <h2>
-          {todayMenu?.info.title} 오늘은 {todayMenu?.info.content} 어때요?
-          <Swiper
-            modules={[Navigation]}
-            spaceBetween={10}
-            slidesPerView={4}
-            navigation={{ clickable: true }}
-          >
-            {todayMenus}
-          </Swiper>
+          {todayMenu?.info.content} <br className="mo" />
+          오늘은 <span>{todayMenu?.info.title}</span> 어때요?
         </h2>
+        <Swiper
+          className={swiperWr}
+          modules={[Navigation]}
+          spaceBetween={10}
+          slidesPerView={1.4}
+          navigation={{ clickable: true }}
+          breakpoints={{
+            768: {
+              slidesPerView: 4,
+            },
+          }}
+        >
+          {todayMenus}
+        </Swiper>
       </section>
 
       <section className={`${section} ${bookmarkSec}`}>
-        <h2>
-          인기 많은 레시피
-          <Swiper
-            modules={[Navigation]}
-            spaceBetween={10}
-            slidesPerView={4}
-            navigation={{ clickable: true }}
-          >
-            {bookmarkMenus}
-          </Swiper>
-        </h2>
+        <h2>인기 많은 해머거 레시피</h2>
+        <Swiper
+          className={swiperWr}
+          modules={[Navigation]}
+          spaceBetween={10}
+          slidesPerView={1.4}
+          navigation={{ clickable: true }}
+          breakpoints={{
+            768: {
+              slidesPerView: 4,
+            },
+          }}
+        >
+          {bookmarkMenus}
+        </Swiper>
       </section>
 
       <section className={`${section} ${searchSec}`}>
-        <h2>찾는 레시피가 없다면 직접 검색해보세요!</h2>
+        <h2>
+          찾는 레시피가 없다면 <br className="mo" />
+          직접 검색해보세요!
+        </h2>
         <Search keyword={"home"} />
       </section>
     </>

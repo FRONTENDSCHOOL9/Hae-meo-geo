@@ -29,3 +29,14 @@
 .steptwo fieldset > p:not(.black) {
   color: var(--color-primary);
 }
+
+.profile{
+  height: 13rem;
+  width: 13rem;
+  border: 1px solid var(--color-gray-100);
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #fff url(/img/ico-attach.svg) no-repeat center / 6rem;
+  display: block;
+  cursor: pointer;
+}

@@ -11,7 +11,7 @@ Type.propTypes = {
   setCurrentPage: PropTypes.func,
 };
 
-function Type({ keyword, setKeyword, setCurrentPage }) {
+function Type({ keyword, setKeyword, setCurrentPage, searchInput }) {
   const { typeWr, type } = styles;
   const [searchParams, setSearchParams] = useSearchParams();
   const [clickedButton, setClickedButton] = useState(
@@ -21,6 +21,8 @@ function Type({ keyword, setKeyword, setCurrentPage }) {
 
   const handleClick = (e) => {
     if (e.target.tagName !== "BUTTON") return false;
+    searchInput.current.value = "";
+
     const category = e.target.innerText.split("&")[0];
     searchParams.set("RCP_PAT2", category);
     searchParams.set("page", 1);

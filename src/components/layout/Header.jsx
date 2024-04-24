@@ -1,6 +1,7 @@
 import userStore from "@zustand/userStore.mjs";
+import { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
 
 function Header() {
@@ -13,10 +14,12 @@ function Header() {
     toTop,
     hamburgerButton,
     hamburgerMenu,
+    active,
   } = styles;
 
   const { user } = userStore();
   const [isClicked, setIsClicked] = useState(false);
+  const [activePath, setActivePath] = useState(location.pathname);
 
   const handleToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -24,6 +27,10 @@ function Header() {
     if (e.target.tagName !== "A") return;
     setIsClicked(false);
   };
+
+  useEffect(() => {
+    setActivePath(location.pathname);
+  }, [location.pathname]);
 
   return (
     <>
@@ -38,13 +45,13 @@ function Header() {
           <nav className={gnb}>
             <ul>
               <li>
-                <Link to="/today/list">오늘뭐먹지?</Link>
+                <NavLink to="/today/list">오늘뭐먹지?</NavLink>
               </li>
               <li>
-                <Link to="/recipe/list">해머거 레시피</Link>
+                <NavLink to="/recipe/list">해머거 레시피</NavLink>
               </li>
               <li>
-                <Link to="/myrecipe/list">나만의 레시피</Link>
+                <NavLink to="/myrecipe/list">나만의 레시피</NavLink>
               </li>
             </ul>
           </nav>

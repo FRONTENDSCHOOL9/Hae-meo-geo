@@ -38,8 +38,8 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
         },
       };
 
-      if (formData.image?.length) {
-        formData.extra.image = await uploadImage(formData);
+      if (formData.image.length) {
+        formData.extra.image = await uploadImage(formData, "image");
         delete formData.image;
       } else {
         delete formData?.image;
@@ -67,8 +67,6 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
     setAttachImg();
     file.current.value = "";
   };
-
-  console.log(user);
 
   return (
     <div className={replyRegister}>

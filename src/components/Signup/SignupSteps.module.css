@@ -18,3 +18,9 @@
   color: var(--color-gray-100);
   margin-left: 2rem;
 }
+
+@media (max-width: 700px) {
+  .steps {
+    margin-bottom: 3rem;
+  }
+}

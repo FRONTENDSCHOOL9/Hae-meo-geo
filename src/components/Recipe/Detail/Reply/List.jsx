@@ -44,11 +44,14 @@ function ReplyList({ id, setRepliesFn, replies }) {
 
   const replyList = replies?.item.map((item) => {
     const isMyPost = user && user._id === item.user._id;
+    console.log(user);
     return (
       <article key={item._id} className={ReplyStyle.replyWr}>
         <img
           className={ReplyStyle.profile}
-          src={item.user.profile}
+          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${
+            item.user.profile
+          }`}
           alt={item.user.name}
         />
         <div className={rightWr}>
@@ -74,13 +77,6 @@ function ReplyList({ id, setRepliesFn, replies }) {
                 <Button color="primary" onClick={() => handleRemove(item._id)}>
                   삭제
                 </Button>
-                {/* <button
-                  color="primary"
-                  size="medium"
-                  onClick={() => handleRemove(item._id)}
-                >
-                  <span className="hidden">삭제</span>
-                </button> */}
               </div>
             )}
           </div>

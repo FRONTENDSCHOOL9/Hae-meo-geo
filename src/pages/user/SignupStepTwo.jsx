@@ -7,14 +7,15 @@ import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styles from "./SignupStepTwo.module.css";
-
+import ReplyStyle from "../../components/Recipe/Detail/Reply/Reply.module.css";
+import uploadImage from "@utils/uploadImage.mjs";
 
 function SignupStepTwo() {
+  const { form, profilewrapper, flexWr } = styles;
   const [emailAvailability, setEmailAvailability] = useState(null);
   const axios = useCustomAxios();
   const navigate = useNavigate();
   const [attachImg, setAttachImg] = useState();
-  const { form, profile, profilewrapper} = styles;
   const {
     register,
     handleSubmit,
@@ -24,46 +25,22 @@ function SignupStepTwo() {
   } = useForm();
 
   const file = useRef();
-  const { ref } = register("image");
+  const { ref } = register("profileImage");
   const email = watch("email");
-
-  const checkEmailAvailability = async () => {
-    try {
-      const res = await axios.get(`/users/email?email=${email}`);
-      if (res && res.data) {
-      setEmailAvailability(res.data.ok && "사용 가능한 이메일입니다.");
-      }
-    } catch (err) {
-      setEmailAvailability(
-        err.response.data.ok === 0 ? "이미 사용 중인 이메일입니다." : "",
-      );
-    }
-  };
 
   const onSubmit = async (formData) => {
     try {
       console.log(formData);
-      // 이미지
-      if (formData.image && formData.image.length === 1) {
-        const imageFormData = new FormData();
-        imageFormData.append("attach", formData.image[0]);
 
-        const fileRes = await axios("/files", {
-          method: "post",
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          data: imageFormData,
-        });
-
-        formData.image = fileRes.data.file.name;
+      if (formData.profileImage.length > 0) {
+        formData.profileImage = await uploadImage(formData);
       } else {
-        //delete formData.image;
-        formData.image = "/img/ico-user.svg";
+        formData.profileImage = "no-profile.png";
       }
 
+      console.log(formData.profileImage);
       //회원가입
-      formData.type = "seller";
+      formData.type = "user";
       const res = await axios.post("/users", formData);
       alert(
         res.data.item.name +
@@ -83,8 +60,26 @@ function SignupStepTwo() {
     }
   };
 
+  const checkEmailAvailability = async () => {
+    try {
+      const res = await axios.get(`/users/email?email=${email}`);
+      if (res && res.data) {
+        setEmailAvailability(res.data.ok && "사용 가능한 이메일입니다.");
+      }
+    } catch (err) {
+      setEmailAvailability(
+        err.response.data.ok === 0 ? "이미 사용 중인 이메일입니다." : "",
+      );
+    }
+  };
+
   const handleCheckEmail = async () => {
     email && (await checkEmailAvailability());
+  };
+
+  const handleAttachRemove = () => {
+    setAttachImg();
+    file.current.value = "";
   };
 
   return (
@@ -105,43 +100,50 @@ function SignupStepTwo() {
         >
           <fieldset>
             <label htmlFor="email">아이디(이메일)*</label>
-            <input
-              type="email"
-              id="email"
-              {...register("email", {
-                required: "이메일을 입력하세요.",
-                pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                  message: "이메일 형식이 올바르지 않습니다.",
-                },
-              })}
-            />
-            <Button
-              type="button"
-              onClick={handleCheckEmail}
-              color="primary"
-              size="large"
-              margin="false"
-            >
-              확인
-            </Button>
-            {errors.email && <p>{errors.email.message}</p>}
+            <div className={flexWr}>
+              <input
+                placeholder="아이디(이메일)*"
+                type="email"
+                id="email"
+                {...register("email", {
+                  required: "이메일을 입력하세요.",
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: "이메일 형식이 올바르지 않습니다.",
+                  },
+                })}
+              />
+              <Button
+                type="button"
+                onClick={handleCheckEmail}
+                color="primary"
+                size="large"
+                margin="false"
+              >
+                확인
+              </Button>
+            </div>
+            {errors.email && <p className="errorMsg">{errors.email.message}</p>}
             {emailAvailability && <p>{emailAvailability}</p>}
           </fieldset>
           <fieldset>
             <label htmlFor="password">비밀번호*</label>
             <input
+              placeholder="비밀번호*"
               type="password"
               id="password"
               {...register("password", {
                 required: "비밀번호를 입력하세요.",
               })}
             />
-            {errors.password && <p>{errors.password.message}</p>}
+            {errors.password && (
+              <p className="errorMsg">{errors.password.message}</p>
+            )}
           </fieldset>
           <fieldset>
             <label htmlFor="confirmPassword">비밀번호 확인*</label>
             <input
+              placeholder="비밀번호 확인*"
               type="password"
               id="confirmPassword"
               {...register("confirmPassword", {
@@ -152,11 +154,14 @@ function SignupStepTwo() {
                   "비밀번호가 일치하지 않습니다.",
               })}
             />
-            {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
+            {errors.confirmPassword && (
+              <p className="errorMsg">{errors.confirmPassword.message}</p>
+            )}
           </fieldset>
           <fieldset>
             <label htmlFor="name">닉네임*</label>
             <input
+              placeholder="닉네임"
               type="text"
               id="name"
               {...register("name", {
@@ -167,7 +172,7 @@ function SignupStepTwo() {
                 },
               })}
             />
-            {errors.name && <p>{errors.name.message}</p>}
+            {errors.name && <p className="errorMsg">{errors.name.message}</p>}
           </fieldset>
           <fieldset>
             <label htmlFor="birthdate">생년월일</label>
@@ -183,31 +188,45 @@ function SignupStepTwo() {
                 },
               })}
             />
-            {errors.birthdate && <p>{errors.birthdate.message}</p>}
+            {errors.birthdate && (
+              <p className="errorMsg">{errors.birthdate.message}</p>
+            )}
           </fieldset>
           <fieldset className={profilewrapper}>
-            <label htmlFor="image">프로필</label>
-            <img src={attachImg} className={profile}alt=""/>
-                <span id="image" className="hidden">첨부파일 선택</span>
-            <input
-              type="file"
-              accept="image/*"
-              id="image"
-              // { ...register('image') }
-              {...register("image", {
-                onChange: (e) => {
-                  const reader = new FileReader();
-                  reader.readAsDataURL(e.target.files[0]);
-                  reader.onloadend = () => {
-                    setAttachImg(reader.result);
-                  };
-                },
-              })}
-              ref={(e) => {
-                ref(e);
-                file.current = e;
-              }}
-            />
+            <label htmlFor="profileImage" className="profilelabel">
+              프로필
+            </label>
+            <div
+              className={` ${styles.profile} ${ReplyStyle.attachWr} ${styles.attachWr} ${
+                attachImg ? ReplyStyle.act : ""
+              }`}
+            >
+              <label htmlFor="profileImage" className="profilelabel">
+                <img src={attachImg} alt="" />
+                <span className="hidden">첨부파일 선택</span>
+              </label>
+              <button type="button" onClick={handleAttachRemove}>
+                <span className="hidden">첨부파일 삭제</span>
+              </button>
+              <input
+                type="file"
+                accept="image/*"
+                id="profileImage"
+                {...register("profileImage", {
+                  onChange: (e) => {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(e.target.files[0]);
+                    reader.onloadend = () => {
+                      setAttachImg(reader.result);
+                    };
+                  },
+                })}
+                ref={(e) => {
+                  ref(e);
+                  file.current = e;
+                }}
+              />
+            </div>
           </fieldset>
           <hr />
           <Button type="submit" color="gray" size="large" filled="filled">

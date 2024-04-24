@@ -49,4 +49,24 @@
     width: 8rem;
     transform: translateY(50%);
   }
+
+  .replyRegister .contentErrorMsg {
+    bottom: 1rem;
+    left: 1rem;
+    transform: none;
+  }
+
+  .attachWr {
+    width: 100%;
+  }
+
+  .attachWr label {
+    border-radius: 50%;
+    background-size: 4rem;
+  }
+
+  .attachWr button {
+    top: 0;
+    right: 0;
+  }
 }

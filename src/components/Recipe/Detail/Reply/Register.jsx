@@ -9,14 +9,8 @@ import ReplyStyle from "./Reply.module.css";
 import styles from "./Register.module.css";
 
 function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
-  const {
-    replyRegister,
-    ratingErrorMsg,
-    contentErrorMsg,
-    preview,
-    noLogin,
-    buttonWr,
-  } = styles;
+  const { replyRegister, ratingErrorMsg, contentErrorMsg, noLogin, buttonWr } =
+    styles;
   const { user } = useUserStore();
   const axios = useCustomAxios();
   const [rating, setRating] = useState();
@@ -74,6 +68,8 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
     file.current.value = "";
   };
 
+  console.log(user);
+
   return (
     <div className={replyRegister}>
       {user ? (
@@ -81,7 +77,7 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
           <div className={ReplyStyle.replyWr}>
             <img
               className={ReplyStyle.profile}
-              src={user.profile}
+              src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user.profile}`}
               alt={user.name}
             />
             <div className={ReplyStyle.contentWr}>
@@ -174,7 +170,7 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
                 attachImg ? ReplyStyle.act : ""
               }`}
             >
-              <label htmlFor="image" className={preview}>
+              <label htmlFor="image">
                 <img src={attachImg} alt="" />
                 <span className="hidden">첨부파일 선택</span>
               </label>

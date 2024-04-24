@@ -10,7 +10,7 @@
   width: 3.6em;
   aspect-ratio: 1/1;
   border-radius: 50%;
-  background: #ccc;
+  background: #fff;
   flex-shrink: 0;
 }
 
@@ -186,20 +186,6 @@
   .replyWr {
     font-size: 1.4rem;
     /* flex-wrap: wrap; */
-  }
-
-  .attachWr {
-    width: 100%;
-  }
-
-  .attachWr label {
-    border-radius: 50%;
-    background-size: 4rem;
-  }
-
-  .attachWr button {
-    top: 0;
-    right: 0;
   }
 
 }

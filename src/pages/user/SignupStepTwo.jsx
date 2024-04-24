@@ -195,13 +195,13 @@ function SignupStepTwo() {
             {errors.birthdate && <p>{errors.birthdate.message}</p>}
           </fieldset>
           <fieldset className={profilewrapper}>
-          <label htmlFor="image">프로필</label>
+          <label htmlFor="image" className="profilelabel">프로필</label>
           <div
               className={` ${styles.profile} ${ReplyStyle.attachWr} ${styles.attachWr} ${
                 attachImg ? ReplyStyle.act : ""
               }`}
             >
-              <label htmlFor="image">
+              <label htmlFor="image" className="profilelabel">
                 <img src={attachImg} alt="" />
                 <span className="hidden">첨부파일 선택</span>
               </label>

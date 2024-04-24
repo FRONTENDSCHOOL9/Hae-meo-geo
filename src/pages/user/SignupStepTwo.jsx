@@ -14,7 +14,7 @@ function SignupStepTwo() {
   const axios = useCustomAxios();
   const navigate = useNavigate();
   const [attachImg, setAttachImg] = useState();
-  const { form, profile, profilewrapper} = styles;
+  const { form, profile, profilewrapper, profilelabel} = styles;
   const {
     register,
     handleSubmit,
@@ -43,8 +43,9 @@ function SignupStepTwo() {
   const onSubmit = async (formData) => {
     try {
       console.log(formData);
+      console.log(formData.image);
       // 이미지
-      if (formData.image && formData.image.length === 1) {
+      if (formData.image.length > 0) {
         const imageFormData = new FormData();
         imageFormData.append("attach", formData.image[0]);
 
@@ -55,10 +56,9 @@ function SignupStepTwo() {
           },
           data: imageFormData,
         });
-
+        console.log(fileRes.data)
         formData.image = fileRes.data.file.name;
       } else {
-        //delete formData.image;
         formData.image = "/img/ico-user.svg";
       }
 
@@ -106,6 +106,7 @@ function SignupStepTwo() {
           <fieldset>
             <label htmlFor="email">아이디(이메일)*</label>
             <input
+            placeholder="아이디(이메일)*"
               type="email"
               id="email"
               {...register("email", {
@@ -131,6 +132,7 @@ function SignupStepTwo() {
           <fieldset>
             <label htmlFor="password">비밀번호*</label>
             <input
+              placeholder="비밀번호*"
               type="password"
               id="password"
               {...register("password", {
@@ -142,6 +144,7 @@ function SignupStepTwo() {
           <fieldset>
             <label htmlFor="confirmPassword">비밀번호 확인*</label>
             <input
+            placeholder="비밀번호 확인*"
               type="password"
               id="confirmPassword"
               {...register("confirmPassword", {
@@ -157,6 +160,7 @@ function SignupStepTwo() {
           <fieldset>
             <label htmlFor="name">닉네임*</label>
             <input
+            placeholder="닉네임"
               type="text"
               id="name"
               {...register("name", {
@@ -186,7 +190,7 @@ function SignupStepTwo() {
             {errors.birthdate && <p>{errors.birthdate.message}</p>}
           </fieldset>
           <fieldset className={profilewrapper}>
-            <label htmlFor="image">프로필</label>
+            <label htmlFor="image" className={profilelabel}>프로필</label>
             <img src={attachImg} className={profile}alt=""/>
                 <span id="image" className="hidden">첨부파일 선택</span>
             <input
@@ -202,6 +206,16 @@ function SignupStepTwo() {
                     setAttachImg(reader.result);
                   };
                 },
+              //   onChange: (e) => {
+              //     const file = e.target.files[0];
+              //     if (file instanceof Blob) { // 파일이 Blob 객체인지 확인
+              //       const reader = new FileReader();
+              //       reader.readAsDataURL(file);
+              //       reader.onloadend = () => {
+              //         setAttachImg(reader.result);
+              //       };
+              //     }
+              //   },
               })}
               ref={(e) => {
                 ref(e);

@@ -95,7 +95,6 @@ function Login() {
     <>
       <LoginLayout>
         <Title>로그인</Title>
-        {/* {user && <p>{user.name}님 밥 해머거!</p>} */}
         {user && <p>{user.name}님 밥 해머거!</p>}
         <form onSubmit={handleSubmit(onSubmit)} className={`${form} ${styles.login}`}>
           <input

@@ -22,7 +22,6 @@ function Login() {
   const { form } = styles;
 
   const { user, setUser } = userStore();
-  console.log("user", user);
 
   useEffect(() => {
     const savedEmail = localStorage.getItem("savedEmail");

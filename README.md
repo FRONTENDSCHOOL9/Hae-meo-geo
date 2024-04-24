@@ -17,6 +17,8 @@
 ‘**해머거**’는 밥을 해서 먹으라는 ‘해 먹어’를 귀엽게 발음했습니다. 
 무엇을 먹을지 고민하는 사람들을 위해 그 음식의 레시피를 알려주고, 음식을 추천도 해주며 먹은 음식을 올리며 소통하는 사이트 입니다. 무엇을 먹을지 고민 하는 시간을 줄여주고 북마크 해 놓은 음식을 직접 해보고 후기를 남기며 음식을 해서 먹는 즐거움을 줍니다.
 
+[🍚 해머거 바로가기](https://haemeogeo.netlify.app/)
+
 ---
 
 
@@ -30,13 +32,13 @@
 ---
 
 # 📅 개발 일정
-#### 2024. 3. 28 ~ 2024. 4. 24
+#### 2024. 03. 28 ~ 2024. 04. 24
 |기간|내용|
-| :----: | :-- |
-|3/28~|기획|
-|4/10~|UI 디자인|
-|4/10~|마크업 및 기능 개발|
-|4/23 ~|QA 기간|
+| :----: | :--: |
+|03. 28 - 04 .07 |기획|
+|04. 03 - 04 .10 |UI 디자인|
+|04. 10 - 04. 25 |마크업 및 기능 개발|
+|04. 23 - 04. 25 |QA 기간|
 
 
 ---
@@ -55,7 +57,7 @@
 </br>
 
 > ### 개발 환경
-|||
+| 구분 | 종류 |
 | :-------- | :-- |
 |FrontEnd | React, Axios, CSS module, Zustand, React-Query |
 | BackEnd | [제공된 API](https://api.frontendschool.shop/apidocs/), [식품의약품안전처 조리식품의 레시피 API](https://www.foodsafetykorea.go.kr/api/openApiInfo.do?menu_grp=MENU_GRP31&menu_no=661&show_cnt=10&start_idx=1&svc_no=COOKRCP01), [날씨 API](https://openweathermap.org/)
@@ -81,7 +83,7 @@ module.exports = {
 
 #### 커밋 컨벤션
  
-|||
+|컨벤션|설명|
 | :--------: | :-- |
 feat | 새로운 기능을 추가할 경우
 fix |	버그를 고친 경우
@@ -100,7 +102,7 @@ remove |		파일을 삭제하는 작업만 수행한 경우
 </br>
 
 > ### 라이브러리 사용 이유
-|||
+|종류|이유|
 | :--: | :-- |
 React | 재사용 가능한 컴포넌트 사용하기 위해 사용
 Zustand | 단순한 상태 관리와 용이한 유지 보수를 위해 사용
@@ -349,10 +351,9 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 # 💻 상세 담당 업무
 ### <u>👧🏻 이소정(팀장)</u>
 - 🌟 메인 페이지
-    - 추천 레시피
-      - OpenWeather 날씨 api을 사용하여 현재 날씨를 받아옴
-      - 추천 메뉴를 리스트업하여 db에 초기 세팅 후 현재 날씨와 요일에 알맞은 레시피 랜덤 노출
-      - 레시피 클릭시 레시피 상세 화면으로 이동
+    - 오늘의 추천 레시피
+      - [OpenWeather 날씨 API](https://openweathermap.org/)를 사용하여 현재 날씨 호출
+      - db에 초기 세팅한 추천 메뉴 리스트를 **현재 날씨와 요일과 비교**하여 조건에 맞는 레시피 노출
   - 해머거 레시피
       - 북마크가 많은 순서대로 최대 6개 노출
       - 더보기 버튼 클릭시 해머거 레시피 목록으로 이동
@@ -363,19 +364,20 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
       - 키워드가 반영된 해머거 레시피 목록으로 이동
 
 - 🌟 오늘 뭐먹지?
-  - 레시피 추천
-      - 날씨/요일별 추천 메뉴를 리스트업하여 db에 저장하여 초기 세팅
+    - **무한 스크롤**을 활용하여 날씨/요일별 추천 레시피 목록 호출
+    - 레시피 클릭시 해당 키워드가 검색된 해머거 레시피 목록으로 이동
 
-- 🌟 레시피 목록
+- 🌟 해머거 레시피 목록
   - 카테고리, 검색
-      - 조리식품의 레시피 API에서 제공해주는 쿼리스트링 활용하여 데이터 호출
+      - 조리식품의 레시피 API에서 제공하는 **쿼리스트링**을 활용하여 데이터 호출
   - 페이지네이션
-      - 조리식품의 레시피 API에서 제공하는 레시피의 총 개수를 활용하여 5개씩 페이지네이션이 노출되도록 구현
+      - 조리식품의 레시피 API에서 제공하는 레시피의 총 개수를 통해 페이지네이션이 5개씩 노출되도록 구현
       
-- 🌟 레시피 상세
+- 🌟 해머거 레시피 상세
+  - 조리식품의 레시피 데이터(이름, 사진, 재료, 단계별 레시피) 노출
   - 후기
       - 조리식품의 레시피 일련 번호를 상품으로 초기 등록하여 해당 상품의 일련번호에 해당하는 QnA 게시글 호출/등록/삭제
-      - 게시글 POST 통신시 [파일 업로드 API](https://api.frontendschool.shop/apidocs/#/%ED%8C%8C%EC%9D%BC/post_files_)를 활용하여 업로드된 파일명을 추출하는 함수 분리(src/utils/uploadImage.mjs)
+      - 첨부파일 등록시 미리보기 이미지 제공
   - 북마크
       - 조리식품의 레시피 일련 번호를 상품으로 초기 등록하여 해당 상품의 일련번호에 해당하는 상품에 북마크 추가/삭제
   - 공유하기
@@ -384,6 +386,7 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 - 🌟 공통 컴포넌트
     - 헤더
     - 푸터
+    - 버튼
     - 로딩 페이지
     - 에러 페이지
 
@@ -441,6 +444,33 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
   > - 레시피 추천 리스트 : 게시판 API를 활용하여 직접 리스트업
   > - 조건에 맞는 레시피 랜덤으로 추출하여 노출
 
+  ```js
+  const filteredTodayRcp = (TodayRcp) => {
+    return TodayRcp?.filter((item) => {
+      const condition = item.extra.condition;
+      if (condition === today || condition === weather) return item;
+    });
+  };
+
+  const randomFn = (filteredData) =>
+    Math.floor(Math.random() * filteredData?.length);
+
+  const fetchRandomMenu = async () => {
+    try {
+      if (dataTodayRcp) {
+        const filteredData = filteredTodayRcp(dataTodayRcp);
+        const todayData = filteredData[randomFn(filteredData)];
+        const { data } = await axios(
+          `products?keyword=${todayData.title}&page=1&limit=6`,
+        );
+        setTodayMenu({ info: todayData, data: data.item });
+      }
+    } catch (err) {
+      console.error(err, err.response?.data.message);
+    }
+  };
+  ```
+
 </details>
 
 <details>
@@ -448,6 +478,31 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
   
   > - 초기 세팅 : 초기 데이터를 세팅할 때 조리식품의 레시피 API를 호출하여 1001개의 데이터 세팅(api/dbinit/team/data.js)
   > - 초기 등록한 상품 API의 후기(목록,등록,삭제), 북마크 기능을 통해 조리식품의 레시피에 후기, 북마크 기능 사용
+
+  ```js
+  export const initData = async (nextSeq) => {
+    const { data } = await axios.get("API주소",);
+    const result = await Promise.all(
+      data["COOKRCP01"].row.map(async (item) => {
+        return {
+          _id: Number(item["RCP_SEQ"]),
+          name: item["RCP_NM"],
+          price: 0,
+          quantity: 10,
+          buyQuantity: 1,
+          content: "",
+          image: item["ATT_FILE_NO_MAIN"],
+          show: true,
+          active: true,
+        };
+      }),
+    );
+
+    return (
+      product: result,
+    )
+  }
+  ```
  
 </details>
 
@@ -455,6 +510,69 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
   <summary>해머거 레시피 - 페이지네이션</summary>
   
   > 조리식품의 레시피 API에서 제공하는 총 레시피 개수를 활용하여 5개씩 페이지네이션 구현
+
+  ```js
+  function Pagination({ totalCount, currentPage, setCurrentPage }) {
+  const limit = import.meta.env.VITE_PAGINATION_LIMIT;
+  const pageRange = 5;
+  const [searchParams] = useSearchParams();
+  const [pageSet, setPageSet] = useState(Math.ceil(currentPage / pageRange));
+  const totalPage = Math.ceil(totalCount / limit);
+  const lastPageSet = Math.ceil(totalPage / pageRange);
+
+  const handleClick = (page) => setCurrentPage(page);
+
+  const pageList = [];
+  for (
+    let page = (pageSet - 1) * pageRange + 1;
+    page <= pageSet * pageRange;
+    page++
+  ) {
+    searchParams.set("page", currentPage);
+
+    if (page > totalPage) break;
+    let search = searchParams.toString();
+    pageList.push(
+      <li
+        key={page}
+        className={`${page === +currentPage ? styles.act : ""}`}
+        onClick={() => handleClick(page)}
+      >
+        <Link to={`/recipe/list?${search}`}>{page}</Link>
+      </li>,
+    );
+  }
+
+  useEffect(() => {
+    if (searchParams.get("page") != 1) return;
+    setPageSet(1);
+  }, [totalCount]);
+
+  return (
+    <ul className={styles.pagination}>
+      <li>
+        <Button
+          disabled={pageSet === 1 ? `disabled` : ""}
+          onClick={() => setPageSet(pageSet - 1)}
+        >
+          &lt;
+          <span className="hidden">이전 페이지로 이동</span>
+        </Button>
+      </li>
+      {pageList}
+      <li>
+        <Button
+          disabled={pageSet === lastPageSet ? `disabled` : ""}
+          onClick={() => setPageSet(pageSet + 1)}
+        >
+          &gt;
+          <span className="hidden">이후 페이지로 이동</span>
+        </Button>
+      </li>
+    </ul>
+  );
+}
+  ```
 
 </details>
 
@@ -487,7 +605,7 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 # 💬 소감 
 ##### 🍚 이소정
 
-> 소감 작성
+> 첫번째 팀 프로젝트로, 팀장으로 부족한 점이 많았지만 많이 성장할 수 있는 좋은 기회였습니다. 팀원들과의 많은 의논과 여러 컨벤션을 정하고 지키며 경험한 협업은 코드를 재사용하고 효율적으로 작성하는데 중요한 것임을 깨달을 수 있었습니다. 짧은 시간동안 기능을 구현하며 예상치 못한 오류를 많이 마주했지만 그만큼 제대로 코드를 이해하고 능동적으로 작성할 수 있었습니다. 프로젝트 기간동안 고생한 팀원들에게 감사드립니다.
 
 ##### 🍚 박지성
 

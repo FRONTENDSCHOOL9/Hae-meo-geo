@@ -132,7 +132,7 @@ function Home() {
   // 나만의 레시피 메뉴
   const myRcpMenus = dataMyRcp?.map((item, idx) => (
     <SwiperSlide key={idx}>
-      <Link to={`/myrecipe/${item._id}`}>
+      <Link to={`/myrecipe/list/${item._id}`}>
         <img
           src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${item.image}`}
           alt=""

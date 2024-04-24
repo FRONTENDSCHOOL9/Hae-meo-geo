@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import styles from "./SignupStepTwo.module.css";
 import ReplyStyle from "../../components/Recipe/Detail/Reply/Reply.module.css";
 import uploadImage from "@utils/uploadImage.mjs";
+import { useEffect } from "react";
+import userStore from "@zustand/userStore.mjs";
 
 function SignupStepTwo() {
   const { form, profilewrapper, flexWr } = styles;
@@ -16,6 +18,8 @@ function SignupStepTwo() {
   const axios = useCustomAxios();
   const navigate = useNavigate();
   const [attachImg, setAttachImg] = useState();
+  const { user } = userStore();
+
   const {
     register,
     handleSubmit,
@@ -30,16 +34,12 @@ function SignupStepTwo() {
 
   const onSubmit = async (formData) => {
     try {
-      console.log(formData);
-
       if (formData.profileImage.length > 0) {
         formData.profileImage = await uploadImage(formData);
       } else {
         formData.profileImage = "no-profile.png";
       }
 
-      console.log(formData.profileImage);
-      //회원가입
       formData.type = "user";
       const res = await axios.post("/users", formData);
       alert(
@@ -81,6 +81,10 @@ function SignupStepTwo() {
     setAttachImg();
     file.current.value = "";
   };
+
+  useEffect(() => {
+    if (user) navigate("/");
+  });
 
   return (
     <>

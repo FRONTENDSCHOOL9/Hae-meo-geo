@@ -17,7 +17,7 @@ textarea{
   flex-direction: column;
   margin:0 auto;
   max-width: var(--layout-container-pc);
-  padding: 7.2rem 2.4rem;
+  padding: 7.2rem 2.4rem; 
   gap: 4.8rem;
 }
 
@@ -106,6 +106,7 @@ textarea{
 
 .inputReadOnly{
   cursor: default;
+  height:6rem;
   color: var(--color-gray-100);
   border: 1px solid var(--color-gray-100);
   font-size: 1.6rem;
@@ -127,4 +128,22 @@ textarea{
 .errorMassage{
   color: var(--color-primary);
   margin-top: 0.6rem;
+}
+
+@media (max-width: 768px) {
+  .buttonUpload{
+    font-size: 1.6rem;
+    height: 5rem;
+    line-height: 4.8rem;
+  }
+  .boxButtonUpload{
+    flex-direction: column;
+  }
+  .inputReadOnly{
+    height:4rem;
+  }
+  .layout{
+    gap: 1.6rem;
+    padding: 3.6rem 1.2rem;
+  }
 }

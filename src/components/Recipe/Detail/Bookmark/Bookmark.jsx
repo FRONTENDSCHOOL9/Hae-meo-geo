@@ -44,10 +44,12 @@ function Bookmark({ id }) {
           const { data } = await axios.delete(`/bookmarks/${bookmarkId}`);
           setIsBookmarked(false);
           setBookmarkId();
+          alert("나도해보기가 삭제되었습니다.");
         } else {
           const { data } = await axios.post(`/bookmarks/product/${id}`);
           setIsBookmarked(true);
           setBookmarkId(data.item._id);
+          alert("나도해보기가 등록되었습니다.");
         }
       } else {
         const toLogin = confirm(

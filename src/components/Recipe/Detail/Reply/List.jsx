@@ -29,6 +29,7 @@ function ReplyList({ id, setRepliesFn, replies }) {
     try {
       const { data } = await axios.delete(`/posts/${postId}`);
       fetchData();
+      alert("후기가 삭제되었습니다.");
     } catch (err) {
       console.error(err.response?.data.message);
     }

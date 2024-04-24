@@ -27,7 +27,7 @@ function Pagination({ totalCount, currentPage, setCurrentPage }) {
     page <= pageSet * pageRange;
     page++
   ) {
-    searchParams.set("page", page);
+    searchParams.set("page", currentPage);
 
     if (page > totalPage) break;
     let search = searchParams.toString();

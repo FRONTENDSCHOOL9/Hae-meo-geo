@@ -89,4 +89,10 @@
   .banner h2 {
     padding-right: 0;
   }
+
+  .myRcpRegister .titleDetail {
+    color: var(--color-gray-100);
+    font-size: 1.6rem;
+  }
+  
 }

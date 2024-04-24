@@ -12,18 +12,25 @@
 }
 
 .steptwo fieldset {
-  display: grid;
-  grid-template-columns: 18rem 30rem;
+  display: flex;
   position: relative;
 }
 
-.steptwo input:not([type="email"]) {
-  grid-column: 2 / span 2;
+.steptwo label{
+  width: 18rem;
+  flex-shrink: 0;
 }
+
+.steptwo input{
+  width: calc(100% - 18rem);
+}
+
+/* .steptwo input:not([type="email"]) {
+  grid-column: 2 / span 2;
+} */
 
 .steptwo Button {
   grid-column: 3;
-  margin-left: 1rem;
 }
 
 .steptwo fieldset > p {
@@ -38,10 +45,14 @@
 
 .profile{
   margin-left: 0;
+  flex-shrink: 0;
+}
+.steptwo input[type="email"] {
+  margin-right: 1rem;
 }
 
 
-@media (max-width: 700px) {
+@media (max-width: 767px) {
   .form{
     row-gap: 2.5rem;
     width: 100%;
@@ -50,11 +61,6 @@
   .steptwo fieldset {
     grid-template-columns: unset;
     place-items: start;
-  }
-
-  .steptwo fieldset:not(.profilewrapper){
-    width: 100%;
-    display: flex;
     flex-direction: column;
   }
 
@@ -72,12 +78,12 @@
     opacity: 1;
   }
 
-  .steptwo label:not(.profilelabel){
-    display: none;
-  }
-
   .steptwo label{
     font-size: 1.4rem;
+  }
+
+  .profile label{
+    display: block;
   }
 
   .profilewrapper{
@@ -98,9 +104,5 @@
     height: 4rem;
     line-height: 0;
     margin-left: 0;
-  }
-
-  .steptwo input[type="email"] {
-    margin-right: 1rem;
   }
 }

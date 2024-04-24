@@ -25,17 +25,20 @@ function SignupStepTwo() {
   } = useForm();
 
   const file = useRef();
-  const { ref } = register("image");
+  const { ref } = register("profileImage");
   const email = watch("email");
 
   const onSubmit = async (formData) => {
     try {
-      if (formData.image?.length) {
-        formData.image = await uploadImage(formData);
+      console.log(formData);
+
+      if (formData.profileImage.length > 0) {
+        formData.profileImage = await uploadImage(formData);
       } else {
-        formData.image = "/img/ico-user.svg";
+        formData.profileImage = "no-profile.png";
       }
 
+      console.log(formData.profileImage);
       //회원가입
       formData.type = "user";
       const res = await axios.post("/users", formData);
@@ -190,7 +193,7 @@ function SignupStepTwo() {
             )}
           </fieldset>
           <fieldset className={profilewrapper}>
-            <label htmlFor="image" className="profilelabel">
+            <label htmlFor="profileImage" className="profilelabel">
               프로필
             </label>
             <div
@@ -198,7 +201,7 @@ function SignupStepTwo() {
                 attachImg ? ReplyStyle.act : ""
               }`}
             >
-              <label htmlFor="image" className="profilelabel">
+              <label htmlFor="profileImage" className="profilelabel">
                 <img src={attachImg} alt="" />
                 <span className="hidden">첨부파일 선택</span>
               </label>
@@ -208,8 +211,8 @@ function SignupStepTwo() {
               <input
                 type="file"
                 accept="image/*"
-                id="image"
-                {...register("image", {
+                id="profileImage"
+                {...register("profileImage", {
                   onChange: (e) => {
                     const reader = new FileReader();
                     reader.readAsDataURL(e.target.files[0]);

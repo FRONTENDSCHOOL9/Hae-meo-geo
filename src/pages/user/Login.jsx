@@ -43,7 +43,7 @@ function Login() {
         _id: res.data.item._id,
         name: res.data.item.name,
         email: res.data.item.email,
-        profile: res.data.item.image,
+        profile: res.data.item.profileImage,
         token: res.data.item.token,
       });
 
@@ -96,7 +96,10 @@ function Login() {
       <LoginLayout>
         <Title>로그인</Title>
         {user && <p>{user.name}님 밥 해머거!</p>}
-        <form onSubmit={handleSubmit(onSubmit)} className={`${form} ${styles.login}`}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className={`${form} ${styles.login}`}
+        >
           <input
             type="text"
             id="email"

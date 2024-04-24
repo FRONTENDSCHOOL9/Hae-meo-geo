@@ -1,5 +1,3 @@
-import { Tag } from "@components/Button/Button";
-import Pagination from "@components/Pagination/Pagination";
 import List from "@components/Recipe/List/List";
 import Search from "@components/Search/Search";
 import Title from "@components/Title/Title";
@@ -28,10 +26,8 @@ function MyRecipeList() {
   });
 
   useEffect(() =>{
-    console.log("keyword:",keyword);
     refetch();
   }, [keyword]);
-  console.log(data);
 
   const recipeItem = data && data?.item.map((item, index) => (
     <li key={index}>
@@ -67,11 +63,6 @@ function MyRecipeList() {
           totalCount={data?.item.length}
           keyword={keyword}
           isLoading={isLoading}
-          />
-          <Pagination
-            totalCount={totalCount}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
           />
         </>
       }

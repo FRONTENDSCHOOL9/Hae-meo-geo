@@ -123,3 +123,8 @@ textarea{
   justify-content: center;
   gap: 1.2rem;
 }
+
+.errorMassage{
+  color: var(--color-primary);
+  margin-top: 0.6rem;
+}

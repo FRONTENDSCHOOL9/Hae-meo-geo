@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 function MyRecipeRegister() {
 
-  const {textarea, layout, title, container, text, writeWay, boxButtonUpload, buttonUpload, writeWaySelect, boxButtonsSubmit, inputReadOnly, containerWriteWay} = styles;
+  const {textarea, layout, title, container, text, writeWay, boxButtonUpload, buttonUpload, writeWaySelect, boxButtonsSubmit, inputReadOnly, containerWriteWay, errorMassage} = styles;
 
   const navigate = useNavigate();
 
@@ -22,12 +22,11 @@ function MyRecipeRegister() {
 
   const onSubmit = async (formData) => {
     try {
-      console.log(formData);
+      
       if (formData.image.length > 0) {
         // 프로필 이미지를 추가한 경우
         const imageFormData = new FormData();
         imageFormData.append("attach", formData.image[0]);
-
         //fileRes -> axios가 실행하고 데이터를 반환하는데 이를 변수로 받아서 사용할수 있음
         const fileRes = await axios("/files", {
           method: "post",
@@ -55,11 +54,9 @@ function MyRecipeRegister() {
 
       const res = await axios.post("/posts", formData);
 
-      alert("레시피 작성이 완료되었습니다.");
-
       navigate("/myRecipe");
     } catch (err) {
-      alert("레시피 내용이 부족합니다.");
+
     }
   };
 
@@ -68,7 +65,6 @@ function MyRecipeRegister() {
   const changeFileName = (e) => {
     let fileName = e.target.value;
     setImageName(fileName);
-    console.log("fileName");
   };
 
   return (
@@ -81,10 +77,13 @@ function MyRecipeRegister() {
             className={text}
             placeholder="제목을 입력해주세요."
             type="text"
-            {...register("title")}
+            {...register("title",{
+              required: "제목을 입력해주세요."
+            })}
           />
+          {errors && <div className={errorMassage}>{errors.title?.message}</div>}
         </div>
-        <div className={container}>
+        <div className={`hidden ${container}`}>
           <div className={title}>작성방법</div>
           <fieldset className={containerWriteWay}>
             <input
@@ -117,20 +116,25 @@ function MyRecipeRegister() {
           <textarea
             className={textarea}
             placeholder="내용을 입력해주세요."
-            {...register("content")}
+            {...register("content", {
+              required: "내용을 입력해주세요."})}
             cols="30"
             rows="10"
           ></textarea>
+          {errors && <div className={errorMassage}>{errors.content?.message}</div>}
         </div>
         <div className={container}>
           <div className={title}>완료 이미지</div>
           <div className={boxButtonUpload}>
             <input className={`${text} ${inputReadOnly}`} value={imageName} placeholder="10MB 미만의 이미지를 업로드해주세요." readOnly />
             <label className={buttonUpload}  for="file">첨부파일</label>
-            <input className="hidden" {...register("image")}  onChange={(e) => changeFileName(e) } type="file" id="file" />
+            <input className="hidden" {...register("image",{
+              required: "사진을 등록해주세요"
+            })}  onChange={(e) => changeFileName(e) } type="file" id="file" />
           </div>
+          {errors && <div className={errorMassage}>{errors.image?.message}</div>}
         </div>
-        <div className={container}>
+        <div className={`hidden ${container}`}>
           <div className={title}>태그</div>
           <input
             className={text}

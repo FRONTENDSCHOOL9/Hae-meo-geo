@@ -22,7 +22,6 @@ function MyRecipeRegister() {
 
   const onSubmit = async (formData) => {
     try {
-      
       if (formData.image.length > 0) {
         // 프로필 이미지를 추가한 경우
         const imageFormData = new FormData();
@@ -53,6 +52,12 @@ function MyRecipeRegister() {
       delete formData.tag;
 
       const res = await axios.post("/posts", formData);
+
+      console.log(res);
+
+      if(res.data.item.user._id){
+        alert("레시피 작성이 완료 되었습니다.");
+      }
 
       navigate("/myRecipe");
     } catch (err) {

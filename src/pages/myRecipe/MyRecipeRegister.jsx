@@ -54,7 +54,7 @@ function MyRecipeRegister() {
 
       const res = await axios.post("/posts", formData);
 
-      navigate("/myRecipe");
+      navigate("/myRecipe/list");
     } catch (err) {
 
     }
@@ -147,7 +147,7 @@ function MyRecipeRegister() {
             <Button type="submit" color="primary" size="large">
               작성하기
             </Button>
-            <LinkButton to="/myRecipe" type="submit" size="large">
+            <LinkButton to="/myRecipe/list" type="submit" size="large">
               취소
             </LinkButton>
           </div>

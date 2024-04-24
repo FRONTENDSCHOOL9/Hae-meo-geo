@@ -1,4 +1,3 @@
-
 # 목차
 1. [서비스 소개](#서비스-소개)
 2. [팀원 소개](#팀원-소개)
@@ -49,16 +48,17 @@
 | :---: | :---: | :---: | :---: |
 | <img alt="git logo" src="https://git-scm.com/images/logos/logomark-orange@2x.png" width="65" height="65" > | <img alt="github logo" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="65" height="65"> | <img alt="Discord logo" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384e89d1d54d704ece7_3437c10597c1526c3dbd98c737c2bcae.svg" height="65" width="65"> | <div style="display: flex; align-items: flex-start;"><img src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/15b94d68-61bd-48d5-8931-2180b62fb9a6" alt="icon" width="65" height="65" /></div>
 > ### Front-end
-| Html | CSS  | React | React-<br>Router  | esLint | Prettier | React-<br>Query | Redux |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" /> | <img alt="css" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/cc90533f-6811-4e1b-84e9-6314c9d01da0" height="70" width="70" > | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rr" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/b307f370-9cd4-4dc8-992a-914dd5f45e92" height="65" width="65" > | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/eslint-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rq" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/3f49a145-7705-4117-8198-b52fe6b062ea" height="70" width="70" > | <img alt="redux" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/3ad4326c-87bf-4fdd-afd6-9d35326d1ffb" height="70" width="70" > |
+| Html | CSS  | React | React-<br>Router  | esLint | Prettier | React-<br>Query | 
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" /> | <img alt="css" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/cc90533f-6811-4e1b-84e9-6314c9d01da0" height="70" width="70" > | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rr" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/b307f370-9cd4-4dc8-992a-914dd5f45e92" height="65" width="65" > | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/eslint-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rq" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/3f49a145-7705-4117-8198-b52fe6b062ea" height="70" width="70" > |
 
 </br>
 
 > ### 개발 환경
 |||
 | :-------- | :-- |
-|개발환경|[FrontEnd] </br> React, Axios, CSS module, Zustand, React-Query </br> [BackEnd] </br> [제공된 API](https://api.frontendschool.shop/apidocs/), [식품의약품안전처 조리식품의 레시피 API](https://www.foodsafetykorea.go.kr/api/openApiInfo.do?menu_grp=MENU_GRP31&menu_no=661&show_cnt=10&start_idx=1&svc_no=COOKRCP01), [날씨 API](https://openweathermap.org/)
+|FrontEnd | React, Axios, CSS module, Zustand, React-Query |
+| BackEnd | [제공된 API](https://api.frontendschool.shop/apidocs/), [식품의약품안전처 조리식품의 레시피 API](https://www.foodsafetykorea.go.kr/api/openApiInfo.do?menu_grp=MENU_GRP31&menu_no=661&show_cnt=10&start_idx=1&svc_no=COOKRCP01), [날씨 API](https://openweathermap.org/)
 
 </br>
 
@@ -100,7 +100,7 @@ remove |		파일을 삭제하는 작업만 수행한 경우
 </br>
 
 > ### 라이브러리 사용 이유
-|기술|이유|
+|||
 | :--: | :-- |
 React | 재사용 가능한 컴포넌트 사용하기 위해 사용
 Zustand | 단순한 상태 관리와 용이한 유지 보수를 위해 사용
@@ -487,24 +487,17 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 # 💬 소감 
 ##### 🍚 이소정
 
-```
-이 안에 소감 작성
-```
+> 소감 작성
 
 ##### 🍚 박지성
 
-```
-이 안에 소감 작성
-```
+> 소감 작성
 
 ##### 🍚 서진희
 
-```
-이 안에 소감 작성
-```
+> 프로젝트를 마무리하면서 지난 시간을 돌이켜보면 그동안 제대로 알지 못한 github, API 서버 통신 등을 더 자세히 알게 된 시간이었습니다. 이런 기술뿐만 아니라 팀원들과 협업하며 소통하고 문제를 해결해 나가는 것에 대해서, 어렵지만 즐거웠던 시간이었다고 느꼈습니다. 그리고 팀원들을 잘 이끌어 주신 팀장님 덕분에 프로젝트가 잘 마무리될 수 있었습니다. 많이 배울 수 있었던 첫 프로젝트였습니다. 감사합니다.
+
 
 ##### 🍚 한태희
 
-```
-이 안에 소감 작성
-```
+> 소감 작성

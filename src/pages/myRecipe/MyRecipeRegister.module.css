@@ -17,7 +17,7 @@ textarea{
   flex-direction: column;
   margin:0 auto;
   max-width: var(--layout-container-pc);
-  padding: 7.2rem 2.4rem;
+  padding: 7.2rem 2.4rem; 
   gap: 4.8rem;
 }
 
@@ -141,5 +141,9 @@ textarea{
   }
   .inputReadOnly{
     height:4rem;
+  }
+  .layout{
+    gap: 1.6rem;
+    padding: 3.6rem 1.2rem;
   }
 }

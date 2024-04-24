@@ -1,9 +1,16 @@
 .myRCPimage{
-  display: block;
   margin:0 auto;
+  max-width: 100%;
+  aspect-ratio: auto;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
 }
 
 .myRCPdetail{
-  margin-top: 7.2rem;
   margin-top: 3.6rem;
+  margin-bottom: 1.8rem;
+  white-space: pre-line;
 }

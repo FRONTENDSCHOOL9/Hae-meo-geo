@@ -7,7 +7,7 @@ import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styles from "./SignupStepTwo.module.css";
-
+import ReplyStyle from "../../components/Recipe/Detail/Reply/Reply.module.css";
 
 function SignupStepTwo() {
   const [emailAvailability, setEmailAvailability] = useState(null);
@@ -85,6 +85,11 @@ function SignupStepTwo() {
 
   const handleCheckEmail = async () => {
     email && (await checkEmailAvailability());
+  };
+
+  const handleAttachRemove = () => {
+    setAttachImg();
+    file.current.value = "";
   };
 
   return (
@@ -190,38 +195,38 @@ function SignupStepTwo() {
             {errors.birthdate && <p>{errors.birthdate.message}</p>}
           </fieldset>
           <fieldset className={profilewrapper}>
-            <label htmlFor="image" className={profilelabel}>프로필</label>
-            <img src={attachImg} className={profile}alt=""/>
-                <span id="image" className="hidden">첨부파일 선택</span>
-            <input
-              type="file"
-              accept="image/*"
-              id="image"
-              // { ...register('image') }
-              {...register("image", {
-                onChange: (e) => {
-                  const reader = new FileReader();
-                  reader.readAsDataURL(e.target.files[0]);
-                  reader.onloadend = () => {
-                    setAttachImg(reader.result);
-                  };
-                },
-              //   onChange: (e) => {
-              //     const file = e.target.files[0];
-              //     if (file instanceof Blob) { // 파일이 Blob 객체인지 확인
-              //       const reader = new FileReader();
-              //       reader.readAsDataURL(file);
-              //       reader.onloadend = () => {
-              //         setAttachImg(reader.result);
-              //       };
-              //     }
-              //   },
-              })}
-              ref={(e) => {
-                ref(e);
-                file.current = e;
-              }}
-            />
+          <label htmlFor="image">프로필</label>
+          <div
+              className={` ${styles.profile} ${ReplyStyle.attachWr} ${styles.attachWr} ${
+                attachImg ? ReplyStyle.act : ""
+              }`}
+            >
+              <label htmlFor="image">
+                <img src={attachImg} alt="" />
+                <span className="hidden">첨부파일 선택</span>
+              </label>
+              <button type="button" onClick={handleAttachRemove}>
+                <span className="hidden">첨부파일 삭제</span>
+              </button>
+              <input
+                type="file"
+                accept="image/*"
+                id="image"
+                {...register("image", {
+                  onChange: (e) => {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(e.target.files[0]);
+                    reader.onloadend = () => {
+                      setAttachImg(reader.result);
+                    };
+                  },
+                })}
+                ref={(e) => {
+                  ref(e);
+                  file.current = e;
+                }}
+              />
+            </div>
           </fieldset>
           <hr />
           <Button type="submit" color="gray" size="large" filled="filled">

@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import styles from "./Type.module.css";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { useEffect } from "react";
 
 Type.propTypes = {
   keyword: PropTypes.string,
@@ -10,14 +11,18 @@ Type.propTypes = {
   setCurrentPage: PropTypes.func,
 };
 
-function Type({ keyword, setKeyword, setCurrentPage }) {
+function Type({ keyword, setKeyword, setCurrentPage, searchInput }) {
   const { typeWr, type } = styles;
   const [searchParams, setSearchParams] = useSearchParams();
-  const [clickedButton, setClickedButton] = useState();
+  const [clickedButton, setClickedButton] = useState(
+    searchParams.get("RCP_PAT2") || "",
+  );
   const navigate = useNavigate();
 
   const handleClick = (e) => {
     if (e.target.tagName !== "BUTTON") return false;
+    searchInput.current.value = "";
+
     const category = e.target.innerText.split("&")[0];
     searchParams.set("RCP_PAT2", category);
     searchParams.set("page", 1);
@@ -33,6 +38,10 @@ function Type({ keyword, setKeyword, setCurrentPage }) {
     setClickedButton(category);
     navigate(`/recipe/list?page=1&RCP_PAT2=${category}`);
   };
+
+  useEffect(() => {
+    if (searchParams.get("RCP_PARTS_DTLS")) setClickedButton("");
+  });
 
   return (
     <div className={typeWr}>

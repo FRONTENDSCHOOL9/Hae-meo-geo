@@ -33,4 +33,8 @@
     font-size: 1.4rem;
     padding-top: 2em;
   }
+
+  .info {
+    padding: 0;
+  }
 }

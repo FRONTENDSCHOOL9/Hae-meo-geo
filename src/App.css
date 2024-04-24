@@ -18,6 +18,7 @@
 
   --title-big: 4.8rem;
   --title-medium: 2.4rem;
+  --title-small: 1.8rem;
 }
 
 body {
@@ -26,7 +27,9 @@ body {
 
 #root {
   min-height: 100vh;
+  width: 100%;
   max-width: 1920px;
+  overflow-x: hidden;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -63,6 +66,12 @@ body {
   object-fit: cover;
   border-radius: 1.2rem;
   overflow: hidden;
+  transition: all .3s;
+}
+
+.swiper-slide:hover img {
+  box-shadow: 0 0 1rem rgba(0, 0, 0, .3);
+  transform: scale(1.02);
 }
 
 .swiper-button-prev,
@@ -76,11 +85,28 @@ body {
   color: transparent;
   top: 50%;
   display: block;
+  display: none;
 }
 
 .swiper-button-prev {
-  transform: translate(-50%, -50%) rotate(180deg);
+  transform: translate(-50%, -90%) rotate(180deg);
+  left: 0;
+}
 
+.swiper-button-next {
+  transform: translate(50%, -90%);
+  right: 0;
+}
+
+.swiper .swiper-pagination {
+  height: 2px;
+  top: auto;
+  bottom: 0;
+  opacity: 0.8;
+}
+
+.swiper .swiper-pagination span {
+  background: var(--color-primary-80);
 }
 
 @media (min-width: 1025px) and (max-width: 1680px) {
@@ -97,14 +123,26 @@ body {
 
 @media (max-width: 767px) {
   :root {
-    --layout-padding: 1.2rem;
+    --layout-padding: 1.5rem;
 
     --title-big: 2.4rem;
     --title-medium: 1.8rem;
+    --title-small: 1.4rem;
   }
 
   body {
     font-size: 1.3rem;
+  }
+
+  input[type="email"],
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="button"] {
+    height: 4rem;
+    line-height: 3.8rem;
+    border-radius: 1rem;
+    text-indent: 1rem;
   }
 
   .pc {
@@ -113,6 +151,23 @@ body {
 
   .mo {
     display: inline-block;
+  }
+
+  .swiper {
+    width: calc(100% + 3rem);
+    padding: 0 1.5rem 3rem;
+    margin-left: -1.5rem;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  }
+
+  .swiper .swiper-pagination {
+    width: calc(100% - 3rem);
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 

@@ -1,5 +1,6 @@
 import { Tag } from "@components/Button/Button";
 import Loading from "@components/Loading/Loading";
+import NoData from "@components/NoData/NoData";
 import Pagination from "@components/Pagination/Pagination";
 import List from "@components/Recipe/List/List";
 import Search from "@components/Search/Search";
@@ -67,7 +68,7 @@ function RcpList() {
       />
       {isLoading ? (
         <Loading />
-      ) : (
+      ) : totalCount ? (
         <>
           <List
             recipeItem={recipeItem}
@@ -80,6 +81,8 @@ function RcpList() {
             setCurrentPage={setCurrentPage}
           />
         </>
+      ) : (
+        <NoData keyword={keyword} />
       )}
     </>
   );

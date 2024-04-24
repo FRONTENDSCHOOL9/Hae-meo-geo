@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Signup.module.css";
 
 function SignupStepOne() {
-  const {form} = styles;
+  const { form } = styles;
   const [allChecked, setAllChecked] = useState(false);
   const { subtitle, checkbox } = styles;
   const checkboxesRef = useRef([]);

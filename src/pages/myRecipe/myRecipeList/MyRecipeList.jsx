@@ -7,7 +7,9 @@ import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-
+import {LinkButton} from "@components/Button/Button";
+import styles from "./MyRecipeList.module.css"
+import Loading from "@components/Loading/Loading";
 
 function MyRecipeList() {
   const axios = useCustomAxios();
@@ -15,21 +17,24 @@ function MyRecipeList() {
   const [keyword, setKeyword] = useState("");
   const [currentPage, setCurrentPage] = useState(searchParams.get("page") || 1);
   const [totalCount, setTotalCount] = useState(1125);
-
+  const {write} = styles;
   const limit = import.meta.env.VITE_PAGINATION_LIMIT;
-  const RCP_PARTS_DTLS = searchParams.get("RCP_PARTS_DTLS");
 
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ["list", currentPage, RCP_PARTS_DTLS],
-    queryFn: () => axios.get("/posts", {params: {type:"recipe"}}),
+    queryKey: ["list", currentPage],
+    queryFn: () => axios.get("/posts", {params: {type:"recipe", keyword}}),
     select: (response) => response.data,
     suspense: false,
   });
 
+  useEffect(() =>{
+    console.log("keyword:",keyword);
+    refetch();
+  }, [keyword]);
+  console.log(data);
 
-
-  const recipeItem = data?.item.map((item) => (
-    <li key={item["title"]}>
+  const recipeItem = data && data?.item.map((item, index) => (
+    <li key={index}>
       <Link to={`/myrecipe/${item._id}`}>
         <img src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${item.image}`} alt={item["title"]} />
         <p>{item["title"]}</p>
@@ -41,13 +46,6 @@ function MyRecipeList() {
     if (keyword && data) setTotalCount(Number(data?.total_count));
   }, [keyword, data]);
 
-  useEffect(() => {
-    if (RCP_PARTS_DTLS) setKeyword(RCP_PARTS_DTLS);
-    window.scrollTo({ top: 0 });
-  }, [searchParams.toString()]);
-
-  console.log(data);
-
   // useEffect(() => {
   //   refetch();
   // }, [searchParams.toString()]);
@@ -55,12 +53,18 @@ function MyRecipeList() {
   return (
     <>
       <Title>나만의 레시피</Title>
-      {/* <Search type="myRCP" setKeyword={setKeyword} setCurrentPage={setCurrentPage} /> */}
-      {data && (
+      <Search type="myRcpList" keyword={keyword} setKeyword={setKeyword} setCurrentPage={setCurrentPage} />
+      <div className={write}>
+        <LinkButton to="/myRecipe/register" type="submit" size="large" color="primary" filled="filled">글쓰기</LinkButton>
+      </div>
+      {isLoading ? 
+        <Loading/>
+      : 
+        data &&
         <>
           <List
           recipeItem={recipeItem}
-          totalCount={totalCount}
+          totalCount={data?.item.length}
           keyword={keyword}
           isLoading={isLoading}
           />
@@ -70,8 +74,7 @@ function MyRecipeList() {
             setCurrentPage={setCurrentPage}
           />
         </>
-      )}
-
+      }
     </>
   );
 }

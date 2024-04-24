@@ -1,9 +1,50 @@
+.section {
+  position: relative;
+}
+
 .section+.section {
   margin-top: 10rem;
+}
+
+.section .titleWr {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.section h2 {
+  font-size: var(--title-medium);
+}
+
+.section h2 span {
+  color: var(--color-primary-80);
+  font-weight: 800;
+}
+
+.section p {
+  font-size: 1.6rem;
 }
 
 .section img {
   width: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
+}
+
+.swiperWr {
+  margin-top: 3rem;
+  padding-bottom: 4rem;
+  overflow: visible;
+}
+
+.swiperWr p {
+  margin-top: 1rem;
+}
+
+.searchSec h2 {
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  /* .swiperWr . */
 }

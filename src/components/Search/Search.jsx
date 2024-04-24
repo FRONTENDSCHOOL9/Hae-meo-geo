@@ -2,6 +2,7 @@ import Type from "@components/Search/Type";
 import PropTypes from "prop-types";
 import styles from "./Search.module.css";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { useRef } from "react";
 
 Search.propTypes = {
   keyword: PropTypes.string.isRequired,
@@ -14,6 +15,7 @@ function Search({ keyword, setKeyword, setCurrentPage, type = "haeRcp" }) {
   const { searchWr, inputWr } = styles;
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+  const searchInput = useRef();
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -23,13 +25,13 @@ function Search({ keyword, setKeyword, setCurrentPage, type = "haeRcp" }) {
     searchParams.delete("RCP_PAT2");
     searchParams.delete("RCP_NM");
 
-    if (!keyword === "home") {
+    if (keyword !== "home") {
       setKeyword(ingredient);
       setSearchParams(searchParams);
       setCurrentPage(1);
     }
-    // 홈일 경우 페이지 이동하도록 추가하기
-    navigate(`/recipe/list?page=1&RCP_PARTS_DTLS=${ingredient}`);
+    if (!type === "myRcpList")
+      navigate(`/recipe/list?page=1&RCP_PARTS_DTLS=${ingredient}`);
   };
 
   return (
@@ -39,11 +41,16 @@ function Search({ keyword, setKeyword, setCurrentPage, type = "haeRcp" }) {
           keyword={keyword}
           setKeyword={setKeyword}
           setCurrentPage={setCurrentPage}
+          searchInput={searchInput}
         />
       )}
 
       <form className={inputWr} onSubmit={(e) => handleSearch(e)}>
-        <input type="text" placeholder="재료를 검색해보세요." />
+        <input
+          type="text"
+          placeholder="재료를 검색해보세요."
+          ref={searchInput}
+        />
         <button type="submit">
           <span className="hidden">검색</span>
         </button>

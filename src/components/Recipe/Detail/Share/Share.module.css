@@ -1,0 +1,7 @@
+.share::before {
+  background-image: url(/img/ico-share.svg);
+}
+
+.share:hover::before {
+  background-image: url(/img/ico-share-act.svg);
+}

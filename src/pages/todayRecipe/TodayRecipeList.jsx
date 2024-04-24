@@ -43,12 +43,13 @@ function TodayRecipeList() {
       return (
         <li key={item._id}>
           <Link to={`/recipe/list?page=1&RCP_NM=${item.title}`}>
-            <img src={`/img/todayRecipe/${item.extra?.image}`} alt="" />
+            <img
+              src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${item.extra?.image}`}
+              alt={item.title}
+            />
             <div className={textWr}>
-              <h3>
-                #{item.content} #{item.title}
-              </h3>
-              <span>{item.title} 보러가기</span>
+              <h3>{item.content}</h3>
+              <span>{item.title} 요리 보러가기</span>
             </div>
           </Link>
         </li>
@@ -70,7 +71,7 @@ function TodayRecipeList() {
           pageStart={1}
           loadMore={fetchNextPage}
           hasMore={!isFetching && hasNext}
-          loader={<p>로딩중</p>}
+          loader={<Loading key={0} />}
         >
           <ul className={recipeList}>{list}</ul>
         </InfiniteScroll>

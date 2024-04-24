@@ -9,7 +9,6 @@ function Header() {
     logo,
     gnb,
     userMenu,
-    search,
     fixedWr,
     toTop,
     hamburgerButton,
@@ -28,17 +27,14 @@ function Header() {
 
   return (
     <>
-      <header className={header}>
+      <header className={header} onClick={(e) => handleNav(e)}>
         <div className={logo}>
           <Link to="/">
             <img className="pc" src="/img/logo.svg" alt="해머거" />
             <img className="mo" src="/img/logo-name.svg" alt="해머거" />
           </Link>
         </div>
-        <div
-          className={`${hamburgerMenu} ${isClicked ? styles.act : ""}`}
-          onClick={(e) => handleNav(e)}
-        >
+        <div className={`${hamburgerMenu} ${isClicked ? styles.act : ""}`}>
           <nav className={gnb}>
             <ul>
               <li>
@@ -63,11 +59,6 @@ function Header() {
                   <span className="hidden">로그인</span>
                 </Link>
               )}
-            </li>
-            <li>
-              <button type="button" className={search}>
-                <span className="hidden">검색</span>
-              </button>
             </li>
           </ul>
         </div>

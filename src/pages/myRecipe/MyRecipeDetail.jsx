@@ -36,7 +36,7 @@ function MyRecipeDetail() {
       ) : (
         data && (
           <>
-            <Sidebar id={_id} />
+            <Sidebar id={_id} type="myRcp"/>
             <Banner type="myRcpRegister" name={data.item["title"]} />
             <Content>
               <div className={container}>

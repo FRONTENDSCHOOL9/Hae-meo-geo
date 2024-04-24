@@ -1,8 +1,14 @@
 .form {
+  /* max-width: 48rem;
+  width: 100%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   row-gap: 4.5rem;
+}
+
+.steptwo input::placeholder{
+  opacity: 0;
 }
 
 .steptwo fieldset {
@@ -39,4 +45,59 @@
   background: #fff url(/img/ico-attach.svg) no-repeat center / 6rem;
   display: block;
   cursor: pointer;
+}
+
+
+@media (max-width: 700px) {
+  .form{
+    row-gap: 2.5rem;
+    width: 100%;
+  }
+
+  .steptwo fieldset {
+    grid-template-columns: unset;
+    place-items: start;
+  }
+
+  .steptwo fieldset:not(.profilewrapper){
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .steptwo fieldset:first-child{
+    flex-direction: row;
+  }
+
+  .steptwo input{
+    width: 100%;
+    height: 3.2rem;
+    font-size: 1.4rem;
+  }
+
+  .steptwo input::placeholder{
+    opacity: 1;
+  }
+
+  .steptwo label:not(.profilelabel){
+    display: none;
+  }
+
+  .steptwo label{
+    font-size: 1.4rem;
+  }
+
+  .profilewrapper{
+    display: unset;
+  }
+
+  .steptwo fieldset > p {
+    position: absolute;
+    bottom: -2rem;
+    left: 1rem;
+  }
+
+  .steptwo p{
+    font-size: 1.2rem;
+  }
 }

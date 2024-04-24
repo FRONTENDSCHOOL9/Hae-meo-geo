@@ -5,17 +5,20 @@
 }
 
 .inner {
-  width: 48rem;
+  max-width: 48rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6.6rem;
   box-sizing: border-box;
+  padding: 0 1.4rem;
 }
 
-/* form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 4.5rem;
-} */
+
+@media (max-width: 700px) {
+  .inner{
+    min-width: 40rem;
+    gap: 3rem; 
+  }
+}

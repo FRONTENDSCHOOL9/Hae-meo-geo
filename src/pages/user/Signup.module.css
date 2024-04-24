@@ -53,7 +53,34 @@ label {
   margin-bottom: 5.6rem;
 }
 
-.form{
+.form {
   width: 100%;
   display: flex;
+}
+
+@media (max-width: 700px) {
+  /* signup */
+  .signup p,
+  label {
+    font-size: 1.4rem;
+  }
+
+  .subtitle {
+    font-size: var(--title-medium);
+  }
+
+  .checkbox {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .signup fieldset {
+    margin-bottom: 2rem;
+  }
+
+  .checkbox-large {
+    width: 2.4rem;
+    height: 2.4rem;
+    margin-bottom: 0;
+  }
 }

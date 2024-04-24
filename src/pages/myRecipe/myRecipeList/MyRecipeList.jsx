@@ -14,9 +14,8 @@ function MyRecipeList() {
   const [searchParams] = useSearchParams();
   const [keyword, setKeyword] = useState("");
   const [currentPage, setCurrentPage] = useState(searchParams.get("page") || 1);
-  const [totalCount, setTotalCount] = useState(1125);
+  const [totalCount, setTotalCount] = useState("");
   const {write} = styles;
-  const limit = import.meta.env.VITE_PAGINATION_LIMIT;
 
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["list", currentPage],
@@ -31,7 +30,7 @@ function MyRecipeList() {
 
   const recipeItem = data && data?.item.map((item, index) => (
     <li key={index}>
-      <Link to={`/myrecipe/${item._id}`}>
+      <Link to={`/myrecipe/list/${item._id}`}>
         <img src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${item.image}`} alt={item["title"]} />
         <p>{item["title"]}</p>
       </Link>

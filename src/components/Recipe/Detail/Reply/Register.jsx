@@ -9,14 +9,8 @@ import ReplyStyle from "./Reply.module.css";
 import styles from "./Register.module.css";
 
 function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
-  const {
-    replyRegister,
-    ratingErrorMsg,
-    contentErrorMsg,
-    preview,
-    noLogin,
-    buttonWr,
-  } = styles;
+  const { replyRegister, ratingErrorMsg, contentErrorMsg, noLogin, buttonWr } =
+    styles;
   const { user } = useUserStore();
   const axios = useCustomAxios();
   const [rating, setRating] = useState();
@@ -174,7 +168,7 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
                 attachImg ? ReplyStyle.act : ""
               }`}
             >
-              <label htmlFor="image" className={preview}>
+              <label htmlFor="image">
                 <img src={attachImg} alt="" />
                 <span className="hidden">첨부파일 선택</span>
               </label>

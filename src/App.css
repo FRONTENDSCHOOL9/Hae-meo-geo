@@ -134,6 +134,17 @@ body {
     font-size: 1.3rem;
   }
 
+  input[type="email"],
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="button"] {
+    height: 4rem;
+    line-height: 3.8rem;
+    border-radius: 1rem;
+    text-indent: 1rem;
+  }
+
   .pc {
     display: none;
   }

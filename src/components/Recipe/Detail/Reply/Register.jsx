@@ -53,6 +53,7 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
       reset();
       setRating();
       setAttachImg();
+      alert("후기가 등록되었습니다.");
     } catch (err) {
       console.error(err);
     }

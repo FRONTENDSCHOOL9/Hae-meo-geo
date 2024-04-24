@@ -32,6 +32,10 @@
   transition: all 0.3s;
 }
 
+.gnb ul a[aria-current="page"] {
+  color: var(--color-primary);
+}
+
 .gnb ul a:hover {
   color: var(--color-primary);
 }

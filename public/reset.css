@@ -158,6 +158,11 @@ input[type="checkbox"] {
   margin-right: 1rem;
 }
 
+a:focus-visible,
+input:focus-visible {
+  outline: var(--color-primary) auto 1px
+}
+
 textarea {
   vertical-align: top;
   box-sizing: border-box;

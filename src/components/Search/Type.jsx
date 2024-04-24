@@ -30,7 +30,7 @@ function Type({ keyword, setKeyword, setCurrentPage, searchInput }) {
     searchParams.delete("RCP_NM");
     setSearchParams(searchParams);
 
-    if (!keyword === "home") {
+    if (keyword !== "home") {
       setKeyword(category);
       setCurrentPage(1);
     }

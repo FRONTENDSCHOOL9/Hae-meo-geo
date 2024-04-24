@@ -1,8 +1,8 @@
 import axios from "axios";
 
-async function uploadImage(formData) {
+async function uploadImage(formData, image = "profileImage") {
   const imgFormData = new FormData();
-  imgFormData.append("attach", formData.profileImage[0]);
+  imgFormData.append("attach", formData[image][0]);
 
   const fileRes = await axios.post(
     `${import.meta.env.VITE_API_SERVER}/files`,

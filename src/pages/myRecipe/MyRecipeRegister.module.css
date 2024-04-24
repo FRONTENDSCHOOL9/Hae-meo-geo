@@ -5,6 +5,9 @@ h3{
 
 input{
   display: block;
+  padding: unset;
+  padding-block: unset;
+  padding-inline: unset;
 }
 
 textarea{
@@ -106,7 +109,6 @@ textarea{
 
 .inputReadOnly{
   cursor: default;
-  height:6rem;
   color: var(--color-gray-100);
   border: 1px solid var(--color-gray-100);
   font-size: 1.6rem;
@@ -133,14 +135,14 @@ textarea{
 @media (max-width: 768px) {
   .buttonUpload{
     font-size: 1.6rem;
-    height: 5rem;
-    line-height: 4.8rem;
+    height: 4rem;
+    line-height: 4rem;
   }
   .boxButtonUpload{
     flex-direction: column;
   }
   .inputReadOnly{
-    height:4rem;
+    height:3.8rem;
   }
   .layout{
     gap: 1.6rem;

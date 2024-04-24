@@ -50,6 +50,12 @@
     transform: translateY(50%);
   }
 
+  .replyRegister .contentErrorMsg {
+    bottom: 1rem;
+    left: 1rem;
+    transform: none;
+  }
+
   .attachWr {
     width: 100%;
   }

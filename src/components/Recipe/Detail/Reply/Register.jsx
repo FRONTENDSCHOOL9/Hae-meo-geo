@@ -68,6 +68,8 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
     file.current.value = "";
   };
 
+  console.log(user);
+
   return (
     <div className={replyRegister}>
       {user ? (
@@ -75,7 +77,7 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
           <div className={ReplyStyle.replyWr}>
             <img
               className={ReplyStyle.profile}
-              src={user.profile}
+              src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user.profile}`}
               alt={user.name}
             />
             <div className={ReplyStyle.contentWr}>

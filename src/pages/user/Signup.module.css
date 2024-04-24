@@ -1,11 +1,11 @@
 /* login */
-.login input[type="checlbox"] {
+.login input[type="checkbox"] {
   width: 1.4rem;
   height: 1.4rem;
 }
 
 .login label {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .form {
@@ -13,6 +13,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.form button,
+.form a {
+  margin: 0 !important;
 }
 
 /* signup */
@@ -59,6 +64,7 @@ label {
 }
 
 @media (max-width: 700px) {
+
   /* signup */
   .signup p,
   label {

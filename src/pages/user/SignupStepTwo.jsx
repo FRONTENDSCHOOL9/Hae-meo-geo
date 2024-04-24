@@ -10,11 +10,11 @@ import styles from "./SignupStepTwo.module.css";
 import ReplyStyle from "../../components/Recipe/Detail/Reply/Reply.module.css";
 
 function SignupStepTwo() {
+  const { form, profile, profilewrapper, profilelabel, flexWr } = styles;
   const [emailAvailability, setEmailAvailability] = useState(null);
   const axios = useCustomAxios();
   const navigate = useNavigate();
   const [attachImg, setAttachImg] = useState();
-  const { form, profile, profilewrapper, profilelabel} = styles;
   const {
     register,
     handleSubmit,
@@ -31,7 +31,7 @@ function SignupStepTwo() {
     try {
       const res = await axios.get(`/users/email?email=${email}`);
       if (res && res.data) {
-      setEmailAvailability(res.data.ok && "사용 가능한 이메일입니다.");
+        setEmailAvailability(res.data.ok && "사용 가능한 이메일입니다.");
       }
     } catch (err) {
       setEmailAvailability(
@@ -56,7 +56,7 @@ function SignupStepTwo() {
           },
           data: imageFormData,
         });
-        console.log(fileRes.data)
+        console.log(fileRes.data);
         formData.image = fileRes.data.file.name;
       } else {
         formData.image = "/img/ico-user.svg";
@@ -110,27 +110,29 @@ function SignupStepTwo() {
         >
           <fieldset>
             <label htmlFor="email">아이디(이메일)*</label>
-            <input
-            placeholder="아이디(이메일)*"
-              type="email"
-              id="email"
-              {...register("email", {
-                required: "이메일을 입력하세요.",
-                pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                  message: "이메일 형식이 올바르지 않습니다.",
-                },
-              })}
-            />
-            <Button
-              type="button"
-              onClick={handleCheckEmail}
-              color="primary"
-              size="large"
-              margin="false"
-            >
-              확인
-            </Button>
+            <div className={flexWr}>
+              <input
+                placeholder="아이디(이메일)*"
+                type="email"
+                id="email"
+                {...register("email", {
+                  required: "이메일을 입력하세요.",
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: "이메일 형식이 올바르지 않습니다.",
+                  },
+                })}
+              />
+              <Button
+                type="button"
+                onClick={handleCheckEmail}
+                color="primary"
+                size="large"
+                margin="false"
+              >
+                확인
+              </Button>
+            </div>
             {errors.email && <p>{errors.email.message}</p>}
             {emailAvailability && <p>{emailAvailability}</p>}
           </fieldset>
@@ -149,7 +151,7 @@ function SignupStepTwo() {
           <fieldset>
             <label htmlFor="confirmPassword">비밀번호 확인*</label>
             <input
-            placeholder="비밀번호 확인*"
+              placeholder="비밀번호 확인*"
               type="password"
               id="confirmPassword"
               {...register("confirmPassword", {
@@ -165,7 +167,7 @@ function SignupStepTwo() {
           <fieldset>
             <label htmlFor="name">닉네임*</label>
             <input
-            placeholder="닉네임"
+              placeholder="닉네임"
               type="text"
               id="name"
               {...register("name", {
@@ -195,8 +197,10 @@ function SignupStepTwo() {
             {errors.birthdate && <p>{errors.birthdate.message}</p>}
           </fieldset>
           <fieldset className={profilewrapper}>
-          <label htmlFor="image" className="profilelabel">프로필</label>
-          <div
+            <label htmlFor="image" className="profilelabel">
+              프로필
+            </label>
+            <div
               className={` ${styles.profile} ${ReplyStyle.attachWr} ${styles.attachWr} ${
                 attachImg ? ReplyStyle.act : ""
               }`}

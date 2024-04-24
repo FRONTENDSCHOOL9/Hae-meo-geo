@@ -12,6 +12,7 @@
   border-radius: 50%;
   background: #fff;
   flex-shrink: 0;
+  object-fit: cover;
 }
 
 .replyWr .name {

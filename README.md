@@ -4,7 +4,7 @@
 3. [개발 일정](#개발-일정)
 4. [개발 환경 및 기술 스택](#개발-환경-및-기술-스택)
 5. [프로젝트 폴더 구조](#프로젝트-폴더-구조)
-6. [협업 능력](#협업-능력)
+6. [협업 능력](#협업능력)
 7. [기능 소개](#기능-소개)
 8. [상세 담당 업무](#상세-담당-업무)
 9. [핵심 코드](#핵심-코드)
@@ -12,7 +12,7 @@
 
 ---
 
-# 🍚 서비스 소개
+# 🍚서비스 소개
 
 ‘**해머거**’는 밥을 해서 먹으라는 ‘해 먹어’를 귀엽게 발음했습니다. 
 무엇을 먹을지 고민하는 사람들을 위해 그 음식의 레시피를 알려주고, 음식을 추천도 해주며 먹은 음식을 올리며 소통하는 사이트 입니다. 무엇을 먹을지 고민 하는 시간을 줄여주고 북마크 해 놓은 음식을 직접 해보고 후기를 남기며 음식을 해서 먹는 즐거움을 줍니다.
@@ -22,16 +22,15 @@
 ---
 
 
-# 👨‍👩‍👧‍👦 팀원 소개
-| 이소정 | 박지성 | 서진희 | 한태희 |
-| :---: | :---: | :---: | :---: |
-| <img alt="이소정" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/44069187-b0c6-4f7b-bb9c-839a8d7f5295" height="100" width="100"> | <img alt="박지성" src="https://avatars.githubusercontent.com/u/63087490?v=4" height="100" width="100"> | <img alt="서진희" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/c2c4fd90-57c6-40da-93dc-5ec9242f4f70" height="100" width="100"> |<img alt="한태희" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/166af139-3d49-48b5-b666-7040bfe39c05" height="100" width="100"> | |
-| [Github](https://github.com/s0zzang) | [Github](https://github.com/sasakieiji) | [Github](https://github.com/sozzi0) | [Github](https://github.com/taehee1228) |
-| **팀장** | **디자인 마스터** | **노션 마스터** | **깃 마스터** |
+# 👨‍👩‍👧‍👦팀원 소개
+| 이소정 | 박지성 | 서진희 |
+| :---: | :---: | :---: | 
+| <img alt="이소정" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/44069187-b0c6-4f7b-bb9c-839a8d7f5295" height="100" width="100"> | <img alt="박지성" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/a025d2e6-1ae2-44e7-b05d-1f9456334f11" height="100" width="100"> | <img alt="서진희" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/af2e0d0c-a6cd-4681-bbfa-b0b58b203a8e" height="100" width="100"> |
+| **팀장** | **디자인 마스터** | **노션 마스터** |
 
 ---
 
-# 📅 개발 일정
+# 📅개발 일정
 #### 2024. 03. 28 ~ 2024. 04. 24
 |기간|내용|
 | :----: | :--: |
@@ -43,16 +42,16 @@
 
 ---
 
-# 🔨 개발 환경 및 기술 스택
+# 🔨개발 환경 및 기술 스택
 
 > ### Tools
 | Git | Github | Discord | Notion |
 | :---: | :---: | :---: | :---: |
 | <img alt="git logo" src="https://git-scm.com/images/logos/logomark-orange@2x.png" width="65" height="65" > | <img alt="github logo" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="65" height="65"> | <img alt="Discord logo" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384e89d1d54d704ece7_3437c10597c1526c3dbd98c737c2bcae.svg" height="65" width="65"> | <div style="display: flex; align-items: flex-start;"><img src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/15b94d68-61bd-48d5-8931-2180b62fb9a6" alt="icon" width="65" height="65" /></div>
 > ### Front-end
-| Html | CSS  | React | React-<br>Router  | esLint | Prettier | React-<br>Query | 
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" /> | <img alt="css" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/cc90533f-6811-4e1b-84e9-6314c9d01da0" height="70" width="70" > | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rr" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/b307f370-9cd4-4dc8-992a-914dd5f45e92" height="65" width="65" > | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/eslint-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rq" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/3f49a145-7705-4117-8198-b52fe6b062ea" height="70" width="70" > |
+| Html | CSS  | React | React-<br>Router  | esLint | Prettier | React-<br>Query | Zustand |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |:---: |
+| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" /> | <img alt="css" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/cc90533f-6811-4e1b-84e9-6314c9d01da0" height="70" width="70" > | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rr" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/b307f370-9cd4-4dc8-992a-914dd5f45e92" height="65" width="65" > | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/eslint-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rq" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/3f49a145-7705-4117-8198-b52fe6b062ea" height="70" width="70" > |<img src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/7c269066-2ff2-4ecf-a93d-3a11a31e3f63" alt="icon" width="65" height="65" /></div>|
 
 </br>
 
@@ -60,7 +59,7 @@
 | 구분 | 종류 |
 | :-------- | :-- |
 |FrontEnd | React, Axios, CSS module, Zustand, React-Query |
-| BackEnd | [제공된 API](https://api.frontendschool.shop/apidocs/), [식품의약품안전처 조리식품의 레시피 API](https://www.foodsafetykorea.go.kr/api/openApiInfo.do?menu_grp=MENU_GRP31&menu_no=661&show_cnt=10&start_idx=1&svc_no=COOKRCP01), [날씨 API](https://openweathermap.org/)
+| BackEnd | [open market API](https://api.frontendschool.shop/apidocs/), [식품의약품안전처 조리식품의 레시피 API](https://www.foodsafetykorea.go.kr/api/openApiInfo.do?menu_grp=MENU_GRP31&menu_no=661&show_cnt=10&start_idx=1&svc_no=COOKRCP01), [날씨 API](https://openweathermap.org/)
 
 </br>
 
@@ -114,7 +113,7 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 
 ---
 
-# 📂 프로젝트 폴더 구조
+# 📂프로젝트 폴더 구조
 <details>
   <summary>해머거</summary>
   
@@ -255,7 +254,7 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 
 ---
 
-# 🙏🏻 협업능력
+# 🙏🏻협업능력
 
 > ### [Notion](https://www.notion.so/3d7489dd4e314f3bb52e2e3f67d05838)
   **회의록 작성, 개발 방향 등 정보 참고**
@@ -276,13 +275,13 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 </br>
 
 ---
-# 💡 기능 소개
+# 💡기능 소개
 
 > ### 메인 페이지
 
 | 헤더 | 메인 | 푸터 |
 | :--: | :--: | :--: |
-| <img alt="메인페이지-헤더" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/d25b64d9-f227-4124-929c-21735336a41c" width="300px"> | <img alt="메인페이지-메인" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/1eabb515-e183-41e0-be56-49b00f0f05cd" width="300px"> |<img alt="메인페이지-푸터" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/9995fca2-38cb-4558-9d20-47cffff2b8d1" width="300px"> |
+| <img alt="메인페이지-헤더" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/d25b64d9-f227-4124-929c-21735336a41c" width="250px"> | <img alt="메인페이지-메인" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/1eabb515-e183-41e0-be56-49b00f0f05cd" width="250px"> |<img alt="메인페이지-푸터" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/9995fca2-38cb-4558-9d20-47cffff2b8d1" width="250px"> |
 
 </br>
 
@@ -290,7 +289,7 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 
 | 로그인 | 테스트 로그인 | 
 | :----: |:----: |
-|<img alt="로그인" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/d122464d-bd94-42b9-85b9-1d1467e44e20" width="300px"> | <img alt="테스트 로그인" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/e730fb9f-2af5-4013-95e1-0aa8728bee85" width="300px"> |
+|<img alt="로그인" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/d122464d-bd94-42b9-85b9-1d1467e44e20" width="250px"> | <img alt="테스트 로그인" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/e730fb9f-2af5-4013-95e1-0aa8728bee85" width="250px"> |
 
 </br>
 
@@ -298,7 +297,7 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 
 | 회원가입 | 약관동의 | 정보입력 |
 | :------: | :------: | :------: |
-| <img alt="회원가입" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/292dc840-565d-4538-8203-7e0de78e789c" width="300px" > | <img alt="약관동의" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/3034421a-bcd7-4685-a0af-9a2f46919b53" width="300px" > |<img alt="정보입력" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/6076d0ca-5ba2-448f-bbc5-41cd2f3710bc" width="300px" > |
+| <img alt="회원가입" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/292dc840-565d-4538-8203-7e0de78e789c" width="250px" > | <img alt="약관동의" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/3034421a-bcd7-4685-a0af-9a2f46919b53" width="250px" > |<img alt="정보입력" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/6076d0ca-5ba2-448f-bbc5-41cd2f3710bc" width="250px" > |
 
 </br>
 
@@ -306,7 +305,7 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 
 | 목록 | 검색 | 무한스크롤 |
 | :--: | :--: | :--------: |
-| <img alt="목록" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/2fdd04b5-9110-46de-a72d-0590761cd6c7" width="300px"> | <img alt="검색" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/bae99c52-de71-45fa-9e70-cecfbe659129" width="300px"> |<img alt="무한스크롤" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/c404eb11-8ad6-4767-9ea2-d7ecee972425" width="300px"> |
+| <img alt="목록" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/2fdd04b5-9110-46de-a72d-0590761cd6c7" width="250px"> | <img alt="검색" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/bae99c52-de71-45fa-9e70-cecfbe659129" width="250px"> |<img alt="무한스크롤" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/c404eb11-8ad6-4767-9ea2-d7ecee972425" width="250px"> |
 
 </br>
 
@@ -314,15 +313,15 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 
 | 목록 | 검색 | 페이지네이션 |
 | :--: | :--: | :----------: |
-| <img alt="목록" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/84554b2f-37bd-4750-b6dc-ec7b6b554d4c" width="300px"> | <img alt="검색" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/ca4f9486-b1b4-4d4e-aba3-f31cd1ae3656" width="300px"> |<img alt="페이지네이션" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/57a63fe4-7397-41d9-b66e-53943149fd98" width="300px"> |
+| <img alt="목록" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/84554b2f-37bd-4750-b6dc-ec7b6b554d4c" width="250px"> | <img alt="검색" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/ca4f9486-b1b4-4d4e-aba3-f31cd1ae3656" width="250px"> |<img alt="페이지네이션" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/57a63fe4-7397-41d9-b66e-53943149fd98" width="250px"> |
 
 | 상세 | 후기 작성 | 후기 삭제 |
 | :--: | :-------: | :-------: |
-| <img alt="상세" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/33a1ad57-c335-41a9-bf34-a1987b70c241" width="300px"> | <img alt="후기 작성" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/285a5408-0f1a-448f-aa5e-5e489534e5f6" width="300px"> |<img alt="후기 삭제" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/f995d437-ff99-4965-910b-454c298f7e16" width="300px"> |
+| <img alt="상세" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/33a1ad57-c335-41a9-bf34-a1987b70c241" width="250px"> | <img alt="후기 작성" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/285a5408-0f1a-448f-aa5e-5e489534e5f6" width="250px"> |<img alt="후기 삭제" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/f995d437-ff99-4965-910b-454c298f7e16" width="250px"> |
 
 | 북마크 등록 | 카카오톡 공유 |
 | :---------: | :-----------: |
-| <img alt="북마크 등록" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/c579517e-f732-400e-b488-7530de3ccce1" width="300px"> | <img alt="카카오톡 공유" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/4698ad99-a814-472f-bf7a-0dd8ec9d6354" width="300px"> |
+| <img alt="북마크 등록" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/c579517e-f732-400e-b488-7530de3ccce1" width="250px"> | <img alt="카카오톡 공유" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/4698ad99-a814-472f-bf7a-0dd8ec9d6354" width="250px"> |
 
 </br>
 
@@ -330,11 +329,11 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 
 | 목록 | 검색 |
 | :--: | :--: |
-| <img alt="목록" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/3d2ce388-562d-4a73-9597-8a9698cf296b" width="300px"> | <img alt="검색" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/66032b59-a5a1-4965-9eeb-43a71e961316" width="300px"> |
+| <img alt="목록" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/3d2ce388-562d-4a73-9597-8a9698cf296b" width="250px"> | <img alt="검색" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/66032b59-a5a1-4965-9eeb-43a71e961316" width="250px"> |
 
 | 상세 | 등록 |
 | :--: | :--: |
-| <img alt="상세" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/bf9b4ca7-8ec4-4176-a9fe-43c1fe7b3ca9" width="300px"> | <img alt="등록" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/4a112e0e-e632-4a03-aa24-43df48a75f72" width="300px"> |
+| <img alt="상세" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/bf9b4ca7-8ec4-4176-a9fe-43c1fe7b3ca9" width="250px"> | <img alt="등록" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/4a112e0e-e632-4a03-aa24-43df48a75f72" width="250px"> |
 
 </br>
 
@@ -342,13 +341,13 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 
 | 에러 | 로딩 |
 | :--: | :--: |
-| <img alt="404 에러" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/db0c4203-26d7-4f29-b848-d32e9ef24515" width="300px"> | <img alt="로딩" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/be4cab7f-4f63-4f86-b5c9-926defeaf635" width="300px"> |
+| <img alt="404 에러" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/db0c4203-26d7-4f29-b848-d32e9ef24515" width="250px"> | <img alt="로딩" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/be4cab7f-4f63-4f86-b5c9-926defeaf635" width="250px"> |
 
 </br>
 
 ---
 
-# 💻 상세 담당 업무
+# 💻상세 담당 업무
 ### <u>👧🏻 이소정(팀장)</u>
 - 🌟 메인 페이지
     - 오늘의 추천 레시피
@@ -513,33 +512,33 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 
   ```js
   function Pagination({ totalCount, currentPage, setCurrentPage }) {
-  const limit = import.meta.env.VITE_PAGINATION_LIMIT;
-  const pageRange = 5;
-  const [searchParams] = useSearchParams();
-  const [pageSet, setPageSet] = useState(Math.ceil(currentPage / pageRange));
-  const totalPage = Math.ceil(totalCount / limit);
-  const lastPageSet = Math.ceil(totalPage / pageRange);
+    const limit = import.meta.env.VITE_PAGINATION_LIMIT;
+    const pageRange = 5;
+    const [searchParams] = useSearchParams();
+    const [pageSet, setPageSet] = useState(Math.ceil(currentPage / pageRange));
+    const totalPage = Math.ceil(totalCount / limit);
+    const lastPageSet = Math.ceil(totalPage / pageRange);
 
-  const handleClick = (page) => setCurrentPage(page);
+    const handleClick = (page) => setCurrentPage(page);
 
-  const pageList = [];
-  for (
-    let page = (pageSet - 1) * pageRange + 1;
-    page <= pageSet * pageRange;
-    page++
-  ) {
-    searchParams.set("page", currentPage);
+    const pageList = [];
+    for (
+      let page = (pageSet - 1) * pageRange + 1;
+      page <= pageSet * pageRange;
+      page++
+    ) {
+      searchParams.set("page", currentPage);
 
-    if (page > totalPage) break;
-    let search = searchParams.toString();
-    pageList.push(
-      <li
-        key={page}
-        className={`${page === +currentPage ? styles.act : ""}`}
-        onClick={() => handleClick(page)}
-      >
-        <Link to={`/recipe/list?${search}`}>{page}</Link>
-      </li>,
+      if (page > totalPage) break;
+      let search = searchParams.toString();
+      pageList.push(
+        <li
+          key={page}
+          className={`${page === +currentPage ? styles.act : ""}`}
+          onClick={() => handleClick(page)}
+        >
+          <Link to={`/recipe/list?${search}`}>{page}</Link>
+        </li>,
     );
   }
 
@@ -645,7 +644,7 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
     let fileName = e.target.value;
     setImageName(fileName);
 ```
-
+  
 
 </details>
 
@@ -664,7 +663,7 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 
 ---
 
-# 💬 소감 
+# 💬소감 
 ##### 🍚 이소정
 
 > 첫번째 팀 프로젝트로, 팀장으로 부족한 점이 많았지만 많이 성장할 수 있는 좋은 기회였습니다. 팀원들과의 많은 의논과 여러 컨벤션을 정하고 지키며 경험한 협업은 코드를 재사용하고 효율적으로 작성하는데 중요한 것임을 깨달을 수 있었습니다. 짧은 시간동안 기능을 구현하며 예상치 못한 오류를 많이 마주했지만 그만큼 제대로 코드를 이해하고 능동적으로 작성할 수 있었습니다. 프로젝트 기간동안 고생한 팀원들에게 감사드립니다.
@@ -678,7 +677,3 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 
 > 프로젝트를 마무리하면서 지난 시간을 돌이켜보면 그동안 제대로 알지 못한 github, API 서버 통신 등을 더 자세히 알게 된 시간이었습니다. 이런 기술뿐만 아니라 팀원들과 협업하며 소통하고 문제를 해결해 나가는 것에 대해서, 어렵지만 즐거웠던 시간이었다고 느꼈습니다. 그리고 팀원들을 잘 이끌어 주신 팀장님 덕분에 프로젝트가 잘 마무리될 수 있었습니다. 많이 배울 수 있었던 첫 프로젝트였습니다. 감사합니다.
 
-
-##### 🍚 한태희
-
-> 소감 작성

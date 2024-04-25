@@ -539,38 +539,38 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
         >
           <Link to={`/recipe/list?${search}`}>{page}</Link>
         </li>,
+      );
+    }
+  
+    useEffect(() => {
+      if (searchParams.get("page") != 1) return;
+      setPageSet(1);
+    }, [totalCount]);
+
+    return (
+      <ul className={styles.pagination}>
+        <li>
+          <Button
+            disabled={pageSet === 1 ? `disabled` : ""}
+            onClick={() => setPageSet(pageSet - 1)}
+          >
+            &lt;
+            <span className="hidden">이전 페이지로 이동</span>
+          </Button>
+        </li>
+        {pageList}
+        <li>
+          <Button
+            disabled={pageSet === lastPageSet ? `disabled` : ""}
+            onClick={() => setPageSet(pageSet + 1)}
+          >
+            &gt;
+            <span className="hidden">이후 페이지로 이동</span>
+          </Button>
+        </li>
+      </ul>
     );
   }
-
-  useEffect(() => {
-    if (searchParams.get("page") != 1) return;
-    setPageSet(1);
-  }, [totalCount]);
-
-  return (
-    <ul className={styles.pagination}>
-      <li>
-        <Button
-          disabled={pageSet === 1 ? `disabled` : ""}
-          onClick={() => setPageSet(pageSet - 1)}
-        >
-          &lt;
-          <span className="hidden">이전 페이지로 이동</span>
-        </Button>
-      </li>
-      {pageList}
-      <li>
-        <Button
-          disabled={pageSet === lastPageSet ? `disabled` : ""}
-          onClick={() => setPageSet(pageSet + 1)}
-        >
-          &gt;
-          <span className="hidden">이후 페이지로 이동</span>
-        </Button>
-      </li>
-    </ul>
-  );
-}
   ```
 
 </details>

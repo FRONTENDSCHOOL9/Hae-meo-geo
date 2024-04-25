@@ -49,9 +49,9 @@
 | :---: | :---: | :---: | :---: |
 | <img alt="git logo" src="https://git-scm.com/images/logos/logomark-orange@2x.png" width="65" height="65" > | <img alt="github logo" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="65" height="65"> | <img alt="Discord logo" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384e89d1d54d704ece7_3437c10597c1526c3dbd98c737c2bcae.svg" height="65" width="65"> | <div style="display: flex; align-items: flex-start;"><img src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/15b94d68-61bd-48d5-8931-2180b62fb9a6" alt="icon" width="65" height="65" /></div>
 > ### Front-end
-| Html | CSS  | React | React-<br>Router  | esLint | Prettier | React-<br>Query | 
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" /> | <img alt="css" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/cc90533f-6811-4e1b-84e9-6314c9d01da0" height="70" width="70" > | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rr" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/b307f370-9cd4-4dc8-992a-914dd5f45e92" height="65" width="65" > | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/eslint-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rq" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/3f49a145-7705-4117-8198-b52fe6b062ea" height="70" width="70" > |
+| Html | CSS  | React | React-<br>Router  | esLint | Prettier | React-<br>Query | Zustand |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |:---: |
+| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" /> | <img alt="css" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/cc90533f-6811-4e1b-84e9-6314c9d01da0" height="70" width="70" > | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rr" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/b307f370-9cd4-4dc8-992a-914dd5f45e92" height="65" width="65" > | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/eslint-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="rq" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/3f49a145-7705-4117-8198-b52fe6b062ea" height="70" width="70" > |<img src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/7c269066-2ff2-4ecf-a93d-3a11a31e3f63" alt="icon" width="65" height="65" /></div>|
 
 </br>
 
@@ -512,33 +512,33 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 
   ```js
   function Pagination({ totalCount, currentPage, setCurrentPage }) {
-  const limit = import.meta.env.VITE_PAGINATION_LIMIT;
-  const pageRange = 5;
-  const [searchParams] = useSearchParams();
-  const [pageSet, setPageSet] = useState(Math.ceil(currentPage / pageRange));
-  const totalPage = Math.ceil(totalCount / limit);
-  const lastPageSet = Math.ceil(totalPage / pageRange);
+    const limit = import.meta.env.VITE_PAGINATION_LIMIT;
+    const pageRange = 5;
+    const [searchParams] = useSearchParams();
+    const [pageSet, setPageSet] = useState(Math.ceil(currentPage / pageRange));
+    const totalPage = Math.ceil(totalCount / limit);
+    const lastPageSet = Math.ceil(totalPage / pageRange);
 
-  const handleClick = (page) => setCurrentPage(page);
+    const handleClick = (page) => setCurrentPage(page);
 
-  const pageList = [];
-  for (
-    let page = (pageSet - 1) * pageRange + 1;
-    page <= pageSet * pageRange;
-    page++
-  ) {
-    searchParams.set("page", currentPage);
+    const pageList = [];
+    for (
+      let page = (pageSet - 1) * pageRange + 1;
+      page <= pageSet * pageRange;
+      page++
+    ) {
+      searchParams.set("page", currentPage);
 
-    if (page > totalPage) break;
-    let search = searchParams.toString();
-    pageList.push(
-      <li
-        key={page}
-        className={`${page === +currentPage ? styles.act : ""}`}
-        onClick={() => handleClick(page)}
-      >
-        <Link to={`/recipe/list?${search}`}>{page}</Link>
-      </li>,
+      if (page > totalPage) break;
+      let search = searchParams.toString();
+      pageList.push(
+        <li
+          key={page}
+          className={`${page === +currentPage ? styles.act : ""}`}
+          onClick={() => handleClick(page)}
+        >
+          <Link to={`/recipe/list?${search}`}>{page}</Link>
+        </li>,
     );
   }
 

@@ -583,6 +583,68 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
   
   > - 이를 구현하기 위해서는 회원이 작성한 데이터와 이를 서버에 전달하여 저장할 방법이 필요했습니다.
   > - 회원이 작성한 데이터는 form을 통해 제출 받고 서버에 전달하여 저장하는 것은 서버 api와 axios를 통해 서버에 저장할수 있도록 구현했습니다
+
+```js
+  const navigate = useNavigate();
+
+  const axios = useCustomAxios();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (formData) => {
+    try {
+      if (formData.image.length > 0) {
+        // 프로필 이미지를 추가한 경우
+        const imageFormData = new FormData();
+        imageFormData.append("attach", formData.image[0]);
+        //fileRes -> axios가 실행하고 데이터를 반환하는데 이를 변수로 받아서 사용할수 있음
+        const fileRes = await axios("/files", {
+          method: "post",
+          headers: {
+            // 파일 업로드시 필요한 설정
+            "Content-Type": "multipart/form-data",
+          },
+          data: imageFormData,
+        });
+
+        // 서버로부터 응답받은 이미지 이름을 회원 정보에 포함
+        formData.image = fileRes.data.item[0].name;
+      } else {
+        // profileImage 속성을 제거
+        delete formData.image;
+      }
+      formData.type = "recipe";
+
+      formData.extra = {
+        writeWay: formData.writeWay,
+        tag: formData.tag,
+      };
+      delete formData.writeWay;
+      delete formData.tag;
+
+      const res = await axios.post("/posts", formData);
+
+      navigate("/myRecipe/list");
+
+      if(res.data.item.user._id){
+        alert("레시피 작성이 완료 되었습니다.");
+      }
+
+    } catch (err) {
+
+    }
+  };
+
+  let [imageName, setImageName] = useState("");
+
+  const changeFileName = (e) => {
+    let fileName = e.target.value;
+    setImageName(fileName);
+```
   
 
 </details>

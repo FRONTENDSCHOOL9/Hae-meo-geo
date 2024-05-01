@@ -1,5 +1,5 @@
+import recentlyViewStore from "@zustand/recentlyViewStore.mjs";
 import userStore from "@zustand/userStore.mjs";
-import { useEffect } from "react";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
@@ -14,12 +14,10 @@ function Header() {
     toTop,
     hamburgerButton,
     hamburgerMenu,
-    active,
   } = styles;
 
   const { user } = userStore();
   const [isClicked, setIsClicked] = useState(false);
-  const [activePath, setActivePath] = useState(location.pathname);
 
   const handleToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -27,10 +25,6 @@ function Header() {
     if (e.target.tagName !== "A") return;
     setIsClicked(false);
   };
-
-  useEffect(() => {
-    setActivePath(location.pathname);
-  }, [location.pathname]);
 
   return (
     <>
@@ -80,6 +74,7 @@ function Header() {
           <i></i>
           <span className="hidden">메뉴 보기</span>
         </button>
+
         <div className={fixedWr}>
           <button className={toTop} onClick={handleToTop}>
             <span className="hidden">위로 이동하기</span>

@@ -1,0 +1,61 @@
+.modalWr {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s
+}
+
+.modalWr.act {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modalWr::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, .4);
+  z-index: -1;
+}
+
+.modalWr .inner {
+  width: 100%;
+  max-width: 40rem;
+  background: #fff;
+  padding: var(--layout-padding);
+  border-radius: 1.2rem;
+  text-align: center;
+  font-size: var(--title-small);
+  position: relative;
+  margin: 1.5rem;
+}
+
+.modalWr .contWr {
+  margin-top: 1rem;
+}
+
+.modalWr .closeBtn {
+  position: absolute;
+  background: url(/img/ico-close.svg) no-repeat center / 120%;
+  top: 2rem;
+  right: 2rem;
+  width: 3rem;
+  aspect-ratio: 1/1;
+}
+
+.modalWr .buttonWr {
+  margin-top: var(--title-medium);
+  display: flex;
+  justify-content: center;
+}
+
+.modalWr .buttonWr * {
+  width: 100%;
+}

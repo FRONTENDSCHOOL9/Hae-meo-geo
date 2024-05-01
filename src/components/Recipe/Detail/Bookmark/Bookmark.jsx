@@ -1,4 +1,5 @@
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
+import modalStore from "@zustand/modalStore.mjs";
 import userStore from "@zustand/userStore.mjs";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +10,7 @@ function Bookmark({ id }) {
   const axios = useCustomAxios();
   const navigate = useNavigate();
   const { user } = userStore();
+  const { toggleModal, setModalContent } = modalStore();
   const [isBookmarked, setIsBookmarked] = useState();
   const [bookmarkId, setBookmarkId] = useState();
 
@@ -44,12 +46,15 @@ function Bookmark({ id }) {
           const { data } = await axios.delete(`/bookmarks/${bookmarkId}`);
           setIsBookmarked(false);
           setBookmarkId();
-          alert("나도해보기가 삭제되었습니다.");
+          toggleModal();
+          setModalContent("나도해보기가 삭제되었습니다.");
         } else {
           const { data } = await axios.post(`/bookmarks/product/${id}`);
           setIsBookmarked(true);
           setBookmarkId(data.item._id);
-          alert("나도해보기가 등록되었습니다.");
+          toggleModal();
+          setModalContent("나도해보기가 등록되었습니다.");
+          // alert("나도해보기가 등록되었습니다.");
         }
       } else {
         const toLogin = confirm(

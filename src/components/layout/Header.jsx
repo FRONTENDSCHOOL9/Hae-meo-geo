@@ -14,10 +14,12 @@ function Header() {
     toTop,
     hamburgerButton,
     hamburgerMenu,
+    recentlyWr,
   } = styles;
 
   const { user } = userStore();
   const [isClicked, setIsClicked] = useState(false);
+  const { recentlyView } = recentlyViewStore();
 
   const handleToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -25,6 +27,15 @@ function Header() {
     if (e.target.tagName !== "A") return;
     setIsClicked(false);
   };
+
+  const recentlyList = recentlyView?.map((item) => (
+    <li key={item.name}>
+      <Link to={`/recipe/list/${item.name}`}>
+        <img src={item.image} alt={item.name} />
+        {item.name}
+      </Link>
+    </li>
+  ));
 
   return (
     <>
@@ -97,6 +108,8 @@ function Header() {
           </ul>
         </nav>
       </div>
+
+      <ul className={recentlyWr}>{recentlyList}</ul>
     </>
   );
 }

@@ -36,7 +36,7 @@ function RecipeDetail() {
   useEffect(() => {
     window.scrollTo({ top: 0 });
     fetchData();
-  }, []);
+  }, [name]);
 
   useEffect(() => {
     if (!data) return;

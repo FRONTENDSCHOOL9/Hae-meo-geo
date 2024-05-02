@@ -26,6 +26,11 @@ function RecipeDetail() {
     try {
       const { data } = await axios(`/1/1001/RCP_NM=${name}`);
       setData(data.COOKRCP01.row[0]);
+      console.log(data);
+      setRecentlyView({
+        name: data.COOKRCP01.row[0]?.RCP_NM,
+        image: data.COOKRCP01.row[0]?.ATT_FILE_NO_MAIN,
+      });
     } catch (err) {
       console.error(err);
     }
@@ -39,22 +44,24 @@ function RecipeDetail() {
   }, []);
 
   useEffect(() => {
-    let watchedList = recentlyView || [];
-    watchedList.push({ name: data?.RCP_NM, image: data?.ATT_FILE_NO_MAIN });
+    if (!data) return;
 
-    console.log(watchedList);
+    // let watchedList = recentlyView || [];
+    // watchedList.push({ name: data?.RCP_NM, image: data?.ATT_FILE_NO_MAIN });
+
+    // console.log(watchedList);
 
     /* Array를 Set으로 바꾸기 (중복 방지) */
-    watchedList = new Set(watchedList);
+    // watchedList = new Set(watchedList);
     /* Set을 Array로 바꾸기 */
-    watchedList = Array.from(watchedList);
-
+    // watchedList = Array.from(watchedList);
+    // console.log(recentlyView);
     /* 상품이 추가된 배열을 다시 localStorage에 추가하기 */
-    setRecentlyView(watchedList);
+    // setRecentlyView({ name: data?.RCP_NM, image: data?.ATT_FILE_NO_MAIN });
     // localStorage.setItem('watched', JSON.stringify(watchedList));
   }, [data]);
 
-  console.log(recentlyView);
+  // console.log(recentlyView);
 
   return (
     <>

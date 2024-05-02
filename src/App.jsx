@@ -1,4 +1,5 @@
 import router from "@/routes";
+import Modal from "@components/Modal/Modal";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Suspense } from "react";
@@ -10,10 +11,11 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Suspense fallback={<div>로딩중...</div>}>
+      <Suspense>
         <RouterProvider router={router} />
       </Suspense>
       <ReactQueryDevtools initialIsOpen={false} />
+      <Modal />
     </QueryClientProvider>
   );
 }

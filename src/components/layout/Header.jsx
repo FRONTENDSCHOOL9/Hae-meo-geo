@@ -125,6 +125,7 @@ function Header() {
         onClick={() => handleClickRecent()}
       >
         <nav>
+          <h3>최근 본 레시피</h3>
           <ul className={recentlyWr}>{recentlyList}</ul>
         </nav>
       </div>

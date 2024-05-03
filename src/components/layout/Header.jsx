@@ -31,7 +31,7 @@ function Header() {
     setIsClicked(false);
   };
 
-  const recentlyList = [...recentlyView?.reverse()].map((item) => (
+  const recentlyList = recentlyView?.map((item) => (
     <li key={item.name}>
       <Link to={`/recipe/list/${item.name}`}>
         <img src={item.image} alt={item.name} />

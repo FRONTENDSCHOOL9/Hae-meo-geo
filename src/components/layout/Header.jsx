@@ -1,5 +1,5 @@
+import recentlyViewStore from "@zustand/recentlyViewStore.mjs";
 import userStore from "@zustand/userStore.mjs";
-import { useEffect } from "react";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
@@ -11,26 +11,34 @@ function Header() {
     gnb,
     userMenu,
     fixedWr,
+    recent,
     toTop,
     hamburgerButton,
     hamburgerMenu,
-    active,
+    recentlyWr,
+    recentlyViewList,
   } = styles;
 
   const { user } = userStore();
   const [isClicked, setIsClicked] = useState(false);
-  const [activePath, setActivePath] = useState(location.pathname);
+  const [isClickedRecently, setIsClickedRecently] = useState(false);
+  const { recentlyView } = recentlyViewStore();
 
   const handleToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
-
+  const handleClickRecent = () => setIsClickedRecently(false);
   const handleNav = (e) => {
     if (e.target.tagName !== "A") return;
     setIsClicked(false);
   };
 
-  useEffect(() => {
-    setActivePath(location.pathname);
-  }, [location.pathname]);
+  const recentlyList = [...recentlyView?.reverse()].map((item) => (
+    <li key={item.name}>
+      <Link to={`/recipe/list/${item.name}`}>
+        <img src={item.image} alt={item.name} />
+        {item.name}
+      </Link>
+    </li>
+  ));
 
   return (
     <>
@@ -67,6 +75,17 @@ function Header() {
                 </Link>
               )}
             </li>
+            <li>
+              <button
+                className={`${recent} ${isClickedRecently ? styles.act : ""}`}
+                onClick={() => {
+                  setIsClickedRecently(!isClickedRecently);
+                  setIsClicked(false);
+                }}
+              >
+                <span className="hidden">최근 본 레시피</span>
+              </button>
+            </li>
           </ul>
         </div>
         <button
@@ -80,6 +99,7 @@ function Header() {
           <i></i>
           <span className="hidden">메뉴 보기</span>
         </button>
+
         <div className={fixedWr}>
           <button className={toTop} onClick={handleToTop}>
             <span className="hidden">위로 이동하기</span>
@@ -100,6 +120,21 @@ function Header() {
               <Link to="">개인정보 수정</Link>
             </li>
           </ul>
+        </nav>
+      </div>
+
+      <div
+        className={`${recentlyViewList} ${isClickedRecently ? styles.act : ""}`}
+        onClick={() => handleClickRecent()}
+      >
+        <nav>
+          <h3>
+            최근 본 레시피{" "}
+            <button>
+              <span className="hidden">닫기</span>
+            </button>
+          </h3>
+          <ul className={recentlyWr}>{recentlyList}</ul>
         </nav>
       </div>
     </>

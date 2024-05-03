@@ -5,9 +5,8 @@ import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation, Pagination } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./Home.module.css";
 
@@ -160,14 +159,13 @@ function Home() {
             </div>
             <Swiper
               className={swiperWr}
-              modules={[Navigation, Pagination]}
+              modules={[Pagination]}
               lazy="true"
               pagination={{
                 type: "progressbar",
               }}
               spaceBetween={15}
               slidesPerView={1.4}
-              navigation={true}
               breakpoints={{
                 768: {
                   slidesPerView: 4,
@@ -186,14 +184,13 @@ function Home() {
             </div>
             <Swiper
               className={swiperWr}
-              modules={[Navigation, Pagination]}
+              modules={[Pagination]}
               lazy="true"
               pagination={{
                 type: "progressbar",
               }}
               spaceBetween={15}
               slidesPerView={1.4}
-              navigation={true}
               breakpoints={{
                 768: {
                   slidesPerView: 4,
@@ -212,14 +209,13 @@ function Home() {
             </div>
             <Swiper
               className={swiperWr}
-              modules={[Navigation, Pagination]}
+              modules={[Pagination]}
               lazy="true"
               pagination={{
                 type: "progressbar",
               }}
               spaceBetween={15}
               slidesPerView={1.4}
-              navigation={true}
               breakpoints={{
                 768: {
                   slidesPerView: 4,

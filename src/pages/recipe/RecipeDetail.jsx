@@ -11,6 +11,7 @@ import Sidebar from "@components/Recipe/Detail/Sidebar/Sidebar";
 import Reply from "@components/Recipe/Detail/Reply/Reply";
 import { Button } from "@components/Button/Button";
 import styles from "./RecipeDetail.module.css";
+import recentlyViewStore from "@zustand/recentlyViewStore.mjs";
 
 function RecipeDetail() {
   const axios = useCustomAxios("rcp");
@@ -19,6 +20,7 @@ function RecipeDetail() {
   const [data, setData] = useState();
   const [replies, setReplies] = useState();
   const navigate = useNavigate();
+  const { setRecentlyView } = recentlyViewStore();
 
   const fetchData = async () => {
     try {
@@ -34,7 +36,12 @@ function RecipeDetail() {
   useEffect(() => {
     window.scrollTo({ top: 0 });
     fetchData();
-  }, []);
+  }, [name]);
+
+  useEffect(() => {
+    if (!data) return;
+    setRecentlyView({ name: data?.RCP_NM, image: data?.ATT_FILE_NO_MAIN });
+  }, [data]);
 
   return (
     <>

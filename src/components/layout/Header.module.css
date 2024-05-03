@@ -177,9 +177,9 @@
 }
 
 .recentlyViewList h3 button {
-  width: 3rem;
+  width: var(--title-medium);
   aspect-ratio: 1/1;
-  background: url(/img/ico-close.svg) no-repeat center / 100%;
+  background: url(/img/ico-close.svg) no-repeat center / 120%;
 }
 
 .recentlyWr {
@@ -295,7 +295,4 @@
     font-size: 1.6rem;
   }
 
-  .recentlyViewList h3 button {
-    width: 2rem;
-  }
 }

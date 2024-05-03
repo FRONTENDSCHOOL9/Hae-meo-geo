@@ -78,7 +78,10 @@ function Header() {
             <li>
               <button
                 className={`${recent} ${isClickedRecently ? styles.act : ""}`}
-                onClick={() => setIsClickedRecently(!isClickedRecently)}
+                onClick={() => {
+                  setIsClickedRecently(!isClickedRecently);
+                  setIsClicked(false);
+                }}
               >
                 <span className="hidden">최근 본 레시피</span>
               </button>
@@ -125,7 +128,12 @@ function Header() {
         onClick={() => handleClickRecent()}
       >
         <nav>
-          <h3>최근 본 레시피</h3>
+          <h3>
+            최근 본 레시피{" "}
+            <button>
+              <span className="hidden">닫기</span>
+            </button>
+          </h3>
           <ul className={recentlyWr}>{recentlyList}</ul>
         </nav>
       </div>

@@ -161,7 +161,6 @@
 .recentlyViewList nav {
   min-height: 100%;
   background: #fff;
-  padding: var(--layout-padding);
   padding-top: 0;
 }
 
@@ -169,14 +168,26 @@
   font-size: 2rem;
   position: sticky;
   top: 0;
-  background: #fff;
-  padding: var(--layout-padding) 0;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(1rem);
+  padding: var(--layout-padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.recentlyViewList h3 button {
+  width: 3rem;
+  aspect-ratio: 1/1;
+  background: url(/img/ico-close.svg) no-repeat center / 100%;
 }
 
 .recentlyWr {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: var(--title-small);
+  padding: var(--layout-padding);
+  padding-top: 0;
 }
 
 .recentlyWr li a {
@@ -276,6 +287,15 @@
 
   .recentlyViewList {
     top: 5.5rem;
+    width: auto;
     height: calc(100vh - 5.5rem);
+  }
+
+  .recentlyViewList h3 {
+    font-size: 1.6rem;
+  }
+
+  .recentlyViewList h3 button {
+    width: 2rem;
   }
 }

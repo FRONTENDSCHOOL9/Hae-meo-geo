@@ -12,6 +12,7 @@
   font-size: 1.8rem;
   padding: 2rem 0;
   z-index: 99;
+  white-space: nowrap;
 }
 
 .logo {
@@ -42,7 +43,7 @@
 
 .userMenu {
   display: flex;
-  gap: 6rem;
+  gap: 8rem;
 }
 
 .userMenu li * {
@@ -55,16 +56,18 @@
   transition: all 0.3s;
 }
 
-.userMenu li button {
-  background-image: url(/img/ico-search.svg);
-}
-
-.userMenu .search:hover {
-  background-image: url(/img/ico-search-primary.svg);
-}
 
 .userMenu .login:hover {
   background-image: url(/img/ico-user-primary.svg);
+}
+
+.userMenu .recent {
+  background-image: url(/img/ico-recent.svg);
+}
+
+.userMenu .recent.act,
+.userMenu .recent:hover {
+  background-image: url(/img/ico-recent-primary.svg);
 }
 
 .hamburgerButton {
@@ -125,17 +128,81 @@
   border-color: var(--color-primary);
 }
 
-.recentlyWr {
-  position: absolute;
-  top: 0;
+.recentlyViewList {
+  position: fixed;
+  top: 8.5rem;
   right: 0;
-  z-index: 999;
+  width: 40vw;
+  height: calc(100vh - 8.5rem);
+  z-index: 3;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+
+.recentlyViewList::before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .3);
+  width: 90vw;
+  height: 100vh;
+  z-index: -2;
+}
+
+.recentlyViewList.act {
+  opacity: 1;
+  visibility: visible;
+}
+
+.recentlyViewList nav {
+  min-height: 100%;
+  background: #fff;
+  padding-top: 0;
+}
+
+.recentlyViewList h3 {
+  font-size: 2rem;
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(1rem);
+  padding: var(--layout-padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.recentlyViewList h3 button {
+  width: var(--title-medium);
+  aspect-ratio: 1/1;
+  background: url(/img/ico-close.svg) no-repeat center / 120%;
+}
+
+.recentlyWr {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--title-small);
+  padding: var(--layout-padding);
+  padding-top: 0;
+}
+
+.recentlyWr li a {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: var(--title-small);
 }
 
 .recentlyWr img {
-  width: 3rem;
-  aspect-ratio: 1/1;
+  width: 100%;
+  aspect-ratio: 1/0.8;
   object-fit: cover;
+  border-radius: 1rem;
 }
 
 @media (max-width: 767px) {
@@ -217,4 +284,15 @@
     padding: var(--layout-padding);
     height: 5rem;
   }
+
+  .recentlyViewList {
+    top: 5.5rem;
+    width: auto;
+    height: calc(100vh - 5.5rem);
+  }
+
+  .recentlyViewList h3 {
+    font-size: 1.6rem;
+  }
+
 }

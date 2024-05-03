@@ -11,24 +11,27 @@ function Header() {
     gnb,
     userMenu,
     fixedWr,
+    recent,
     toTop,
     hamburgerButton,
     hamburgerMenu,
     recentlyWr,
+    recentlyViewList,
   } = styles;
 
   const { user } = userStore();
   const [isClicked, setIsClicked] = useState(false);
+  const [isClickedRecently, setIsClickedRecently] = useState(false);
   const { recentlyView } = recentlyViewStore();
 
   const handleToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
-
+  const handleClickRecent = () => setIsClickedRecently(false);
   const handleNav = (e) => {
     if (e.target.tagName !== "A") return;
     setIsClicked(false);
   };
 
-  const recentlyList = recentlyView?.map((item) => (
+  const recentlyList = [...recentlyView?.reverse()].map((item) => (
     <li key={item.name}>
       <Link to={`/recipe/list/${item.name}`}>
         <img src={item.image} alt={item.name} />
@@ -72,6 +75,17 @@ function Header() {
                 </Link>
               )}
             </li>
+            <li>
+              <button
+                className={`${recent} ${isClickedRecently ? styles.act : ""}`}
+                onClick={() => {
+                  setIsClickedRecently(!isClickedRecently);
+                  setIsClicked(false);
+                }}
+              >
+                <span className="hidden">최근 본 레시피</span>
+              </button>
+            </li>
           </ul>
         </div>
         <button
@@ -109,7 +123,20 @@ function Header() {
         </nav>
       </div>
 
-      <ul className={recentlyWr}>{recentlyList}</ul>
+      <div
+        className={`${recentlyViewList} ${isClickedRecently ? styles.act : ""}`}
+        onClick={() => handleClickRecent()}
+      >
+        <nav>
+          <h3>
+            최근 본 레시피{" "}
+            <button>
+              <span className="hidden">닫기</span>
+            </button>
+          </h3>
+          <ul className={recentlyWr}>{recentlyList}</ul>
+        </nav>
+      </div>
     </>
   );
 }

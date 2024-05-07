@@ -10,7 +10,7 @@ function Bookmark({ id }) {
   const axios = useCustomAxios();
   const navigate = useNavigate();
   const { user } = userStore();
-  const { toggleModal, setModalContent } = modalStore();
+  const { setModal } = modalStore();
   const [isBookmarked, setIsBookmarked] = useState();
   const [bookmarkId, setBookmarkId] = useState();
 
@@ -46,24 +46,24 @@ function Bookmark({ id }) {
           const { data } = await axios.delete(`/bookmarks/${bookmarkId}`);
           setIsBookmarked(false);
           setBookmarkId();
-          toggleModal();
-          setModalContent("나도해보기가 삭제되었습니다.");
+          setModal({ instruction: "나도해보기가 삭제되었습니다." });
         } else {
           const { data } = await axios.post(`/bookmarks/product/${id}`);
           setIsBookmarked(true);
           setBookmarkId(data.item._id);
-          toggleModal();
-          setModalContent("나도해보기가 등록되었습니다.");
-          // alert("나도해보기가 등록되었습니다.");
+          console.log(data.item._id);
+          setModal({ instruction: "나도해보기가 등록되었습니다." });
         }
       } else {
-        const toLogin = confirm(
-          "잠깐! 로그인 후 이용할 수 있어요. \n로그인 하러갈까요?",
-        );
-        toLogin && navigate("/user/login");
+        setModal({
+          instruction: `잠깐! 로그인 후 이용할 수 있어요. \n로그인 하러갈까요?`,
+          event: () => {
+            navigate("/user/login");
+          },
+        });
       }
     } catch (err) {
-      console.error(err.response?.data.message);
+      console.error(err, err.response?.data.message);
     }
   };
 

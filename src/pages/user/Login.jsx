@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styles from "./Signup.module.css";
+import SocialKakao from "@components/socialLogin/SocialKakao";
 
 function Login() {
   const {
@@ -112,7 +113,7 @@ function Login() {
               },
             })}
           />
-          <br />
+
           {errors && <div>{errors.email?.message}</div>}
           <fieldset>
             <input
@@ -123,7 +124,7 @@ function Login() {
             />
             <label htmlFor="saveEmail">아이디(이메일) 저장하기</label>
           </fieldset>
-          <br />
+
           <input
             type="password"
             id="password"
@@ -137,12 +138,14 @@ function Login() {
               },
             })}
           />
-          <br />
+
           {errors && <div>{errors.password?.message}</div>}
           <Button type="submit" color="primary" size="large" filled="filled">
             로그인
           </Button>
-          <br />
+
+          <SocialKakao />
+
           <Button
             type="button"
             onClick={(e) => handleTestLogin(e)}
@@ -152,7 +155,7 @@ function Login() {
           >
             테스트 계정으로 로그인
           </Button>
-          <br />
+
           <LinkButton
             to={"/user/signup"}
             color="gray"

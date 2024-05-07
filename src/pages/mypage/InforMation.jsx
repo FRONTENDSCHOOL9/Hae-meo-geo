@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import styles from "@pages/mypage/InforMation.module.css";
+import styles from "@pages/mypage/Information.module.css";
 import useUserStore from "@zustand/userStore.mjs";
 
 import { Button, LinkButton } from "@components/Button/Button";
@@ -7,7 +7,7 @@ import PageSide from "./PageSide";
 import { useState } from "react";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 
-function InforMation() {
+function Information() {
   const axios = useCustomAxios();
   const {
     register,
@@ -187,4 +187,4 @@ function InforMation() {
   );
 }
 
-export default InforMation;
+export default Information;

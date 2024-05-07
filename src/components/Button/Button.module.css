@@ -40,6 +40,16 @@
   text-decoration: underline;
 }
 
+.kakao{
+  color: var(--color-black);
+  border-color: #FEE500;
+  background-color: #FEE500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
 /* size */
 .small {
   font-size: 1.6rem;

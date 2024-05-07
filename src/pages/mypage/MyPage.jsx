@@ -1,5 +1,5 @@
 //import useUserState from "./useUserState.mjs";
-import InforMation from "./InforMation";
+import InforMation from "./Information";
 
 // import Submit from "@components/Submit";
 // import { Link } from "react-router-dom";

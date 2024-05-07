@@ -134,7 +134,9 @@ function Header() {
               <span className="hidden">닫기</span>
             </button>
           </h3>
-          <ul className={recentlyWr}>{recentlyList}</ul>
+          <ul className={recentlyWr}>
+            {recentlyList || <li>해머거 레시피를 구경해보세요!</li>}
+          </ul>
         </nav>
       </div>
     </>

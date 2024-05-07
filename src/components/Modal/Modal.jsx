@@ -4,26 +4,40 @@ import styles from "./Modal.module.css";
 
 function Modal() {
   const { modalWr, act, inner, closeBtn, contWr, buttonWr } = styles;
-  const { isShow, modalContent, toggleModal } = modalStore();
-
-  const handleClose = () => toggleModal();
+  const { isShow, data, setModal, toggleModal } = modalStore();
+  const handleClose = () => setModal({});
+  const handleConfirm = () => {
+    if (data.event) {
+      data.event();
+      toggleModal();
+    } else {
+      setModal();
+    }
+  };
 
   return (
     <div className={`${modalWr} ${isShow ? act : ""}`}>
-      <div className={inner}>
-        <button className={closeBtn} onClick={handleClose}>
+      <form className={inner}>
+        {/* <button className={closeBtn} onClick={handleClose}>
           <span className="hidden">닫기</span>
-        </button>
-        <div className={contWr}>{modalContent}</div>
+        </button> */}
+        <div className={contWr}>{data?.instruction}</div>
         <div className={buttonWr}>
-          <Button size="medium" onClick={handleClose}>
-            취소
-          </Button>
-          <Button size="medium" color="primary" filled="filled">
+          {data?.event && (
+            <Button size="medium" onClick={handleClose}>
+              취소
+            </Button>
+          )}
+          <Button
+            size="medium"
+            color="primary"
+            filled="filled"
+            onClick={handleConfirm}
+          >
             확인
           </Button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

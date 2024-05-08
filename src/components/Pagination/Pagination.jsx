@@ -9,26 +9,30 @@ Pagination.propTypes = {
   totalCount: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   setCurrentPage: PropTypes.func.isRequired,
+  link: PropTypes.string.isRequired,
 };
 
-function Pagination({ totalCount, currentPage, setCurrentPage }) {
+function Pagination({ totalCount, currentPage, setCurrentPage, link }) {
   const limit = import.meta.env.VITE_PAGINATION_LIMIT;
   const pageRange = 5;
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [pageSet, setPageSet] = useState(Math.ceil(currentPage / pageRange));
   const totalPage = Math.ceil(totalCount / limit);
   const lastPageSet = Math.ceil(totalPage / pageRange);
 
-  const handleClick = (page) => setCurrentPage(page);
+  const handleClick = (page) => {
+    searchParams.set("page", page);
+    setCurrentPage(page);
+    setSearchParams(searchParams);
+  };
 
   const pageList = [];
+
   for (
     let page = (pageSet - 1) * pageRange + 1;
     page <= pageSet * pageRange;
     page++
   ) {
-    searchParams.set("page", currentPage);
-
     if (page > totalPage) break;
     let search = searchParams.toString();
     pageList.push(
@@ -37,7 +41,7 @@ function Pagination({ totalCount, currentPage, setCurrentPage }) {
         className={`${page === +currentPage ? styles.act : ""}`}
         onClick={() => handleClick(page)}
       >
-        <Link to={`/recipe/list?${search}`}>{page}</Link>
+        <Link to={`${link}?${search}`}>{page}</Link>
       </li>,
     );
   }

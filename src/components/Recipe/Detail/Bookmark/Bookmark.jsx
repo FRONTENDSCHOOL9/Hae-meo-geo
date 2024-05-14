@@ -10,7 +10,7 @@ function Bookmark({ id }) {
   const axios = useCustomAxios();
   const navigate = useNavigate();
   const { user } = userStore();
-  const { setModal, set } = modalStore();
+  const { setModal } = modalStore();
   const [isBookmarked, setIsBookmarked] = useState();
   const [bookmarkId, setBookmarkId] = useState();
 

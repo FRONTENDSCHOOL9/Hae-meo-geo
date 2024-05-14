@@ -10,7 +10,7 @@ function Bookmark({ id }) {
   const axios = useCustomAxios();
   const navigate = useNavigate();
   const { user } = userStore();
-  const { setModal } = modalStore();
+  const { setModal, set } = modalStore();
   const [isBookmarked, setIsBookmarked] = useState();
   const [bookmarkId, setBookmarkId] = useState();
 
@@ -46,20 +46,20 @@ function Bookmark({ id }) {
           const { data } = await axios.delete(`/bookmarks/${bookmarkId}`);
           setIsBookmarked(false);
           setBookmarkId();
-          setModal({ instruction: "나도해보기가 삭제되었습니다." });
+          setModal({ message: "나도해보기가 삭제되었습니다." });
         } else {
           const { data } = await axios.post(`/bookmarks/product/${id}`);
           setIsBookmarked(true);
           setBookmarkId(data.item._id);
-          console.log(data.item._id);
-          setModal({ instruction: "나도해보기가 등록되었습니다." });
+          setModal({ message: "나도해보기가 등록되었습니다." });
         }
       } else {
         setModal({
-          instruction: `잠깐! 로그인 후 이용할 수 있어요. \n로그인 하러갈까요?`,
+          message: `잠깐! 로그인 후 이용할 수 있어요. \n로그인 하러갈까요?`,
           event: () => {
             navigate("/user/login");
           },
+          isTwoButtons: true,
         });
       }
     } catch (err) {

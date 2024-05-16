@@ -1,14 +1,16 @@
 import { Button } from "@components/Button/Button";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import useUserStore from "@zustand/userStore.mjs";
+import modalStore from "@zustand/modalStore.mjs";
 import { useEffect } from "react";
 import ReplyStyle from "./Reply.module.css";
 import styles from "./List.module.css";
 
 function ReplyList({ id, setRepliesFn, replies }) {
-  const { list, rightWr, infoWr, time, contentWr, buttonWr, attachWr } = styles;
+  const { list, rightWr, time, contentWr, buttonWr } = styles;
   const axios = useCustomAxios();
   const { user } = useUserStore();
+  const { setModal } = modalStore();
 
   const fetchData = async () => {
     try {
@@ -29,7 +31,7 @@ function ReplyList({ id, setRepliesFn, replies }) {
     try {
       const { data } = await axios.delete(`/posts/${postId}`);
       fetchData();
-      alert("후기가 삭제되었습니다.");
+      setModal({ message: "후기가 삭제되었습니다." });
     } catch (err) {
       console.error(err.response?.data.message);
     }
@@ -45,7 +47,6 @@ function ReplyList({ id, setRepliesFn, replies }) {
 
   const replyList = replies?.item.map((item) => {
     const isMyPost = user && user._id === item.user._id;
-    console.log(user);
     return (
       <article key={item._id} className={ReplyStyle.replyWr}>
         <img
@@ -72,9 +73,7 @@ function ReplyList({ id, setRepliesFn, replies }) {
 
             {isMyPost && (
               <div className={buttonWr}>
-                {/* <Button onClick={() => handleModify(item._id)} color="primary">
-                  수정
-                </Button> */}
+                <Button onClick={() => handleModify(item._id)}>수정</Button>
                 <Button color="primary" onClick={() => handleRemove(item._id)}>
                   삭제
                 </Button>

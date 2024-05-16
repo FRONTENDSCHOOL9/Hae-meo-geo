@@ -1,6 +1,7 @@
 import { Button } from "@components/Button/Button";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import useUserStore from "@zustand/userStore.mjs";
+import modalStore from "@zustand/modalStore.mjs";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -15,6 +16,7 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
   const axios = useCustomAxios();
   const [rating, setRating] = useState();
   const [attachImg, setAttachImg] = useState();
+  const { setModal } = modalStore();
 
   const {
     register,
@@ -53,7 +55,7 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
       reset();
       setRating();
       setAttachImg();
-      alert("후기가 등록되었습니다.");
+      setModal({ message: "후기가 등록되었습니다." });
     } catch (err) {
       console.error(err);
     }

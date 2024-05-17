@@ -1,16 +1,28 @@
 import { Button } from "@components/Button/Button";
+import ReplyRegister from "@components/Recipe/Detail/Reply/Register";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
-import useUserStore from "@zustand/userStore.mjs";
 import modalStore from "@zustand/modalStore.mjs";
-import { useEffect } from "react";
-import ReplyStyle from "./Reply.module.css";
+import useUserStore from "@zustand/userStore.mjs";
+import { useEffect, useState } from "react";
 import styles from "./List.module.css";
+import ReplyStyle from "./Reply.module.css";
 
-function ReplyList({ id, setRepliesFn, replies }) {
+function ReplyList({
+  id,
+  setRepliesFn,
+  replies,
+  rating,
+  setRating,
+  attachImg,
+  setAttachImg,
+  modifyId,
+  setModifyId,
+}) {
   const { list, rightWr, time, contentWr, buttonWr } = styles;
   const axios = useCustomAxios();
   const { user } = useUserStore();
   const { setModal } = modalStore();
+  // const [modifyId, setModifyId] = useState("");
 
   const fetchData = async () => {
     try {
@@ -36,18 +48,26 @@ function ReplyList({ id, setRepliesFn, replies }) {
       console.error(err.response?.data.message);
     }
   };
-
-  const handleModify = async (postId) => {
-    try {
-      console.log(postId);
-    } catch (err) {
-      console.error(err.response?.data.message);
-    }
-  };
+  const handleModify = (postId) => setModifyId(postId);
 
   const replyList = replies?.item.map((item) => {
     const isMyPost = user && user._id === item.user._id;
-    return (
+    console.log(item, item._id, item.content, item.extra);
+
+    return modifyId && modifyId === item._id ? (
+      <ReplyRegister
+        setRepliesFn={setRepliesFn}
+        rating={rating}
+        setRating={setRating}
+        attachImg={attachImg}
+        setAttachImg={setAttachImg}
+        modifyVersion={true}
+        originalContent={item.content}
+        originalRating={item.extra?.rating}
+        originalImage={item.extra?.image}
+        setModifyId={setModifyId}
+      />
+    ) : (
       <article key={item._id} className={ReplyStyle.replyWr}>
         <img
           className={ReplyStyle.profile}

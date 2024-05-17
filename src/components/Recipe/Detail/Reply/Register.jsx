@@ -1,6 +1,7 @@
 import { Button } from "@components/Button/Button";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import useUserStore from "@zustand/userStore.mjs";
+import modalStore from "@zustand/modalStore.mjs";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -8,13 +9,30 @@ import uploadImage from "@utils/uploadImage.mjs";
 import ReplyStyle from "./Reply.module.css";
 import styles from "./Register.module.css";
 
-function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
+function ReplyRegister({
+  rating,
+  setRating,
+  attachImg,
+  setAttachImg,
+  rcpName,
+  rcpNum,
+  setRepliesFn,
+  modifyVersion = false,
+  originalContent = "",
+  originalRating,
+  originalImage,
+  setModifyId,
+}) {
   const { replyRegister, ratingErrorMsg, contentErrorMsg, noLogin, buttonWr } =
     styles;
   const { user } = useUserStore();
   const axios = useCustomAxios();
-  const [rating, setRating] = useState();
-  const [attachImg, setAttachImg] = useState();
+  // const [rating, setRating] = useState();
+  // const [attachImg, setAttachImg] = useState();
+  const [target, setTarget] = useState();
+  const { setModal } = modalStore();
+
+  console.log(target);
 
   const {
     register,
@@ -53,13 +71,14 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
       reset();
       setRating();
       setAttachImg();
-      alert("후기가 등록되었습니다.");
+      setModal({ message: "후기가 등록되었습니다." });
     } catch (err) {
       console.error(err);
     }
   };
 
   const handleRatingClick = (e) => {
+    console.log(e.target);
     if (!e.target.tagName === "INPUT") return;
     if (e.target.value) setRating(e.target.value);
   };
@@ -84,8 +103,8 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
                 <p className={ReplyStyle.name}>{user.name}</p>
                 <div
                   className={`${ReplyStyle.ratingWr} ${
-                    ReplyStyle[`n${rating}`]
-                  } ${rating ? ReplyStyle.act : ""}`}
+                    ReplyStyle[`n${rating || originalRating}`]
+                  } ${originalRating || rating ? ReplyStyle.act : ""}`}
                   onClick={handleRatingClick}
                 >
                   <label>
@@ -150,6 +169,7 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
                 id="content"
                 cols="30"
                 rows="10"
+                defaultValue={originalContent}
                 {...register("content", {
                   required: "내용을 입력하세요.",
                   minLength: {
@@ -166,11 +186,17 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
             </div>
             <div
               className={`${ReplyStyle.attachWr} ${styles.attachWr} ${
-                attachImg ? ReplyStyle.act : ""
+                originalImage || attachImg ? ReplyStyle.act : ""
               }`}
             >
               <label htmlFor="image">
-                <img src={attachImg} alt="" />
+                <img
+                  src={
+                    attachImg ||
+                    `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${originalImage}`
+                  }
+                  alt=""
+                />
                 <span className="hidden">첨부파일 선택</span>
               </label>
               <button type="button" onClick={handleAttachRemove}>
@@ -197,9 +223,20 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
             </div>
           </div>
           <div className={buttonWr}>
-            <Button type="submit" size="medium" color="primary">
-              등록하기
-            </Button>
+            {modifyVersion ? (
+              <>
+                <Button size="medium" onClick={() => setModifyId()}>
+                  취소
+                </Button>
+                <Button type="submit" size="medium" color="primary">
+                  수정
+                </Button>
+              </>
+            ) : (
+              <Button type="submit" size="medium" color="primary">
+                등록하기
+              </Button>
+            )}
           </div>
         </form>
       ) : (

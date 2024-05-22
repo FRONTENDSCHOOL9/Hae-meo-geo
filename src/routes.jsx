@@ -14,9 +14,7 @@ import SignupStepOne from "@pages/user/SignupStepOne";
 import SignupStepTwo from "@pages/user/SignupStepTwo";
 import SignupStepThree from "@pages/user/SignupStepThree";
 import MyRecipeDetail from "@pages/myRecipe/MyRecipeDetail";
-import InforMation from "@pages/mypage/Information";
 import BookMark from "@pages/mypage/BookMark";
-import PageSide from "@pages/mypage/PageSide";
 import Kakao from "@pages/auth/Kakao";
 
 const router = createBrowserRouter([
@@ -35,9 +33,7 @@ const router = createBrowserRouter([
       { path: "/user/signupStepOne", element: <SignupStepOne /> },
       { path: "/user/signupStepTwo", element: <SignupStepTwo /> },
       { path: "/user/signupStepThree", element: <SignupStepThree /> },
-      { path: "/mypage/information", element: <InforMation /> },
       { path: "/mypage/bookmark", element: <BookMark /> },
-      { path: "/mypage/pageside", element: <PageSide /> },
       { path: "/myrecipe/register", element: <MyRecipeRegister /> },
       { path: "/myrecipe/list", element: <MyRecipeList /> },
       { path: "/myrecipe/list/:_id", element: <MyRecipeDetail /> },

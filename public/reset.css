@@ -160,7 +160,7 @@ input[type="checkbox"] {
 
 a:focus-visible,
 input:focus-visible {
-  outline: var(--color-primary) auto 1px
+  outline: var(--color-primary) auto 1px;
 }
 
 textarea {
@@ -183,7 +183,6 @@ hr {
   height: 1px;
   background-color: var(--color-black-100);
   border: unset;
-  margin: 1.4rem 0;
 }
 
 img {

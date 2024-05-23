@@ -5,8 +5,9 @@ import { useState } from "react";
 
 function Reply({ id, replies, rcpName, rcpNum, setRepliesFn }) {
   const [rating, setRating] = useState("");
+  const [ratingModify, setRatingModify] = useState(1);
   const [attachImg, setAttachImg] = useState("");
-  const [modifyId, setModifyId] = useState("");
+  const [modifyId, setModifyId] = useState(0);
 
   return (
     <div>
@@ -14,21 +15,22 @@ function Reply({ id, replies, rcpName, rcpNum, setRepliesFn }) {
         id={id}
         replies={replies}
         setRepliesFn={setRepliesFn}
-        rating={rating}
-        setRating={setRating}
         attachImg={attachImg}
         setAttachImg={setAttachImg}
         modifyId={modifyId}
         setModifyId={setModifyId}
+        ratingModify={ratingModify}
+        setRatingModify={setRatingModify}
       />
       <ReplyRegister
-        rating={rating}
-        setRating={setRating}
-        attachImg={attachImg}
-        setAttachImg={setAttachImg}
         rcpName={rcpName}
         rcpNum={rcpNum}
         setRepliesFn={setRepliesFn}
+        rating={rating}
+        setRating={setRating}
+        ratingModify={ratingModify}
+        attachImg={attachImg}
+        setAttachImg={setAttachImg}
         setModifyId={setModifyId}
       />
     </div>

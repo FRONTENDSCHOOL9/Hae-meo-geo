@@ -9,20 +9,19 @@ import ReplyStyle from "./Reply.module.css";
 
 function ReplyList({
   id,
-  setRepliesFn,
   replies,
-  rating,
-  setRating,
+  setRepliesFn,
   attachImg,
   setAttachImg,
   modifyId,
   setModifyId,
+  ratingModify,
+  setRatingModify,
 }) {
   const { list, rightWr, time, contentWr, buttonWr } = styles;
   const axios = useCustomAxios();
   const { user } = useUserStore();
   const { setModal } = modalStore();
-  // const [modifyId, setModifyId] = useState("");
 
   const fetchData = async () => {
     try {
@@ -52,19 +51,19 @@ function ReplyList({
 
   const replyList = replies?.item.map((item) => {
     const isMyPost = user && user._id === item.user._id;
-    console.log(item, item._id, item.content, item.extra);
 
     return modifyId && modifyId === item._id ? (
       <ReplyRegister
         setRepliesFn={setRepliesFn}
-        rating={rating}
-        setRating={setRating}
+        ratingModify={ratingModify}
+        setRating={setRatingModify}
         attachImg={attachImg}
         setAttachImg={setAttachImg}
         modifyVersion={true}
         originalContent={item.content}
         originalRating={item.extra?.rating}
         originalImage={item.extra?.image}
+        modifyId={modifyId}
         setModifyId={setModifyId}
       />
     ) : (

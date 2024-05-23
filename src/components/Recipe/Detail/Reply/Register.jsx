@@ -97,11 +97,6 @@ function ReplyRegister({
                 <p className={ReplyStyle.name}>{user.name}</p>
                 <div
                   className={`${ReplyStyle.ratingWr} ${
-                    // targetId === modifyId
-                    //   ? ReplyStyle[`n${rating || originalRating}`]
-                    //   : ""
-
-                    // ReplyStyle[`n${modifyVersion ? originalRating : rating}`]
                     ReplyStyle[`n${modifyVersion ? ratingModify : rating}`]
                   } ${rating || ratingModify ? ReplyStyle.act : ""}`}
                   onClick={handleRatingClick}

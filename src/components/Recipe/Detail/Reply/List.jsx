@@ -47,6 +47,7 @@ function ReplyList({
       console.error(err.response?.data.message);
     }
   };
+
   const handleModify = ({ _id, extra: { rating } }) => {
     setModifyId(_id);
     setRatingModify(rating);

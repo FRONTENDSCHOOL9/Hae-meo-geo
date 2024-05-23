@@ -47,7 +47,10 @@ function ReplyList({
       console.error(err.response?.data.message);
     }
   };
-  const handleModify = (postId) => setModifyId(postId);
+  const handleModify = ({ _id, extra: { rating } }) => {
+    setModifyId(_id);
+    setRatingModify(rating);
+  };
 
   const replyList = replies?.item.map((item) => {
     const isMyPost = user && user._id === item.user._id;
@@ -61,7 +64,6 @@ function ReplyList({
         setAttachImg={setAttachImg}
         modifyVersion={true}
         originalContent={item.content}
-        originalRating={item.extra?.rating}
         originalImage={item.extra?.image}
         modifyId={modifyId}
         setModifyId={setModifyId}
@@ -92,7 +94,7 @@ function ReplyList({
 
             {isMyPost && (
               <div className={buttonWr}>
-                <Button onClick={() => handleModify(item._id)}>수정</Button>
+                <Button onClick={() => handleModify(item)}>수정</Button>
                 <Button color="primary" onClick={() => handleRemove(item._id)}>
                   삭제
                 </Button>

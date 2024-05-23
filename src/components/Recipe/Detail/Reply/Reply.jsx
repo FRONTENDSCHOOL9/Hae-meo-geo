@@ -5,7 +5,7 @@ import { useState } from "react";
 
 function Reply({ id, replies, rcpName, rcpNum, setRepliesFn }) {
   const [rating, setRating] = useState("");
-  const [ratingModify, setRatingModify] = useState(1);
+  const [ratingModify, setRatingModify] = useState(0);
   const [attachImg, setAttachImg] = useState("");
   const [modifyId, setModifyId] = useState(0);
 

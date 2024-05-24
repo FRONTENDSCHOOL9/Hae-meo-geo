@@ -2,7 +2,7 @@ import { Button } from "@components/Button/Button";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import useUserStore from "@zustand/userStore.mjs";
 import modalStore from "@zustand/modalStore.mjs";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import uploadImage from "@utils/uploadImage.mjs";
@@ -10,16 +10,16 @@ import ReplyStyle from "./Reply.module.css";
 import styles from "./Register.module.css";
 
 function ReplyRegister({
-  rating,
-  setRating,
-  attachImg,
-  setAttachImg,
   rcpName,
   rcpNum,
   setRepliesFn,
+  rating,
+  setRating,
+  ratingModify,
+  attachImg,
+  setAttachImg,
   modifyVersion = false,
   originalContent = "",
-  originalRating,
   originalImage,
   setModifyId,
 }) {
@@ -27,12 +27,7 @@ function ReplyRegister({
     styles;
   const { user } = useUserStore();
   const axios = useCustomAxios();
-  // const [rating, setRating] = useState();
-  // const [attachImg, setAttachImg] = useState();
-  const [target, setTarget] = useState();
   const { setModal } = modalStore();
-
-  console.log(target);
 
   const {
     register,
@@ -78,7 +73,6 @@ function ReplyRegister({
   };
 
   const handleRatingClick = (e) => {
-    console.log(e.target);
     if (!e.target.tagName === "INPUT") return;
     if (e.target.value) setRating(e.target.value);
   };
@@ -103,8 +97,8 @@ function ReplyRegister({
                 <p className={ReplyStyle.name}>{user.name}</p>
                 <div
                   className={`${ReplyStyle.ratingWr} ${
-                    ReplyStyle[`n${rating || originalRating}`]
-                  } ${originalRating || rating ? ReplyStyle.act : ""}`}
+                    ReplyStyle[`n${modifyVersion ? ratingModify : rating}`]
+                  } ${rating || ratingModify ? ReplyStyle.act : ""}`}
                   onClick={handleRatingClick}
                 >
                   <label>
@@ -208,6 +202,7 @@ function ReplyRegister({
                 id="image"
                 {...register("image", {
                   onChange: (e) => {
+                    // console.log(e.target, e.target.closest("form").dataset.id);
                     const reader = new FileReader();
                     reader.readAsDataURL(e.target.files[0]);
                     reader.onloadend = () => {

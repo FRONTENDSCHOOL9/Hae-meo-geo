@@ -9,20 +9,21 @@ import ReplyStyle from "./Reply.module.css";
 
 function ReplyList({
   id,
-  setRepliesFn,
   replies,
-  rating,
-  setRating,
+  setRepliesFn,
   attachImg,
   setAttachImg,
+  attachImgModify,
+  setAttachImgModify,
   modifyId,
   setModifyId,
+  ratingModify,
+  setRatingModify,
 }) {
   const { list, rightWr, time, contentWr, buttonWr } = styles;
   const axios = useCustomAxios();
   const { user } = useUserStore();
   const { setModal } = modalStore();
-  // const [modifyId, setModifyId] = useState("");
 
   const fetchData = async () => {
     try {
@@ -48,23 +49,27 @@ function ReplyList({
       console.error(err.response?.data.message);
     }
   };
-  const handleModify = (postId) => setModifyId(postId);
+
+  const handleModify = ({ _id, extra: { rating, image } }) => {
+    setModifyId(_id);
+    setRatingModify(rating);
+    setAttachImgModify(image);
+  };
 
   const replyList = replies?.item.map((item) => {
     const isMyPost = user && user._id === item.user._id;
-    console.log(item, item._id, item.content, item.extra);
 
     return modifyId && modifyId === item._id ? (
       <ReplyRegister
         setRepliesFn={setRepliesFn}
-        rating={rating}
-        setRating={setRating}
-        attachImg={attachImg}
-        setAttachImg={setAttachImg}
+        ratingModify={ratingModify}
+        setRating={setRatingModify}
+        attachImgModify={attachImgModify}
+        setAttachImg={setAttachImgModify}
         modifyVersion={true}
         originalContent={item.content}
-        originalRating={item.extra?.rating}
-        originalImage={item.extra?.image}
+        // originalImage={item.extra?.image}
+        modifyId={modifyId}
         setModifyId={setModifyId}
       />
     ) : (
@@ -93,7 +98,7 @@ function ReplyList({
 
             {isMyPost && (
               <div className={buttonWr}>
-                <Button onClick={() => handleModify(item._id)}>수정</Button>
+                <Button onClick={() => handleModify(item)}>수정</Button>
                 <Button color="primary" onClick={() => handleRemove(item._id)}>
                   삭제
                 </Button>

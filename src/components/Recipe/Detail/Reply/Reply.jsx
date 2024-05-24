@@ -7,6 +7,7 @@ function Reply({ id, replies, rcpName, rcpNum, setRepliesFn }) {
   const [rating, setRating] = useState("");
   const [ratingModify, setRatingModify] = useState(0);
   const [attachImg, setAttachImg] = useState("");
+  const [attachImgModify, setAttachImgModify] = useState("");
   const [modifyId, setModifyId] = useState(0);
 
   return (
@@ -21,6 +22,8 @@ function Reply({ id, replies, rcpName, rcpNum, setRepliesFn }) {
         setModifyId={setModifyId}
         ratingModify={ratingModify}
         setRatingModify={setRatingModify}
+        attachImgModify={attachImgModify}
+        setAttachImgModify={setAttachImgModify}
       />
       <ReplyRegister
         rcpName={rcpName}
@@ -31,6 +34,7 @@ function Reply({ id, replies, rcpName, rcpNum, setRepliesFn }) {
         ratingModify={ratingModify}
         attachImg={attachImg}
         setAttachImg={setAttachImg}
+        attachImgModify={attachImgModify}
         setModifyId={setModifyId}
       />
     </div>

@@ -13,6 +13,8 @@ function ReplyList({
   setRepliesFn,
   attachImg,
   setAttachImg,
+  attachImgModify,
+  setAttachImgModify,
   modifyId,
   setModifyId,
   ratingModify,
@@ -48,9 +50,10 @@ function ReplyList({
     }
   };
 
-  const handleModify = ({ _id, extra: { rating } }) => {
+  const handleModify = ({ _id, extra: { rating, image } }) => {
     setModifyId(_id);
     setRatingModify(rating);
+    setAttachImgModify(image);
   };
 
   const replyList = replies?.item.map((item) => {
@@ -61,11 +64,11 @@ function ReplyList({
         setRepliesFn={setRepliesFn}
         ratingModify={ratingModify}
         setRating={setRatingModify}
-        attachImg={attachImg}
-        setAttachImg={setAttachImg}
+        attachImgModify={attachImgModify}
+        setAttachImg={setAttachImgModify}
         modifyVersion={true}
         originalContent={item.content}
-        originalImage={item.extra?.image}
+        // originalImage={item.extra?.image}
         modifyId={modifyId}
         setModifyId={setModifyId}
       />

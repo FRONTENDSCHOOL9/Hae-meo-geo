@@ -69,7 +69,6 @@ function Home() {
           `products?keyword=${todayData.title}&page=1&limit=6`,
         );
         setTodayMenu({ info: todayData, data: data.item });
-        console.log(todayMenu.data);
       }
     } catch (err) {
       console.error(err, err.response?.data.message);

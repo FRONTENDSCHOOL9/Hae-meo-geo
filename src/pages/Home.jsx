@@ -69,6 +69,7 @@ function Home() {
           `products?keyword=${todayData.title}&page=1&limit=6`,
         );
         setTodayMenu({ info: todayData, data: data.item });
+        console.log(todayMenu.data);
       }
     } catch (err) {
       console.error(err, err.response?.data.message);
@@ -112,7 +113,7 @@ function Home() {
   const todayMenus = todayMenu?.data.map((item, idx) => (
     <SwiperSlide key={`${idx}${item.name}`}>
       <Link to={`/recipe/list/${item.name}`}>
-        <img src={item.image} alt="" />
+        <img src={item.mainImages[0].path} alt="" />
         <p>{item.name}</p>
       </Link>
     </SwiperSlide>
@@ -122,7 +123,7 @@ function Home() {
   const bookmarkMenus = dataBookmark?.map((item, idx) => (
     <SwiperSlide key={idx}>
       <Link to={`/recipe/list/${item.name}`}>
-        <img src={item.image} alt="" />
+        <img src={item.mainImages[0].path} alt="" />
         <p>{item.name}</p>
       </Link>
     </SwiperSlide>

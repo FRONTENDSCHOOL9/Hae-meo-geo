@@ -97,7 +97,7 @@ textarea{
   border-color: var(--color-secondary);
   background-color: var(--color-secondary-30);
   font-size: 2rem;
-  padding: 0 2em;
+  padding: 0 2rem;
   height: 6rem;
   line-height: 5.8rem;
 }
@@ -147,5 +147,68 @@ textarea{
   .layout{
     gap: 1.6rem;
     padding: 3.6rem 1.2rem;
+  }
+}
+
+.stepsContainer{
+  gap: 16px;
+  padding: 2.4rem 3rem;
+  border-radius: 1rem;
+  background-color: var(--color-gray-50);
+}
+
+.stepsNum{
+  max-width: fit-content;
+  font-size: medium;
+  color: var(--color-primary);
+  border: 1px solid var(--color-secondary);
+  border-radius: 1rem;
+  padding: 4px 8px;
+  background-color: var(--color-secondary-30);
+  flex-basis: content;
+}
+
+.stepBlanks{
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stepButtons{
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.2rem;
+}
+
+.stepButton{
+  flex-grow: 1;
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid;
+  border-radius: 1rem;
+  text-align: center;
+  font-size: 2rem;
+  padding: 0 2rem;
+  height: 6rem;
+  line-height: 5.8rem;
+}
+
+.stepButtonDel{
+  color: var(--color-black);
+  border-color: var(--color-gray-100);
+  background-color: var(--color-gray-50);
+}
+
+.stepButtonAdd{
+  color: var(--color-primary);
+  border-color: var(--color-secondary);
+  background-color: var(--color-secondary-30);
+}
+
+@media (max-width: 767px) {
+  .stepButton{
+    font-size: 1.6rem;
+    height: 4rem;
+    line-height: 4rem;
   }
 }

@@ -18,9 +18,10 @@ function ReplyRegister({
   ratingModify,
   attachImg,
   setAttachImg,
-  modifyVersion = false,
-  originalContent = "",
   attachImgModify,
+  setAttachImgModify,
+  isModify = false,
+  originalContent,
   postId,
   setPostId,
 }) {
@@ -37,13 +38,15 @@ function ReplyRegister({
     formState: { errors },
   } = useForm({
     defaultValues: {
-      rating: modifyVersion ? ratingModify : null,
+      rating: isModify ? ratingModify : null,
+      content: isModify ? originalContent : null,
     },
   });
 
   const file = useRef();
   const fileModify = useRef();
-  const { ref } = register("image");
+  const ref = register("image");
+  const refModify = register("imageModify");
 
   const onSubmit = async (formData) => {
     try {
@@ -57,30 +60,35 @@ function ReplyRegister({
         },
       };
 
-      if (formData.image.length) {
+      formData.image = isModify ? formData.imageModify : formData.image;
+      if (formData.image?.length) {
         formData.extra.image = await uploadImage(formData, "image");
         delete formData.image;
       } else {
         delete formData?.image;
       }
 
-      const res = formData.postNum
+      // 게시물 등록 및 수정
+      const res = formData.isModify
         ? await axios.patch(`/posts/${postId}`, formData)
         : await axios.post("/posts", formData);
 
+      // 수정 및 등록된 게시물을 반영한 리스트 조회
       const { data } = await axios.get(
         `/posts?type=qna&custom={"product_id": ${rcpNum}}&sort={"_id":1}`,
       );
       setRepliesFn(data);
 
-      formData.postNum
-        ? setModal({ message: "후기가 수정되었습니다." })
-        : setModal({ message: "후기가 등록되었습니다." });
-
+      if (formData.isModify) {
+        setModal({ message: "후기가 수정되었습니다." });
+        setAttachImgModify();
+      } else {
+        setModal({ message: "후기가 등록되었습니다." });
+        setAttachImg();
+      }
       setPostId();
       reset();
       setRating();
-      setAttachImg();
     } catch (err) {
       console.error(err);
     }
@@ -91,9 +99,24 @@ function ReplyRegister({
     if (e.target.value) setRating(e.target.value);
   };
 
+  const handleAttachAdd = (e) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onloadend = () => {
+      isModify
+        ? setAttachImgModify(reader.result)
+        : setAttachImg(reader.result);
+    };
+  };
+
   const handleAttachRemove = () => {
-    setAttachImg();
-    file.current.value = "";
+    if (isModify) {
+      setAttachImgModify();
+      fileModify.current.value = "";
+    } else {
+      setAttachImg();
+      file.current.value = "";
+    }
   };
 
   return (
@@ -111,7 +134,7 @@ function ReplyRegister({
                 <p className={ReplyStyle.name}>{user.name}</p>
                 <div
                   className={`${ReplyStyle.ratingWr} ${
-                    ReplyStyle[`n${modifyVersion ? ratingModify : rating}`]
+                    ReplyStyle[`n${isModify ? ratingModify : rating}`]
                   } ${rating || ratingModify ? ReplyStyle.act : ""}`}
                   onClick={handleRatingClick}
                 >
@@ -177,7 +200,6 @@ function ReplyRegister({
                 id="content"
                 cols="30"
                 rows="10"
-                defaultValue={originalContent}
                 {...register("content", {
                   required: "내용을 입력하세요.",
                   minLength: {
@@ -193,48 +215,52 @@ function ReplyRegister({
               )}
             </div>
             <div
-              className={`${ReplyStyle.attachWr} ${styles.attachWr} ${
-                attachImgModify || attachImg ? ReplyStyle.act : ""
+              className={`${ReplyStyle.attachWr} ${styles.attachWr} 
+              ${
+                isModify
+                  ? attachImgModify
+                    ? ReplyStyle.act
+                    : ""
+                  : attachImg
+                    ? ReplyStyle.act
+                    : ""
               }`}
             >
-              <label htmlFor="image">
-                <img
-                  src={
-                    attachImg ||
-                    // `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${attachImgModify}`
-                    attachImgModify
-                  }
-                  alt=""
-                />
+              <label htmlFor={isModify ? "imageModify" : "image"}>
+                {isModify ? (
+                  <img
+                    src={
+                      attachImgModify?.includes("data:image/")
+                        ? attachImgModify
+                        : `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${attachImgModify}`
+                    }
+                    alt="후기 이미지"
+                  />
+                ) : (
+                  <img src={attachImg} alt="후기 이미지" />
+                )}
                 <span className="hidden">첨부파일 선택</span>
               </label>
               <button type="button" onClick={handleAttachRemove}>
                 <span className="hidden">첨부파일 삭제</span>
               </button>
-              {modifyVersion ? (
+              {isModify ? (
                 <>
                   <input
                     type="hidden"
-                    name="postNum"
-                    value={postId}
-                    {...register("postNum")}
+                    name="isModify"
+                    value={true}
+                    {...register("isModify")}
                   />
                   <input
                     type="file"
                     accept="image/*"
-                    id="image"
-                    {...register("image", {
-                      onChange: (e) => {
-                        const reader = new FileReader();
-                        reader.readAsDataURL(e.target.files[0]);
-                        reader.onloadend = () => {
-                          setAttachImg(reader.result);
-                          console.log(attachImgModify);
-                        };
-                      },
+                    id="imageModify"
+                    {...register("imageModify", {
+                      onChange: (e) => handleAttachAdd(e),
                     })}
                     ref={(e) => {
-                      ref(e);
+                      refModify.ref(e);
                       fileModify.current = e;
                     }}
                   />
@@ -245,16 +271,10 @@ function ReplyRegister({
                   accept="image/*"
                   id="image"
                   {...register("image", {
-                    onChange: (e) => {
-                      const reader = new FileReader();
-                      reader.readAsDataURL(e.target.files[0]);
-                      reader.onloadend = () => {
-                        setAttachImg(reader.result);
-                      };
-                    },
+                    onChange: (e) => handleAttachAdd(e),
                   })}
                   ref={(e) => {
-                    ref(e);
+                    ref.ref(e);
                     file.current = e;
                   }}
                 />
@@ -262,7 +282,7 @@ function ReplyRegister({
             </div>
           </div>
           <div className={buttonWr}>
-            {modifyVersion ? (
+            {isModify ? (
               <>
                 <Button size="medium" onClick={() => setPostId()}>
                   취소

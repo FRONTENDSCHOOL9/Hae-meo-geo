@@ -16,8 +16,6 @@ function Reply({ id, replies, rcpName, rcpNum, setRepliesFn }) {
         rcpName={rcpName}
         replies={replies}
         setRepliesFn={setRepliesFn}
-        attachImg={attachImg}
-        setAttachImg={setAttachImg}
         postId={postId}
         setPostId={setPostId}
         ratingModify={ratingModify}
@@ -26,16 +24,16 @@ function Reply({ id, replies, rcpName, rcpNum, setRepliesFn }) {
         setAttachImgModify={setAttachImgModify}
       />
       <ReplyRegister
+        key={0}
+        isModify={false}
         rcpName={rcpName}
         rcpNum={rcpNum}
         replies={replies}
         setRepliesFn={setRepliesFn}
         rating={rating}
         setRating={setRating}
-        ratingModify={ratingModify}
         attachImg={attachImg}
         setAttachImg={setAttachImg}
-        attachImgModify={attachImgModify}
         setPostId={setPostId}
       />
     </div>

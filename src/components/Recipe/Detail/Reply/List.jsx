@@ -3,6 +3,7 @@ import ReplyRegister from "@components/Recipe/Detail/Reply/Register";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import modalStore from "@zustand/modalStore.mjs";
 import useUserStore from "@zustand/userStore.mjs";
+import { useEffect } from "react";
 import styles from "./List.module.css";
 import ReplyStyle from "./Reply.module.css";
 
@@ -11,6 +12,7 @@ function ReplyList({
   rcpName,
   replies,
   setRepliesFn,
+  setAttachImg,
   attachImgModify,
   setAttachImgModify,
   postId,
@@ -29,7 +31,6 @@ function ReplyList({
         `/posts?type=qna&custom={"product_id": ${id}}&sort={"_id":1}`,
       );
       setRepliesFn(data);
-      console.log(data);
     } catch (err) {
       console.error(err.response?.data.message);
     }
@@ -51,13 +52,16 @@ function ReplyList({
     setAttachImgModify(image);
   };
 
-  // console.log("replies", replies);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const replyList = replies?.item.map((item) => {
     const isMyPost = user && user._id === item.user._id;
-
     return postId && postId === item._id ? (
       <ReplyRegister
+        key={postId}
+        isModify={true}
         rcpName={rcpName}
         rcpNum={id}
         replies={replies}
@@ -65,8 +69,7 @@ function ReplyList({
         ratingModify={ratingModify}
         setRating={setRatingModify}
         attachImgModify={attachImgModify}
-        setAttachImg={setAttachImgModify}
-        modifyVersion={true}
+        setAttachImgModify={setAttachImgModify}
         originalContent={item.content}
         postId={postId}
         setPostId={setPostId}

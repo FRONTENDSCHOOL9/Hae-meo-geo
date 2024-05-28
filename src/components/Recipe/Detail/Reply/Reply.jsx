@@ -1,6 +1,5 @@
 import ReplyList from "@components/Recipe/Detail/Reply/List";
 import ReplyRegister from "@components/Recipe/Detail/Reply/Register";
-import { useEffect } from "react";
 import { useState } from "react";
 
 function Reply({ id, replies, rcpName, rcpNum, setRepliesFn }) {
@@ -8,18 +7,19 @@ function Reply({ id, replies, rcpName, rcpNum, setRepliesFn }) {
   const [ratingModify, setRatingModify] = useState(0);
   const [attachImg, setAttachImg] = useState("");
   const [attachImgModify, setAttachImgModify] = useState("");
-  const [modifyId, setModifyId] = useState(0);
+  const [postId, setPostId] = useState(0);
 
   return (
     <div>
       <ReplyList
         id={id}
+        rcpName={rcpName}
         replies={replies}
         setRepliesFn={setRepliesFn}
         attachImg={attachImg}
         setAttachImg={setAttachImg}
-        modifyId={modifyId}
-        setModifyId={setModifyId}
+        postId={postId}
+        setPostId={setPostId}
         ratingModify={ratingModify}
         setRatingModify={setRatingModify}
         attachImgModify={attachImgModify}
@@ -28,6 +28,7 @@ function Reply({ id, replies, rcpName, rcpNum, setRepliesFn }) {
       <ReplyRegister
         rcpName={rcpName}
         rcpNum={rcpNum}
+        replies={replies}
         setRepliesFn={setRepliesFn}
         rating={rating}
         setRating={setRating}
@@ -35,7 +36,7 @@ function Reply({ id, replies, rcpName, rcpNum, setRepliesFn }) {
         attachImg={attachImg}
         setAttachImg={setAttachImg}
         attachImgModify={attachImgModify}
-        setModifyId={setModifyId}
+        setPostId={setPostId}
       />
     </div>
   );

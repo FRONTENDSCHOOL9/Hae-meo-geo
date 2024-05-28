@@ -20,8 +20,9 @@ function ReplyRegister({
   setAttachImg,
   modifyVersion = false,
   originalContent = "",
-  originalImage,
-  setModifyId,
+  attachImgModify,
+  postId,
+  setPostId,
 }) {
   const { replyRegister, ratingErrorMsg, contentErrorMsg, noLogin, buttonWr } =
     styles;
@@ -34,9 +35,14 @@ function ReplyRegister({
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      rating: modifyVersion ? ratingModify : null,
+    },
+  });
 
   const file = useRef();
+  const fileModify = useRef();
   const { ref } = register("image");
 
   const onSubmit = async (formData) => {
@@ -58,15 +64,23 @@ function ReplyRegister({
         delete formData?.image;
       }
 
-      const { data } = await axios.post("/posts", formData);
-      const resPost = await axios.get(
-        `/posts?type=qna&custom={"product_id": ${rcpNum}}`,
+      const res = formData.postNum
+        ? await axios.patch(`/posts/${postId}`, formData)
+        : await axios.post("/posts", formData);
+
+      const { data } = await axios.get(
+        `/posts?type=qna&custom={"product_id": ${rcpNum}}&sort={"_id":1}`,
       );
-      setRepliesFn(resPost.data);
+      setRepliesFn(data);
+
+      formData.postNum
+        ? setModal({ message: "후기가 수정되었습니다." })
+        : setModal({ message: "후기가 등록되었습니다." });
+
+      setPostId();
       reset();
       setRating();
       setAttachImg();
-      setModal({ message: "후기가 등록되었습니다." });
     } catch (err) {
       console.error(err);
     }
@@ -180,14 +194,15 @@ function ReplyRegister({
             </div>
             <div
               className={`${ReplyStyle.attachWr} ${styles.attachWr} ${
-                originalImage || attachImg ? ReplyStyle.act : ""
+                attachImgModify || attachImg ? ReplyStyle.act : ""
               }`}
             >
               <label htmlFor="image">
                 <img
                   src={
                     attachImg ||
-                    `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${originalImage}`
+                    // `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${attachImgModify}`
+                    attachImgModify
                   }
                   alt=""
                 />
@@ -196,31 +211,60 @@ function ReplyRegister({
               <button type="button" onClick={handleAttachRemove}>
                 <span className="hidden">첨부파일 삭제</span>
               </button>
-              <input
-                type="file"
-                accept="image/*"
-                id="image"
-                {...register("image", {
-                  onChange: (e) => {
-                    // console.log(e.target, e.target.closest("form").dataset.id);
-                    const reader = new FileReader();
-                    reader.readAsDataURL(e.target.files[0]);
-                    reader.onloadend = () => {
-                      setAttachImg(reader.result);
-                    };
-                  },
-                })}
-                ref={(e) => {
-                  ref(e);
-                  file.current = e;
-                }}
-              />
+              {modifyVersion ? (
+                <>
+                  <input
+                    type="hidden"
+                    name="postNum"
+                    value={postId}
+                    {...register("postNum")}
+                  />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    id="image"
+                    {...register("image", {
+                      onChange: (e) => {
+                        const reader = new FileReader();
+                        reader.readAsDataURL(e.target.files[0]);
+                        reader.onloadend = () => {
+                          setAttachImg(reader.result);
+                          console.log(attachImgModify);
+                        };
+                      },
+                    })}
+                    ref={(e) => {
+                      ref(e);
+                      fileModify.current = e;
+                    }}
+                  />
+                </>
+              ) : (
+                <input
+                  type="file"
+                  accept="image/*"
+                  id="image"
+                  {...register("image", {
+                    onChange: (e) => {
+                      const reader = new FileReader();
+                      reader.readAsDataURL(e.target.files[0]);
+                      reader.onloadend = () => {
+                        setAttachImg(reader.result);
+                      };
+                    },
+                  })}
+                  ref={(e) => {
+                    ref(e);
+                    file.current = e;
+                  }}
+                />
+              )}
             </div>
           </div>
           <div className={buttonWr}>
             {modifyVersion ? (
               <>
-                <Button size="medium" onClick={() => setModifyId()}>
+                <Button size="medium" onClick={() => setPostId()}>
                   취소
                 </Button>
                 <Button type="submit" size="medium" color="primary">

@@ -3,20 +3,18 @@ import ReplyRegister from "@components/Recipe/Detail/Reply/Register";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import modalStore from "@zustand/modalStore.mjs";
 import useUserStore from "@zustand/userStore.mjs";
-import { useEffect, useState } from "react";
 import styles from "./List.module.css";
 import ReplyStyle from "./Reply.module.css";
 
 function ReplyList({
   id,
+  rcpName,
   replies,
   setRepliesFn,
-  attachImg,
-  setAttachImg,
   attachImgModify,
   setAttachImgModify,
-  modifyId,
-  setModifyId,
+  postId,
+  setPostId,
   ratingModify,
   setRatingModify,
 }) {
@@ -28,17 +26,14 @@ function ReplyList({
   const fetchData = async () => {
     try {
       const { data } = await axios.get(
-        `/posts?type=qna&custom={"product_id": ${id}}`,
+        `/posts?type=qna&custom={"product_id": ${id}}&sort={"_id":1}`,
       );
       setRepliesFn(data);
+      console.log(data);
     } catch (err) {
       console.error(err.response?.data.message);
     }
   };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   const handleRemove = async (postId) => {
     try {
@@ -51,16 +46,21 @@ function ReplyList({
   };
 
   const handleModify = ({ _id, extra: { rating, image } }) => {
-    setModifyId(_id);
+    setPostId(_id);
     setRatingModify(rating);
     setAttachImgModify(image);
   };
 
+  // console.log("replies", replies);
+
   const replyList = replies?.item.map((item) => {
     const isMyPost = user && user._id === item.user._id;
 
-    return modifyId && modifyId === item._id ? (
+    return postId && postId === item._id ? (
       <ReplyRegister
+        rcpName={rcpName}
+        rcpNum={id}
+        replies={replies}
         setRepliesFn={setRepliesFn}
         ratingModify={ratingModify}
         setRating={setRatingModify}
@@ -68,9 +68,8 @@ function ReplyList({
         setAttachImg={setAttachImgModify}
         modifyVersion={true}
         originalContent={item.content}
-        // originalImage={item.extra?.image}
-        modifyId={modifyId}
-        setModifyId={setModifyId}
+        postId={postId}
+        setPostId={setPostId}
       />
     ) : (
       <article key={item._id} className={ReplyStyle.replyWr}>

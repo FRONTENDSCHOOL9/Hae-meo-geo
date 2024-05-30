@@ -1,4 +1,5 @@
 import useCustomAxios from "@hooks/useCustomAxios";
+import modalStore from "@zustand/modalStore.mjs";
 import userStore from "@zustand/userStore.mjs";
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -9,6 +10,7 @@ function Kakao() {
   const code = searchParams.get("code");
   const axios = useCustomAxios();
   const navigate = useNavigate();
+  const { setModal } = modalStore();
 
   useEffect(() => {
     if (code !== null) handleLogin(code);
@@ -29,8 +31,12 @@ function Kakao() {
         token: res.data.item.token,
       });
 
-      alert("로그인 완료");
-      navigate("/"); //메인 페이지로 이동
+      setModal({
+        message: res.data.item.name + "님 밥 해머거!",
+        event: () => {
+          navigate(-1);
+        },
+      });
     } catch (err) {
       console.log(err);
     }

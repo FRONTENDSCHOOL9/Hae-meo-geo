@@ -1,8 +1,9 @@
 .mypage {
   display: flex;
+  gap: 2.6rem;
 }
 
-.myleft {
+.myheader {
   background-color: var(--color-secondary);
   display: flex;
   flex-direction: column;
@@ -19,6 +20,15 @@
   width: 16rem;
   height: 16rem;
   border-radius: 50%;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.myprofile img {
+  width: 100%;
 }
 
 .user {
@@ -33,24 +43,9 @@
 }
 
 /* modify */
-.button-box {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.button {
-  flex-grow: 1 !important;
-}
-
-.button :hover {
-  background-color: var(--color-secondary);
-  transition: all 0.3s;
-  color: white;
-}
-
 .modify {
   flex-grow: 1;
-  padding: 9.5rem 2.6rem;
+  padding: 9.5rem 0;
   display: flex;
   flex-direction: column;
   row-gap: 4.5rem;
@@ -61,7 +56,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  row-gap: 4.5rem;
+  row-gap: 5rem;
 }
 
 .mypage fieldset {
@@ -72,7 +67,7 @@
 .mypage fieldset > p {
   position: absolute;
   bottom: 0;
-  left: 18rem;
+  left: 19rem;
   transform: translateY(calc(100% + 1rem));
 }
 
@@ -120,7 +115,7 @@
     display: unset;
   }
 
-  .myleft {
+  .myheader {
     padding: 2rem;
     gap: 1rem;
   }
@@ -141,15 +136,22 @@
   }
 
   .mypage form {
-    row-gap: 2.5rem;
+    row-gap: 3rem;
+    width: 100%;
+  }
+
+  .mypage fieldset {
+    flex-direction: column;
+    align-items: unset;
+    gap: 1rem;
   }
 
   .mypage fieldset > p {
-    left: 18.5rem;
+    left: 1rem;
     transform: translateY(calc(100% + 0.2rem));
   }
 
   .modify {
-    padding: 4rem 2rem;
+    padding: 4rem 0;
   }
 }

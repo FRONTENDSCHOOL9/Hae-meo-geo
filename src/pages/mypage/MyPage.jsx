@@ -1,21 +1,21 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import userStore from "@zustand/userStore.mjs";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { Button, LinkButton } from "@components/Button/Button";
 import styles from "./MyPage.module.css";
 import ReplyStyle from "../../components/Recipe/Detail/Reply/Reply.module.css";
-// import uploadImage from "@utils/uploadImage.mjs";
+import MypageMenu from "@components/Mypage/MypageMenu";
 
 function MyPage() {
   const [attachImg, setAttachImg] = useState();
+  const [userProfile, setUserPrifile] = useState();
   const { user, setUser } = userStore();
   const axios = useCustomAxios();
   const {
     register,
     handleSubmit,
     watch,
-    handleClick,
     formState: { errors },
   } = useForm();
   const [emailAvailability, setEmailAvailability] = useState(null);
@@ -23,6 +23,16 @@ function MyPage() {
   const file = useRef();
   const { ref } = register("profileImage");
   const email = watch("email");
+
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(`/users/${user._id}/profileImage`);
+      console.log(res);
+      setUserPrifile(res.data.item);
+    } catch (err) {
+      console.error(err.response?.data.message);
+    }
+  };
 
   const handleLogout = () => {
     const confirmLogout = window.confirm("로그아웃 하시겠습니까?");
@@ -51,15 +61,27 @@ function MyPage() {
   };
 
   const handleAttachRemove = () => {
-    setAttachImg();
+    setAttachImg(null);
     file.current.value = "";
   };
 
-  const { mypage, myleft, myprofile, button, modify, profilewrapper } = styles;
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const { mypage, myheader, myprofile, modify, profilewrapper, flexWr } =
+    styles;
   return (
     <div className={mypage}>
-      <section className={myleft}>
-        <div className={myprofile}></div>
+      <section className={myheader}>
+        <div className={myprofile}>
+          {userProfile && userProfile.profileImage && (
+            <img
+              src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${userProfile.profileImage}`}
+              alt="내 프로필 이미지"
+            />
+          )}
+        </div>
         {user && <p className={styles.user}>{user.name}님 환영합니다.</p>}
 
         <div className={styles["logout-box"]}>
@@ -75,50 +97,32 @@ function MyPage() {
         </div>
       </section>
       <section className={modify}>
-        <div className={styles["button-box"]}>
-          <LinkButton
-            to={""}
-            color="secondary"
-            size="large"
-            filled="false"
-            onClick={handleClick}
-            className={button}
-          >
-            회원 정보 수정
-          </LinkButton>
-          <LinkButton
-            to={"/mypage/BookMark"}
-            color="gray"
-            size="large"
-            filled="false"
-            className={button}
-          >
-            나도 해보기 목록
-          </LinkButton>
-        </div>
+        <MypageMenu />
         <form onSubmit={handleSubmit(onsubmit)}>
           <fieldset>
             <label htmlFor="email">아이디(이메일)</label>
-            <input
-              type="email"
-              id="email"
-              placeholder={user.email}
-              {...register("email", {
-                required: "이메일을 입력하세요.",
-                pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                  message: "이메일 형식이 아닙니다.",
-                },
-              })}
-            />
-            <Button
-              type="button"
-              onClick={handleCheckEmail}
-              color="primary"
-              size="large"
-            >
-              확인
-            </Button>
+            <div className={flexWr}>
+              <input
+                type="email"
+                id="email"
+                placeholder={user.email}
+                {...register("email", {
+                  required: "이메일을 입력하세요.",
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: "이메일 형식이 아닙니다.",
+                  },
+                })}
+              />
+              <Button
+                type="button"
+                onClick={handleCheckEmail}
+                color="primary"
+                size="large"
+              >
+                확인
+              </Button>
+            </div>
             {errors.email && <p>{errors.email.message}</p>}
             {emailAvailability && <p>{emailAvailability}</p>}
           </fieldset>
@@ -173,7 +177,7 @@ function MyPage() {
             <input
               type="text"
               id="birthdate"
-              placeholder="YY-MM-DD"
+              // placeholder={}
               {...register("birthdate", {
                 extra: "birthdate",
                 pattern: {
@@ -225,16 +229,6 @@ function MyPage() {
           <Button type="submit" color="primary" size="large" filled="false">
             수정하기
           </Button>
-          {/* <div className={resign}>
-            <Button
-              type="button"
-              color="Transparency"
-              size="small"
-              filled="false"
-            >
-              회원 탈퇴하기
-            </Button>
-          </div> */}
         </form>
       </section>
     </div>

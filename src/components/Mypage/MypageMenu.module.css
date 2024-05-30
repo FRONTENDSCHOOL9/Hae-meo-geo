@@ -1,0 +1,33 @@
+.button-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.menu-box {
+  display: flex;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 0.1rem solid var(--color-gray-100);
+}
+
+.menu-box a {
+  font-size: 1.6rem;
+  height: 5rem;
+  width: 50%;
+  line-height: 4.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.active {
+  background-color: var(--color-secondary);
+  color: var(--color-secondary-30);
+}
+
+@media (max-width: 767px) {
+  .menu-box img {
+    display: none;
+  }
+}

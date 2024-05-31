@@ -13,6 +13,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 1rem;
 }
 
 .form button,
@@ -33,10 +34,6 @@ label {
 .checkbox {
   width: 2rem;
   height: 2rem;
-}
-
-.signup fieldset {
-  margin-bottom: 2rem;
 }
 
 .checkbox-large {
@@ -64,7 +61,6 @@ label {
 }
 
 @media (max-width: 700px) {
-
   /* signup */
   .signup p,
   label {
@@ -78,10 +74,6 @@ label {
   .checkbox {
     width: 1.8rem;
     height: 1.8rem;
-  }
-
-  .signup fieldset {
-    margin-bottom: 2rem;
   }
 
   .checkbox-large {

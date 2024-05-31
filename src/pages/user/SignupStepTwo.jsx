@@ -11,6 +11,7 @@ import ReplyStyle from "../../components/Recipe/Detail/Reply/Reply.module.css";
 import uploadImage from "@utils/uploadImage.mjs";
 import { useEffect } from "react";
 import userStore from "@zustand/userStore.mjs";
+import modalStore from "@zustand/modalStore.mjs";
 
 function SignupStepTwo() {
   const { form, profilewrapper, flexWr } = styles;
@@ -19,6 +20,7 @@ function SignupStepTwo() {
   const navigate = useNavigate();
   const [attachImg, setAttachImg] = useState();
   const { user } = userStore();
+  const { setModal } = modalStore();
 
   const {
     register,
@@ -42,11 +44,12 @@ function SignupStepTwo() {
 
       formData.type = "user";
       const res = await axios.post("/users", formData);
-      alert(
-        res.data.item.name +
-          "님 회원가입 완료 되었습니다!\n로그인 후에 이용하세요.",
-      );
-      navigate("/user/login");
+      setModal({
+        message: `${res.data.item.name}님 회원가입 완료 되었습니다! \n로그인 후에 이용하세요.`,
+        event: () => {
+          navigate("/user/login");
+        },
+      });
     } catch (err) {
       console.error(err);
       if (err.response?.data.errors) {
@@ -55,7 +58,7 @@ function SignupStepTwo() {
         );
       } else if (err.response?.data.message) {
         console.error(err);
-        alert(err.response?.data.message);
+        setModal({ message: err.response?.data.message });
       }
     }
   };

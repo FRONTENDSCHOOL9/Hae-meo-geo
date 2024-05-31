@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styles from "./Signup.module.css";
 import SocialKakao from "@components/socialLogin/SocialKakao";
+import modalStore from "@zustand/modalStore.mjs";
 
 function Login() {
   const {
@@ -21,8 +22,8 @@ function Login() {
   const axios = useCustomAxios();
   const navigate = useNavigate();
   const { form } = styles;
-
   const { user, setUser } = userStore();
+  const { setModal } = modalStore();
 
   useEffect(() => {
     const savedEmail = localStorage.getItem("savedEmail");
@@ -35,9 +36,12 @@ function Login() {
   const onSubmit = async (formData) => {
     try {
       const res = await axios.post("/users/login", formData);
-      alert(res.data.item.name + "님 밥 해머거!");
-
-      navigate(-1);
+      setModal({
+        message: res.data.item.name + "님 밥 해머거!",
+        event: () => {
+          navigate(-1);
+        },
+      });
 
       setUser({
         _id: res.data.item._id,
@@ -71,9 +75,12 @@ function Login() {
         email: testEmail,
         password: testPassword,
       });
-      alert(res.data.item.name + "님 밥 해머거!");
-
-      navigate(-1);
+      setModal({
+        message: res.data.item.name + "님 밥 해머거!",
+        event: () => {
+          navigate(-1);
+        },
+      });
 
       setUser({
         _id: res.data.item._id,

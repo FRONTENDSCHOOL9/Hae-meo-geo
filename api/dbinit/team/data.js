@@ -24,7 +24,11 @@ export const initData = async (nextSeq) => {
         quantity: 10,
         buyQuantity: 1,
         content: "",
-        image: item["ATT_FILE_NO_MAIN"],
+        mainImages: [
+          {
+            path: item["ATT_FILE_NO_MAIN"],
+          },
+        ],
         show: true,
         active: true,
       };

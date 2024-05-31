@@ -1,19 +1,34 @@
 import { Button } from "@components/Button/Button";
+import ReplyRegister from "@components/Recipe/Detail/Reply/Register";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
+import modalStore from "@zustand/modalStore.mjs";
 import useUserStore from "@zustand/userStore.mjs";
 import { useEffect } from "react";
-import ReplyStyle from "./Reply.module.css";
 import styles from "./List.module.css";
+import ReplyStyle from "./Reply.module.css";
 
-function ReplyList({ id, setRepliesFn, replies }) {
-  const { list, rightWr, infoWr, time, contentWr, buttonWr, attachWr } = styles;
+function ReplyList({
+  id,
+  rcpName,
+  replies,
+  setRepliesFn,
+  setAttachImg,
+  attachImgModify,
+  setAttachImgModify,
+  postId,
+  setPostId,
+  ratingModify,
+  setRatingModify,
+}) {
+  const { list, rightWr, time, contentWr, buttonWr } = styles;
   const axios = useCustomAxios();
   const { user } = useUserStore();
+  const { setModal } = modalStore();
 
   const fetchData = async () => {
     try {
       const { data } = await axios.get(
-        `/posts?type=qna&custom={"product_id": ${id}}`,
+        `/posts?type=qna&custom={"product_id": ${id}}&sort={"_id":1}`,
       );
       setRepliesFn(data);
     } catch (err) {
@@ -21,32 +36,45 @@ function ReplyList({ id, setRepliesFn, replies }) {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const handleRemove = async (postId) => {
     try {
       const { data } = await axios.delete(`/posts/${postId}`);
       fetchData();
-      alert("후기가 삭제되었습니다.");
+      setModal({ message: "후기가 삭제되었습니다." });
     } catch (err) {
       console.error(err.response?.data.message);
     }
   };
 
-  const handleModify = async (postId) => {
-    try {
-      console.log(postId);
-    } catch (err) {
-      console.error(err.response?.data.message);
-    }
+  const handleModify = ({ _id, extra: { rating, image } }) => {
+    setPostId(_id);
+    setRatingModify(rating);
+    setAttachImgModify(image);
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const replyList = replies?.item.map((item) => {
     const isMyPost = user && user._id === item.user._id;
-    console.log(user);
-    return (
+    return postId && postId === item._id ? (
+      <ReplyRegister
+        key={postId}
+        isModify={true}
+        rcpName={rcpName}
+        rcpNum={id}
+        replies={replies}
+        setRepliesFn={setRepliesFn}
+        ratingModify={ratingModify}
+        setRating={setRatingModify}
+        attachImgModify={attachImgModify}
+        setAttachImgModify={setAttachImgModify}
+        originalContent={item.content}
+        postId={postId}
+        setPostId={setPostId}
+      />
+    ) : (
       <article key={item._id} className={ReplyStyle.replyWr}>
         <img
           className={ReplyStyle.profile}
@@ -72,9 +100,7 @@ function ReplyList({ id, setRepliesFn, replies }) {
 
             {isMyPost && (
               <div className={buttonWr}>
-                {/* <Button onClick={() => handleModify(item._id)} color="primary">
-                  수정
-                </Button> */}
+                <Button onClick={() => handleModify(item)}>수정</Button>
                 <Button color="primary" onClick={() => handleRemove(item._id)}>
                   삭제
                 </Button>

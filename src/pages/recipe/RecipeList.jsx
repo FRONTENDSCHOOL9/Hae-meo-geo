@@ -22,7 +22,7 @@ function RcpList() {
   const RCP_PARTS_DTLS = searchParams.get("RCP_PARTS_DTLS");
   const RCP_NM = searchParams.get("RCP_NM");
 
-  const { data, isLoading, error, refetch } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["list", currentPage, RCP_PAT2, RCP_PARTS_DTLS],
     queryFn: () => fetchData(currentPage, RCP_PAT2, RCP_PARTS_DTLS, RCP_NM),
     select: (response) => response.data.COOKRCP01,
@@ -79,6 +79,7 @@ function RcpList() {
             totalCount={totalCount}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
+            link="/recipe/list"
           />
         </>
       ) : (

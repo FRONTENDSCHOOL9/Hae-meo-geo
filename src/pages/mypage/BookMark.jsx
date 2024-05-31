@@ -1,102 +1,52 @@
-import { Button, LinkButton } from "@components/Button/Button";
-import PageSide from "./PageSide";
-import styles from "@pages/mypage/BookMark.module.css";
-import useUserStore from "@zustand/userStore.mjs";
+import MypageMenu from "@components/Mypage/MypageMenu";
+import useCustomAxios from "@hooks/useCustomAxios.mjs";
+import userStore from "@zustand/userStore.mjs";
+import { useEffect, useState } from "react";
+import styles from "../../components/Recipe/List/List.module.css";
 import { Link } from "react-router-dom";
 
 function BookMark() {
-  const { bookmarks } = useUserStore();
+  const { user } = userStore();
+  const axios = useCustomAxios();
+  const [bookmarkedPosts, setBookmarkedPosts] = useState();
+
+  const fetchBookmarkedPosts = async () => {
+    try {
+      const res = await axios.get(`/bookmarks/product`);
+      setBookmarkedPosts(res.data.item);
+      console.log(bookmarkedPosts, res.data.item);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const postItem = bookmarkedPosts?.map((item) => (
+    <li key={item._id}>
+      <Link to={`/recipe/list/${item.product.name}`}>
+        <img src={item.product.image.path} alt={item.product.name} />
+        <p>{item.product.name}</p>
+      </Link>
+    </li>
+  ));
+
+  useEffect(() => {
+    if (user && user._id) {
+      fetchBookmarkedPosts();
+    } else {
+      console.error(err);
+    }
+  }, [user]);
+
   return (
     <>
-      <div className={styles.page}>
-        <PageSide />
-        <wrap className={styles.information}>
-          <div className={styles.button}>
-            <LinkButton
-              to={"/mypage/information"}
-              color="gray"
-              size="large"
-              filled="false"
-            >
-              회원 정보 수정
-            </LinkButton>
-            <LinkButton
-              to={"/mypage/BookMark"}
-              color="secondary"
-              size="large"
-              filled="false"
-            >
-              나도 해보기 목록
-            </LinkButton>
-          </div>
-          <form className={styles.form}>
-            <br />
-            <div className={styles.list}>전체()</div>
-            <hr />
-            <ul>
-              {bookmarks &&
-                bookmarks.map((bookmark, index) => (
-                  <li key={index}>
-                    <span>북마크</span>
-                    <Link to={`/bookmark/${bookmark.id}`}>{bookmark.name}</Link>
-                  </li>
-                ))}
-            </ul>
-
-            <fieldset className={styles.item}>
-              <div className={styles.img}></div>
-              <span>김치찌개</span>
-              <wrap>
-                <div className={styles.tag}>끓이기</div>
-                <div className={styles.tag}>찌기</div>
-              </wrap>
-            </fieldset>
-
-            <fieldset className={styles.item}>
-              <div className={styles.img}></div>
-              <span>김치찌개</span>
-              <wrap>
-                <div className={styles.tag}>끓이기</div>
-                <div className={styles.tag}>찌기</div>
-              </wrap>
-            </fieldset>
-
-            <fieldset className={styles.item}>
-              <div className={styles.img}></div>
-              <span>김치찌개</span>
-              <wrap>
-                <div className={styles.tag}>끓이기</div>
-                <div className={styles.tag}>찌기</div>
-              </wrap>
-            </fieldset>
-
-            <fieldset className={styles.item}>
-              <div className={styles.img}></div>
-              <span>김치찌개</span>
-              <wrap>
-                <div className={styles.tag}>끓이기</div>
-                <div className={styles.tag}>찌기</div>
-              </wrap>
-            </fieldset>
-            <fieldset className={styles.item}>
-              <div className={styles.img}></div>
-              <span>김치찌개</span>
-              <wrap>
-                <div className={styles.tag}>끓이기</div>
-                <div className={styles.tag}>찌기</div>
-              </wrap>
-            </fieldset>
-            <fieldset className={styles.item}>
-              <div className={styles.img}></div>
-              <span>김치찌개</span>
-              <wrap>
-                <div className={styles.tag}>끓이기</div>
-                <div className={styles.tag}>찌기</div>
-              </wrap>
-            </fieldset>
-          </form>
-        </wrap>
-      </div>
+      <MypageMenu />
+      {bookmarkedPosts?.length === 0 ? (
+        <p>북마크된 레시피가 없습니다.</p>
+      ) : (
+        <div className={styles.rcpList}>
+          <ul>{postItem}</ul>
+        </div>
+      )}
     </>
   );
 }

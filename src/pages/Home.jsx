@@ -112,7 +112,7 @@ function Home() {
   const todayMenus = todayMenu?.data.map((item, idx) => (
     <SwiperSlide key={`${idx}${item.name}`}>
       <Link to={`/recipe/list/${item.name}`}>
-        <img src={item.image} alt="" />
+        <img src={item.mainImages[0].path} alt="" />
         <p>{item.name}</p>
       </Link>
     </SwiperSlide>
@@ -122,7 +122,7 @@ function Home() {
   const bookmarkMenus = dataBookmark?.map((item, idx) => (
     <SwiperSlide key={idx}>
       <Link to={`/recipe/list/${item.name}`}>
-        <img src={item.image} alt="" />
+        <img src={item.mainImages[0].path} alt="" />
         <p>{item.name}</p>
       </Link>
     </SwiperSlide>

@@ -2,8 +2,8 @@ import { create } from "zustand";
 
 const modalStore = create((set) => ({
   isShow: false,
-  modalData: {},
+  data: {},
   toggleModal: () => set((state) => ({ isShow: !state.isShow })),
-  setModalData: (state) => set({ modalData: state }),
+  setModal: (obj) => set((state) => ({ data: obj, isShow: !state.isShow })),
 }));
 export default modalStore;

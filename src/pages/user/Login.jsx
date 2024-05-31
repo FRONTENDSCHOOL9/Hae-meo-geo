@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styles from "./Signup.module.css";
+import SocialKakao from "@components/socialLogin/SocialKakao";
+import modalStore from "@zustand/modalStore.mjs";
 
 function Login() {
   const {
@@ -20,8 +22,8 @@ function Login() {
   const axios = useCustomAxios();
   const navigate = useNavigate();
   const { form } = styles;
-
   const { user, setUser } = userStore();
+  const { setModal } = modalStore();
 
   useEffect(() => {
     const savedEmail = localStorage.getItem("savedEmail");
@@ -34,9 +36,12 @@ function Login() {
   const onSubmit = async (formData) => {
     try {
       const res = await axios.post("/users/login", formData);
-      alert(res.data.item.name + "님 밥 해머거!");
-
-      navigate(-1);
+      setModal({
+        message: res.data.item.name + "님 밥 해머거!",
+        event: () => {
+          navigate(-1);
+        },
+      });
 
       setUser({
         _id: res.data.item._id,
@@ -70,9 +75,12 @@ function Login() {
         email: testEmail,
         password: testPassword,
       });
-      alert(res.data.item.name + "님 밥 해머거!");
-
-      navigate(-1);
+      setModal({
+        message: res.data.item.name + "님 밥 해머거!",
+        event: () => {
+          navigate(-1);
+        },
+      });
 
       setUser({
         _id: res.data.item._id,
@@ -112,7 +120,7 @@ function Login() {
               },
             })}
           />
-          <br />
+
           {errors && <div>{errors.email?.message}</div>}
           <fieldset>
             <input
@@ -123,7 +131,7 @@ function Login() {
             />
             <label htmlFor="saveEmail">아이디(이메일) 저장하기</label>
           </fieldset>
-          <br />
+
           <input
             type="password"
             id="password"
@@ -137,12 +145,14 @@ function Login() {
               },
             })}
           />
-          <br />
+
           {errors && <div>{errors.password?.message}</div>}
           <Button type="submit" color="primary" size="large" filled="filled">
             로그인
           </Button>
-          <br />
+
+          <SocialKakao />
+
           <Button
             type="button"
             onClick={(e) => handleTestLogin(e)}
@@ -152,7 +162,7 @@ function Login() {
           >
             테스트 계정으로 로그인
           </Button>
-          <br />
+
           <LinkButton
             to={"/user/signup"}
             color="gray"

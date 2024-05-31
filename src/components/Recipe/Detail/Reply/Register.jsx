@@ -1,30 +1,52 @@
 import { Button } from "@components/Button/Button";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import useUserStore from "@zustand/userStore.mjs";
-import { useRef, useState } from "react";
+import modalStore from "@zustand/modalStore.mjs";
+import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import uploadImage from "@utils/uploadImage.mjs";
 import ReplyStyle from "./Reply.module.css";
 import styles from "./Register.module.css";
 
-function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
+function ReplyRegister({
+  rcpName,
+  rcpNum,
+  setRepliesFn,
+  rating,
+  setRating,
+  ratingModify,
+  attachImg,
+  setAttachImg,
+  attachImgModify,
+  setAttachImgModify,
+  isModify = false,
+  originalContent,
+  postId,
+  setPostId,
+}) {
   const { replyRegister, ratingErrorMsg, contentErrorMsg, noLogin, buttonWr } =
     styles;
   const { user } = useUserStore();
   const axios = useCustomAxios();
-  const [rating, setRating] = useState();
-  const [attachImg, setAttachImg] = useState();
+  const { setModal } = modalStore();
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      rating: isModify ? ratingModify : null,
+      content: isModify ? originalContent : null,
+    },
+  });
 
   const file = useRef();
-  const { ref } = register("image");
+  const fileModify = useRef();
+  const ref = register("image");
+  const refModify = register("imageModify");
 
   const onSubmit = async (formData) => {
     try {
@@ -38,22 +60,35 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
         },
       };
 
-      if (formData.image.length) {
+      formData.image = isModify ? formData.imageModify : formData.image;
+      if (formData.image?.length) {
         formData.extra.image = await uploadImage(formData, "image");
         delete formData.image;
       } else {
         delete formData?.image;
       }
 
-      const { data } = await axios.post("/posts", formData);
-      const resPost = await axios.get(
-        `/posts?type=qna&custom={"product_id": ${rcpNum}}`,
+      // 게시물 등록 및 수정
+      const res = formData.isModify
+        ? await axios.patch(`/posts/${postId}`, formData)
+        : await axios.post("/posts", formData);
+
+      // 수정 및 등록된 게시물을 반영한 리스트 조회
+      const { data } = await axios.get(
+        `/posts?type=qna&custom={"product_id": ${rcpNum}}&sort={"_id":1}`,
       );
-      setRepliesFn(resPost.data);
+      setRepliesFn(data);
+
+      if (formData.isModify) {
+        setModal({ message: "후기가 수정되었습니다." });
+        setAttachImgModify();
+      } else {
+        setModal({ message: "후기가 등록되었습니다." });
+        setAttachImg();
+      }
+      setPostId();
       reset();
       setRating();
-      setAttachImg();
-      alert("후기가 등록되었습니다.");
     } catch (err) {
       console.error(err);
     }
@@ -64,9 +99,24 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
     if (e.target.value) setRating(e.target.value);
   };
 
+  const handleAttachAdd = (e) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onloadend = () => {
+      isModify
+        ? setAttachImgModify(reader.result)
+        : setAttachImg(reader.result);
+    };
+  };
+
   const handleAttachRemove = () => {
-    setAttachImg();
-    file.current.value = "";
+    if (isModify) {
+      setAttachImgModify();
+      fileModify.current.value = "";
+    } else {
+      setAttachImg();
+      file.current.value = "";
+    }
   };
 
   return (
@@ -84,8 +134,8 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
                 <p className={ReplyStyle.name}>{user.name}</p>
                 <div
                   className={`${ReplyStyle.ratingWr} ${
-                    ReplyStyle[`n${rating}`]
-                  } ${rating ? ReplyStyle.act : ""}`}
+                    ReplyStyle[`n${isModify ? ratingModify : rating}`]
+                  } ${rating || ratingModify ? ReplyStyle.act : ""}`}
                   onClick={handleRatingClick}
                 >
                   <label>
@@ -165,41 +215,87 @@ function ReplyRegister({ rcpName, rcpNum, setRepliesFn }) {
               )}
             </div>
             <div
-              className={`${ReplyStyle.attachWr} ${styles.attachWr} ${
-                attachImg ? ReplyStyle.act : ""
+              className={`${ReplyStyle.attachWr} ${styles.attachWr} 
+              ${
+                isModify
+                  ? attachImgModify
+                    ? ReplyStyle.act
+                    : ""
+                  : attachImg
+                    ? ReplyStyle.act
+                    : ""
               }`}
             >
-              <label htmlFor="image">
-                <img src={attachImg} alt="" />
+              <label htmlFor={isModify ? "imageModify" : "image"}>
+                {isModify ? (
+                  <img
+                    src={
+                      attachImgModify?.includes("data:image/")
+                        ? attachImgModify
+                        : `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${attachImgModify}`
+                    }
+                    alt="후기 이미지"
+                  />
+                ) : (
+                  <img src={attachImg} alt="후기 이미지" />
+                )}
                 <span className="hidden">첨부파일 선택</span>
               </label>
               <button type="button" onClick={handleAttachRemove}>
                 <span className="hidden">첨부파일 삭제</span>
               </button>
-              <input
-                type="file"
-                accept="image/*"
-                id="image"
-                {...register("image", {
-                  onChange: (e) => {
-                    const reader = new FileReader();
-                    reader.readAsDataURL(e.target.files[0]);
-                    reader.onloadend = () => {
-                      setAttachImg(reader.result);
-                    };
-                  },
-                })}
-                ref={(e) => {
-                  ref(e);
-                  file.current = e;
-                }}
-              />
+              {isModify ? (
+                <>
+                  <input
+                    type="hidden"
+                    name="isModify"
+                    value={true}
+                    {...register("isModify")}
+                  />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    id="imageModify"
+                    {...register("imageModify", {
+                      onChange: (e) => handleAttachAdd(e),
+                    })}
+                    ref={(e) => {
+                      refModify.ref(e);
+                      fileModify.current = e;
+                    }}
+                  />
+                </>
+              ) : (
+                <input
+                  type="file"
+                  accept="image/*"
+                  id="image"
+                  {...register("image", {
+                    onChange: (e) => handleAttachAdd(e),
+                  })}
+                  ref={(e) => {
+                    ref.ref(e);
+                    file.current = e;
+                  }}
+                />
+              )}
             </div>
           </div>
           <div className={buttonWr}>
-            <Button type="submit" size="medium" color="primary">
-              등록하기
-            </Button>
+            {isModify ? (
+              <>
+                <Button size="medium" onClick={() => setPostId()}>
+                  취소
+                </Button>
+                <Button type="submit" size="medium" color="primary">
+                  수정
+                </Button>
+              </>
+            ) : (
+              <Button type="submit" size="medium" color="primary">
+                등록하기
+              </Button>
+            )}
           </div>
         </form>
       ) : (

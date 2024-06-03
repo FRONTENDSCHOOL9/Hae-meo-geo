@@ -1,8 +1,16 @@
 import ReplyList from "@components/Recipe/Detail/Reply/List";
 import ReplyRegister from "@components/Recipe/Detail/Reply/Register";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
-function Reply({ id, replies, rcpName, rcpNum, setRepliesFn }) {
+Reply.propTypes = {
+  id: PropTypes.number.isRequired,
+  replies: PropTypes.object,
+  rcpName: PropTypes.string.isRequired,
+  setRepliesFn: PropTypes.func.isRequired,
+};
+
+function Reply({ id, replies, rcpName, setRepliesFn }) {
   const [rating, setRating] = useState("");
   const [ratingModify, setRatingModify] = useState(0);
   const [attachImg, setAttachImg] = useState("");
@@ -27,7 +35,7 @@ function Reply({ id, replies, rcpName, rcpNum, setRepliesFn }) {
         key={0}
         isModify={false}
         rcpName={rcpName}
-        rcpNum={rcpNum}
+        rcpNum={id}
         replies={replies}
         setRepliesFn={setRepliesFn}
         rating={rating}

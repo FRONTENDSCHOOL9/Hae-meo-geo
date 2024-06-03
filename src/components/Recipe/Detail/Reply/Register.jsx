@@ -8,6 +8,24 @@ import { Link } from "react-router-dom";
 import uploadImage from "@utils/uploadImage.mjs";
 import ReplyStyle from "./Reply.module.css";
 import styles from "./Register.module.css";
+import PropTypes from "prop-types";
+
+ReplyRegister.propTypes = {
+  rcpName: PropTypes.string.isRequired,
+  rcpNum: PropTypes.number.isRequired,
+  setRepliesFn: PropTypes.func.isRequired,
+  rating: PropTypes.string,
+  setRating: PropTypes.func.isRequired,
+  ratingModify: PropTypes.number,
+  attachImg: PropTypes.string,
+  setAttachImg: PropTypes.func,
+  attachImgModify: PropTypes.string,
+  setAttachImgModify: PropTypes.func,
+  isModify: PropTypes.bool.isRequired,
+  originalContent: PropTypes.string,
+  postId: PropTypes.number,
+  setPostId: PropTypes.func.isRequired,
+};
 
 function ReplyRegister({
   rcpName,
@@ -96,7 +114,7 @@ function ReplyRegister({
 
   const handleRatingClick = (e) => {
     if (!e.target.tagName === "INPUT") return;
-    if (e.target.value) setRating(e.target.value);
+    if (e.target.value) setRating(Number(e.target.value));
   };
 
   const handleAttachAdd = (e) => {

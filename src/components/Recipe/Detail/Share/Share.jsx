@@ -1,4 +1,10 @@
 import styles from "./Share.module.css";
+import PropTypes from "prop-types";
+
+Share.propTypes = {
+  name: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+};
 
 function Share({ name, image }) {
   const { share } = styles;

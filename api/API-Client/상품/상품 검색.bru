@@ -1,0 +1,17 @@
+meta {
+  name: 상품 검색
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{url}}/products?keyword=김치찌개&page=1&limit=8
+  body: none
+  auth: none
+}
+
+query {
+  keyword: 김치찌개
+  page: 1
+  limit: 8
+}

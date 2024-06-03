@@ -1,0 +1,31 @@
+meta {
+  name: 게시물 등록(notice)
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{url}}/posts?type=todayRcp
+  body: json
+  auth: bearer
+}
+
+query {
+  type: todayRcp
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+      "type": "notice",
+      "content": "다 귀찮은 월요일,",
+      "title": "샐러드",
+      "condition": "day1",
+  "url": "RCP_NM=샐러드",
+      
+      "image": "TR101.webp"
+  }
+}

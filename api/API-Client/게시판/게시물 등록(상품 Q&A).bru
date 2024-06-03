@@ -1,0 +1,28 @@
+meta {
+  name: 게시물 등록(상품 Q&A)
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{url}}/posts
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+      "type": "qna",
+      "product_id": 28,
+      "title": "새우 두부 계란찜",
+      "content": "맛있음요",
+      "extra": {
+          "rating": 4,
+          "image": "이미지주소"
+        }
+  }
+}

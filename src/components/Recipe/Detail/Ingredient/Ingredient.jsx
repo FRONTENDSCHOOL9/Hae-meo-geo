@@ -1,4 +1,9 @@
 import styles from "./Ingredient.module.css";
+import PropTypes from "prop-types";
+
+Ingredient.propTypes = {
+  data: PropTypes.object.isRequired,
+};
 
 function Ingredient({ data }) {
   const { ingredientWr, ingredient, rightWr, info, infoTitle } = styles;

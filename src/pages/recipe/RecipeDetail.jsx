@@ -73,7 +73,6 @@ function RecipeDetail() {
               id={Number(data["RCP_SEQ"])}
               replies={replies}
               rcpName={name}
-              rcpNum={Number(data["RCP_SEQ"])}
               setRepliesFn={setRepliesFn}
             />
             <div className={buttonWr}>

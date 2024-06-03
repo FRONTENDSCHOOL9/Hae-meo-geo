@@ -6,13 +6,26 @@ import useUserStore from "@zustand/userStore.mjs";
 import { useEffect } from "react";
 import styles from "./List.module.css";
 import ReplyStyle from "./Reply.module.css";
+import PropTypes from "prop-types";
+
+ReplyList.propTypes = {
+  id: PropTypes.number.isRequired,
+  rcpName: PropTypes.string.isRequired,
+  replies: PropTypes.object,
+  setRepliesFn: PropTypes.func.isRequired,
+  attachImgModify: PropTypes.string,
+  setAttachImgModify: PropTypes.func.isRequired,
+  postId: PropTypes.number,
+  setPostId: PropTypes.func.isRequired,
+  ratingModify: PropTypes.number,
+  setRatingModify: PropTypes.func.isRequired,
+};
 
 function ReplyList({
   id,
   rcpName,
   replies,
   setRepliesFn,
-  setAttachImg,
   attachImgModify,
   setAttachImgModify,
   postId,
@@ -48,7 +61,7 @@ function ReplyList({
 
   const handleModify = ({ _id, extra: { rating, image } }) => {
     setPostId(_id);
-    setRatingModify(rating);
+    setRatingModify(Number(rating));
     setAttachImgModify(image);
   };
 

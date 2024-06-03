@@ -4,6 +4,11 @@ import userStore from "@zustand/userStore.mjs";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Bookmark.module.css";
+import PropTypes from "prop-types";
+
+Bookmark.propTypes = {
+  id: PropTypes.number.isRequired,
+};
 
 function Bookmark({ id }) {
   const { bookmark, bookmarkAct } = styles;

@@ -12,6 +12,7 @@
   --color-gray-50: #E5E5E5;
   --color-gray-30: #F2F2F2;
 
+  --layout-pc: 1920px;
   --layout-container-pc: 1680px;
   --layout-container-tablet: 1080px;
   --layout-padding: 3rem;
@@ -28,9 +29,7 @@ body {
 #root {
   min-height: 100vh;
   width: 100%;
-  max-width: 1920px;
   overflow-x: hidden;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
 }

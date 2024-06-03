@@ -1,8 +1,14 @@
 .footer {
   background: var(--color-gray-30);
-  padding: 3em var(--layout-padding) 4em;
+  padding: 3em 0 4em;
   font-size: 1.6rem;
   margin-top: auto;
+}
+
+.footerInner {
+  max-width: var(--layout-pc);
+  margin: 0 auto;
+  padding: 0 var(--layout-padding);
 }
 
 .info {

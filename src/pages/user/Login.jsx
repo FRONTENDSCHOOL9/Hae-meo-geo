@@ -49,6 +49,7 @@ function Login() {
         email: res.data.item.email,
         profile: res.data.item.profileImage,
         token: res.data.item.token,
+        birthday: res.data.item.extra.birthday,
       });
 
       isEmailSaved
@@ -75,10 +76,16 @@ function Login() {
         email: testEmail,
         password: testPassword,
       });
+      console.log(res);
       setModal({
         message: res.data.item.name + "님 밥 해머거!",
         event: () => {
-          navigate(-1);
+          const previousPathname = location.state?.from?.pathname;
+          if (previousPathname && previousPathname.includes("/user/signup")) {
+            navigate("/", { replace: true });
+          } else {
+            navigate(-1);
+          }
         },
       });
 
@@ -88,6 +95,7 @@ function Login() {
         email: res.data.item.email,
         profile: res.data.item.profileImage,
         token: res.data.item.token,
+        birthday: res.data.item.birthday,
       });
 
       isEmailSaved

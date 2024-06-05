@@ -182,21 +182,21 @@ function SignupStepTwo() {
             {errors.name && <p className="errorMsg">{errors.name.message}</p>}
           </fieldset>
           <fieldset>
-            <label htmlFor="birthdate">생년월일</label>
+            <label htmlFor="birthday">생일</label>
             <input
               type="text"
-              id="birthdate"
-              placeholder="YY-MM-DD"
-              {...register("birthdate", {
-                extra: "birthdate",
+              id="birthday"
+              placeholder="MM-DD"
+              {...register("birthday", {
+                extra: "birthday",
                 pattern: {
-                  value: /^\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/,
-                  message: "올바른 형식으로 입력하세요. (YY-MM-DD)",
+                  value: /^(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/,
+                  message: "올바른 형식으로 입력하세요. (MM-DD)",
                 },
               })}
             />
-            {errors.birthdate && (
-              <p className="errorMsg">{errors.birthdate.message}</p>
+            {errors.birthday && (
+              <p className="errorMsg">{errors.birthday.message}</p>
             )}
           </fieldset>
           <fieldset className={profilewrapper}>

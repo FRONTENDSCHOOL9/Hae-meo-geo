@@ -12,22 +12,22 @@ function MyPage() {
   const [userProfile, setUserPrifile] = useState();
   const { user, setUser } = userStore();
   const axios = useCustomAxios();
+  const isHttpUrl = /^(http|https):\/\//;
+  const [emailAvailability, setEmailAvailability] = useState(null);
+  const { mypage, myheader, myprofile, modify, profilewrapper, flexWr } =
+    styles;
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const [emailAvailability, setEmailAvailability] = useState(null);
-
-  const file = useRef();
   const { ref } = register("profileImage");
+  const file = useRef();
   const email = watch("email");
-
   const fetchData = async () => {
     try {
       const res = await axios.get(`/users/${user._id}/profileImage`);
-      console.log(res);
       setUserPrifile(res.data.item);
     } catch (err) {
       console.error(err.response?.data.message);
@@ -55,7 +55,6 @@ function MyPage() {
       );
     }
   };
-
   const handleCheckEmail = async () => {
     email && (await checkEmailAvailability());
   };
@@ -69,18 +68,18 @@ function MyPage() {
     fetchData();
   }, []);
 
-  const { mypage, myheader, myprofile, modify, profilewrapper, flexWr } =
-    styles;
   return (
     <div className={mypage}>
       <section className={myheader}>
         <div className={myprofile}>
-          {userProfile && userProfile.profileImage && (
-            <img
-              src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${userProfile.profileImage}`}
-              alt="내 프로필 이미지"
-            />
-          )}
+          <img
+            src={
+              isHttpUrl.test(userProfile?.profileImage)
+                ? userProfile?.profileImage
+                : `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${userProfile?.profileImage}`
+            }
+            alt="내 프로필 이미지"
+          />
         </div>
         {user && <p className={styles.user}>{user.name}님 환영합니다.</p>}
 
@@ -173,20 +172,20 @@ function MyPage() {
           </fieldset>
 
           <fieldset>
-            <label htmlFor="birthdate">생년월일</label>
+            <label htmlFor="birthday">생일</label>
             <input
               type="text"
-              id="birthdate"
-              // placeholder={}
-              {...register("birthdate", {
-                extra: "birthdate",
+              id="birthday"
+              placeholder="MM-DD"
+              {...register("birthday", {
+                extra: "birthday",
                 pattern: {
-                  value: /^\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/,
-                  message: "올바른 형식으로 입력하세요. (YY-MM-DD)",
+                  value: /^(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/,
+                  message: "올바른 형식으로 입력하세요. (MM-DD)",
                 },
               })}
             />
-            {errors.birthdate && <p>{errors.birthdate.message}</p>}
+            {errors.birthday && <p>{errors.birthday.message}</p>}
           </fieldset>
 
           <fieldset className={profilewrapper}>

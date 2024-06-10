@@ -66,7 +66,7 @@ function Header() {
           <ul className={userMenu}>
             <li>
               {user ? (
-                <Link className={styles.login} to="/user/mypage">
+                <Link className={styles.login} to="/mypage/mypage">
                   <span className="hidden">마이페이지</span>
                 </Link>
               ) : (

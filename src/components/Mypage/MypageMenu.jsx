@@ -6,11 +6,11 @@ function MypageMenu() {
     <>
       <div className={styles["menu-box"]}>
         <a
-          href="/user/mypage"
-          className={currentPath === "/user/mypage" ? styles.active : ""}
+          href="/mypage/mypage"
+          className={currentPath === "/mypage/mypage" ? styles.active : ""}
         >
           <img src="/img/ico-user.svg" alt="사람 아이콘" />
-          회원 정보 수정
+          회원 정보
         </a>
         <a
           href="/mypage/BookMark"

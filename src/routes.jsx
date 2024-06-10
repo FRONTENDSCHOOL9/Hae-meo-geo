@@ -17,7 +17,6 @@ import MyRecipeDetail from "@pages/myRecipe/MyRecipeDetail";
 import MyPage from "@pages/mypage/MyPage";
 import BookMark from "@pages/mypage/BookMark";
 import EditProfile from "@pages/mypage/EditProfile";
-import PasswordCheck from "@pages/mypage/PasswordCheck";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +36,6 @@ const router = createBrowserRouter([
       { path: "/mypage/mypage", element: <MyPage /> },
       { path: "/mypage/bookmark", element: <BookMark /> },
       { path: "/mypage/editprofile", element: <EditProfile /> },
-      { path: "/mypage/passwordcheck", element: <PasswordCheck /> },
       { path: "/myrecipe/register", element: <MyRecipeRegister /> },
       { path: "/myrecipe/list", element: <MyRecipeList /> },
       { path: "/myrecipe/list/:_id", element: <MyRecipeDetail /> },

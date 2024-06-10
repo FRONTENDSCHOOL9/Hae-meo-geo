@@ -18,7 +18,7 @@ const recentlyViewStore = create(
             state.recentlyView = state.recentlyView.filter(
               (item) => item.name !== obj.name,
             );
-            return { recentlyView: [...state.recentlyView, obj] };
+            return { recentlyView: [obj, ...state.recentlyView] };
           } else {
             return { recentlyView: [obj] };
           }

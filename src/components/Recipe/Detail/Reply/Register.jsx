@@ -14,7 +14,7 @@ ReplyRegister.propTypes = {
   rcpName: PropTypes.string.isRequired,
   rcpNum: PropTypes.number.isRequired,
   setRepliesFn: PropTypes.func.isRequired,
-  rating: PropTypes.string,
+  rating: PropTypes.number,
   setRating: PropTypes.func.isRequired,
   ratingModify: PropTypes.number,
   attachImg: PropTypes.string,
@@ -43,8 +43,14 @@ function ReplyRegister({
   postId,
   setPostId,
 }) {
-  const { replyRegister, ratingErrorMsg, contentErrorMsg, noLogin, buttonWr } =
-    styles;
+  const {
+    replyRegister,
+    replyRegisterModify,
+    ratingErrorMsg,
+    contentErrorMsg,
+    noLogin,
+    buttonWr,
+  } = styles;
   const { user } = useUserStore();
   const axios = useCustomAxios();
   const { setModal } = modalStore();
@@ -58,6 +64,7 @@ function ReplyRegister({
     defaultValues: {
       rating: isModify ? ratingModify : null,
       content: isModify ? originalContent : null,
+      image: isModify ? attachImgModify : null,
     },
   });
 
@@ -78,9 +85,19 @@ function ReplyRegister({
         },
       };
 
-      formData.image = isModify ? formData.imageModify : formData.image;
+      // 수정 버전이고 이미지를 새로 등록한 경우
+      if (isModify && formData.imageModify?.length) {
+        formData.image = formData.imageModify;
+      }
+
       if (formData.image?.length) {
-        formData.extra.image = await uploadImage(formData, "image");
+        if (formData.image[0] instanceof File) {
+          // 첨부파일을 등록한 경우, 이미지 업로드 함수 실행
+          formData.extra.image = await uploadImage(formData, "image");
+        } else {
+          // 기존 첨부파일을 사용할 경우
+          formData.extra.image = formData.image;
+        }
         delete formData.image;
       } else {
         delete formData?.image;
@@ -138,7 +155,7 @@ function ReplyRegister({
   };
 
   return (
-    <div className={replyRegister}>
+    <div className={`${replyRegister} ${isModify ? replyRegisterModify : ""}`}>
       {user ? (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={ReplyStyle.replyWr}>
@@ -162,7 +179,7 @@ function ReplyRegister({
                       name="rating"
                       value="1"
                       {...register("rating", {
-                        required: "별점을 등록하세요",
+                        required: ratingModify ? false : "별점을 등록하세요",
                       })}
                     />
                   </label>
@@ -172,7 +189,7 @@ function ReplyRegister({
                       name="rating"
                       value="2"
                       {...register("rating", {
-                        required: "별점을 등록하세요",
+                        required: ratingModify ? false : "별점을 등록하세요",
                       })}
                     />
                   </label>
@@ -182,7 +199,7 @@ function ReplyRegister({
                       name="rating"
                       value="3"
                       {...register("rating", {
-                        required: "별점을 등록하세요",
+                        required: ratingModify ? false : "별점을 등록하세요",
                       })}
                     />
                   </label>
@@ -192,7 +209,7 @@ function ReplyRegister({
                       name="rating"
                       value="4"
                       {...register("rating", {
-                        required: "별점을 등록하세요",
+                        required: ratingModify ? false : "별점을 등록하세요",
                       })}
                     />
                   </label>
@@ -202,7 +219,7 @@ function ReplyRegister({
                       name="rating"
                       value="5"
                       {...register("rating", {
-                        required: "별점을 등록하세요",
+                        required: ratingModify ? false : "별점을 등록하세요",
                       })}
                     />
                   </label>

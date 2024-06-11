@@ -2,6 +2,7 @@ import ReplyList from "@components/Recipe/Detail/Reply/List";
 import ReplyRegister from "@components/Recipe/Detail/Reply/Register";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import styles from "./Register.module.css";
 
 Reply.propTypes = {
   id: PropTypes.number.isRequired,
@@ -11,7 +12,7 @@ Reply.propTypes = {
 };
 
 function Reply({ id, replies, rcpName, setRepliesFn }) {
-  const [rating, setRating] = useState("");
+  const [rating, setRating] = useState(0);
   const [ratingModify, setRatingModify] = useState(0);
   const [attachImg, setAttachImg] = useState("");
   const [attachImgModify, setAttachImgModify] = useState("");
@@ -31,19 +32,21 @@ function Reply({ id, replies, rcpName, setRepliesFn }) {
         attachImgModify={attachImgModify}
         setAttachImgModify={setAttachImgModify}
       />
-      <ReplyRegister
-        key={0}
-        isModify={false}
-        rcpName={rcpName}
-        rcpNum={id}
-        replies={replies}
-        setRepliesFn={setRepliesFn}
-        rating={rating}
-        setRating={setRating}
-        attachImg={attachImg}
-        setAttachImg={setAttachImg}
-        setPostId={setPostId}
-      />
+      <div className={styles.replyRegisterWr}>
+        <ReplyRegister
+          key={0}
+          isModify={false}
+          rcpName={rcpName}
+          rcpNum={id}
+          replies={replies}
+          setRepliesFn={setRepliesFn}
+          rating={rating}
+          setRating={setRating}
+          attachImg={attachImg}
+          setAttachImg={setAttachImg}
+          setPostId={setPostId}
+        />
+      </div>
     </div>
   );
 }

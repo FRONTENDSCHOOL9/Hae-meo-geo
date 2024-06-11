@@ -9,10 +9,10 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./Home.module.css";
+import axios from "axios";
 
 function Home() {
-  const axios = useCustomAxios();
-  const axiosRcp = useCustomAxios("rcp");
+  const axiosLikelion = useCustomAxios();
   const {
     section,
     swiperWr,
@@ -32,18 +32,23 @@ function Home() {
 
   const fetchWeather = async () => {
     try {
-      const { data } = await axiosRcp.get("/", {
+      const { data } = await axios.get("/", {
         baseURL: import.meta.env.VITE_API_SERVER_WEATHER,
+        headers: {
+          "content-type": "application/json",
+          accept: "application/json",
+        },
       });
       setWeather(data?.weather[0].main);
     } catch (err) {
+      console.error(err);
       console.error(err.response?.data.message);
     }
   };
 
   const fetchTodayRcp = async () => {
     try {
-      const { data } = await axios("/posts?type=todayRcp");
+      const { data } = await axiosLikelion("/posts?type=todayRcp");
       setDataTodayRcp(data?.item);
     } catch (err) {
       console.error(err.response?.data.message);
@@ -65,7 +70,7 @@ function Home() {
       if (dataTodayRcp) {
         const filteredData = filteredTodayRcp(dataTodayRcp);
         const todayData = filteredData[randomFn(filteredData)];
-        const { data } = await axios(
+        const { data } = await axiosLikelion(
           `products?keyword=${todayData.title}&page=1&limit=6`,
         );
         setTodayMenu({ info: todayData, data: data.item });
@@ -77,7 +82,7 @@ function Home() {
 
   const fetchBookmarkRcp = async () => {
     try {
-      const { data } = await axios(
+      const { data } = await axiosLikelion(
         `/products?page=1&limit=6&sort={"bookmarks": -1}`,
       );
       setDataBookmark(data?.item);
@@ -88,7 +93,7 @@ function Home() {
 
   const fetchMyRcp = async () => {
     try {
-      const { data } = await axios(
+      const { data } = await axiosLikelion(
         `/posts?type=recipe&limit=6&page=1&sort={"_id": -1}`,
       );
       setDataMyRcp(data?.item);

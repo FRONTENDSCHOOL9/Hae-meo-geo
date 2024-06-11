@@ -13,15 +13,8 @@ import axios from "axios";
 
 function Home() {
   const axiosLikelion = useCustomAxios();
-  const {
-    section,
-    swiperWr,
-    titleWr,
-    todayMenuSec,
-    bookmarkSec,
-    searchSec,
-    myRcpSec,
-  } = styles;
+  const { section, titleWr, todayMenuSec, bookmarkSec, searchSec, myRcpSec } =
+    styles;
 
   const today = `day${new Date().getDay()}`;
   const [weather, setWeather] = useState();
@@ -41,7 +34,6 @@ function Home() {
       });
       setWeather(data?.weather[0].main);
     } catch (err) {
-      console.error(err);
       console.error(err.response?.data.message);
     }
   };
@@ -162,23 +154,7 @@ function Home() {
                 더보기
               </LinkButton>
             </div>
-            <Swiper
-              className={swiperWr}
-              modules={[Pagination]}
-              lazy="true"
-              pagination={{
-                type: "progressbar",
-              }}
-              spaceBetween={15}
-              slidesPerView={1.4}
-              breakpoints={{
-                768: {
-                  slidesPerView: 4,
-                },
-              }}
-            >
-              {todayMenus}
-            </Swiper>
+            <SwiperWr>{todayMenus}</SwiperWr>
           </section>
           <section className={`${section} ${bookmarkSec}`}>
             <div className={titleWr}>
@@ -187,23 +163,7 @@ function Home() {
               </h2>
               <LinkButton to="/recipe/list">더보기</LinkButton>
             </div>
-            <Swiper
-              className={swiperWr}
-              modules={[Pagination]}
-              lazy="true"
-              pagination={{
-                type: "progressbar",
-              }}
-              spaceBetween={15}
-              slidesPerView={1.4}
-              breakpoints={{
-                768: {
-                  slidesPerView: 4,
-                },
-              }}
-            >
-              {bookmarkMenus}
-            </Swiper>
+            <SwiperWr>{bookmarkMenus}</SwiperWr>
           </section>
           <section className={`${section} ${myRcpSec}`}>
             <div className={titleWr}>
@@ -212,23 +172,7 @@ function Home() {
               </h2>
               <LinkButton to="/myrecipe/list">더보기</LinkButton>
             </div>
-            <Swiper
-              className={swiperWr}
-              modules={[Pagination]}
-              lazy="true"
-              pagination={{
-                type: "progressbar",
-              }}
-              spaceBetween={15}
-              slidesPerView={1.4}
-              breakpoints={{
-                768: {
-                  slidesPerView: 4,
-                },
-              }}
-            >
-              {myRcpMenus}
-            </Swiper>
+            <SwiperWr>{myRcpMenus}</SwiperWr>
           </section>
           <section className={`${section} ${searchSec}`}>
             <h2>
@@ -242,6 +186,28 @@ function Home() {
         <Loading />
       )}
     </>
+  );
+}
+
+export function SwiperWr({ children }) {
+  return (
+    <Swiper
+      className={styles.swiperWr}
+      modules={[Pagination]}
+      lazy="true"
+      pagination={{
+        type: "progressbar",
+      }}
+      spaceBetween={15}
+      slidesPerView={1.4}
+      breakpoints={{
+        768: {
+          slidesPerView: 4,
+        },
+      }}
+    >
+      {children}
+    </Swiper>
   );
 }
 

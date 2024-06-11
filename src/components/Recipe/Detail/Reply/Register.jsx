@@ -14,7 +14,7 @@ ReplyRegister.propTypes = {
   rcpName: PropTypes.string.isRequired,
   rcpNum: PropTypes.number.isRequired,
   setRepliesFn: PropTypes.func.isRequired,
-  rating: PropTypes.string,
+  rating: PropTypes.number,
   setRating: PropTypes.func.isRequired,
   ratingModify: PropTypes.number,
   attachImg: PropTypes.string,
@@ -58,6 +58,7 @@ function ReplyRegister({
     defaultValues: {
       rating: isModify ? ratingModify : null,
       content: isModify ? originalContent : null,
+      image: isModify ? attachImgModify : null,
     },
   });
 
@@ -78,9 +79,19 @@ function ReplyRegister({
         },
       };
 
-      formData.image = isModify ? formData.imageModify : formData.image;
+      // 수정 버전이고 이미지를 새로 등록한 경우
+      if (isModify && formData.imageModify?.length) {
+        formData.image = formData.imageModify;
+      }
+
       if (formData.image?.length) {
-        formData.extra.image = await uploadImage(formData, "image");
+        if (formData.image[0] instanceof File) {
+          // 첨부파일을 등록한 경우, 이미지 업로드 함수 실행
+          formData.extra.image = await uploadImage(formData, "image");
+        } else {
+          // 기존 첨부파일을 사용할 경우
+          formData.extra.image = formData.image;
+        }
         delete formData.image;
       } else {
         delete formData?.image;

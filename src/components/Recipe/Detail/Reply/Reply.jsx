@@ -11,7 +11,7 @@ Reply.propTypes = {
 };
 
 function Reply({ id, replies, rcpName, setRepliesFn }) {
-  const [rating, setRating] = useState("");
+  const [rating, setRating] = useState(0);
   const [ratingModify, setRatingModify] = useState(0);
   const [attachImg, setAttachImg] = useState("");
   const [attachImgModify, setAttachImgModify] = useState("");

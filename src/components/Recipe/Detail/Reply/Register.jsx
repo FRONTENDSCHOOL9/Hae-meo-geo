@@ -43,8 +43,14 @@ function ReplyRegister({
   postId,
   setPostId,
 }) {
-  const { replyRegister, ratingErrorMsg, contentErrorMsg, noLogin, buttonWr } =
-    styles;
+  const {
+    replyRegister,
+    replyRegisterModify,
+    ratingErrorMsg,
+    contentErrorMsg,
+    noLogin,
+    buttonWr,
+  } = styles;
   const { user } = useUserStore();
   const axios = useCustomAxios();
   const { setModal } = modalStore();
@@ -149,7 +155,7 @@ function ReplyRegister({
   };
 
   return (
-    <div className={replyRegister}>
+    <div className={`${replyRegister} ${isModify ? replyRegisterModify : ""}`}>
       {user ? (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={ReplyStyle.replyWr}>

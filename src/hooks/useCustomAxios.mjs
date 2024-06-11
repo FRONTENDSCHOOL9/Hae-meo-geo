@@ -1,3 +1,4 @@
+import modalStore from "@zustand/modalStore.mjs";
 import useUserStore from "@zustand/userStore.mjs";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -11,6 +12,7 @@ function useCustomAxios(type = "likelion") {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useUserStore();
+  const { setModal } = modalStore();
   const instance = axios.create({
     baseURL: type === "rcp" ? VITE_API_SERVER_RCP : VITE_API_SERVER,
     timeout: 1000 * 20,
@@ -43,15 +45,17 @@ function useCustomAxios(type = "likelion") {
       if (response?.status === 401) {
         // 인증 되지 않음
         if (config.url === REFRESH_URL) {
-          // refresh 토큰 인증 실패
-          const gotoLogin = confirm(
-            "로그인 후 이용 가능합니다.\n로그인 페이지로 이동하시겠습니까?",
-          );
-          gotoLogin &&
-            navigate("/user/login", { state: { from: location.pathname } });
+          setModal({
+            message: `잠깐! 로그인 후 이용할 수 있어요. \n로그인 하러갈까요?`,
+            isTwoButtons: true,
+            event: () => {
+              navigate("/user/login", { state: { from: location.pathname } });
+            },
+          });
         } else {
           const accessToken = await getAccessToken(instance);
           if (accessToken) {
+            setUser({ ...user, token: { accessToken } });
             config.headers.Authorization = `Bearer ${accessToken}`;
             // 갱신된 accessToken으로 재요청
             return axios(config);

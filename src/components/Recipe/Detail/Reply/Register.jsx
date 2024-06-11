@@ -173,7 +173,7 @@ function ReplyRegister({
                       name="rating"
                       value="1"
                       {...register("rating", {
-                        required: "별점을 등록하세요",
+                        required: ratingModify ? false : "별점을 등록하세요",
                       })}
                     />
                   </label>
@@ -183,7 +183,7 @@ function ReplyRegister({
                       name="rating"
                       value="2"
                       {...register("rating", {
-                        required: "별점을 등록하세요",
+                        required: ratingModify ? false : "별점을 등록하세요",
                       })}
                     />
                   </label>
@@ -193,7 +193,7 @@ function ReplyRegister({
                       name="rating"
                       value="3"
                       {...register("rating", {
-                        required: "별점을 등록하세요",
+                        required: ratingModify ? false : "별점을 등록하세요",
                       })}
                     />
                   </label>
@@ -203,7 +203,7 @@ function ReplyRegister({
                       name="rating"
                       value="4"
                       {...register("rating", {
-                        required: "별점을 등록하세요",
+                        required: ratingModify ? false : "별점을 등록하세요",
                       })}
                     />
                   </label>
@@ -213,7 +213,7 @@ function ReplyRegister({
                       name="rating"
                       value="5"
                       {...register("rating", {
-                        required: "별점을 등록하세요",
+                        required: ratingModify ? false : "별점을 등록하세요",
                       })}
                     />
                   </label>

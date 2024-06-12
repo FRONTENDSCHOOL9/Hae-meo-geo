@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 function MyRecipeRegister() {
 
-  const {textarea, layout, title, container, text, writeWay, boxButtonUpload, buttonUpload, writeWaySelect, boxButtonsSubmit, inputReadOnly, containerWriteWay, errorMassage, stepsContainer, stepsNum, stepBlanks, stepButtons, stepButton, stepButtonDel, stepButtonAdd} = styles;
+  const {textarea, layout, title, container, text, writeWay, boxButtonUpload, buttonUpload, writeWaySelect, boxButtonsSubmit, inputReadOnly, containerWriteWay, errorMassage} = styles;
+
 
   const navigate = useNavigate();
 
@@ -87,7 +88,7 @@ function MyRecipeRegister() {
           />
           {errors && <div className={errorMassage}>{errors.title?.message}</div>}
         </div>
-        <div className={container}>
+        <div className={`hidden ${container}`}>
           <div className={title}>작성방법</div>
           <fieldset className={containerWriteWay}>
             <input
@@ -137,56 +138,6 @@ function MyRecipeRegister() {
             })}  onChange={(e) => changeFileName(e) } type="file" id="file" />
           </div>
           {errors && <div className={errorMassage}>{errors.image?.message}</div>}
-        </div>
-        <div className={container}>
-          <div className={title}>재료</div>
-          <input 
-            className={text}
-            placeholder="재료는 쉼표로 구분해주세요."
-            type="text" />
-        </div>
-        <div className={container}>
-          <div className={title}>단계별 레시피</div>
-          <div className={`${container} ${stepsContainer} `}>
-            <div className={stepBlanks}>
-              <span className={stepsNum}>
-                step. 1
-              </span>
-              <input 
-                className={text}
-                placeholder="재료는 쉼표로 구분해주세요."
-                type="text" />
-              <div className={boxButtonUpload}>
-              <input className={`${text} ${inputReadOnly}`} value={imageName} placeholder="10MB 미만의 이미지를 업로드해주세요." readOnly />
-              <label className={buttonUpload}  for="file">첨부파일</label>
-              <input className="hidden" {...register("image",{
-                required: "사진을 등록해주세요"
-              })}  onChange={(e) => changeFileName(e) } type="file" id="file" />
-              </div>
-              {errors && <div className={errorMassage}>{errors.image?.message}</div>}
-            </div>
-            <div className={stepBlanks}>
-              <span className={stepsNum}>
-                step. 1
-              </span>
-              <input 
-                className={text}
-                placeholder="재료는 쉼표로 구분해주세요."
-                type="text" />
-              <div className={boxButtonUpload}>
-              <input className={`${text} ${inputReadOnly}`} value={imageName} placeholder="10MB 미만의 이미지를 업로드해주세요." readOnly />
-              <label className={buttonUpload}  for="file">첨부파일</label>
-              <input className="hidden" {...register("image",{
-                required: "사진을 등록해주세요"
-              })}  onChange={(e) => changeFileName(e) } type="file" id="file" />
-              </div>
-              {errors && <div className={errorMassage}>{errors.image?.message}</div>}
-            </div>
-          </div>
-          <div className={stepButtons}>
-            <div className={`${stepButton} ${stepButtonDel}`}>단계 삭제 -</div>
-            <div className={`${stepButton} ${stepButtonAdd}`}>단계 추가 +</div>
-          </div>
         </div>
         <div className={container}>
           <div className={title}>태그</div>

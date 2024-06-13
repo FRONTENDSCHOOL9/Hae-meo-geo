@@ -35,6 +35,8 @@
 
 .myprofile img {
   width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }
 
 .user {
@@ -46,6 +48,10 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
+}
+
+.error-message {
+  color: var(--color-primary);
 }
 
 /* modify */

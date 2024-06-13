@@ -13,6 +13,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 1rem;
 }
 
 .form button,
@@ -90,5 +91,9 @@ label {
     width: 2.4rem;
     height: 2.4rem;
     margin-bottom: 0;
+  }
+
+  .form {
+    gap: 0.6rem;
   }
 }

@@ -12,7 +12,7 @@ function SocialKakao() {
   return (
     <>
       <Button type="button" size="large" color="kakao" onClick={handleLogin}>
-        <img src="../../public/img/kakao-icon.png" alt="카카오 로그인 아이콘" />
+        <img src="/img/kakao-icon.png" alt="카카오 로그인 아이콘" />
         카카오 로그인
       </Button>
     </>

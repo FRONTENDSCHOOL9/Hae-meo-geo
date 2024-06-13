@@ -5,6 +5,7 @@ import LoginLayout from "@components/login/LoginLayout";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Signup.module.css";
+import modalStore from "@zustand/modalStore.mjs";
 
 function SignupStepOne() {
   const { form } = styles;
@@ -12,6 +13,7 @@ function SignupStepOne() {
   const { subtitle, checkbox } = styles;
   const checkboxesRef = useRef([]);
   const navigate = useNavigate();
+  const { setModal } = modalStore();
   const handleAllCheckboxChange = (e) => {
     const isChecked = e.target.checked;
     setAllChecked(isChecked);
@@ -37,7 +39,7 @@ function SignupStepOne() {
     );
 
     anyCheckboxUnchecked
-      ? alert("[필수] 항목에 체크해주세요")
+      ? setModal({ message: "[필수] 항목에 체크해주세요" })
       : navigate("/user/signupStepTwo");
   };
 

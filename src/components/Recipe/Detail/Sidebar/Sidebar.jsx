@@ -8,9 +8,10 @@ Sidebar.propTypes = {
   name: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   type: PropTypes.string,
+  rcpNum: PropTypes.number,
 };
 
-function Sidebar({ id, name, image, type = "haeRcp" }) {
+function Sidebar({ id, name, image, type = "haeRcp", rcpNum }) {
   const { sidebar, bookmark, share } = styles;
   return (
     <ul className={sidebar}>
@@ -20,7 +21,12 @@ function Sidebar({ id, name, image, type = "haeRcp" }) {
         </li>
       )}
       <li>
-        <Share className={share} name={name} image={image}></Share>
+        <Share
+          className={share}
+          name={name}
+          image={image}
+          rcpNum={rcpNum}
+        ></Share>
       </li>
     </ul>
   );

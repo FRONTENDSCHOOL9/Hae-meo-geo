@@ -43,6 +43,7 @@ function MyRecipeDetail() {
               type="myRcp"
               name={data.item["title"]}
               image={image}
+              rcpNum={data.item._id}
             />
             <Banner type="myRcpRegister" name={data.item["title"]} />
             <Content>

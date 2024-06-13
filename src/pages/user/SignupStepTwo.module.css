@@ -32,7 +32,7 @@
   margin: 0;
   position: absolute;
   bottom: 0.5rem;
-  left: 1rem;
+  left: 19rem;
   transform: translateY(calc(100% + 1rem));
 }
 
@@ -68,6 +68,10 @@
     place-items: start;
     flex-direction: column;
     gap: 1rem;
+  }
+
+  .steptwo fieldset > p {
+    left: 1rem;
   }
 
   .steptwo input {

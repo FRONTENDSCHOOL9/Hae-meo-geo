@@ -8,29 +8,39 @@ import { Link, useSearchParams } from "react-router-dom";
 import { LinkButton } from "@components/Button/Button";
 import styles from "./MyRecipeList.module.css";
 import Loading from "@components/Loading/Loading";
+import NoData from "@components/NoData/NoData";
+import Pagination from "@components/Pagination/Pagination";
 
 function MyRecipeList() {
   const axios = useCustomAxios();
   const [searchParams] = useSearchParams();
   const [keyword, setKeyword] = useState("");
   const [currentPage, setCurrentPage] = useState(searchParams.get("page") || 1);
-  const [totalCount, setTotalCount] = useState("");
+  const [totalCount, setTotalCount] = useState(8);
   const { write } = styles;
 
-  const { data, isLoading, error, refetch } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ["list", currentPage],
-    queryFn: () => axios.get("/posts", { params: { type: "recipe", keyword } }),
+    queryFn: () =>
+      axios.get("/posts", {
+        params: {
+          page: currentPage,
+          limit: import.meta.env.VITE_PAGINATION_LIMIT,
+          type: "recipe",
+          keyword,
+        },
+      }),
     select: (response) => response.data,
-    suspense: false,
   });
 
   useEffect(() => {
     refetch();
-  }, [keyword]);
+    if (data) setTotalCount(data?.pagination.total);
+  }, [keyword, data]);
 
   const recipeItem =
     data &&
-    data?.item.map((item, index) => (
+    data.item.map((item, index) => (
       <li key={index}>
         <Link to={`/myrecipe/list/${item._id}`}>
           <img
@@ -41,10 +51,6 @@ function MyRecipeList() {
         </Link>
       </li>
     ));
-
-  useEffect(() => {
-    if (keyword && data) setTotalCount(Number(data?.total_count));
-  }, [keyword, data]);
 
   return (
     <>
@@ -67,17 +73,25 @@ function MyRecipeList() {
       </div>
       {isLoading ? (
         <Loading />
-      ) : (
+      ) : totalCount ? (
         data && (
           <>
             <List
               recipeItem={recipeItem}
-              totalCount={data?.item.length}
+              totalCount={totalCount}
               keyword={keyword}
               isLoading={isLoading}
             />
+            <Pagination
+              totalCount={totalCount}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              link="/myrecipe/list"
+            />
           </>
         )
+      ) : (
+        <NoData keyword={keyword} />
       )}
     </>
   );

@@ -49,7 +49,7 @@
   max-width: var(--layout-container-tablet);
   margin: 0 auto;
   position: relative;
-  padding: 3.8vw 0;
+  padding: clamp(3rem, 3.8vw, 6rem) 0;
 }
 
 .banner::before {
@@ -92,7 +92,7 @@
 @media (max-width: 767px) {
   .bannerWr {
     margin: -3.2rem -1.5rem 0;
-    padding: 0 1.2rem;
+    padding: 0 var(--layout-padding);
     left: auto;
     transform: none;
   }
@@ -109,5 +109,6 @@
   .myRcpRegister .titleDetail {
     color: var(--color-gray-100);
     font-size: 1.6rem;
+    margin-top: 0.4rem;
   }
 }

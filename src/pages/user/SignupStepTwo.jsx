@@ -77,6 +77,7 @@ function SignupStepTwo() {
   };
 
   const handleCheckEmail = async () => {
+    setEmailAvailability(null);
     email && (await checkEmailAvailability());
   };
 

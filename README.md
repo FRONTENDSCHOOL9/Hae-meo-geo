@@ -22,7 +22,7 @@
 
 
 # 👨‍👩‍👧‍👦팀원 소개
-| 이소정 | 박지성 | 서진희 |
+| FE 이소정 | FE 박지성 | FE 서진희 |
 | --- | --- | --- |
 | <img alt="이소정" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/44069187-b0c6-4f7b-bb9c-839a8d7f5295" height="100" width="100"> | <img alt="박지성" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/a025d2e6-1ae2-44e7-b05d-1f9456334f11" height="100" width="100"> | <img alt="서진희" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/af2e0d0c-a6cd-4681-bbfa-b0b58b203a8e" height="100" width="100"> |
 | 팀장 | 디자인 마스터 | 노션 마스터 |

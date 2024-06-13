@@ -50,6 +50,10 @@
   grid-template-columns: 1fr;
 }
 
+.error-message {
+  color: var(--color-primary);
+}
+
 /* modify */
 .modify {
   flex-grow: 1;

@@ -133,7 +133,9 @@ function EditProfile({ userInfo, user, setUser }) {
             },
           })}
         />
-        {errors.name && <p>{errors.name.message}</p>}
+        {errors.name && (
+          <p className={styles["error-message"]}>{errors.name.message}</p>
+        )}
       </fieldset>
 
       <fieldset>
@@ -150,7 +152,9 @@ function EditProfile({ userInfo, user, setUser }) {
             },
           })}
         />
-        {errors.birthday && <p>{errors.birthday.message}</p>}
+        {errors.birthday && (
+          <p className={styles["error-message"]}>{errors.birthday.message}</p>
+        )}
       </fieldset>
 
       <fieldset className={styles.profilewrapper}>

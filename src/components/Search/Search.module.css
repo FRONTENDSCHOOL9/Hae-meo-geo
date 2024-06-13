@@ -3,8 +3,6 @@
   text-align: center;
 }
 
-
-
 .searchWr .inputWr {
   position: relative;
   margin: 2rem auto 0;
@@ -18,17 +16,17 @@
   height: 6rem;
   width: 100%;
   font-size: var(--title-medium);
-  text-indent: .9em;
+  text-indent: 0.9em;
 }
 
 .searchWr .inputWr button {
   background: url(/img/ico-search-primary.svg) no-repeat center / 3rem;
   width: 6rem;
-  aspect-ratio: 1/.8;
+  aspect-ratio: 1/0.8;
   position: absolute;
   top: 50%;
   right: 0;
   transform: translateY(-50%);
   border-left: 2px solid var(--color-secondary);
-  transition: all .3s;
+  transition: all 0.3s;
 }

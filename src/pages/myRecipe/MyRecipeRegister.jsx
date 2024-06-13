@@ -5,15 +5,28 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useNavigate } from "react-router-dom";
+import modalStore from "@zustand/modalStore.mjs";
 
 function MyRecipeRegister() {
-
-  const {textarea, layout, title, container, text, writeWay, boxButtonUpload, buttonUpload, writeWaySelect, boxButtonsSubmit, inputReadOnly, containerWriteWay, errorMassage} = styles;
-
+  const {
+    textarea,
+    layout,
+    title,
+    container,
+    text,
+    writeWay,
+    boxButtonUpload,
+    buttonUpload,
+    writeWaySelect,
+    boxButtonsSubmit,
+    inputReadOnly,
+    containerWriteWay,
+    errorMassage,
+  } = styles;
 
   const navigate = useNavigate();
-
   const axios = useCustomAxios();
+  const { setModal } = modalStore();
 
   const {
     register,
@@ -56,13 +69,15 @@ function MyRecipeRegister() {
 
       navigate("/myRecipe/list");
 
-      if(res.data.item.user._id){
-        alert("레시피 작성이 완료 되었습니다.");
+      if (res.data.item.user._id) {
+        setModal({
+          message: `레시피 작성이 완료 되었습니다.`,
+          event: () => {
+            navigate("/myrecipe/list");
+          },
+        });
       }
-
-    } catch (err) {
-
-    }
+    } catch (err) {}
   };
 
   let [imageName, setImageName] = useState("");
@@ -74,19 +89,21 @@ function MyRecipeRegister() {
 
   return (
     <>
-      <Banner type="myRcpRegister" name="나만의 레시피를 올려주세요!"/>
-      <form className={layout} method="post" enctype="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
+      <Banner type="myRcpRegister" name="나만의 레시피를 올려주세요!" />
+      <form className={layout} onSubmit={handleSubmit(onSubmit)}>
         <div className={container}>
           <div className={title}>제목</div>
           <input
             className={text}
             placeholder="제목을 입력해주세요."
             type="text"
-            {...register("title",{
-              required: "제목을 입력해주세요."
+            {...register("title", {
+              required: "제목을 입력해주세요.",
             })}
           />
-          {errors && <div className={errorMassage}>{errors.title?.message}</div>}
+          {errors && (
+            <div className={errorMassage}>{errors.title?.message}</div>
+          )}
         </div>
         <div className={`hidden ${container}`}>
           <div className={title}>작성방법</div>
@@ -100,7 +117,7 @@ function MyRecipeRegister() {
               {...register("writeWay")}
               checked
             />
-            <label className={writeWaySelect} for="writeWaySimple">
+            <label className={writeWaySelect} htmlFor="writeWaySimple">
               간단하게
             </label>
             <input
@@ -111,7 +128,7 @@ function MyRecipeRegister() {
               value="detail"
               {...register("writeWay")}
             />
-            <label className={writeWaySelect} for="writeWayDetail">
+            <label className={writeWaySelect} htmlFor="writeWayDetail">
               자세하게
             </label>
           </fieldset>
@@ -122,22 +139,40 @@ function MyRecipeRegister() {
             className={textarea}
             placeholder="내용을 입력해주세요."
             {...register("content", {
-              required: "내용을 입력해주세요."})}
+              required: "내용을 입력해주세요.",
+            })}
             cols="30"
             rows="10"
           ></textarea>
-          {errors && <div className={errorMassage}>{errors.content?.message}</div>}
+          {errors && (
+            <div className={errorMassage}>{errors.content?.message}</div>
+          )}
         </div>
         <div className={container}>
           <div className={title}>완료 이미지</div>
           <div className={boxButtonUpload}>
-            <input className={`${text} ${inputReadOnly}`} value={imageName} placeholder="10MB 미만의 이미지를 업로드해주세요." readOnly />
-            <label className={buttonUpload}  for="file">첨부파일</label>
-            <input className="hidden" {...register("image",{
-              required: "사진을 등록해주세요"
-            })}  onChange={(e) => changeFileName(e) } type="file" id="file" />
+            <input
+              className={`${text} ${inputReadOnly}`}
+              value={imageName}
+              placeholder="10MB 미만의 이미지를 업로드해주세요."
+              readOnly
+            />
+            <label className={buttonUpload} htmlFor="file">
+              첨부파일
+            </label>
+            <input
+              className="hidden"
+              {...register("image", {
+                required: "사진을 등록해주세요",
+              })}
+              onChange={(e) => changeFileName(e)}
+              type="file"
+              id="file"
+            />
           </div>
-          {errors && <div className={errorMassage}>{errors.image?.message}</div>}
+          {errors && (
+            <div className={errorMassage}>{errors.image?.message}</div>
+          )}
         </div>
         <div className={container}>
           <div className={title}>태그</div>

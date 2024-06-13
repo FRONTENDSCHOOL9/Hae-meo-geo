@@ -104,7 +104,7 @@ function MyRecipeList() {
             />
             <Pagination
               totalCount={totalCount}
-              currentPage={currentPage}
+              currentPage={Number(currentPage)}
               setCurrentPage={setCurrentPage}
               link="/myrecipe/list"
             />

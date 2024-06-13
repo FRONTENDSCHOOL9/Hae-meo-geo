@@ -4,12 +4,14 @@ import Title from "@components/Title/Title";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import { LinkButton } from "@components/Button/Button";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Button } from "@components/Button/Button";
 import styles from "./MyRecipeList.module.css";
 import Loading from "@components/Loading/Loading";
 import NoData from "@components/NoData/NoData";
 import Pagination from "@components/Pagination/Pagination";
+import modalStore from "@zustand/modalStore.mjs";
+import userStore from "@zustand/userStore.mjs";
 
 function MyRecipeList() {
   const axios = useCustomAxios();
@@ -18,6 +20,9 @@ function MyRecipeList() {
   const [currentPage, setCurrentPage] = useState(searchParams.get("page") || 1);
   const [totalCount, setTotalCount] = useState(8);
   const { write } = styles;
+  const navigate = useNavigate();
+  const { setModal } = modalStore();
+  const { user } = userStore();
 
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["list", currentPage],
@@ -31,7 +36,22 @@ function MyRecipeList() {
         },
       }),
     select: (response) => response.data,
+    suspense: false,
   });
+
+  const handleClick = () => {
+    if (user) {
+      navigate("/myRecipe/register");
+    } else {
+      setModal({
+        message: `잠깐! 로그인 후 이용할 수 있어요. \n로그인 하러갈까요?`,
+        event: () => {
+          navigate("/user/login");
+        },
+        isTwoButtons: true,
+      });
+    }
+  };
 
   useEffect(() => {
     refetch();
@@ -62,14 +82,14 @@ function MyRecipeList() {
         setCurrentPage={setCurrentPage}
       />
       <div className={write}>
-        <LinkButton
-          to="/myRecipe/register"
+        <Button
+          onClick={handleClick}
           size="large"
           color="primary"
           filled="filled"
         >
           글쓰기
-        </LinkButton>
+        </Button>
       </div>
       {isLoading ? (
         <Loading />

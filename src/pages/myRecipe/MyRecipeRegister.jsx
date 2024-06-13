@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useNavigate } from "react-router-dom";
 import modalStore from "@zustand/modalStore.mjs";
+import Content from "@components/Recipe/Detail/Content/Content";
 
 function MyRecipeRegister() {
   const {
@@ -90,109 +91,112 @@ function MyRecipeRegister() {
   return (
     <>
       <Banner type="myRcpRegister" name="나만의 레시피를 올려주세요!" />
-      <form className={layout} onSubmit={handleSubmit(onSubmit)}>
-        <div className={container}>
-          <div className={title}>제목</div>
-          <input
-            className={text}
-            placeholder="제목을 입력해주세요."
-            type="text"
-            {...register("title", {
-              required: "제목을 입력해주세요.",
-            })}
-          />
-          {errors && (
-            <div className={errorMassage}>{errors.title?.message}</div>
-          )}
-        </div>
-        <div className={`hidden ${container}`}>
-          <div className={title}>작성방법</div>
-          <fieldset className={containerWriteWay}>
+      <Content>
+        <form className={layout} onSubmit={handleSubmit(onSubmit)}>
+          <div className={container}>
+            <div className={title}>제목</div>
             <input
-              className={writeWay}
-              id="writeWaySimple"
-              type="radio"
-              name="writeWay"
-              value="simple"
-              {...register("writeWay")}
-              checked
-            />
-            <label className={writeWaySelect} htmlFor="writeWaySimple">
-              간단하게
-            </label>
-            <input
-              className={writeWay}
-              id="writeWayDetail"
-              type="radio"
-              name="writeWay"
-              value="detail"
-              {...register("writeWay")}
-            />
-            <label className={writeWaySelect} htmlFor="writeWayDetail">
-              자세하게
-            </label>
-          </fieldset>
-        </div>
-        <div className={container}>
-          <div className={title}>내용</div>
-          <textarea
-            className={textarea}
-            placeholder="내용을 입력해주세요."
-            {...register("content", {
-              required: "내용을 입력해주세요.",
-            })}
-            cols="30"
-            rows="10"
-          ></textarea>
-          {errors && (
-            <div className={errorMassage}>{errors.content?.message}</div>
-          )}
-        </div>
-        <div className={container}>
-          <div className={title}>완료 이미지</div>
-          <div className={boxButtonUpload}>
-            <input
-              className={`${text} ${inputReadOnly}`}
-              value={imageName}
-              placeholder="10MB 미만의 이미지를 업로드해주세요."
-              readOnly
-            />
-            <label className={buttonUpload} htmlFor="file">
-              첨부파일
-            </label>
-            <input
-              className="hidden"
-              {...register("image", {
-                required: "사진을 등록해주세요",
+              className={text}
+              placeholder="제목을 입력해주세요."
+              type="text"
+              {...register("title", {
+                required: "제목을 입력해주세요.",
               })}
-              onChange={(e) => changeFileName(e)}
-              type="file"
-              id="file"
+            />
+            {errors && (
+              <div className={errorMassage}>{errors.title?.message}</div>
+            )}
+          </div>
+          <div className={`hidden ${container}`}>
+            <div className={title}>작성방법</div>
+            <fieldset className={containerWriteWay}>
+              <input
+                className={writeWay}
+                id="writeWaySimple"
+                type="radio"
+                name="writeWay"
+                value="simple"
+                {...register("writeWay")}
+                checked
+              />
+              <label className={writeWaySelect} htmlFor="writeWaySimple">
+                간단하게
+              </label>
+              <input
+                className={writeWay}
+                id="writeWayDetail"
+                type="radio"
+                name="writeWay"
+                value="detail"
+                {...register("writeWay")}
+              />
+              <label className={writeWaySelect} htmlFor="writeWayDetail">
+                자세하게
+              </label>
+            </fieldset>
+          </div>
+          <div className={container}>
+            <div className={title}>내용</div>
+            <textarea
+              className={textarea}
+              placeholder="내용을 입력해주세요."
+              {...register("content", {
+                required: "내용을 입력해주세요.",
+              })}
+              cols="30"
+              rows="10"
+            ></textarea>
+            {errors && (
+              <div className={errorMassage}>{errors.content?.message}</div>
+            )}
+          </div>
+          <div className={container}>
+            <div className={title}>완료 이미지</div>
+            <div className={boxButtonUpload}>
+              <input
+                className={`${text} ${inputReadOnly}`}
+                value={imageName}
+                placeholder="10MB 미만의 이미지를 업로드해주세요."
+                readOnly
+                type="text"
+              />
+              <label className={buttonUpload} htmlFor="file">
+                첨부파일
+              </label>
+              <input
+                className="hidden"
+                {...register("image", {
+                  required: "사진을 등록해주세요",
+                })}
+                onChange={(e) => changeFileName(e)}
+                type="file"
+                id="file"
+              />
+            </div>
+            {errors && (
+              <div className={errorMassage}>{errors.image?.message}</div>
+            )}
+          </div>
+          <div className={container}>
+            <div className={title}>태그</div>
+            <input
+              className={text}
+              placeholder="태그는 쉼표로 구분해주세요."
+              type="text"
             />
           </div>
-          {errors && (
-            <div className={errorMassage}>{errors.image?.message}</div>
-          )}
-        </div>
-        <div className={container}>
-          <div className={title}>태그</div>
-          <input
-            className={text}
-            placeholder="태그는 쉼표로 구분해주세요."
-            type="text"
-          />
-        </div>
-        <div className={container}>
-          <div className={boxButtonsSubmit}>
-            <Button type="submit" color="primary" size="large">
-              작성하기
-            </Button>
-            <LinkButton to="/myRecipe/list" type="submit" size="large">
-              취소
-            </LinkButton>
+          <div className={container}>
+            <div className={boxButtonsSubmit}>
+              <Button type="submit" color="primary" size="large">
+                작성하기
+              </Button>
+              <LinkButton to="/myRecipe/list" type="submit" size="large">
+                취소
+              </LinkButton>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </Content>
     </>
   );
 }

@@ -1,16 +1,16 @@
 :root {
-  font-family: 'NanumSquareNeo', sans-serif;
+  font-family: "NanumSquareNeo", sans-serif;
   font-size: 62.5%;
 
-  --color-primary: #DA240F;
-  --color-primary-80: #E54D22;
-  --color-primary-30: #FFE7E2;
-  --color-secondary: #F2C166;
-  --color-secondary-30: #FFF9E2;
+  --color-primary: #da240f;
+  --color-primary-80: #e54d22;
+  --color-primary-30: #ffe7e2;
+  --color-secondary: #f2c166;
+  --color-secondary-30: #fff9e2;
   --color-black-100: #000;
   --color-gray-100: #999;
-  --color-gray-50: #E5E5E5;
-  --color-gray-30: #F2F2F2;
+  --color-gray-50: #e5e5e5;
+  --color-gray-30: #f2f2f2;
 
   --layout-pc: 1920px;
   --layout-container-pc: 1680px;
@@ -65,11 +65,11 @@ body {
   object-fit: cover;
   border-radius: 1.2rem;
   overflow: hidden;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .swiper-slide:hover img {
-  box-shadow: 0 0 1rem rgba(0, 0, 0, .3);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
   transform: scale(1.02);
 }
 
@@ -138,10 +138,15 @@ body {
   input[type="password"],
   input[type="email"],
   input[type="button"] {
+    font-size: 1.5rem;
     height: 4rem;
     line-height: 3.8rem;
     border-radius: 1rem;
     text-indent: 1rem;
+  }
+
+  textarea {
+    font-size: 1.5rem;
   }
 
   .pc {

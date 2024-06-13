@@ -16,6 +16,7 @@ function Bookmark({ id }) {
   const navigate = useNavigate();
   const { user } = userStore();
   const { setModal } = modalStore();
+  const [data, setData] = useState();
   const [isBookmarked, setIsBookmarked] = useState();
   const [bookmarkId, setBookmarkId] = useState();
 
@@ -23,17 +24,8 @@ function Bookmark({ id }) {
     try {
       if (user) {
         const { data } = await axios.get(`/bookmarks/product`);
-        setIsBookmarked(
-          data?.item.some((item) => {
-            return item.product._id === id;
-          }),
-        );
-
-        if (isBookmarked) {
-          data?.item.some((item) => {
-            if (item.product._id === id) setBookmarkId(item._id);
-          });
-        }
+        setData(data.item);
+        setIsBookmarked(data.item.some((item) => item.product._id === id));
       }
     } catch (err) {
       console.error(err.response?.data.message);
@@ -43,6 +35,14 @@ function Bookmark({ id }) {
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (isBookmarked) {
+      data.some((item) => {
+        if (item.product._id === id) setBookmarkId(item._id);
+      });
+    }
+  }, [data]);
 
   const handleBookmark = async () => {
     try {

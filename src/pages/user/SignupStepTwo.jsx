@@ -119,6 +119,7 @@ function SignupStepTwo() {
                     message: "이메일 형식이 올바르지 않습니다.",
                   },
                 })}
+                className={errors.email ? "errorMsg" : ""}
               />
               <Button
                 type="button"
@@ -131,6 +132,7 @@ function SignupStepTwo() {
               </Button>
             </div>
             {errors.email && <p className="errorMsg">{errors.email.message}</p>}
+
             {emailAvailability && <p>{emailAvailability}</p>}
           </fieldset>
           <fieldset>

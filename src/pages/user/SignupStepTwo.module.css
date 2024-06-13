@@ -55,6 +55,7 @@
 .flexWr {
   display: flex;
   width: 100%;
+  align-items: flex-end;
 }
 
 @media (max-width: 767px) {
@@ -97,7 +98,7 @@
   }
 
   .steptwo p {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
 
   .steptwo Button {

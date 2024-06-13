@@ -17,6 +17,7 @@ function EditProfile({ userInfo, user, setUser }) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, dirtyFields },
   } = useForm();
   const file = useRef();
@@ -32,7 +33,11 @@ function EditProfile({ userInfo, user, setUser }) {
     } else {
       setAttachImg(defaultImage);
     }
-  }, [userInfo]);
+    reset({
+      name: userInfo?.name || "",
+      birthday: userInfo?.extra?.birthday || userInfo?.birthday || "",
+    });
+  }, [userInfo, reset]);
 
   const handleAttachRemove = () => {
     setAttachImg(null);
@@ -89,7 +94,6 @@ function EditProfile({ userInfo, user, setUser }) {
       data.append("name", formData.name);
       data.append("birthday", formData.birthday);
       data.append("profileImage", formData.profileImage);
-
       const res = await axios.patch(`/users/${user._id}`, data);
 
       if (res.status === 200) {
@@ -107,14 +111,12 @@ function EditProfile({ userInfo, user, setUser }) {
     <form onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
         <label htmlFor="email">아이디(이메일)</label>
-        <div className={styles.flexWr}>
-          <input
-            type="email"
-            id="email"
-            defaultValue={userInfo?.email}
-            disabled
-          />
-        </div>
+        <input
+          type="email"
+          id="email"
+          defaultValue={user.email || "카카오 로그인 사용자입니다."}
+          disabled
+        />
       </fieldset>
 
       <fieldset>

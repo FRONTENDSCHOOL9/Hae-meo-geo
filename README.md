@@ -24,20 +24,22 @@
 
 # 👨‍👩‍👧‍👦팀원 소개
 | 이소정 | 박지성 | 서진희 |
-| :---: | :---: | :---: | 
+| --- | --- | --- |
 | <img alt="이소정" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/44069187-b0c6-4f7b-bb9c-839a8d7f5295" height="100" width="100"> | <img alt="박지성" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/a025d2e6-1ae2-44e7-b05d-1f9456334f11" height="100" width="100"> | <img alt="서진희" src="https://github.com/FRONTENDSCHOOL9/Hae-meo-geo/assets/153144316/af2e0d0c-a6cd-4681-bbfa-b0b58b203a8e" height="100" width="100"> |
-| **팀장** | **디자인 마스터** | **노션 마스터** |
+| 팀장 | 디자인 마스터 | 노션 마스터 |
+| [📝 프로젝트 기록](https://velog.io/@s0zzang/%ED%95%B4%EB%A8%B8%EA%B1%B0-%EB%A9%94%EC%9D%B8) |  |  |
 
 ---
 
 # 📅개발 일정
 #### 2024. 03. 28 ~ 2024. 04. 24
-|기간|내용|
-| :----: | :--: |
-|03. 28 - 04 .07 |기획|
-|04. 03 - 04 .10 |UI 디자인|
-|04. 10 - 04. 25 |마크업 및 기능 개발|
-|04. 23 - 04. 25 |QA 기간|
+| 기간 | 내용 |
+| --- | --- |
+| 03. 28 - 04 .07 | 기획 |
+| 04. 03 - 04 .10 | UI 디자인 |
+| 04. 10 - 04. 25 | 마크업 및 기능 개발 |
+| 04. 23 - 04. 24 | QA 기간 |
+| 04. 30 - 06. 12 | 리팩토링 기간 |
 
 
 ---
@@ -118,7 +120,7 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
   <summary>해머거</summary>
   
   ```
-  ├── App.css ─────────────  
+├── App.css
 ├── App.jsx
 ├── assets
 │   └── lottie
@@ -126,12 +128,17 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 │       ├── loading.json
 │       └── noData.json
 ├── components
-│   ├── Attach
 │   ├── Button
 │   │   ├── Button.jsx
 │   │   └── Button.module.css
 │   ├── Loading
 │   │   └── Loading.jsx
+│   ├── Modal
+│   │   ├── Modal.jsx
+│   │   └── Modal.module.css
+│   ├── Mypage
+│   │   ├── MypageMenu.jsx
+│   │   └── MypageMenu.module.css
 │   ├── NoData
 │   │   └── NoData.jsx
 │   ├── Pagination
@@ -191,9 +198,11 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 │   │   ├── Header.module.css
 │   │   ├── index.jsx
 │   │   └── index.module.css
-│   └── login
-│       ├── LoginLayout.jsx
-│       └── LoginLayout.module.css
+│   ├── login
+│   │   ├── LoginLayout.jsx
+│   │   └── LoginLayout.module.css
+│   └── socialLogin
+│       └── SocialKakao.jsx
 ├── hooks
 │   └── useCustomAxios.mjs
 ├── main.jsx
@@ -202,29 +211,21 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 │   ├── ErrorPage.module.css
 │   ├── Home.jsx
 │   ├── Home.module.css
+│   ├── auth
+│   │   └── Kakao.jsx
 │   ├── myRecipe
 │   │   ├── MyRecipeDetail.jsx
 │   │   ├── MyRecipeDetail.module.css
+│   │   ├── MyRecipeList.jsx
+│   │   ├── MyRecipeList.module.css
 │   │   ├── MyRecipeRegister.jsx
-│   │   ├── MyRecipeRegister.module.css
-│   │   └── myRecipeList
-│   │       ├── MyRecipeItems.jsx
-│   │       ├── MyRecipeItems.module.css
-│   │       ├── MyRecipeList.jsx
-│   │       ├── MyRecipeList.module.css
-│   │       ├── MyRecipeSearch.jsx
-│   │       ├── MyRecipeSearch.module.css
-│   │       ├── MyRecipeSortButton.jsx
-│   │       └── MyRecipeSortButton.module.css
+│   │   └── MyRecipeRegister.module.css
 │   ├── mypage
 │   │   ├── BookMark.jsx
 │   │   ├── BookMark.module.css
-│   │   ├── InforMation.jsx
-│   │   ├── InforMation.module.css
+│   │   ├── EditProfile.jsx
 │   │   ├── MyPage.jsx
-│   │   ├── MyPage.module.css
-│   │   ├── PageSide.jsx
-│   │   └── PageSide.module.css
+│   │   └── MyPage.module.css
 │   ├── recipe
 │   │   ├── RecipeDetail.jsx
 │   │   ├── RecipeDetail.module.css
@@ -245,6 +246,8 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 │   ├── kakaoInit.mjs
 │   └── uploadImage.mjs
 └── zustand
+    ├── modalStore.mjs
+    ├── recentlyViewStore.mjs
     └── userStore.mjs
   ```
   
@@ -349,45 +352,39 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
 
 # 💻상세 담당 업무
 ### <u>👧🏻 이소정(팀장)</u>
-- 🌟 메인 페이지
-    - 오늘의 추천 레시피
-      - [OpenWeather 날씨 API](https://openweathermap.org/)를 사용하여 현재 날씨 호출
-      - db에 초기 세팅한 추천 메뉴 리스트를 **현재 날씨와 요일과 비교**하여 조건에 맞는 레시피 노출
-  - 해머거 레시피
-      - 북마크가 많은 순서대로 최대 6개 노출
-      - 더보기 버튼 클릭시 해머거 레시피 목록으로 이동
-  - 나만의 레시피
-      - 최근 등록된 순서대로 최대 6개 노출
-      - 더보기 버튼 클릭시 나만의 게시물 목록으로 이동
+- 🌟 메인 페이지 [🏃🏻‍♀️‍➡️ 자세한 내용 보러가기](https://velog.io/@s0zzang/%ED%95%B4%EB%A8%B8%EA%B1%B0-%EB%A9%94%EC%9D%B8)
+
+  - 오늘의 추천 레시피 메뉴
+  - 인기 해머거 레시피 메뉴
+  - 최근 나만의 레시피 메뉴
   - 레시피 검색
-      - 키워드가 반영된 해머거 레시피 목록으로 이동
+  - 최근 본 레시피 [🏃🏻‍♀️‍➡️ 자세한 내용 보러가기](https://velog.io/@s0zzang/%ED%95%B4%EB%A8%B8%EA%B1%B0-%EC%B5%9C%EA%B7%BC-%EB%B3%B8-%EB%A0%88%EC%8B%9C%ED%94%BC-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)
 
 - 🌟 오늘 뭐먹지?
-    - **무한 스크롤**을 활용하여 날씨/요일별 추천 레시피 목록 호출
-    - 레시피 클릭시 해당 키워드가 검색된 해머거 레시피 목록으로 이동
 
-- 🌟 해머거 레시피 목록
-  - 카테고리, 검색
-      - 조리식품의 레시피 API에서 제공하는 **쿼리스트링**을 활용하여 데이터 호출
-  - 페이지네이션
-      - 조리식품의 레시피 API에서 제공하는 레시피의 총 개수를 통해 페이지네이션이 5개씩 노출되도록 구현
+    - 날씨/요일별 추천 레시피 목록 (무한 스크롤)
+
+- 🌟 해머거 레시피
+  
+  - 목록
+    - 갤러리형 게시판
+    - 카테고리, 검색 기능
+    - 페이지네이션
       
-- 🌟 해머거 레시피 상세
-  - 조리식품의 레시피 데이터(이름, 사진, 재료, 단계별 레시피) 노출
-  - 후기
-      - 조리식품의 레시피 일련 번호를 상품으로 초기 등록하여 해당 상품의 일련번호에 해당하는 QnA 게시글 호출/등록/삭제
-      - 첨부파일 등록시 미리보기 이미지 제공
-  - 북마크
-      - 조리식품의 레시피 일련 번호를 상품으로 초기 등록하여 해당 상품의 일련번호에 해당하는 상품에 북마크 추가/삭제
-  - 공유하기
-      - [카카오톡 메시지 전송 API](https://developers.kakao.com/tool/demo/message/kakaolink?message_type=default)를 활용하여 레시피의 이름, 사진, 링크를 카카오톡 메시지로 전달
+  - 상세 [🏃🏻‍♀️‍➡️ 자세한 내용 보러가기](https://velog.io/@s0zzang/%ED%95%B4%EB%A8%B8%EA%B1%B0-%EB%A0%88%EC%8B%9C%ED%94%BC-%EC%83%81%EC%84%B8)
+    - 조리식품의 레시피 데이터(이름, 사진, 재료, 단계별 레시피) 노출
+    - 후기 등록/수정/삭제 [🏃🏻‍♀️‍➡️ 자세한 내용 보러가기](https://velog.io/@s0zzang/%ED%95%B4%EB%A8%B8%EA%B1%B0-%ED%9B%84%EA%B8%B0-%EC%88%98%EC%A0%95%ED%95%98%EA%B8%B0)
+    - 북마크 추가/삭제
+    - 카카오톡 공유하기
       
 - 🌟 공통 컴포넌트
-    - 헤더
-    - 푸터
+    - 레이아웃(헤더 ,푸터)
     - 버튼
     - 로딩 페이지
     - 에러 페이지
+    - 첨부파일 이미지 미리보기
+    - 모달 [🏃🏻‍♀️‍➡️ 자세한 내용 보러가기](https://velog.io/@s0zzang/%ED%95%B4%EB%A8%B8%EA%B1%B0-%EB%AA%A8%EB%8B%AC-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)
+    - 페이지네이션 [🏃🏻‍♀️‍➡️ 자세한 내용 보러가기](https://velog.io/@s0zzang/%ED%95%B4%EB%A8%B8%EA%B1%B0-%ED%8E%98%EC%9D%B4%EC%A7%80%EB%84%A4%EC%9D%B4%EC%85%98-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)
 
 </br>
 
@@ -404,6 +401,7 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
       - 메인 이미지, 이름, 재료 설명
 
     - 게시물 상세
+ 
       - 메인 이미지, 이름, 재료(한 번에 보여주기), 작성자
 
 </br>
@@ -423,10 +421,16 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
   - 로그인 완료시 이전 페이지로 이동
   - 테스트 로그인
   - 로그아웃
+  - 카카오 로그인/회원가입
   
 - 🌟 로그인 유지
 
   - 로그인 시 2시간이 지나면 자동으로 토큰 갱신하여 로그인 유지
+
+- 🌟 마이페이지
+  
+  - 회원 정보 수정하기
+  - 북마크 목록 불러오기
 
 </br>
 
@@ -438,7 +442,7 @@ React Query | 서버 동기화를 간편하게 사용하고 무한 스크롤 구
   <summary>메인 - 날씨/요일별 추천 레시피</summary>
   
   > - 현재 날씨와 요일별로 레시피를 추천하는 기능
-  > - 현재 날씨 : [날씨 API](https://api.openweathermap.org)를 활용하여 서울을 기준으로 현재 날씨 수집
+  > - 현재 날씨 : 날씨 API를 활용하여 서울을 기준으로 현재 날씨 수집
   > - 현재 요일 : 자바스크립트 Date 생성자 함수 활용
   > - 레시피 추천 리스트 : 게시판 API를 활용하여 직접 리스트업
   > - 조건에 맞는 레시피 랜덤으로 추출하여 노출

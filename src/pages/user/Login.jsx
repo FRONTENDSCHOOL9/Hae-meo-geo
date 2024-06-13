@@ -21,7 +21,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const axios = useCustomAxios();
   const navigate = useNavigate();
-  const { form } = styles;
+  const { form, buttons, save } = styles;
   const { user, setUser } = userStore();
   const { setModal } = modalStore();
 
@@ -81,7 +81,6 @@ function Login() {
         email: testEmail,
         password: testPassword,
       });
-      console.log(res);
       setModal({
         message: res.data.item.name + "님 밥 해머거!",
         event: () => {
@@ -107,7 +106,7 @@ function Login() {
         ? localStorage.setItem("savedEmail", testEmail)
         : localStorage.removeItem("savedEmail");
     } catch (err) {
-      alert(err.response?.data.message);
+      setModal({ message: err.response?.data.message });
     }
   };
 
@@ -115,7 +114,6 @@ function Login() {
     <>
       <LoginLayout>
         <Title>로그인</Title>
-        {user && <p>{user.name}님 밥 해머거!</p>}
         <form
           onSubmit={handleSubmit(onSubmit)}
           className={`${form} ${styles.login}`}
@@ -132,10 +130,11 @@ function Login() {
                 message: "이메일 형식이 아닙니다.",
               },
             })}
+            className={errors.email ? "errorMsg" : ""}
           />
 
-          {errors && <div>{errors.email?.message}</div>}
-          <fieldset>
+          {errors.email && <p className="errorMsg">{errors.email.message}</p>}
+          <fieldset className={save}>
             <input
               type="checkbox"
               id="saveEmail"
@@ -157,33 +156,38 @@ function Login() {
                 message: "8자리를 입력해주세요.",
               },
             })}
+            className={errors.password ? "errorMsg" : ""}
           />
 
-          {errors && <div>{errors.password?.message}</div>}
-          <Button type="submit" color="primary" size="large" filled="filled">
-            로그인
-          </Button>
+          {errors.password && (
+            <p className="errorMsg">{errors.password.message}</p>
+          )}
+          <div className={buttons}>
+            <Button type="submit" color="primary" size="large" filled="filled">
+              로그인
+            </Button>
 
-          <SocialKakao />
+            <SocialKakao />
 
-          <Button
-            type="button"
-            onClick={(e) => handleTestLogin(e)}
-            color="gray"
-            size="large"
-            filled="false"
-          >
-            테스트 계정으로 로그인
-          </Button>
+            <Button
+              type="button"
+              onClick={(e) => handleTestLogin(e)}
+              color="gray"
+              size="large"
+              filled="false"
+            >
+              테스트 계정으로 로그인
+            </Button>
 
-          <LinkButton
-            to={"/user/signup"}
-            color="gray"
-            size="large"
-            filled="false"
-          >
-            회원가입
-          </LinkButton>
+            <LinkButton
+              to={"/user/signup"}
+              color="gray"
+              size="large"
+              filled="false"
+            >
+              회원가입
+            </LinkButton>
+          </div>
         </form>
       </LoginLayout>
     </>

@@ -77,7 +77,7 @@ function RcpList() {
           />
           <Pagination
             totalCount={totalCount}
-            currentPage={currentPage}
+            currentPage={Number(currentPage)}
             setCurrentPage={setCurrentPage}
             link="/recipe/list"
           />

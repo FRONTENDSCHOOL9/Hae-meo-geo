@@ -141,7 +141,7 @@ function ReplyList({
       {replies?.item.length ? (
         replyList
       ) : (
-        <p>
+        <p style={{ paddingTop: "3rem" }}>
           여러분의 <strong>해머거 후기</strong>를 기다리고 있어요 :-)
         </p>
       )}

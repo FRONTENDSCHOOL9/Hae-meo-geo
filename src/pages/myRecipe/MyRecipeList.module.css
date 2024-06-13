@@ -1,7 +1,7 @@
-.write{
+.write {
   display: flex;
   align-items: end;
   justify-content: end;
-  margin-top: 0.6rem;
+  margin-top: 1.2rem;
   margin-bottom: -2.4rem;
 }

@@ -92,7 +92,6 @@
 }
 
 .mypage input {
-  border-radius: 1rem;
   border-color: var(--color-gray-100);
   flex-grow: 1;
 }

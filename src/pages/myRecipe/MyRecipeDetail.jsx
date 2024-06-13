@@ -12,6 +12,7 @@ function MyRecipeDetail() {
   const { myRCPimage, myRCPdetail, container } = styles;
   const { _id } = useParams();
   const [data, setData] = useState();
+  const [image, setImage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isImageLoading, setIsImageLoading] = useState(true);
 
@@ -19,15 +20,16 @@ function MyRecipeDetail() {
     const res = await axios.get(`/posts/${_id}`);
     setData(res.data);
     setIsLoading(false);
+    setImage(
+      `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${res.data.item.image}`,
+    );
   };
 
   useEffect(() => {
     handleData();
   }, []);
 
-  const handleOnLoad = () => {
-    setIsImageLoading(false);
-  };
+  const handleOnLoad = () => setIsImageLoading(false);
 
   return (
     <>
@@ -36,20 +38,24 @@ function MyRecipeDetail() {
       ) : (
         data && (
           <>
-            <Sidebar id={_id} type="myRcp"/>
+            <Sidebar
+              id={Number(_id)}
+              type="myRcp"
+              name={data.item["title"]}
+              image={image}
+            />
             <Banner type="myRcpRegister" name={data.item["title"]} />
             <Content>
               <div className={container}>
                 <p className={myRCPdetail}>{data.item["content"]}</p>
                 <img
                   className={myRCPimage}
-                  src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${data.item.image}`}
+                  src={image}
                   alt={data.item["title"]}
                   onLoad={handleOnLoad}
                 />
                 {isImageLoading && <Loading />}
               </div>
-
             </Content>
           </>
         )

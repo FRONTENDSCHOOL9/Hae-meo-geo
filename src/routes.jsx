@@ -12,7 +12,6 @@ import Kakao from "@pages/auth/Kakao";
 import Signup from "@pages/user/Signup";
 import SignupStepOne from "@pages/user/SignupStepOne";
 import SignupStepTwo from "@pages/user/SignupStepTwo";
-import SignupStepThree from "@pages/user/SignupStepThree";
 import MyRecipeDetail from "@pages/myRecipe/MyRecipeDetail";
 import MyPage from "@pages/mypage/MyPage";
 import BookMark from "@pages/mypage/BookMark";
@@ -32,7 +31,6 @@ const router = createBrowserRouter([
       { path: "/user/signup", element: <Signup /> },
       { path: "/user/signupStepOne", element: <SignupStepOne /> },
       { path: "/user/signupStepTwo", element: <SignupStepTwo /> },
-      { path: "/user/signupStepThree", element: <SignupStepThree /> },
       { path: "/mypage/mypage", element: <MyPage /> },
       { path: "/mypage/bookmark", element: <BookMark /> },
       { path: "/mypage/editprofile", element: <EditProfile /> },

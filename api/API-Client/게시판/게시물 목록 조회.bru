@@ -1,0 +1,23 @@
+meta {
+  name: 게시물 목록 조회
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}/posts?type=qna&custom={"product_id": 3465}&sort={"_id":1}
+  body: none
+  auth: none
+}
+
+query {
+  type: qna
+  custom: {"product_id": 3465}
+  sort: {"_id":1}
+  ~limit: 6
+  ~page: 1
+  ~type: todayRcp
+  ~type: notice
+  ~type: notice
+  ~type: community
+}

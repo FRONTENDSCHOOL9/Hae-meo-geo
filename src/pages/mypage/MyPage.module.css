@@ -1,6 +1,12 @@
 .mypage {
   display: flex;
   gap: 2.6rem;
+  width: calc(100% + (var(--layout-padding) * 2));
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: -10em;
+  margin-top: -6rem;
 }
 
 .myheader {
@@ -29,6 +35,8 @@
 
 .myprofile img {
   width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }
 
 .user {
@@ -42,6 +50,10 @@
   grid-template-columns: 1fr;
 }
 
+.error-message {
+  color: var(--color-primary);
+}
+
 /* modify */
 .modify {
   flex-grow: 1;
@@ -49,6 +61,7 @@
   display: flex;
   flex-direction: column;
   row-gap: 4.5rem;
+  padding-right: var(--layout-padding);
 }
 
 .mypage form {
@@ -79,14 +92,8 @@
 }
 
 .mypage input {
-  border-radius: 1rem;
   border-color: var(--color-gray-100);
   flex-grow: 1;
-}
-
-.mypage input[type="email"] {
-  margin-right: 1rem;
-  width: 100%;
 }
 
 .profile {
@@ -105,14 +112,15 @@
   width: 100%;
 }
 
-/* .resign {
-  display: flex;
-  justify-content: flex-end;
-} */
-
 @media (max-width: 767px) {
   .mypage {
-    display: unset;
+    flex-direction: column;
+    gap: 1rem;
+    width: unset;
+    left: unset;
+    transform: unset;
+    margin-bottom: -5em;
+    margin-top: -3.2rem;
   }
 
   .myheader {
@@ -153,5 +161,8 @@
 
   .modify {
     padding: 4rem 0;
+    flex-direction: column;
+    row-gap: 4.5rem;
+    padding-right: unset;
   }
 }

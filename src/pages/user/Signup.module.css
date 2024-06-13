@@ -13,11 +13,28 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 1rem;
 }
 
 .form button,
 .form a {
   margin: 0 !important;
+}
+
+.save {
+  margin: 0.6rem;
+}
+
+.buttons {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.login > p {
+  margin-left: 1rem;
 }
 
 /* signup */
@@ -35,10 +52,6 @@ label {
   height: 2rem;
 }
 
-.signup fieldset {
-  margin-bottom: 2rem;
-}
-
 .checkbox-large {
   width: 2.4rem;
   height: 2.4rem;
@@ -50,7 +63,7 @@ label {
   height: 1px;
   background-color: var(--color-black-100);
   border: unset;
-  margin: 0.4rem 0 2.4rem;
+  margin: 1rem 0;
 }
 
 .signup p:last-of-type {
@@ -58,13 +71,7 @@ label {
   margin-bottom: 5.6rem;
 }
 
-.form {
-  width: 100%;
-  display: flex;
-}
-
 @media (max-width: 700px) {
-
   /* signup */
   .signup p,
   label {
@@ -80,13 +87,13 @@ label {
     height: 1.8rem;
   }
 
-  .signup fieldset {
-    margin-bottom: 2rem;
-  }
-
   .checkbox-large {
     width: 2.4rem;
     height: 2.4rem;
     margin-bottom: 0;
+  }
+
+  .form {
+    gap: 0.6rem;
   }
 }

@@ -9,6 +9,7 @@ Type.propTypes = {
   keyword: PropTypes.string,
   setKeyword: PropTypes.func,
   setCurrentPage: PropTypes.func,
+  searchInput: PropTypes.object,
 };
 
 function Type({ keyword, setKeyword, setCurrentPage, searchInput }) {

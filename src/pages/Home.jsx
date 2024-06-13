@@ -9,19 +9,12 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./Home.module.css";
+import axios from "axios";
 
 function Home() {
-  const axios = useCustomAxios();
-  const axiosRcp = useCustomAxios("rcp");
-  const {
-    section,
-    swiperWr,
-    titleWr,
-    todayMenuSec,
-    bookmarkSec,
-    searchSec,
-    myRcpSec,
-  } = styles;
+  const axiosLikelion = useCustomAxios();
+  const { section, titleWr, todayMenuSec, bookmarkSec, searchSec, myRcpSec } =
+    styles;
 
   const today = `day${new Date().getDay()}`;
   const [weather, setWeather] = useState();
@@ -32,8 +25,12 @@ function Home() {
 
   const fetchWeather = async () => {
     try {
-      const { data } = await axiosRcp.get("/", {
+      const { data } = await axios.get("/", {
         baseURL: import.meta.env.VITE_API_SERVER_WEATHER,
+        headers: {
+          "content-type": "application/json",
+          accept: "application/json",
+        },
       });
       setWeather(data?.weather[0].main);
     } catch (err) {
@@ -43,7 +40,7 @@ function Home() {
 
   const fetchTodayRcp = async () => {
     try {
-      const { data } = await axios("/posts?type=todayRcp");
+      const { data } = await axiosLikelion("/posts?type=todayRcp");
       setDataTodayRcp(data?.item);
     } catch (err) {
       console.error(err.response?.data.message);
@@ -65,7 +62,7 @@ function Home() {
       if (dataTodayRcp) {
         const filteredData = filteredTodayRcp(dataTodayRcp);
         const todayData = filteredData[randomFn(filteredData)];
-        const { data } = await axios(
+        const { data } = await axiosLikelion(
           `products?keyword=${todayData.title}&page=1&limit=6`,
         );
         setTodayMenu({ info: todayData, data: data.item });
@@ -77,7 +74,7 @@ function Home() {
 
   const fetchBookmarkRcp = async () => {
     try {
-      const { data } = await axios(
+      const { data } = await axiosLikelion(
         `/products?page=1&limit=6&sort={"bookmarks": -1}`,
       );
       setDataBookmark(data?.item);
@@ -88,7 +85,7 @@ function Home() {
 
   const fetchMyRcp = async () => {
     try {
-      const { data } = await axios(
+      const { data } = await axiosLikelion(
         `/posts?type=recipe&limit=6&page=1&sort={"_id": -1}`,
       );
       setDataMyRcp(data?.item);
@@ -157,23 +154,7 @@ function Home() {
                 더보기
               </LinkButton>
             </div>
-            <Swiper
-              className={swiperWr}
-              modules={[Pagination]}
-              lazy="true"
-              pagination={{
-                type: "progressbar",
-              }}
-              spaceBetween={15}
-              slidesPerView={1.4}
-              breakpoints={{
-                768: {
-                  slidesPerView: 4,
-                },
-              }}
-            >
-              {todayMenus}
-            </Swiper>
+            <SwiperWr>{todayMenus}</SwiperWr>
           </section>
           <section className={`${section} ${bookmarkSec}`}>
             <div className={titleWr}>
@@ -182,23 +163,7 @@ function Home() {
               </h2>
               <LinkButton to="/recipe/list">더보기</LinkButton>
             </div>
-            <Swiper
-              className={swiperWr}
-              modules={[Pagination]}
-              lazy="true"
-              pagination={{
-                type: "progressbar",
-              }}
-              spaceBetween={15}
-              slidesPerView={1.4}
-              breakpoints={{
-                768: {
-                  slidesPerView: 4,
-                },
-              }}
-            >
-              {bookmarkMenus}
-            </Swiper>
+            <SwiperWr>{bookmarkMenus}</SwiperWr>
           </section>
           <section className={`${section} ${myRcpSec}`}>
             <div className={titleWr}>
@@ -207,23 +172,7 @@ function Home() {
               </h2>
               <LinkButton to="/myrecipe/list">더보기</LinkButton>
             </div>
-            <Swiper
-              className={swiperWr}
-              modules={[Pagination]}
-              lazy="true"
-              pagination={{
-                type: "progressbar",
-              }}
-              spaceBetween={15}
-              slidesPerView={1.4}
-              breakpoints={{
-                768: {
-                  slidesPerView: 4,
-                },
-              }}
-            >
-              {myRcpMenus}
-            </Swiper>
+            <SwiperWr>{myRcpMenus}</SwiperWr>
           </section>
           <section className={`${section} ${searchSec}`}>
             <h2>
@@ -237,6 +186,28 @@ function Home() {
         <Loading />
       )}
     </>
+  );
+}
+
+export function SwiperWr({ children }) {
+  return (
+    <Swiper
+      className={styles.swiperWr}
+      modules={[Pagination]}
+      lazy="true"
+      pagination={{
+        type: "progressbar",
+      }}
+      spaceBetween={15}
+      slidesPerView={1.4}
+      breakpoints={{
+        768: {
+          slidesPerView: 4,
+        },
+      }}
+    >
+      {children}
+    </Swiper>
   );
 }
 

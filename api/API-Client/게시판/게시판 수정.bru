@@ -1,0 +1,17 @@
+meta {
+  name: 게시판 수정
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{url}}/posts/47
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "title": "수정 테스트 제목"
+  }
+}

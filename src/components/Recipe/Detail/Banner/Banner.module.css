@@ -1,21 +1,23 @@
 .bannerWr {
-  background: var(--color-secondary-30) url(/img/detail-banner.svg) no-repeat center / cover;
+  background: url(/img/detail-banner.svg) no-repeat center / cover;
   width: 100vw;
-  margin: -6rem -3rem 0;
+  margin-top: -6rem;
   padding: 0 5rem;
   position: relative;
+  max-width: 1920px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .bannerWr::before,
 .bannerWr::after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   top: 0;
   height: 100%;
   opacity: 0.6;
   background: no-repeat center / cover;
-
 }
 
 .bannerWr::before {
@@ -30,7 +32,7 @@
   aspect-ratio: 1.2/1;
 }
 
-.haeRcp {
+.haeRcp .banner:before {
   background-color: var(--color-primary-30);
 }
 
@@ -47,11 +49,24 @@
   max-width: var(--layout-container-tablet);
   margin: 0 auto;
   position: relative;
-  padding: 3.8vw 0;
+  padding: clamp(3rem, 3.8vw, 6rem) 0;
+}
+
+.banner::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 150vw;
+  height: 100%;
+  left: 50%;
+  top: 0;
+  z-index: -1;
+  transform: translateX(-50%);
+  background: var(--color-secondary-30);
 }
 
 .banner::after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   bottom: -1px;
@@ -70,15 +85,16 @@
 
 .banner ul {
   display: flex;
-  gap: .6rem;
+  gap: 0.6rem;
   margin-top: 0.6rem;
 }
 
 @media (max-width: 767px) {
-
   .bannerWr {
     margin: -3.2rem -1.5rem 0;
-    padding: 0 1.2rem;
+    padding: 0 var(--layout-padding);
+    left: auto;
+    transform: none;
   }
 
   .bannerWr::before,
@@ -93,6 +109,6 @@
   .myRcpRegister .titleDetail {
     color: var(--color-gray-100);
     font-size: 1.6rem;
+    margin-top: 0.4rem;
   }
-  
 }

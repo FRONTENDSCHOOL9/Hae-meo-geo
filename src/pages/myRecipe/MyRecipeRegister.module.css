@@ -1,59 +1,34 @@
-/* --UAReset-- */
-h3{
-  margin: unset;
-}
-
-input{
-  display: block;
-  padding: unset;
-  padding-block: unset;
-  padding-inline: unset;
-}
-
-textarea{
-  font-family: unset ;
-}
-
-/* --component-- */
 .layout {
   display: flex;
   flex-direction: column;
-  margin:0 auto;
-  max-width: var(--layout-container-pc);
-  padding: 7.2rem 2.4rem; 
+  padding: 7.2rem 0;
   gap: 4.8rem;
 }
 
-.container{
+.container {
   display: flex;
   flex-direction: column;
 }
 
-.title{
+.title {
   margin-bottom: 1.2rem;
   font-size: var(--title-medium);
 }
 
 .text.text {
   flex-grow: 1;
-  border: 1px solid var(--color-gray-100);
 }
 
-.text:focus {
-  outline: none;
-  border: 1px solid var(--color-primary);
-}
-
-.containerWriteWay{
+.containerWriteWay {
   display: flex;
   gap: 0.8rem;
 }
 
-.writeWay{
+.writeWay {
   display: none;
 }
 
-.writeWaySelect{
+.writeWaySelect {
   cursor: pointer;
   display: inline-block;
   border: 1px solid;
@@ -63,31 +38,18 @@ textarea{
   border-color: var(--color-gray-100);
   background-color: var(--color-gray-50);
   font-size: 1.8rem;
-  padding: 0 .75em;
+  padding: 0 0.75em;
   height: 4rem;
   line-height: 3.8rem;
 }
 
-.writeWay:checked+.writeWaySelect {
+.writeWay:checked + .writeWaySelect {
   color: var(--color-primary);
   border-color: var(--color-secondary);
   background-color: var(--color-secondary-30);
 }
 
-.textarea {
-  resize: none;
-  border-radius: 1rem;
-  font-size: 1.6rem;
-  padding: 1.6rem;
-  border: 1px solid var(--color-gray-100);
-}
-
-.textarea:focus{
-  outline: none;
-  border: 1px solid var(--color-primary);
-}
-
-.buttonUpload{
+.buttonUpload {
   display: inline-block;
   cursor: pointer;
   border: 1px solid;
@@ -102,12 +64,12 @@ textarea{
   line-height: 5.8rem;
 }
 
-.boxButtonUpload{
+.boxButtonUpload {
   display: flex;
   gap: 12px;
 }
 
-.inputReadOnly{
+.inputReadOnly {
   cursor: default;
   color: var(--color-gray-100);
   border: 1px solid var(--color-gray-100);
@@ -116,99 +78,33 @@ textarea{
   text-indent: 1.2rem;
 }
 
-.inputReadOnly:focus{
+.inputReadOnly:focus {
   outline: none;
   border: 1px solid var(--color-gray-100);
 }
 
-.boxButtonsSubmit{
+.boxButtonsSubmit {
   display: flex;
   justify-content: center;
   gap: 1.2rem;
 }
 
-.errorMassage{
+.errorMassage {
   color: var(--color-primary);
   margin-top: 0.6rem;
 }
 
 @media (max-width: 768px) {
-  .buttonUpload{
+  .buttonUpload {
     font-size: 1.6rem;
     height: 4rem;
     line-height: 4rem;
   }
-  .boxButtonUpload{
+  .boxButtonUpload {
     flex-direction: column;
   }
-  .inputReadOnly{
-    height:3.8rem;
-  }
-  .layout{
+  .layout {
     gap: 1.6rem;
-    padding: 3.6rem 1.2rem;
-  }
-}
-
-.stepsContainer{
-  gap: 16px;
-  padding: 2.4rem 3rem;
-  border-radius: 1rem;
-  background-color: var(--color-gray-50);
-}
-
-.stepsNum{
-  max-width: fit-content;
-  font-size: medium;
-  color: var(--color-primary);
-  border: 1px solid var(--color-secondary);
-  border-radius: 1rem;
-  padding: 4px 8px;
-  background-color: var(--color-secondary-30);
-  flex-basis: content;
-}
-
-.stepBlanks{
-  gap: 8px;
-  display: flex;
-  flex-direction: column;
-}
-
-.stepButtons{
-  display: flex;
-  gap: 2rem;
-  margin-top: 1.2rem;
-}
-
-.stepButton{
-  flex-grow: 1;
-  display: inline-block;
-  cursor: pointer;
-  border: 1px solid;
-  border-radius: 1rem;
-  text-align: center;
-  font-size: 2rem;
-  padding: 0 2rem;
-  height: 6rem;
-  line-height: 5.8rem;
-}
-
-.stepButtonDel{
-  color: var(--color-black);
-  border-color: var(--color-gray-100);
-  background-color: var(--color-gray-50);
-}
-
-.stepButtonAdd{
-  color: var(--color-primary);
-  border-color: var(--color-secondary);
-  background-color: var(--color-secondary-30);
-}
-
-@media (max-width: 767px) {
-  .stepButton{
-    font-size: 1.6rem;
-    height: 4rem;
-    line-height: 4rem;
+    padding: 3.6rem 0;
   }
 }

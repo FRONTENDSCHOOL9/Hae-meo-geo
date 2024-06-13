@@ -1,0 +1,15 @@
+meta {
+  name: 필수-상품 목록 조회
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{url}}/products?limit=8
+  body: none
+  auth: none
+}
+
+query {
+  limit: 8
+}

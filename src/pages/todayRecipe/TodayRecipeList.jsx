@@ -1,4 +1,3 @@
-import Pagination from "@components/Pagination/Pagination";
 import Title from "@components/Title/Title";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useInfiniteQuery } from "@tanstack/react-query";

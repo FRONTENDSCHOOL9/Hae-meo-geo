@@ -24,7 +24,7 @@ function RecipeDetail() {
 
   const fetchData = async () => {
     try {
-      const { data } = await axios(`/1/1001/RCP_NM=${name}`);
+      const { data } = await axios(`/1/1001/RCP_NM=${encodeURI(name)}`);
       setData(data.COOKRCP01.row[0]);
     } catch (err) {
       console.error(err);
@@ -73,7 +73,6 @@ function RecipeDetail() {
               id={Number(data["RCP_SEQ"])}
               replies={replies}
               rcpName={name}
-              rcpNum={Number(data["RCP_SEQ"])}
               setRepliesFn={setRepliesFn}
             />
             <div className={buttonWr}>

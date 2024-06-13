@@ -501,7 +501,7 @@ export const initData = async (nextSeq) => {
       {
         _id: await nextSeq("post"),
         type: "todayRcp",
-        content: "조금만 버티면 목요일!",
+        content: "조금만 버티면 금요일!",
         title: "덮밥",
         extra: {
           condition: "day4",

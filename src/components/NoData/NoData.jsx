@@ -1,6 +1,11 @@
 import Lottie from "react-lottie";
 import animationData from "@/assets/lottie/noData.json";
 import styles from "@pages/ErrorPage.module.css";
+import PropTypes from "prop-types";
+
+NoData.propTypes = {
+  keyword: PropTypes.string.isRequired,
+};
 
 function NoData({ keyword }) {
   const defaultOptions = {

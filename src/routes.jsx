@@ -6,16 +6,16 @@ import RecipeDetail from "@pages/recipe/RecipeDetail";
 import TodayRecipeList from "@pages/todayRecipe/TodayRecipeList";
 import Login from "@pages/user/Login";
 import { createBrowserRouter } from "react-router-dom";
-import MyRecipeRegister from "@pages/myRecipe/MyRecipeRegister";
-import MyRecipeList from "@pages/myRecipe/myRecipeList/MyRecipeList";
+import Kakao from "@pages/auth/Kakao";
 import Signup from "@pages/user/Signup";
-import MyPage from "@pages/mypage/MyPage";
 import SignupStepOne from "@pages/user/SignupStepOne";
 import SignupStepTwo from "@pages/user/SignupStepTwo";
-import SignupStepThree from "@pages/user/SignupStepThree";
 import MyRecipeDetail from "@pages/myRecipe/MyRecipeDetail";
+import MyRecipeRegister from "@pages/myRecipe/MyRecipeRegister";
+import MyRecipeList from "@pages/myRecipe/MyRecipeList";
+import MyPage from "@pages/mypage/MyPage";
 import BookMark from "@pages/mypage/BookMark";
-import Kakao from "@pages/auth/Kakao";
+import EditProfile from "@pages/mypage/EditProfile";
 
 const router = createBrowserRouter([
   {
@@ -29,11 +29,11 @@ const router = createBrowserRouter([
       { path: "/today/list", element: <TodayRecipeList /> },
       { path: "/user/login", element: <Login /> },
       { path: "/user/signup", element: <Signup /> },
-      { path: "/user/mypage", element: <MyPage /> },
       { path: "/user/signupStepOne", element: <SignupStepOne /> },
       { path: "/user/signupStepTwo", element: <SignupStepTwo /> },
-      { path: "/user/signupStepThree", element: <SignupStepThree /> },
+      { path: "/mypage/mypage", element: <MyPage /> },
       { path: "/mypage/bookmark", element: <BookMark /> },
+      { path: "/mypage/editprofile", element: <EditProfile /> },
       { path: "/myrecipe/register", element: <MyRecipeRegister /> },
       { path: "/myrecipe/list", element: <MyRecipeList /> },
       { path: "/myrecipe/list/:_id", element: <MyRecipeDetail /> },

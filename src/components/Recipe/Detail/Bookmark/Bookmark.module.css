@@ -2,6 +2,10 @@
   background-image: url(/img/ico-bookmark.svg);
 }
 
+.bookmark:hover::before {
+  background-image: url(/img/ico-bookmark-act.svg);
+}
+
 .bookmarkAct::before {
   background-image: url(/img/ico-bookmark-act.svg);
 }

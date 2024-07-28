@@ -3,9 +3,14 @@
   border: 1px solid;
   border-radius: 1rem;
   text-align: center;
+  transition: all 0.3s;
+}
+a.button:hover,
+button.button:hover {
+  transform: scale(1.03);
 }
 
-.button+.button {
+.button + .button {
   margin-left: 0.6rem;
 }
 
@@ -40,10 +45,10 @@
   text-decoration: underline;
 }
 
-.kakao{
+.kakao {
   color: var(--color-black);
-  border-color: #FEE500;
-  background-color: #FEE500;
+  border-color: #fee500;
+  background-color: #fee500;
   display: flex;
   justify-content: center;
   align-items: center;

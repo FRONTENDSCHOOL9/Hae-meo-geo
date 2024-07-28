@@ -3,9 +3,10 @@ import useUserStore from "@zustand/userStore.mjs";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const VITE_API_SERVER = import.meta.env.VITE_API_SERVER;
-const VITE_API_SERVER_RCP = import.meta.env.VITE_API_SERVER_RCP;
-const VITE_CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
+const API_SERVER = import.meta.env.VITE_API_SERVER;
+const API_SERVER_RCP = import.meta.env.VITE_API_SERVER_RCP;
+const API_SERVER_WEATHER = import.meta.env.VITE_API_SERVER_WEATHER;
+const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
 const REFRESH_URL = "/auth/refresh";
 
 function useCustomAxios(type = "likelion") {
@@ -14,18 +15,23 @@ function useCustomAxios(type = "likelion") {
   const { user } = useUserStore();
   const { setModal } = modalStore();
   const instance = axios.create({
-    baseURL: type === "rcp" ? VITE_API_SERVER_RCP : VITE_API_SERVER,
+    baseURL:
+      type === "rcp"
+        ? API_SERVER_RCP
+        : type === "weather"
+          ? API_SERVER_WEATHER
+          : API_SERVER,
     timeout: 1000 * 20,
     headers:
-      type === "rcp"
+      type === "likelion"
         ? {
             "content-type": "application/json",
             accept: "application/json",
+            "client-id": CLIENT_ID,
           }
         : {
             "content-type": "application/json",
             accept: "application/json",
-            "client-id": VITE_CLIENT_ID,
           },
   });
 

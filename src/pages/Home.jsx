@@ -13,6 +13,7 @@ import axios from "axios";
 
 function Home() {
   const axiosLikelion = useCustomAxios();
+  const axiosWeather = useCustomAxios("weather");
   const { section, titleWr, todayMenuSec, bookmarkSec, searchSec, myRcpSec } =
     styles;
 
@@ -23,25 +24,14 @@ function Home() {
   const [dataMyRcp, setDataMyRcp] = useState();
   const [todayMenu, setTodayMenu] = useState();
 
-  const fetchWeather = async () => {
+  const fetchWeatherAndRcp = async () => {
     try {
-      const { data } = await axios.get("/", {
-        baseURL: import.meta.env.VITE_API_SERVER_WEATHER,
-        headers: {
-          "content-type": "application/json",
-          accept: "application/json",
-        },
-      });
-      setWeather(data?.weather[0].main);
-    } catch (err) {
-      console.error(err.response?.data.message);
-    }
-  };
-
-  const fetchTodayRcp = async () => {
-    try {
-      const { data } = await axiosLikelion("/posts?type=todayRcp");
-      setDataTodayRcp(data?.item);
+      const [weatherRes, rcpRes] = await Promise.all([
+        axiosWeather.get("/"),
+        axiosLikelion.get("/posts?type=todayRcp"),
+      ]);
+      setWeather(weatherRes.data?.weather[0].main);
+      setDataTodayRcp(rcpRes.data?.item);
     } catch (err) {
       console.error(err.response?.data.message);
     }
@@ -95,9 +85,8 @@ function Home() {
   };
 
   useEffect(() => {
-    fetchTodayRcp();
+    fetchWeatherAndRcp();
     fetchBookmarkRcp();
-    fetchWeather();
     fetchMyRcp();
   }, []);
 
@@ -109,7 +98,11 @@ function Home() {
   const todayMenus = todayMenu?.data.map((item, idx) => (
     <SwiperSlide key={`${idx}${item.name}`}>
       <Link to={`/recipe/list/${item.name}`}>
-        <img src={item.mainImages[0].path} alt="" />
+        <img
+          src={item.mainImages[0].path}
+          alt={item.name}
+          loading={idx >= 4 ? "lazy" : "eager"}
+        />
         <p>{item.name}</p>
       </Link>
     </SwiperSlide>
@@ -119,7 +112,11 @@ function Home() {
   const bookmarkMenus = dataBookmark?.map((item, idx) => (
     <SwiperSlide key={idx}>
       <Link to={`/recipe/list/${item.name}`}>
-        <img src={item.mainImages[0].path} alt="" />
+        <img
+          src={item.mainImages[0].path}
+          alt={item.name}
+          loading={idx >= 4 ? "lazy" : "eager"}
+        />
         <p>{item.name}</p>
       </Link>
     </SwiperSlide>
@@ -131,7 +128,8 @@ function Home() {
       <Link to={`/myrecipe/list/${item._id}`}>
         <img
           src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${item.image}`}
-          alt=""
+          alt={item.title}
+          loading={idx >= 4 ? "lazy" : "eager"}
         />
         <p>{item.title}</p>
       </Link>

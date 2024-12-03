@@ -45,8 +45,6 @@ function TodayRecipeList() {
             <img
               src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${item.extra?.image}`}
               alt={item.title}
-              width={356}
-              height={463}
             />
             <div className={textWr}>
               <h3>{item.content}</h3>

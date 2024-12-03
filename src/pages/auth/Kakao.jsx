@@ -1,10 +1,13 @@
 import useCustomAxios from "@hooks/useCustomAxios";
+import useKakao from "@hooks/useKaKao.mjs";
 import modalStore from "@zustand/modalStore.mjs";
 import userStore from "@zustand/userStore.mjs";
 import { useEffect } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 function Kakao() {
+  const { kakaoLoading, initKakao } = useKakao();
+
   const [searchParams] = useSearchParams();
   const { setUser } = userStore();
   const code = searchParams.get("code");
@@ -16,6 +19,10 @@ function Kakao() {
   useEffect(() => {
     if (code !== null) handleLogin(code);
   }, [code]);
+
+  useEffect(() => {
+    if (kakaoLoading) initKakao();
+  }, []);
 
   async function handleLogin(code) {
     try {

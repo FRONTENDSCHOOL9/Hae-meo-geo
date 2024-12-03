@@ -1,5 +1,8 @@
+import useScript from "@hooks/useScript.mjs";
 import styles from "./Share.module.css";
 import PropTypes from "prop-types";
+import useKakao from "@hooks/useKaKao.mjs";
+import { useEffect } from "react";
 
 Share.propTypes = {
   name: PropTypes.string.isRequired,
@@ -9,20 +12,15 @@ Share.propTypes = {
 
 function Share({ name, image, rcpNum = "" }) {
   const { share } = styles;
+  const { kakaoLoading, initKakao, shareWithKakao } = useKakao();
+
   const handleShare = () => {
-    Kakao.Share.sendDefault({
-      objectType: "feed",
-      content: {
-        title: name,
-        description: `해머거에서 맛있는 '${name}' 레시피를 확인해보세요.`,
-        imageUrl: image,
-        link: {
-          mobileWebUrl: `https://haemeogeo.netlify.app/${rcpNum ? `myrecipe` : "recipe"}/list/${rcpNum || name}`,
-          webUrl: `https://haemeogeo.netlify.app/${rcpNum ? `myrecipe` : "recipe"}/list/${rcpNum || name}`,
-        },
-      },
-    });
+    shareWithKakao(name, image, rcpNum);
   };
+
+  useEffect(() => {
+    if (kakaoLoading) initKakao();
+  }, []);
 
   return (
     <button onClick={handleShare} className={share}>

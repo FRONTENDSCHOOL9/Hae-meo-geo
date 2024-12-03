@@ -161,7 +161,13 @@ function ReplyRegister({
           <div className={ReplyStyle.replyWr}>
             <img
               className={ReplyStyle.profile}
-              src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${user.profile}`}
+              src={
+                user.loginType === "kakao"
+                  ? user.profile
+                  : `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${
+                      user.profile
+                    }`
+              }
               alt={user.name}
             />
             <div className={ReplyStyle.contentWr}>

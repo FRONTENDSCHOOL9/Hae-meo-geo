@@ -45,8 +45,20 @@ function Header() {
       <header className={header} onClick={(e) => handleNav(e)}>
         <div className={logo}>
           <Link to="/">
-            <img className="pc" src="/img/logo.svg" alt="해머거" />
-            <img className="mo" src="/img/logo-name.svg" alt="해머거" />
+            <img
+              className="pc"
+              src="/img/logo.svg"
+              alt="해머거"
+              width={45}
+              height={45}
+            />
+            <img
+              className="mo"
+              src="/img/logo-name.svg"
+              alt="해머거"
+              width={100}
+              height={40}
+            />
           </Link>
         </div>
         <div className={`${hamburgerMenu} ${isClicked ? styles.act : ""}`}>

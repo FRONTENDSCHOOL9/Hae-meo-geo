@@ -91,9 +91,13 @@ function ReplyList({
       <article key={item._id} className={ReplyStyle.replyWr}>
         <img
           className={ReplyStyle.profile}
-          src={`${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${
-            item.user.profile
-          }`}
+          src={
+            item.user.profile.indexOf("kakaocdn") < 0
+              ? `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${
+                  item.user.profile
+                }`
+              : item.user.profile
+          }
           alt={item.user.name}
         />
         <div className={rightWr}>

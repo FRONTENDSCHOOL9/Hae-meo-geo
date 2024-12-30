@@ -1,3 +1,3 @@
-User-agent: *              
-Allow: /                   
-Sitemap: https://haemeogeo.netlify.app/sitemap.xml
+user-agent: *              
+allow: /                   
+sitemap: https://haemeogeo.netlify.app/sitemap.xml

@@ -12,6 +12,7 @@ import NoData from "@components/NoData/NoData";
 import Pagination from "@components/Pagination/Pagination";
 import modalStore from "@zustand/modalStore.mjs";
 import userStore from "@zustand/userStore.mjs";
+import SEOMetaTag from "@/assets/SEOMetaTag";
 
 function MyRecipeList() {
   const axios = useCustomAxios();
@@ -74,6 +75,7 @@ function MyRecipeList() {
 
   return (
     <>
+      <SEOMetaTag title="나만의 레시피" />
       <Title>나만의 레시피</Title>
       <Search
         type="myRcpList"

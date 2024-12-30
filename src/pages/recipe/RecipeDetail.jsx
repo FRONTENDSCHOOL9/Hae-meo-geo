@@ -12,6 +12,7 @@ import Reply from "@components/Recipe/Detail/Reply/Reply";
 import { Button } from "@components/Button/Button";
 import styles from "./RecipeDetail.module.css";
 import recentlyViewStore from "@zustand/recentlyViewStore.mjs";
+import SEOMetaTag from "@/assets/SEOMetaTag";
 
 function RecipeDetail() {
   const axios = useCustomAxios("rcp");
@@ -46,46 +47,49 @@ function RecipeDetail() {
   return (
     <>
       {data ? (
-        <div className={recipeDetail}>
-          <Sidebar
-            id={Number(data["RCP_SEQ"])}
-            name={data["RCP_NM"]}
-            image={data["ATT_FILE_NO_MAIN"]}
-          />
-          <Banner
-            name={data["RCP_NM"]}
-            pat={data["RCP_PAT2"]}
-            way={data["RCP_WAY2"]}
-            type="haeRcp"
-          />
-          <Content>
-            <SubTitle>재료</SubTitle>
-            <Ingredient data={data} />
-
-            <SubTitle>단계별 레시피</SubTitle>
-            <Step data={data} />
-
-            <SubTitle>
-              요리 후기 <span>({replies?.item.length})</span>
-            </SubTitle>
-
-            <Reply
+        <>
+          <SEOMetaTag title={data["RCP_NM"]} />
+          <div className={recipeDetail}>
+            <Sidebar
               id={Number(data["RCP_SEQ"])}
-              replies={replies}
-              rcpName={name}
-              setRepliesFn={setRepliesFn}
+              name={data["RCP_NM"]}
+              image={data["ATT_FILE_NO_MAIN"]}
             />
-            <div className={buttonWr}>
-              <Button
-                className={styles.buttond}
-                size="large"
-                onClick={() => navigate(-1)}
-              >
-                목록으로
-              </Button>
-            </div>
-          </Content>
-        </div>
+            <Banner
+              name={data["RCP_NM"]}
+              pat={data["RCP_PAT2"]}
+              way={data["RCP_WAY2"]}
+              type="haeRcp"
+            />
+            <Content>
+              <SubTitle>재료</SubTitle>
+              <Ingredient data={data} />
+
+              <SubTitle>단계별 레시피</SubTitle>
+              <Step data={data} />
+
+              <SubTitle>
+                요리 후기 <span>({replies?.item.length})</span>
+              </SubTitle>
+
+              <Reply
+                id={Number(data["RCP_SEQ"])}
+                replies={replies}
+                rcpName={name}
+                setRepliesFn={setRepliesFn}
+              />
+              <div className={buttonWr}>
+                <Button
+                  className={styles.buttond}
+                  size="large"
+                  onClick={() => navigate(-1)}
+                >
+                  목록으로
+                </Button>
+              </div>
+            </Content>
+          </div>
+        </>
       ) : (
         <Loading />
       )}

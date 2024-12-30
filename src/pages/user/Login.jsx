@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Signup.module.css";
 import SocialKakao from "@components/socialLogin/SocialKakao";
 import modalStore from "@zustand/modalStore.mjs";
+import SEOMetaTag from "@/assets/SEOMetaTag";
 
 function Login() {
   const {
@@ -112,6 +113,7 @@ function Login() {
 
   return (
     <>
+      <SEOMetaTag title="로그인" />
       <LoginLayout>
         <Title>로그인</Title>
         <form

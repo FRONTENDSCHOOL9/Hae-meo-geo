@@ -2,11 +2,13 @@ import { LinkButton } from "@components/Button/Button";
 import Title from "@components/Title/Title";
 import LoginLayout from "@components/login/LoginLayout";
 import styles from "./Signup.module.css";
+import SEOMetaTag from "@/assets/SEOMetaTag";
 
 function Signup() {
   const { subtitle, form } = styles;
   return (
     <>
+      <SEOMetaTag title="회원가입" />
       <LoginLayout>
         <Title>회원가입</Title>
         <p className={subtitle}>

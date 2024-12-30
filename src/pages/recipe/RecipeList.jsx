@@ -7,6 +7,7 @@ import Search from "@components/Search/Search";
 import Title from "@components/Title/Title";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useQuery } from "@tanstack/react-query";
+import SEOMetaTag from "@/assets/SEOMetaTag";
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
@@ -60,6 +61,7 @@ function RcpList() {
 
   return (
     <>
+      <SEOMetaTag title="해머거 레시피" />
       <Title>해머거 레시피</Title>
       <Search
         keyword={keyword}

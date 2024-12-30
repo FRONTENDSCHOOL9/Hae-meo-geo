@@ -7,6 +7,7 @@ import MypageMenu from "@components/Mypage/MypageMenu";
 import EditProfile from "./EditProfile";
 import modalStore from "@zustand/modalStore.mjs";
 import { useNavigate } from "react-router-dom";
+import SEOMetaTag from "@/assets/SEOMetaTag";
 
 function MyPage() {
   const [userInfo, setUserInfo] = useState();
@@ -42,39 +43,42 @@ function MyPage() {
   }, []);
 
   return (
-    <div className={mypage}>
-      <section className={myheader}>
-        <div className={myprofile}>
-          {userInfo && userInfo.profileImage && (
-            <img
-              src={
-                isHttpUrl.test(userInfo.profileImage)
-                  ? userInfo.profileImage
-                  : `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${userInfo.profileImage}`
-              }
-              alt="내 프로필 이미지"
-            />
-          )}
-        </div>
-        {userInfo && <p className={styles.user}>{userInfo.name}</p>}
+    <>
+      <SEOMetaTag title="회원정보 수정" />
+      <div className={mypage}>
+        <section className={myheader}>
+          <div className={myprofile}>
+            {userInfo && userInfo.profileImage && (
+              <img
+                src={
+                  isHttpUrl.test(userInfo.profileImage)
+                    ? userInfo.profileImage
+                    : `${import.meta.env.VITE_API_SERVER}/files/${import.meta.env.VITE_CLIENT_ID}/${userInfo.profileImage}`
+                }
+                alt="내 프로필 이미지"
+              />
+            )}
+          </div>
+          {userInfo && <p className={styles.user}>{userInfo.name}</p>}
 
-        <div className={styles["logout-box"]}>
-          <LinkButton
-            to={"/user/login"}
-            color="secondary"
-            size="large"
-            filled="false"
-            onClick={handleLogout}
-          >
-            로그아웃
-          </LinkButton>
-        </div>
-      </section>
-      <section className={styles.modify}>
-        <MypageMenu />
-        <EditProfile userInfo={userInfo} user={user} setUser={setUser} />
-      </section>
-    </div>
+          <div className={styles["logout-box"]}>
+            <LinkButton
+              to={"/user/login"}
+              color="secondary"
+              size="large"
+              filled="false"
+              onClick={handleLogout}
+            >
+              로그아웃
+            </LinkButton>
+          </div>
+        </section>
+        <section className={styles.modify}>
+          <MypageMenu />
+          <EditProfile userInfo={userInfo} user={user} setUser={setUser} />
+        </section>
+      </div>
+    </>
   );
 }
 

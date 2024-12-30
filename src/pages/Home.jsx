@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./Home.module.css";
-import axios from "axios";
+import SEOMetaTag from "@/assets/SEOMetaTag";
 
 function Home() {
   const axiosLikelion = useCustomAxios();
@@ -138,6 +138,7 @@ function Home() {
 
   return (
     <>
+      <SEOMetaTag isMain={true} />
       {todayMenu ? (
         <>
           <section className={`${section} ${todayMenuSec}`}>

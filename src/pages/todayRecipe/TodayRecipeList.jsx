@@ -6,6 +6,7 @@ import _ from "lodash";
 import { Link } from "react-router-dom";
 import styles from "./TodayRecipeList.module.css";
 import Loading from "@components/Loading/Loading";
+import SEOMetaTag from "@/assets/SEOMetaTag";
 
 function TodayRecipeList() {
   const { recipeList, textWr } = styles;
@@ -59,6 +60,7 @@ function TodayRecipeList() {
 
   return (
     <>
+      <SEOMetaTag title="오늘 뭐먹지?" />
       <Title>
         오늘 뭐먹지?
         <p>뭐 먹을지는 해머거가 알려드릴게요 :-)</p>

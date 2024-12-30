@@ -6,6 +6,7 @@ import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loading from "@components/Loading/Loading";
+import SEOMetaTag from "@/assets/SEOMetaTag";
 
 function MyRecipeDetail() {
   const axios = useCustomAxios();
@@ -38,6 +39,7 @@ function MyRecipeDetail() {
       ) : (
         data && (
           <>
+            <SEOMetaTag title={data.item["title"]} />
             <Sidebar
               id={Number(_id)}
               type="myRcp"

@@ -14,6 +14,19 @@ const SEOMetaTag = ({ title, isMain = false }) => {
         name="description"
         content="다양한 레시피를 발견하고 공유해보세요! 초보부터 고수까지 누구나 쉽게 밥 해머거"
       />
+      <meta property="og:title" content="해머거" />
+      <meta
+        property="og:description"
+        content="다양한 레시피를 발견하고 공유해보세요! 초보부터 고수까지 누구나 쉽게 밥 해머거"
+      />
+      <meta property="og:url" content="https://haemeogeo.netlify.app/" />
+      <meta property="og:site_name" content="해머거" />
+      <meta property="og:type" content="website" />
+      <meta name="twitter:title" content="해머거" />
+      <meta
+        name="twitter:description"
+        content="다양한 레시피를 발견하고 공유해보세요! 초보부터 고수까지 누구나 쉽게 밥 해머거"
+      />
     </Helmet>
   );
 };

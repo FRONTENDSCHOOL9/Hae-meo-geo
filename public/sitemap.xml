@@ -9,7 +9,22 @@
 
 <url>
   <loc>https://haemeogeo.netlify.app/</loc>
-  <lastmod>2024-05-10T06:48:45+00:00</lastmod>
+  <lastmod>2025-01-06T10:43:00+00:00</lastmod>
+</url>
+
+<url>
+  <loc>https://haemeogeo.netlify.app/today/list</loc>
+  <lastmod>2025-01-06T10:43:00+00:00</lastmod>
+</url>
+
+<url>
+  <loc>https://haemeogeo.netlify.app/recipe/list</loc>
+  <lastmod>2025-01-06T10:43:00+00:00</lastmod>
+</url>
+
+<url>
+  <loc>https://haemeogeo.netlify.app/myrecipe/list</loc>
+  <lastmod>2025-01-06T10:43:00+00:00</lastmod>
 </url>
 
 

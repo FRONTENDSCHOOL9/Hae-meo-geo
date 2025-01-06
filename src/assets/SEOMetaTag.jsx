@@ -24,11 +24,11 @@ const SEOMetaTag = ({ title, isMain = false }) => {
       <meta property="og:site_name" content="해머거" />
       <meta property="og:image" content="/img/opengraph_img.jpg" />
       <meta property="og:type" content="website" />
-      <meta name="twitter:title" content="해머거" />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:image" content="/img/opengraph_img.jpg" />
+      <meta property="twitter:title" content="해머거" />
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:image" content="/img/opengraph_img.jpg" />
       <meta
-        name="twitter:description"
+        property="twitter:description"
         content="다양한 레시피를 발견하고 공유해보세요! 초보부터 고수까지 누구나 쉽게 밥 해머거"
       />
     </Helmet>

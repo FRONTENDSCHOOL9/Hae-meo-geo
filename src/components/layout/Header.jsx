@@ -43,7 +43,7 @@ function Header() {
   return (
     <>
       <header className={header} onClick={(e) => handleNav(e)}>
-        <div className={logo}>
+        <h1 className={logo}>
           <Link to="/">
             <img
               className="pc"
@@ -60,7 +60,7 @@ function Header() {
               height={40}
             />
           </Link>
-        </div>
+        </h1>
         <div className={`${hamburgerMenu} ${isClicked ? styles.act : ""}`}>
           <nav className={gnb}>
             <ul>

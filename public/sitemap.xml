@@ -6,26 +6,30 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
-
-<url>
-  <loc>https://haemeogeo.netlify.app/</loc>
-  <lastmod>2025-01-06T10:43:00+00:00</lastmod>
-</url>
-
-<url>
-  <loc>https://haemeogeo.netlify.app/today/list</loc>
-  <lastmod>2025-01-06T10:43:00+00:00</lastmod>
-</url>
-
-<url>
-  <loc>https://haemeogeo.netlify.app/recipe/list</loc>
-  <lastmod>2025-01-06T10:43:00+00:00</lastmod>
-</url>
-
-<url>
-  <loc>https://haemeogeo.netlify.app/myrecipe/list</loc>
-  <lastmod>2025-01-06T10:43:00+00:00</lastmod>
-</url>
+  <url>
+    <loc>https://haemeogeo.netlify.app/</loc>
+    <lastmod>2025-01-06T10:43:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://haemeogeo.netlify.app/today/list</loc>
+    <lastmod>2025-01-06T10:43:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://haemeogeo.netlify.app/recipe/list</loc>
+    <lastmod>2025-01-06T10:43:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://haemeogeo.netlify.app/myrecipe/list</loc>
+    <lastmod>2025-01-06T10:43:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
 
 </urlset>
